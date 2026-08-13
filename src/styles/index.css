@@ -1034,6 +1034,57 @@ h1, h2, h3, h4 {
   .form-row { grid-template-columns: 1fr; }
 }
 
+/* ---- photography ---------------------------------------------------------- */
+
+.photo-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-flow {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  margin-top: 0.6rem;
+}
+
+.proj-card-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  filter: saturate(0.92);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-grid img:hover { filter: saturate(1.05); }
+
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .gallery-grid { grid-template-columns: 1fr; } }
+
 /* ---- reveal animation ---------------------------------------------------- */
 
 .reveal {

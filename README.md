@@ -40,14 +40,35 @@ All text lives in one file: **`src/data/content.js`** — company details, stats
 services, projects, process steps, values and timeline. Edit there; no component
 changes needed.
 
-## Adding real photography
+## Using the photos from earthmoversint.com
 
-The design currently uses custom vector scenes (`src/components/Art.jsx`) in the two
-image panels (home hero and fleet section). To use real site photos instead:
+The site is photo-first: every image slot renders a real photograph when the file
+exists and silently falls back to vector art when it doesn't.
 
-1. Copy photos from the WordPress media library (or new shots) into `public/images/`,
-   e.g. `public/images/hero.jpg` and `public/images/fleet.jpg`.
-2. In `src/pages/Home.jsx`, replace `<ExcavatorScene />` / `<FleetScene />` with
-   `<img src="images/hero.jpg" alt="…" />` — the framed panel styling stays the same.
+**Pull the entire media library from the live site (one command):**
 
+```bash
+npm run fetch-images
+```
+
+This downloads every image from the WordPress media library at earthmoversint.com
+into `public/images/library/` and writes `src/data/gallery.json`. The photo
+galleries on the Home and Projects pages appear automatically once it has run.
+(It needs network access to earthmoversint.com — run it on your own machine, or in
+a Claude session whose environment allows that domain.)
+
+**Named slots** (hero, fleet, about, project cards) are defined in the `images`
+map at the top of `src/data/content.js`. Drop files with these names into
+`public/images/`:
+
+| File | Where it appears |
+| --- | --- |
+| `images/hero.jpg` | Home — hero panel |
+| `images/fleet.jpg` | Home — fleet section |
+| `images/about.jpg` | About — story section |
+| `images/project-fujairah.jpg` | Projects — Fujairah Cement card |
+| `images/project-municipality.jpg` | Projects — Dubai Municipality card |
+| `images/project-nakheel.jpg` | Projects — Nakheel card |
+
+…or edit the `images` map to point at files in `images/library/` after fetching.
 Photos with dark, warm tones work best against the sand/ink palette.

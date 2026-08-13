@@ -3,10 +3,12 @@ import Reveal from '../components/Reveal.jsx'
 import Counter from '../components/Counter.jsx'
 import Marquee from '../components/Marquee.jsx'
 import CTA from '../components/CTA.jsx'
+import Photo from '../components/Photo.jsx'
+import Gallery from '../components/Gallery.jsx'
 import { Arrow, iconMap } from '../components/Icons.jsx'
 import { ExcavatorScene, FleetScene, TopoBackdrop } from '../components/Art.jsx'
 import {
-  company, stats, featuredServices, projects, process, values, fleet,
+  company, stats, featuredServices, projects, process, values, fleet, images,
 } from '../data/content.js'
 
 export default function Home() {
@@ -44,7 +46,12 @@ export default function Home() {
           </div>
 
           <Reveal delay={200} className="hero-art">
-            <ExcavatorScene />
+            <Photo
+              src={images.hero}
+              alt="Earth Movers International excavation works on site"
+              className="photo-cover"
+              fallback={<ExcavatorScene />}
+            />
             <div className="hero-art-caption">
               <span>Site 07 — Bulk Excavation</span>
               <span>{company.coordinates}</span>
@@ -137,7 +144,12 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal delay={200} className="fleet-art">
-            <FleetScene />
+            <Photo
+              src={images.fleet}
+              alt="Earth Movers International heavy equipment fleet"
+              className="photo-flow"
+              fallback={<FleetScene />}
+            />
             <div className="fleet-art-caption">
               <span>Fleet yard — Dubai</span>
               <span>Operated · 24/7</span>
@@ -260,6 +272,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ---------------- gallery (renders once real photos are fetched) ---------------- */}
+      <Gallery limit={6} />
 
       {/* ---------------- CTA ---------------- */}
       <CTA text="Tell us about your site and scope — we’ll walk the ground with you and price the real work." />

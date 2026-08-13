@@ -4,7 +4,8 @@ import Counter from '../components/Counter.jsx'
 import CTA from '../components/CTA.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { TopoBackdrop } from '../components/Art.jsx'
-import { company, stats, timeline, values } from '../data/content.js'
+import Photo from '../components/Photo.jsx'
+import { company, stats, timeline, values, images } from '../data/content.js'
 
 export default function About() {
   return (
@@ -70,6 +71,13 @@ export default function About() {
                 and safely. As an RTA-approved contractor, compliance is built into
                 everything we deliver.
               </p>
+            </Reveal>
+            <Reveal delay={200}>
+              <Photo
+                src={images.about}
+                alt="Earth Movers International team and machinery at work"
+                className="about-photo"
+              />
             </Reveal>
           </div>
         </div>

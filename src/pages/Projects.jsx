@@ -1,7 +1,9 @@
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
+import Photo from '../components/Photo.jsx'
+import Gallery from '../components/Gallery.jsx'
 import { TopoBackdrop } from '../components/Art.jsx'
-import { projects, sectors } from '../data/content.js'
+import { projects, sectors, images } from '../data/content.js'
 
 export default function Projects() {
   return (
@@ -31,6 +33,11 @@ export default function Projects() {
           <div className="proj-cards">
             {projects.map((p, i) => (
               <Reveal key={p.client} delay={i * 90} className="proj-card">
+                <Photo
+                  src={images.projects[i]}
+                  alt={`${p.client} — ${p.sector}`}
+                  className="proj-card-photo"
+                />
                 <div className="proj-card-head">
                   <span className="proj-card-sector">{p.sector}</span>
                   <span className="index-num">0{i + 1}</span>
@@ -87,6 +94,8 @@ export default function Projects() {
           </div>
         </div>
       </section>
+
+      <Gallery eyebrow="03 — Site gallery" title="The work, in pictures." />
 
       <CTA
         title="Your project, next on this page."

@@ -21,6 +21,16 @@ export const company = {
   },
 }
 
+// Named photo slots. Drop files with these names into public/images/ (or point
+// entries at files in public/images/library/ after running `npm run fetch-images`)
+// and the site uses them automatically; missing files fall back to vector art.
+export const images = {
+  hero: 'images/hero.jpg',
+  fleet: 'images/fleet.jpg',
+  about: 'images/about.jpg',
+  projects: ['images/project-fujairah.jpg', 'images/project-municipality.jpg', 'images/project-nakheel.jpg'],
+}
+
 export const stats = [
   { value: 35, suffix: '+', label: 'Years since founding', note: 'Montreal, 1990' },
   { value: 20, suffix: '+', label: 'Years in the UAE', note: 'Dubai, since 2005' },
