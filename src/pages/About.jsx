@@ -1,0 +1,150 @@
+import { Link } from 'react-router-dom'
+import Reveal from '../components/Reveal.jsx'
+import Counter from '../components/Counter.jsx'
+import CTA from '../components/CTA.jsx'
+import { Arrow } from '../components/Icons.jsx'
+import { TopoBackdrop } from '../components/Art.jsx'
+import { company, stats, timeline, values } from '../data/content.js'
+
+export default function About() {
+  return (
+    <main>
+      <section className="wrap page-hero">
+        <TopoBackdrop className="hero-topo" />
+        <Reveal><span className="eyebrow">About us</span></Reveal>
+        <Reveal delay={80}>
+          <h1 className="display-xl">Three decades of moving ground.</h1>
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="lead">
+            From Montreal in {company.founded} to Dubai since {company.inUAE} — a
+            contractor built around heavy machines, experienced hands and ground
+            that gets handed over right.
+          </p>
+        </Reveal>
+      </section>
+
+      <section className="wrap stat-band">
+        <div className="stat-grid">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 90} className="stat-cell">
+              <span className="stat-value">
+                <Counter value={s.value} />
+                <em>{s.suffix}</em>
+              </span>
+              <span className="stat-label">{s.label}</span>
+              <span className="stat-note">{s.note}</span>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap split">
+          <div className="split-sticky">
+            <Reveal><span className="eyebrow">01 — The story</span></Reveal>
+            <Reveal delay={80}><h2 className="display-lg">Who we are</h2></Reveal>
+          </div>
+          <div className="split-body">
+            <Reveal>
+              <p className="lead" style={{ color: 'var(--ink)' }}>
+                Earth Movers International is a dynamic and preferred solution provider
+                in the fields of civil and heavy construction, engineering, oil &amp; gas,
+                recycling and demolition.
+              </p>
+            </Reveal>
+            <Reveal delay={90}>
+              <p>
+                Our team was incorporated to help meet the challenges faced by the
+                construction sector in the fields of earth works, heavy equipment,
+                material supply, transportation and logistics. Today we support
+                infrastructure, commercial and industrial projects across the UAE
+                as a Dubai-based road construction and earthworks contractor.
+              </p>
+            </Reveal>
+            <Reveal delay={160}>
+              <p>
+                We maintain one of Dubai&rsquo;s largest fleets of heavy excavation
+                equipment — excavators, bulldozers, piling rigs, rock breakers and
+                specialised machinery — so projects are completed quickly, effectively
+                and safely. As an RTA-approved contractor, compliance is built into
+                everything we deliver.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section hairline-top">
+        <div className="wrap">
+          <div className="section-head">
+            <div className="kicker">
+              <Reveal><span className="eyebrow">02 — Milestones</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">The road so far.</h2></Reveal>
+            </div>
+          </div>
+          <div className="timeline">
+            {timeline.map((t, i) => (
+              <Reveal key={t.year} delay={i * 70} className="timeline-row">
+                <span className="timeline-year">{t.year}</span>
+                <div>
+                  <h4>{t.title}</h4>
+                  <p>{t.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="on-dark section">
+        <div className="wrap split">
+          <div className="split-sticky">
+            <Reveal><span className="eyebrow">03 — Direction</span></Reveal>
+            <Reveal delay={80}><h2 className="display-lg">Mission &amp; vision</h2></Reveal>
+          </div>
+          <div className="split-body">
+            <Reveal>
+              <p className="lead">
+                Our vision is to make Earth Movers International a global brand in the
+                field of earth works, heavy construction equipment and services.
+              </p>
+            </Reveal>
+            <Reveal delay={90}>
+              <p>
+                Our mission is simpler still: deliver practical, build-ready ground —
+                safely, on programme and to specification — so every client can build
+                with confidence on what we hand over.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head">
+            <div className="kicker">
+              <Reveal><span className="eyebrow">04 — Values</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">Ground rules.</h2></Reveal>
+            </div>
+            <Reveal delay={160}>
+              <Link to="/services" className="text-link">See our services <Arrow /></Link>
+            </Reveal>
+          </div>
+          <div className="values-grid">
+            {values.map((v, i) => (
+              <Reveal key={v.title} delay={(i % 2) * 90} className="value-card">
+                <span className="index-num">0{i + 1}</span>
+                <h3>{v.title}</h3>
+                <p>{v.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTA title="Build on solid ground." text="Talk to the team that has been moving the earth since 1990." />
+    </main>
+  )
+}

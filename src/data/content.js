@@ -1,0 +1,305 @@
+// ---------------------------------------------------------------------------
+// All site content for Earth Movers International lives in this file.
+// Edit text here — the components render whatever is defined below.
+// ---------------------------------------------------------------------------
+
+export const company = {
+  name: 'Earth Movers International',
+  short: 'EMI',
+  tagline: 'Earthworks & Road Construction — Dubai, UAE',
+  phone: '+971 55 172 7024',
+  phoneHref: 'tel:+971551727024',
+  email: 'Earthmoversinfo@gmail.com',
+  address: ['Capital Golden Tower', 'Office 706, 7th Floor', 'Business Bay, Dubai, UAE'],
+  mapQuery: 'Capital Golden Tower, Business Bay, Dubai',
+  coordinates: "25.1857° N, 55.2766° E",
+  founded: 1990,
+  inUAE: 2005,
+  social: {
+    facebook: 'https://www.facebook.com/earthmoversint/',
+    linkedin: 'https://www.linkedin.com/company/earth-movers-international',
+  },
+}
+
+export const stats = [
+  { value: 35, suffix: '+', label: 'Years since founding', note: 'Montreal, 1990' },
+  { value: 20, suffix: '+', label: 'Years in the UAE', note: 'Dubai, since 2005' },
+  { value: 17, suffix: '', label: 'Service disciplines', note: 'Earthworks to asphalt' },
+  { value: 24, suffix: '/7', label: 'Fleet availability', note: 'Across the Emirates' },
+]
+
+export const clients = [
+  'Nakheel PJSC',
+  'Dubai Municipality',
+  'Fujairah Cement Industry',
+  'RTA-Approved Contractor',
+  'Infrastructure · Commercial · Industrial',
+]
+
+// Featured on the home page (six disciplines)
+export const featuredServices = [
+  {
+    id: 'excavation',
+    title: 'Excavation',
+    icon: 'excavator',
+    blurb:
+      'Bulk excavation, basements and deep digs, powered by one of the largest heavy-excavation fleets in Dubai.',
+  },
+  {
+    id: 'road-construction',
+    title: 'Road Construction',
+    icon: 'road',
+    blurb:
+      'RTA-approved road contracting — road base, sub-base, compaction and finishing for roads across the UAE.',
+  },
+  {
+    id: 'cut-and-fill',
+    title: 'Cut & Fill',
+    icon: 'grade',
+    blurb:
+      'Precision grading and levelling to design elevations, balancing cut and fill for efficient earthworks.',
+  },
+  {
+    id: 'site-preparation',
+    title: 'Site Preparation',
+    icon: 'site',
+    blurb:
+      'Land clearing, demolition and ground stabilisation that hands over a clean, build-ready site.',
+  },
+  {
+    id: 'asphalt',
+    title: 'Asphalt Works',
+    icon: 'asphalt',
+    blurb:
+      'Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances.',
+  },
+  {
+    id: 'equipment-rental',
+    title: 'Equipment Rental',
+    icon: 'crane',
+    blurb:
+      'Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready.',
+  },
+]
+
+// Full catalogue for the Services page, grouped by discipline
+export const serviceGroups = [
+  {
+    id: 'earthworks',
+    number: '01',
+    title: 'Earthworks & Ground Engineering',
+    intro:
+      'The full early-stage scope that turns raw land into a build-ready platform — measured, moved and compacted to specification.',
+    services: [
+      {
+        title: 'Excavation',
+        text: 'Bulk excavation, basement digs and confined works delivered with excavators, rock breakers and specialised machinery from one of the largest fleets in Dubai.',
+      },
+      {
+        title: 'Cut & Fill',
+        text: 'Balanced cut-and-fill operations that grade sites to design elevations while minimising haulage and material waste.',
+      },
+      {
+        title: 'Earth Works',
+        text: 'End-to-end earthworks — excavation, grading, levelling and compaction — for infrastructure, commercial and industrial projects.',
+      },
+      {
+        title: 'Site Preparation',
+        text: 'Clearing, grubbing, demolition and ground stabilisation that hands over a clean, compacted, build-ready site.',
+      },
+      {
+        title: 'Land Clearing',
+        text: 'Clearing programmes for residential, commercial and infrastructure developments across Dubai and the wider UAE.',
+      },
+      {
+        title: 'Mountain & Rock Removal',
+        text: 'Heavy rock breaking and mountain removal using hydraulic breakers and high-reach machines — no compromise on safety.',
+      },
+      {
+        title: 'Trenching',
+        text: 'Utility, pipeline and drainage trenching cut to line and level, with shoring and backfill to specification.',
+      },
+      {
+        title: 'Piling',
+        text: 'Piling rigs and foundation works that put reliable ground under heavy structures.',
+      },
+    ],
+  },
+  {
+    id: 'roads',
+    number: '02',
+    title: 'Roads & Infrastructure',
+    intro:
+      'As a trusted RTA-approved contractor, we build and maintain the roads Dubai runs on — from sub-base to final surface.',
+    services: [
+      {
+        title: 'Road Construction',
+        text: 'RTA-approved road contracting: formation, road base, sub-base, compaction and finishing for internal roads, highways and industrial access.',
+      },
+      {
+        title: 'Asphalt Works',
+        text: 'Removal of old asphalt, milling, and new asphalt laying with certified mixes, laid to tight tolerances.',
+      },
+      {
+        title: 'Highway Construction',
+        text: 'Highway contracting for the RTA and private clients — large-scale earthworks, pavement structure and road furniture.',
+      },
+      {
+        title: 'Road Maintenance',
+        text: 'Ongoing road maintenance and rehabilitation works that keep networks safe, compliant and open to traffic.',
+      },
+      {
+        title: 'Concrete Repair & Maintenance',
+        text: 'Structural concrete repair, surface reinstatement and preventive maintenance for roads and hardstandings.',
+      },
+      {
+        title: 'Pipeline Maintenance',
+        text: 'Excavation, protection and reinstatement works around live pipeline corridors, executed to oil-and-gas standards.',
+      },
+    ],
+  },
+  {
+    id: 'supply',
+    number: '03',
+    title: 'Supply, Logistics & Marine',
+    intro:
+      'Material, machines and logistics — the supporting muscle that keeps programmes moving on schedule.',
+    services: [
+      {
+        title: 'Construction Material Supply',
+        text: 'Aggregates, road base, sub-base and fill material supplied and delivered against programme.',
+      },
+      {
+        title: 'Material Shifting & Haulage',
+        text: 'Bulk material shifting and transport with a dedicated tipper and trailer fleet, managed loads and disposal.',
+      },
+      {
+        title: 'Heavy Equipment Rental',
+        text: 'Excavators, bulldozers, loaders, cranes and TMA (truck-mounted attenuator) units — operated or bare, short or long term.',
+      },
+      {
+        title: 'Marine & Coastal Works',
+        text: 'Beach levelling, boulder placement and coastal protection works, delivered for clients such as Nakheel PJSC.',
+      },
+      {
+        title: 'Recycling & Demolition',
+        text: 'Controlled demolition with segregation and recycling of construction material wherever the ground allows.',
+      },
+    ],
+  },
+]
+
+export const projects = [
+  {
+    client: 'Fujairah Cement Industry',
+    location: 'Dibba, Fujairah',
+    year: '2021',
+    value: 'AED 1.8M',
+    sector: 'Roads & Asphalt',
+    scope:
+      'Removal of old asphalt, levelling, road base and sub-base, compaction, and new asphalt laying.',
+  },
+  {
+    client: 'Dubai Municipality',
+    location: 'Dubai',
+    year: '2017',
+    value: 'AED 0.3M',
+    sector: 'Specialised Logistics',
+    scope: 'Relocation of animals from Dubai Airport to the Safari — planned, permitted and executed without incident.',
+  },
+  {
+    client: 'Nakheel PJSC',
+    location: 'Dubai',
+    year: '2015',
+    value: 'AED 0.7M',
+    sector: 'Marine Works',
+    scope: 'Levelling of beach sand, placement of boulders, and compaction of the area.',
+  },
+]
+
+export const sectors = [
+  { title: 'Infrastructure', text: 'Roads, highways and utility corridors for public authorities.' },
+  { title: 'Commercial', text: 'Site preparation and enabling works for commercial developments.' },
+  { title: 'Industrial', text: 'Heavy earthworks for plants, cement works and logistics facilities.' },
+  { title: 'Oil & Gas', text: 'Trenching and pipeline works executed to sector standards.' },
+  { title: 'Marine & Coastal', text: 'Beach profiling, boulder placement and coastal protection.' },
+  { title: 'Residential', text: 'Land clearing and grading for master-planned communities.' },
+]
+
+export const process = [
+  {
+    step: '01',
+    title: 'Survey & Assess',
+    text: 'We walk the ground, review drawings and survey levels, and price the real scope — not an estimate of it.',
+  },
+  {
+    step: '02',
+    title: 'Plan & Mobilise',
+    text: 'Method statements, permits and RTA compliance in place, the right machines mobilised to site.',
+  },
+  {
+    step: '03',
+    title: 'Execute',
+    text: 'Experienced operators move the earth to line and level, with supervision and QA at every lift.',
+  },
+  {
+    step: '04',
+    title: 'Compact & Hand Over',
+    text: 'Testing, compaction certificates and a clean handover — ground your project can build on.',
+  },
+]
+
+export const values = [
+  {
+    title: 'Safety, first and always',
+    text: 'Every method statement, every permit, every lift — planned so that people go home safe.',
+  },
+  {
+    title: 'Compliance built in',
+    text: 'RTA-approved and aligned with municipality standards, so approvals never stall your programme.',
+  },
+  {
+    title: 'Fleet depth',
+    text: 'One of the largest heavy-excavation fleets in Dubai means no waiting on machines.',
+  },
+  {
+    title: 'Straight dealing',
+    text: 'Clear scope, honest pricing and communication you can plan around.',
+  },
+]
+
+export const fleet = [
+  'Excavators',
+  'Bulldozers',
+  'Wheel Loaders',
+  'Piling Rigs',
+  'Rock Breakers',
+  'Graders',
+  'Compactors',
+  'Cranes',
+  'Tippers & Trailers',
+  'TMA Units',
+]
+
+export const timeline = [
+  {
+    year: '1990',
+    title: 'Founded in Montreal, Canada',
+    text: 'Earth Movers International begins as an earthworks and heavy-equipment contractor in Montreal.',
+  },
+  {
+    year: '2005',
+    title: 'Expansion to Dubai, UAE',
+    text: 'EMI establishes its Dubai operation as the emirate accelerates into a global construction market.',
+  },
+  {
+    year: '2015–2021',
+    title: 'Landmark deliveries',
+    text: 'Projects for Nakheel PJSC, Dubai Municipality and Fujairah Cement Industry cement EMI’s reputation across sectors.',
+  },
+  {
+    year: 'Today',
+    title: 'RTA-approved, fleet-strong',
+    text: 'A trusted road and earthworks contractor with one of the largest heavy-excavation fleets in Dubai.',
+  },
+]
