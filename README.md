@@ -40,12 +40,19 @@ All text lives in one file: **`src/data/content.js`** — company details, stats
 services, projects, process steps, values and timeline. Edit there; no component
 changes needed.
 
-## Using the photos from earthmoversint.com
+## Photography
 
-The site is photo-first: every image slot renders a real photograph when the file
-exists and silently falls back to vector art when it doesn't.
+The site ships with a curated set of regional photographs — desert construction,
+heavy machinery and Dubai landmarks (Burj Al Arab, Atlantis/The Palm, the skyline) —
+sourced from freely available website-template asset packs and processed to match
+the warm sand/ink palette. Named slots live in `public/images/`; the gallery lives
+in `public/images/library/` and is listed in `src/data/gallery.json`.
 
-**Pull the entire media library from the live site (one command):**
+Every image slot renders a real photograph when the file exists and silently falls
+back to vector art when it doesn't — so you can swap any photo by overwriting the
+file with the same name, no code changes needed.
+
+**To replace the current set with photos from earthmoversint.com:**
 
 ```bash
 npm run fetch-images

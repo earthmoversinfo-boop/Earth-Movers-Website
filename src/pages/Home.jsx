@@ -53,7 +53,7 @@ export default function Home() {
               fallback={<ExcavatorScene />}
             />
             <div className="hero-art-caption">
-              <span>Site 07 — Bulk Excavation</span>
+              <span>Rising from the sand — Dubai</span>
               <span>{company.coordinates}</span>
             </div>
           </Reveal>
