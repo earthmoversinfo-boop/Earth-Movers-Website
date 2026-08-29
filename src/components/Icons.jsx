@@ -8,13 +8,33 @@ const base = {
   strokeLinecap: 'square',
 }
 
-export function BrandMark({ className }) {
+export function GlobeMark({ className }) {
   return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <rect width="48" height="48" rx="5" fill="#14181d" />
-      <path d="M10 33h28v4H10z" fill="#f2a900" />
-      <path d="M12 29l8-13 6 8 4-5 6 10z" fill="#ffffff" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="11" fill="#EDA63A" />
+      <g stroke="#7A5210" strokeWidth="1.1" fill="none">
+        <ellipse cx="12" cy="12" rx="10.4" ry="4.4" />
+        <ellipse cx="12" cy="12" rx="4.4" ry="10.4" />
+        <circle cx="12" cy="12" r="10.4" />
+      </g>
+      <path d="M6 8.2c1.4-.9 3-.6 3.9.3.9.9 2.4.6 2.9-.4.4-.8 1.5-1.2 2.5-.8" stroke="#7A5210" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+      <path d="M7.5 15.2c1.2-.5 2.7 0 3.3 1 .5.8 1.7 1.1 2.7.7" stroke="#7A5210" strokeWidth="1.6" fill="none" strokeLinecap="round" />
     </svg>
+  )
+}
+
+// Recreation of the Earth Movers International wordmark: heavy caps with the
+// "O" of MOVERS replaced by the golden globe, INTERNATIONAL letterspaced below.
+export function Logo({ variant = 'dark' }) {
+  return (
+    <span className={`logo ${variant === 'light' ? 'logo-light' : ''}`} aria-label="Earth Movers International">
+      <span className="logo-word">
+        EARTH&nbsp;M
+        <GlobeMark className="logo-globe" />
+        VERS
+      </span>
+      <span className="logo-sub">International</span>
+    </span>
   )
 }
 

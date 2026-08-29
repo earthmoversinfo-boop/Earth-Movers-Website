@@ -37,24 +37,31 @@ export const images = {
   },
 }
 
+// Hero slides. Title is split so the highlighted words render in brand gold.
 export const heroSlides = [
   {
-    img: 'images/hero-bg-1.jpg',
-    eyebrow: 'RTA-Approved Road & Earthworks Contractor',
-    title: 'Building the ground the UAE rises from.',
-    text: 'Earthworks, excavation and road construction for infrastructure, commercial and industrial projects — since 1990.',
+    img: 'images/hero-bg-2.jpg',
+    eyebrow: 'Earth Movers International — Dubai, UAE',
+    titlePre: 'No.1 RTA-Approved ',
+    titleGold: 'Road Contractor',
+    titlePost: ' in Dubai',
+    text: 'We deliver reliable, high-quality road construction with advanced technology — your trusted partner for highways, access roads and infrastructure projects.',
   },
   {
-    img: 'images/hero-bg-2.jpg',
-    eyebrow: 'One of the largest excavation fleets in Dubai',
-    title: 'Heavy machinery. Heavier standards.',
-    text: 'Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by our own teams.',
+    img: 'images/hero-bg-1.jpg',
+    eyebrow: 'Building the ground the UAE rises from',
+    titlePre: 'Earthworks, excavation and ',
+    titleGold: 'heavy construction',
+    titlePost: '.',
+    text: 'Infrastructure, commercial and industrial projects across the Emirates — founded in Montreal in 1990, in Dubai since 2005.',
   },
   {
     img: 'images/hero-bg-3.jpg',
-    eyebrow: 'Infrastructure · Commercial · Industrial',
-    title: 'From survey to sign-off, we deliver.',
-    text: 'A trusted partner to Nakheel, Dubai Municipality and Fujairah Cement Industry across the Emirates.',
+    eyebrow: 'One of the largest excavation fleets in Dubai',
+    titlePre: 'Heavy machinery. ',
+    titleGold: 'Heavier standards.',
+    titlePost: '',
+    text: 'Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by our own teams, 24/7.',
   },
 ]
 

@@ -11,9 +11,9 @@
   --slate: #4a5460;
   --muted: #8a94a0;
   --line: #e2e6ea;
-  --accent: #f2a900;
-  --accent-deep: #d99600;
-  --on-accent: #14181d;
+  --accent: #eda63a;
+  --accent-deep: #c9881c;
+  --on-accent: #1d1d1d;
   --dark: #14181d;
   --dark-2: #1c2128;
   --dark-line: rgba(255, 255, 255, 0.12);
@@ -142,7 +142,7 @@ h1, h2, h3, h4 {
 .btn .btn-arrow { transition: transform 0.22s ease; }
 .btn:hover .btn-arrow { transform: translateX(4px); }
 
-.btn-solid { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 18px rgba(242, 169, 0, 0.32); }
+.btn-solid { background: var(--accent); color: var(--on-accent); box-shadow: 0 6px 18px rgba(237, 166, 58, 0.32); }
 .btn-solid:hover { background: var(--accent-deep); }
 
 .btn-ink { background: var(--ink); color: #fff; }
@@ -223,6 +223,35 @@ h1, h2, h3, h4 {
 .nav-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 
 .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
+
+/* recreated Earth Movers International wordmark */
+.logo { display: inline-grid; justify-items: start; line-height: 1; }
+
+.logo-word {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.42rem;
+  letter-spacing: 0.015em;
+  color: #2e2e2e;
+}
+
+.logo-globe { width: 1.06em; height: 1.06em; margin: 0 0.045em; flex: none; }
+
+.logo-sub {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.585rem;
+  letter-spacing: 0.485em;
+  text-transform: uppercase;
+  color: #8d8d8d;
+  margin-top: 0.28em;
+  padding-left: 0.1em;
+}
+
+.logo-light .logo-word { color: #ffffff; }
+.logo-light .logo-sub { color: var(--faint-on-dark); }
 
 .brand-mark { width: 2.6rem; height: 2.6rem; flex: none; border-radius: 4px; }
 
@@ -366,6 +395,8 @@ h1, h2, h3, h4 {
 .hero-content .eyebrow::before { background: var(--accent); }
 
 .hero-content h1 { max-width: 13em; color: #fff; font-size: clamp(2.6rem, 5.6vw, 4.6rem); }
+
+.hero-content h1 em { font-style: normal; color: var(--accent); }
 
 .hero-content .lead { color: rgba(255, 255, 255, 0.85); max-width: 36em; }
 
@@ -1017,7 +1048,7 @@ h1, h2, h3, h4 {
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.22);
+  box-shadow: 0 0 0 3px rgba(237, 166, 58, 0.25);
 }
 
 .field textarea { min-height: 9rem; resize: vertical; }

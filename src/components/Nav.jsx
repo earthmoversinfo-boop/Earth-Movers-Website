@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { BrandMark } from './Icons.jsx'
+import { Logo } from './Icons.jsx'
 import { company } from '../data/content.js'
 
 const links = [
@@ -52,11 +52,7 @@ export default function Nav() {
       <header className={`nav ${scrolled || open ? 'scrolled' : ''}`}>
         <div className="wrap nav-inner">
           <Link to="/" className="brand" aria-label="Earth Movers International — home">
-            <BrandMark className="brand-mark" />
-            <span className="brand-name">
-              Earth Movers
-              <small>International</small>
-            </span>
+            <Logo />
           </Link>
 
           <nav className="nav-links" aria-label="Primary">

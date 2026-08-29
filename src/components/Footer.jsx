@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BrandMark } from './Icons.jsx'
+import { Logo } from './Icons.jsx'
 import { company, serviceGroups } from '../data/content.js'
 
 export default function Footer() {
@@ -19,11 +19,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="brand" aria-label="Earth Movers International — home">
-              <BrandMark className="brand-mark" />
-              <span className="brand-name">
-                Earth Movers
-                <small style={{ color: 'var(--sand-faint-on-dark)' }}>International</small>
-              </span>
+              <Logo variant="light" />
             </Link>
             <p>
               Founded in Montreal in {company.founded}, in Dubai since {company.inUAE}. An

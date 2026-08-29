@@ -32,14 +32,16 @@ function HeroSlider() {
       ))}
       <div className="wrap hero-content" key={active}>
         <Reveal><span className="eyebrow">{slide.eyebrow}</span></Reveal>
-        <Reveal delay={90}><h1>{slide.title}</h1></Reveal>
+        <Reveal delay={90}>
+          <h1>{slide.titlePre}<em>{slide.titleGold}</em>{slide.titlePost}</h1>
+        </Reveal>
         <Reveal delay={170}><p className="lead">{slide.text}</p></Reveal>
         <Reveal delay={250}>
           <div className="hero-actions">
             <Link to="/contact" className="btn btn-solid">
-              Get a quote <Arrow className="btn-arrow" />
+              Contact us <Arrow className="btn-arrow" />
             </Link>
-            <Link to="/services" className="btn btn-outline-light">Our services</Link>
+            <Link to="/projects" className="btn btn-outline-light">View projects</Link>
           </div>
         </Reveal>
       </div>
