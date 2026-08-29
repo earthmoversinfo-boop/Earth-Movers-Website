@@ -224,34 +224,17 @@ h1, h2, h3, h4 {
 
 .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
 
-/* recreated Earth Movers International wordmark */
-.logo { display: inline-grid; justify-items: start; line-height: 1; }
+/* the company's actual logo (image file) */
+.logo-img { height: 3.15rem; width: auto; display: block; }
 
-.logo-word {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Anton', var(--font-display);
-  font-weight: 400;
-  font-size: 1.52rem;
-  letter-spacing: 0.045em;
-  color: #3b3b3b;
+.logo-chip {
+  display: inline-block;
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 0.55rem 0.85rem;
 }
 
-.logo-globe { width: 1.02em; height: 1.02em; margin: 0 0.05em; flex: none; align-self: center; transform: translateY(0.02em); }
-
-.logo-sub {
-  font-family: 'Anton', var(--font-display);
-  font-weight: 400;
-  font-size: 0.6rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: #3b3b3b;
-  margin-top: 0.32em;
-  padding-left: 0.12em;
-}
-
-.logo-light .logo-word { color: #ffffff; }
-.logo-light .logo-sub { color: var(--faint-on-dark); }
+.logo-chip .logo-img { height: 2.7rem; }
 
 .brand-mark { width: 2.6rem; height: 2.6rem; flex: none; border-radius: 4px; }
 

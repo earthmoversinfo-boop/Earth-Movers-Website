@@ -39,19 +39,13 @@ export function GlobeMark({ className }) {
   )
 }
 
-// Recreation of the Earth Movers International wordmark: heavy caps with the
-// "O" of MOVERS replaced by the golden globe, INTERNATIONAL letterspaced below.
+// The company's actual logo file (public/images/logo.png, transparent
+// background). The dark charcoal lettering needs a light ground, so the
+// footer's dark variant sits it on a white chip.
 export function Logo({ variant = 'dark' }) {
-  return (
-    <span className={`logo ${variant === 'light' ? 'logo-light' : ''}`} aria-label="Earth Movers International">
-      <span className="logo-word">
-        EARTH&nbsp;M
-        <GlobeMark className="logo-globe" />
-        VERS
-      </span>
-      <span className="logo-sub">International</span>
-    </span>
-  )
+  const img = <img src="images/logo.png" alt="Earth Movers International" className="logo-img" />
+  if (variant === 'light') return <span className="logo-chip">{img}</span>
+  return img
 }
 
 export function IconExcavator(props) {
