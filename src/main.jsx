@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import '@fontsource/anton/400.css'
 import '@fontsource/barlow/500.css'
 import '@fontsource/barlow/600.css'
 import '@fontsource/barlow/700.css'

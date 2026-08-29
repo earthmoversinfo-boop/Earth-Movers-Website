@@ -230,24 +230,24 @@ h1, h2, h3, h4 {
 .logo-word {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.42rem;
-  letter-spacing: 0.015em;
-  color: #2e2e2e;
+  font-family: 'Anton', var(--font-display);
+  font-weight: 400;
+  font-size: 1.52rem;
+  letter-spacing: 0.045em;
+  color: #3b3b3b;
 }
 
-.logo-globe { width: 1.06em; height: 1.06em; margin: 0 0.045em; flex: none; }
+.logo-globe { width: 1.02em; height: 1.02em; margin: 0 0.05em; flex: none; align-self: center; transform: translateY(0.02em); }
 
 .logo-sub {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.585rem;
-  letter-spacing: 0.485em;
+  font-family: 'Anton', var(--font-display);
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: #8d8d8d;
-  margin-top: 0.28em;
-  padding-left: 0.1em;
+  color: #3b3b3b;
+  margin-top: 0.32em;
+  padding-left: 0.12em;
 }
 
 .logo-light .logo-word { color: #ffffff; }

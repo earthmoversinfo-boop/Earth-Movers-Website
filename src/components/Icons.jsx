@@ -8,17 +8,33 @@ const base = {
   strokeLinecap: 'square',
 }
 
+// Silver gridded sphere with golden continents, matching the company logo.
 export function GlobeMark({ className }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <circle cx="12" cy="12" r="11" fill="#EDA63A" />
-      <g stroke="#7A5210" strokeWidth="1.1" fill="none">
-        <ellipse cx="12" cy="12" rx="10.4" ry="4.4" />
-        <ellipse cx="12" cy="12" rx="4.4" ry="10.4" />
-        <circle cx="12" cy="12" r="10.4" />
+      <defs>
+        <radialGradient id="emiGlobe" cx="0.38" cy="0.3" r="0.9">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.55" stopColor="#d8d8d8" />
+          <stop offset="1" stopColor="#8f8f8f" />
+        </radialGradient>
+      </defs>
+      <circle cx="12" cy="12" r="11.1" fill="url(#emiGlobe)" />
+      <g stroke="#7f7f7f" strokeWidth="0.55" fill="none">
+        <circle cx="12" cy="12" r="11.1" />
+        <ellipse cx="12" cy="12" rx="7.3" ry="11.1" />
+        <ellipse cx="12" cy="12" rx="2.9" ry="11.1" />
+        <path d="M0.9 12h22.2" />
+        <path d="M1.7 7.4c3-1.7 17.6-1.7 20.6 0" />
+        <path d="M1.7 16.6c3 1.7 17.6 1.7 20.6 0" />
+        <path d="M3.9 3.6c2.4-.9 13.8-.9 16.2 0" />
+        <path d="M3.9 20.4c2.4.9 13.8.9 16.2 0" />
       </g>
-      <path d="M6 8.2c1.4-.9 3-.6 3.9.3.9.9 2.4.6 2.9-.4.4-.8 1.5-1.2 2.5-.8" stroke="#7A5210" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-      <path d="M7.5 15.2c1.2-.5 2.7 0 3.3 1 .5.8 1.7 1.1 2.7.7" stroke="#7A5210" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+      <g fill="#EFAF2A" stroke="#C88F15" strokeWidth="0.3">
+        <path d="M5.2 4.9c2.2-1.3 5.3-1 6.5.3.9 1-.1 1.9-1.2 1.8-1.2-.1-1.6 1.1-2.4 1.8-1 .9-2.6.5-3.1-.7-.4-1.1-.5-2.4.2-3.2Z" />
+        <path d="M9.3 12.1c1.5-.6 3 0 3.6 1.3.6 1.5-.1 3.5-1.1 4.7-.7.9-1.8.7-2.2-.4-.5-1.5-.9-2.9-.7-4.3.1-.6.2-1.1.4-1.3Z" />
+        <path d="M17.6 6.8c1.4-.5 2.9 0 3.4 1.1.4 1-.1 2-1 2.3-1.1.4-2.3 0-2.8-1-.4-.9-.3-2 .4-2.4Z" />
+      </g>
     </svg>
   )
 }
