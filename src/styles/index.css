@@ -225,16 +225,18 @@ h1, h2, h3, h4 {
 .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
 
 /* the company's actual logo (image file) */
-.logo-img { height: 3.15rem; width: auto; display: block; }
+.logo-img { height: 2.35rem; width: auto; display: block; }
 
 .logo-chip {
   display: inline-block;
   background: #ffffff;
   border-radius: var(--radius);
-  padding: 0.55rem 0.85rem;
+  padding: 0.5rem 0.75rem;
 }
 
-.logo-chip .logo-img { height: 2.7rem; }
+.logo-chip .logo-img { height: 2.1rem; }
+
+@media (max-width: 940px) { .logo-img { height: 2.1rem; } }
 
 .brand-mark { width: 2.6rem; height: 2.6rem; flex: none; border-radius: 4px; }
 
