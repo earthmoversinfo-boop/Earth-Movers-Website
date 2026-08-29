@@ -29,7 +29,8 @@
 
   --pad: clamp(1.25rem, 4vw, 3rem);
   --section: clamp(4rem, 8vw, 7rem);
-  --topbar-h: 0rem;
+  --grey-dark: #3d4249;
+  --topbar-h: 2.5rem;
   --nav-h: 4.75rem;
 }
 
@@ -175,7 +176,7 @@ h1, h2, h3, h4 {
   inset: 0 0 auto 0;
   z-index: 62;
   height: var(--topbar-h);
-  background: var(--dark);
+  background: var(--grey-dark);
   color: var(--soft-on-dark);
   font-family: var(--font-display);
   font-size: 0.8rem;
@@ -896,7 +897,7 @@ h1, h2, h3, h4 {
 
 /* ---- footer ------------------------------------------------------------------------------ */
 
-.footer { background: var(--dark); color: var(--light-on-dark); }
+.footer { background: var(--grey-dark); color: var(--light-on-dark); }
 
 .footer-grid {
   display: grid;
