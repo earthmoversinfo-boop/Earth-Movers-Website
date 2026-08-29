@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
@@ -6,50 +7,52 @@ import PageBanner from '../components/PageBanner.jsx'
 import { projects, sectors, images } from '../data/content.js'
 
 export default function Projects() {
+  const filters = ['All', ...new Set(projects.map((p) => p.sector))]
+  const [filter, setFilter] = useState('All')
+  const shown = projects.filter((p) => filter === 'All' || p.sector === filter)
+
   return (
     <main>
       <PageBanner
         eyebrow="Projects"
-        title="A portfolio you can stand on."
-        text="Selected works for public authorities and private clients across the UAE — a track record built on safety, quality and client satisfaction."
+        title="Selected work across the UAE."
+        text="From public authorities to private clients — a track record built on safety, quality and client satisfaction."
         img={images.banners.projects}
       />
 
       <section className="section">
         <div className="wrap">
-          <div className="section-head">
-            <div className="kicker">
-              <Reveal><span className="eyebrow">Case studies</span></Reveal>
-              <Reveal delay={80}><h2 className="display-lg">Selected work.</h2></Reveal>
-            </div>
+          <div className="filter-pills">
+            {filters.map((f) => (
+              <button
+                key={f}
+                className={`pill${filter === f ? ' active' : ''}`}
+                onClick={() => setFilter(f)}
+              >
+                {f}
+              </button>
+            ))}
           </div>
+
           <div className="proj-cards">
-            {projects.map((p, i) => (
-              <Reveal key={p.client} delay={i * 90} className="proj-card">
-                <div className="proj-card-media">
-                  <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
-                  <span className="proj-card-sector">{p.sector}</span>
-                </div>
-                <div className="proj-card-body">
+            {shown.map((p) => {
+              const i = projects.indexOf(p)
+              return (
+                <Reveal key={p.client} delay={(i % 3) * 80} className="proj-card">
+                  <div className="proj-card-media">
+                    <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
+                  </div>
+                  <span className="proj-card-sector">{p.sector} · {p.location}</span>
                   <h3>{p.client}</h3>
                   <p>{p.scope}</p>
-                </div>
-                <div className="proj-card-facts">
-                  <div className="proj-fact">
-                    <span className="proj-fact-label">Location</span>
-                    <span className="proj-fact-value">{p.location}</span>
+                  <div className="proj-card-facts">
+                    <span>Year <strong>{p.year}</strong></span>
+                    <span>Value <strong>{p.value}</strong></span>
+                    <span><strong>Delivered</strong></span>
                   </div>
-                  <div className="proj-fact">
-                    <span className="proj-fact-label">Year</span>
-                    <span className="proj-fact-value">{p.year}</span>
-                  </div>
-                  <div className="proj-fact">
-                    <span className="proj-fact-label">Value</span>
-                    <span className="proj-fact-value">{p.value}</span>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -58,7 +61,7 @@ export default function Projects() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Where we work</span></Reveal>
+              <Reveal><span className="eyebrow">Where We Work</span></Reveal>
               <Reveal delay={80}><h2 className="display-lg">Sectors we serve.</h2></Reveal>
             </div>
           </div>
@@ -73,7 +76,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <Gallery eyebrow="Site gallery" title="The work, in pictures." />
+      <Gallery eyebrow="Site Gallery" title="The places behind our work." />
 
       <CTA
         title="Your project, next on this page."

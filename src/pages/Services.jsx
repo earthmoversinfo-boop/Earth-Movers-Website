@@ -1,6 +1,7 @@
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
+import { CheckCircle } from '../components/Icons.jsx'
 import { serviceGroups, images } from '../data/content.js'
 
 export default function Services() {
@@ -14,7 +15,7 @@ export default function Services() {
       />
 
       {serviceGroups.map((group, gi) => (
-        <section key={group.id} className={`section${gi % 2 === 1 ? ' section-mist hairline-top' : ''}`} id={group.id}>
+        <section key={group.id} className={`section${gi % 2 === 1 ? ' section-paper hairline-top' : ''}`} id={group.id}>
           <div className="wrap">
             <div className="section-head">
               <div className="kicker">
@@ -22,14 +23,14 @@ export default function Services() {
                 <Reveal delay={80}><h2 className="display-md">{group.intro}</h2></Reveal>
               </div>
             </div>
-            <div className="catalog-grid">
+            <div className="check-grid">
               {group.services.map((s, i) => (
-                <Reveal key={s.title} delay={(i % 2) * 80} className="catalog-cell">
-                  <span className="index-num">
-                    {group.number}.{String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
+                <Reveal key={s.title} delay={(i % 2) * 70} className="check-item">
+                  <CheckCircle className="check-ico" />
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                  </div>
                 </Reveal>
               ))}
             </div>

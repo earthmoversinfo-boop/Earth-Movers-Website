@@ -128,6 +128,15 @@ export const iconMap = {
   crane: IconCrane,
 }
 
+export function CheckCircle({ className }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M7.5 12.2l3 3 6-6.4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 export function Arrow({ className }) {
   return (
     <svg viewBox="0 0 16 16" width="14" height="14" className={className} aria-hidden="true">

@@ -17,7 +17,7 @@ export default function About() {
         img={images.banners.about}
       />
 
-      <div className="stat-band">
+      <div className="dark-band">
         <div className="wrap">
           <div className="stat-grid">
             {stats.map((s, i) => (
@@ -31,17 +31,10 @@ export default function About() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="cert-strip">
-        <div className="wrap" style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <div className="cert-grid">
+          <div className="cert-row">
+            <span>Certifications &amp; registrations</span>
             {certifications.map((c) => (
-              <div key={c.title} className="cert-cell">
-                <h4>{c.title}</h4>
-                <p>{c.text}</p>
-              </div>
+              <strong key={c.title}>{c.title}</strong>
             ))}
           </div>
         </div>
@@ -84,14 +77,13 @@ export default function About() {
                 src={images.about}
                 alt="Earth Movers International team and machinery at work"
                 className="about-photo"
-                style={{ borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)', border: 'none' }}
               />
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section section-mist hairline-top">
+      <section className="section section-paper hairline-top">
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">

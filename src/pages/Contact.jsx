@@ -4,18 +4,34 @@ import PageBanner from '../components/PageBanner.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { company, images } from '../data/content.js'
 
+const SERVICE_OPTIONS = [
+  'Excavation',
+  'Road Construction',
+  'Asphalt Works',
+  'Cut & Fill',
+  'Site Preparation',
+  'Trenching & Piling',
+  'Material Supply',
+  'Equipment Rental',
+]
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', service: '', message: '' })
+  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
+  const [services, setServices] = useState([])
 
   const set = (key) => (e) => setForm({ ...form, [key]: e.target.value })
+
+  const toggleService = (s) =>
+    setServices((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]))
 
   // Opens the visitor's mail client with the enquiry pre-filled — works on any
   // static host with no backend required.
   const submit = (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Enquiry: ${form.service || 'General'} — ${form.name}`)
+    const picked = services.join(', ') || 'General'
+    const subject = encodeURIComponent(`Enquiry: ${picked} — ${form.name}`)
     const body = encodeURIComponent(
-      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nService: ${form.service}\n\n${form.message}`
+      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nServices: ${picked}\n\n${form.message}`
     )
     window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
   }
@@ -71,25 +87,23 @@ export default function Contact() {
                   <input id="cf-phone" value={form.phone} onChange={set('phone')} placeholder="+971 …" />
                 </div>
               </div>
-              <div className="form-row">
-                <div className="field">
-                  <label htmlFor="cf-email">Email</label>
-                  <input id="cf-email" type="email" required value={form.email} onChange={set('email')} placeholder="you@company.com" />
-                </div>
-                <div className="field">
-                  <label htmlFor="cf-service">Service needed</label>
-                  <select id="cf-service" value={form.service} onChange={set('service')}>
-                    <option value="">Select a service…</option>
-                    <option>Excavation</option>
-                    <option>Road Construction</option>
-                    <option>Asphalt Works</option>
-                    <option>Cut &amp; Fill / Earthworks</option>
-                    <option>Site Preparation / Land Clearing</option>
-                    <option>Trenching / Piling</option>
-                    <option>Material Supply / Haulage</option>
-                    <option>Equipment Rental</option>
-                    <option>Other</option>
-                  </select>
+              <div className="field">
+                <label htmlFor="cf-email">Email</label>
+                <input id="cf-email" type="email" required value={form.email} onChange={set('email')} placeholder="you@company.com" />
+              </div>
+              <div className="field">
+                <label>Services of interest</label>
+                <div className="chip-checks">
+                  {SERVICE_OPTIONS.map((s) => (
+                    <label className="chip-check" key={s}>
+                      <input
+                        type="checkbox"
+                        checked={services.includes(s)}
+                        onChange={() => toggleService(s)}
+                      />
+                      <span>{s}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
               <div className="field">

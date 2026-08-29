@@ -5,17 +5,17 @@ import { company } from '../data/content.js'
 
 export default function CTA({ title = 'Let’s break ground.', text }) {
   return (
-    <section className="on-dark cta-panel">
+    <section className="cta-panel">
       <div className="cta-inner">
         <Reveal><span className="eyebrow">Start a project</span></Reveal>
         <Reveal delay={80}><h2 className="display-lg">{title}</h2></Reveal>
         {text && <Reveal delay={140}><p className="lead">{text}</p></Reveal>}
         <Reveal delay={200}>
           <div className="hero-actions">
-            <Link to="/contact" className="btn btn-solid">
+            <Link to="/contact" className="btn btn-ink">
               Request a quote <Arrow className="btn-arrow" />
             </Link>
-            <a href={company.phoneHref} className="btn btn-outline-light">{company.phone}</a>
+            <a href={company.phoneHref} className="btn btn-ghost">{company.phone}</a>
           </div>
         </Reveal>
         <Reveal delay={260}>
