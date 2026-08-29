@@ -366,6 +366,13 @@ h1, h2, h3, h4 {
     linear-gradient(to top, rgba(13, 16, 20, 0.55), transparent 36%);
 }
 
+/* lighter veil for bright illustrated scenes: keep the artwork visible */
+.hero-slide.light::after {
+  background:
+    linear-gradient(78deg, rgba(13, 16, 20, 0.74) 0%, rgba(13, 16, 20, 0.42) 42%, rgba(13, 16, 20, 0.02) 72%),
+    linear-gradient(to top, rgba(13, 16, 20, 0.18), transparent 30%);
+}
+
 .hero-content {
   position: relative;
   z-index: 2;

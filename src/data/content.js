@@ -40,7 +40,8 @@ export const images = {
 // Hero slides. Title is split so the highlighted words render in brand gold.
 export const heroSlides = [
   {
-    img: 'images/hero-bg-2.jpg',
+    img: 'images/hero-bg-road.jpg',
+    light: true,
     eyebrow: 'Earth Movers International — Dubai, UAE',
     titlePre: 'No.1 RTA-Approved ',
     titleGold: 'Road Contractor',

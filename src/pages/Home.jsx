@@ -26,7 +26,11 @@ function HeroSlider() {
   return (
     <section className="hero" aria-label="Earth Movers International highlights">
       {heroSlides.map((s, i) => (
-        <div key={s.img} className={`hero-slide${i === active ? ' active' : ''}`} aria-hidden={i !== active}>
+        <div
+          key={s.img}
+          className={`hero-slide${i === active ? ' active' : ''}${s.light ? ' light' : ''}`}
+          aria-hidden={i !== active}
+        >
           <img src={s.img} alt="" loading={i === 0 ? 'eager' : 'lazy'} />
         </div>
       ))}
