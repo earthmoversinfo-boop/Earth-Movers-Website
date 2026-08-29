@@ -29,7 +29,7 @@
 
   --pad: clamp(1.25rem, 4vw, 3rem);
   --section: clamp(4rem, 8vw, 7rem);
-  --topbar-h: 2.5rem;
+  --topbar-h: 0rem;
   --nav-h: 4.75rem;
 }
 
