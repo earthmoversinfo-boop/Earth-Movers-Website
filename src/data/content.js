@@ -40,8 +40,7 @@ export const images = {
 // Hero slides. Title is split so the highlighted words render in brand gold.
 export const heroSlides = [
   {
-    img: 'images/hero-bg-road.jpg',
-    light: true,
+    img: 'images/hero-slide-1.jpg',
     eyebrow: 'Earth Movers International — Dubai, UAE',
     titlePre: 'No.1 RTA-Approved ',
     titleGold: 'Road Contractor',
@@ -49,7 +48,7 @@ export const heroSlides = [
     text: 'We deliver reliable, high-quality road construction with advanced technology — your trusted partner for highways, access roads and infrastructure projects.',
   },
   {
-    img: 'images/hero-bg-1.jpg',
+    img: 'images/hero-slide-2.jpg',
     eyebrow: 'Building the ground the UAE rises from',
     titlePre: 'Earthworks, excavation and ',
     titleGold: 'heavy construction',
@@ -57,12 +56,12 @@ export const heroSlides = [
     text: 'Infrastructure, commercial and industrial projects across the Emirates — founded in Montreal in 1990, in Dubai since 2005.',
   },
   {
-    img: 'images/hero-bg-3.jpg',
-    eyebrow: 'One of the largest excavation fleets in Dubai',
-    titlePre: 'Heavy machinery. ',
-    titleGold: 'Heavier standards.',
-    titlePost: '',
-    text: 'Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by our own teams, 24/7.',
+    img: 'images/hero-slide-3.jpg',
+    eyebrow: 'RTA-approved asphalt & road works',
+    titlePre: 'Asphalt laid to ',
+    titleGold: 'tight tolerances',
+    titlePost: '.',
+    text: 'From sub-base to wearing course — compacted, tested and handed over ready for traffic.',
   },
 ]
 
