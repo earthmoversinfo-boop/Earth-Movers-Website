@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
+import PageBanner from '../components/PageBanner.jsx'
 import { Arrow } from '../components/Icons.jsx'
-import { TopoBackdrop } from '../components/Art.jsx'
-import { company } from '../data/content.js'
+import { company, images } from '../data/content.js'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', service: '', message: '' })
@@ -22,21 +22,14 @@ export default function Contact() {
 
   return (
     <main>
-      <section className="wrap page-hero">
-        <TopoBackdrop className="hero-topo" />
-        <Reveal><span className="eyebrow">Contact</span></Reveal>
-        <Reveal delay={80}>
-          <h1 className="display-xl">Let’s walk your site.</h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="lead">
-            Call, write or drop by — tell us about your scope and we’ll come back
-            with a clear plan and an honest price.
-          </p>
-        </Reveal>
-      </section>
+      <PageBanner
+        eyebrow="Contact"
+        title="Let’s walk your site."
+        text="Call, write or drop by — tell us about your scope and we’ll come back with a clear plan and an honest price."
+        img={images.banners.contact}
+      />
 
-      <section className="section hairline-top">
+      <section className="section">
         <div className="wrap contact-grid">
           <div>
             <div className="contact-info">

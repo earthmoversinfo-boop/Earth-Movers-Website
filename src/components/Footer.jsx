@@ -30,6 +30,11 @@ export default function Footer() {
               RTA-approved earthworks and road construction contractor serving
               infrastructure, commercial and industrial projects across the UAE.
             </p>
+            <div className="footer-certs">
+              <span className="footer-cert">RTA Approved</span>
+              <span className="footer-cert">Dubai Municipality</span>
+              <span className="footer-cert">Since 1990</span>
+            </div>
           </div>
 
           <div className="footer-col">

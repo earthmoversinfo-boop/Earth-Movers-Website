@@ -11,9 +11,9 @@ const base = {
 export function BrandMark({ className }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <rect width="48" height="48" fill="#17150f" />
-      <path d="M10 33h28v4H10z" fill="#d9651c" />
-      <path d="M12 29l8-13 6 8 4-5 6 10z" fill="#f4f1ea" />
+      <rect width="48" height="48" rx="5" fill="#14181d" />
+      <path d="M10 33h28v4H10z" fill="#f2a900" />
+      <path d="M12 29l8-13 6 8 4-5 6 10z" fill="#ffffff" />
     </svg>
   )
 }

@@ -1,31 +1,24 @@
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
-import { TopoBackdrop } from '../components/Art.jsx'
-import { serviceGroups } from '../data/content.js'
+import PageBanner from '../components/PageBanner.jsx'
+import { serviceGroups, images } from '../data/content.js'
 
 export default function Services() {
   return (
     <main>
-      <section className="wrap page-hero">
-        <TopoBackdrop className="hero-topo" />
-        <Reveal><span className="eyebrow">Services</span></Reveal>
-        <Reveal delay={80}>
-          <h1 className="display-xl">Every stage of the ground game.</h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="lead">
-            Seventeen disciplines across earthworks, roads and logistics — delivered
-            with our own fleet, our own operators and RTA-approved processes.
-          </p>
-        </Reveal>
-      </section>
+      <PageBanner
+        eyebrow="Services"
+        title="Every stage of the ground game."
+        text="Seventeen disciplines across earthworks, roads and logistics — delivered with our own fleet, our own operators and RTA-approved processes."
+        img={images.banners.services}
+      />
 
       {serviceGroups.map((group, gi) => (
-        <section key={group.id} className={`section ${gi === 0 ? 'hairline-top' : ''}`} id={group.id}>
+        <section key={group.id} className={`section${gi % 2 === 1 ? ' section-mist hairline-top' : ''}`} id={group.id}>
           <div className="wrap">
             <div className="section-head">
               <div className="kicker">
-                <Reveal><span className="eyebrow">{group.number} — {group.title}</span></Reveal>
+                <Reveal><span className="eyebrow">{group.title}</span></Reveal>
                 <Reveal delay={80}><h2 className="display-md">{group.intro}</h2></Reveal>
               </div>
             </div>

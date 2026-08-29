@@ -29,7 +29,74 @@ export const images = {
   fleet: 'images/fleet.jpg',
   about: 'images/about.jpg',
   projects: ['images/project-fujairah.jpg', 'images/project-municipality.jpg', 'images/project-nakheel.jpg'],
+  banners: {
+    about: 'images/banner-about.jpg',
+    services: 'images/banner-services.jpg',
+    projects: 'images/banner-projects.jpg',
+    contact: 'images/banner-contact.jpg',
+  },
 }
+
+export const heroSlides = [
+  {
+    img: 'images/hero-bg-1.jpg',
+    eyebrow: 'RTA-Approved Road & Earthworks Contractor',
+    title: 'Building the ground the UAE rises from.',
+    text: 'Earthworks, excavation and road construction for infrastructure, commercial and industrial projects — since 1990.',
+  },
+  {
+    img: 'images/hero-bg-2.jpg',
+    eyebrow: 'One of the largest excavation fleets in Dubai',
+    title: 'Heavy machinery. Heavier standards.',
+    text: 'Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by our own teams.',
+  },
+  {
+    img: 'images/hero-bg-3.jpg',
+    eyebrow: 'Infrastructure · Commercial · Industrial',
+    title: 'From survey to sign-off, we deliver.',
+    text: 'A trusted partner to Nakheel, Dubai Municipality and Fujairah Cement Industry across the Emirates.',
+  },
+]
+
+export const certifications = [
+  { title: 'RTA Approved', text: 'Roads & Transport Authority approved road contractor' },
+  { title: 'Dubai Municipality', text: 'Aligned with municipality standards and permits' },
+  { title: 'Since 1990', text: 'Founded in Montreal, in Dubai since 2005' },
+  { title: 'HSE First', text: 'Method statements and permits on every lift' },
+]
+
+export const hse = [
+  {
+    title: 'Health & Safety',
+    text: 'Every task is planned through method statements, permits to work and daily toolbox talks — so every person goes home safe, every day.',
+  },
+  {
+    title: 'Quality',
+    text: 'Compaction tests, level checks and handover certificates on every package. Ground you can build on, documented.',
+  },
+  {
+    title: 'Environment',
+    text: 'Dust suppression, controlled disposal and material recycling wherever the ground allows — building without leaving a mark we shouldn’t.',
+  },
+]
+
+export const news = [
+  {
+    title: '18 Major RTA Road Projects That Will Slash Dubai Traffic',
+    tag: 'Industry Insight',
+    href: 'https://earthmoversint.com/rta-road-projects-dubai-traffic/',
+  },
+  {
+    title: 'Road Construction Process & Equipment Needs',
+    tag: 'From Our Blog',
+    href: 'https://earthmoversint.com/road-construction-process-equipment-needs/',
+  },
+  {
+    title: 'TMA Rental in Dubai & Abu Dhabi — Safer Road Works',
+    tag: 'Services',
+    href: 'https://tmarentalabudhabi.earthmoversint.com/',
+  },
+]
 
 export const stats = [
   { value: 35, suffix: '+', label: 'Years since founding', note: 'Montreal, 1990' },
@@ -52,6 +119,7 @@ export const featuredServices = [
     id: 'excavation',
     title: 'Excavation',
     icon: 'excavator',
+    img: 'images/library/operator-backhoe.jpg',
     blurb:
       'Bulk excavation, basements and deep digs, powered by one of the largest heavy-excavation fleets in Dubai.',
   },
@@ -59,6 +127,7 @@ export const featuredServices = [
     id: 'road-construction',
     title: 'Road Construction',
     icon: 'road',
+    img: 'images/project-fujairah.jpg',
     blurb:
       'RTA-approved road contracting — road base, sub-base, compaction and finishing for roads across the UAE.',
   },
@@ -66,6 +135,7 @@ export const featuredServices = [
     id: 'cut-and-fill',
     title: 'Cut & Fill',
     icon: 'grade',
+    img: 'images/fleet.jpg',
     blurb:
       'Precision grading and levelling to design elevations, balancing cut and fill for efficient earthworks.',
   },
@@ -73,6 +143,7 @@ export const featuredServices = [
     id: 'site-preparation',
     title: 'Site Preparation',
     icon: 'site',
+    img: 'images/about.jpg',
     blurb:
       'Land clearing, demolition and ground stabilisation that hands over a clean, build-ready site.',
   },
@@ -80,6 +151,7 @@ export const featuredServices = [
     id: 'asphalt',
     title: 'Asphalt Works',
     icon: 'asphalt',
+    img: 'images/library/golden-hour-site.jpg',
     blurb:
       'Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances.',
   },
@@ -87,6 +159,7 @@ export const featuredServices = [
     id: 'equipment-rental',
     title: 'Equipment Rental',
     icon: 'crane',
+    img: 'images/library/tower-cranes.jpg',
     blurb:
       'Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready.',
   },

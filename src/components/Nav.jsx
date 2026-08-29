@@ -5,7 +5,7 @@ import { company } from '../data/content.js'
 
 const links = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
+  { to: '/about', label: 'About Us' },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
   { to: '/contact', label: 'Contact' },
@@ -36,6 +36,19 @@ export default function Nav() {
 
   return (
     <>
+      <div className="topbar">
+        <div className="wrap topbar-inner">
+          <div className="topbar-group">
+            <a href={company.phoneHref}>{company.phone}</a>
+            <a href={`mailto:${company.email}`} className="topbar-hide-sm">{company.email}</a>
+          </div>
+          <div className="topbar-group">
+            <span className="topbar-hide-sm">Business Bay, Dubai, UAE</span>
+            <span className="topbar-badge">RTA-Approved Contractor</span>
+          </div>
+        </div>
+      </div>
+
       <header className={`nav ${scrolled || open ? 'scrolled' : ''}`}>
         <div className="wrap nav-inner">
           <Link to="/" className="brand" aria-label="Earth Movers International — home">

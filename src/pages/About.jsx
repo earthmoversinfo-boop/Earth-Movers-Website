@@ -2,48 +2,55 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import Counter from '../components/Counter.jsx'
 import CTA from '../components/CTA.jsx'
-import { Arrow } from '../components/Icons.jsx'
-import { TopoBackdrop } from '../components/Art.jsx'
 import Photo from '../components/Photo.jsx'
-import { company, stats, timeline, values, images } from '../data/content.js'
+import PageBanner from '../components/PageBanner.jsx'
+import { Arrow } from '../components/Icons.jsx'
+import { company, stats, timeline, values, certifications, images } from '../data/content.js'
 
 export default function About() {
   return (
     <main>
-      <section className="wrap page-hero">
-        <TopoBackdrop className="hero-topo" />
-        <Reveal><span className="eyebrow">About us</span></Reveal>
-        <Reveal delay={80}>
-          <h1 className="display-xl">Three decades of moving ground.</h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="lead">
-            From Montreal in {company.founded} to Dubai since {company.inUAE} — a
-            contractor built around heavy machines, experienced hands and ground
-            that gets handed over right.
-          </p>
-        </Reveal>
-      </section>
+      <PageBanner
+        eyebrow="About Us"
+        title="Three decades of moving ground."
+        text={`From Montreal in ${company.founded} to Dubai since ${company.inUAE} — a contractor built around heavy machines, experienced hands and ground that gets handed over right.`}
+        img={images.banners.about}
+      />
 
-      <section className="wrap stat-band">
-        <div className="stat-grid">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 90} className="stat-cell">
-              <span className="stat-value">
-                <Counter value={s.value} />
-                <em>{s.suffix}</em>
-              </span>
-              <span className="stat-label">{s.label}</span>
-              <span className="stat-note">{s.note}</span>
-            </Reveal>
-          ))}
+      <div className="stat-band">
+        <div className="wrap">
+          <div className="stat-grid">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 80} className="stat-cell">
+                <span className="stat-value">
+                  <Counter value={s.value} />
+                  <em>{s.suffix}</em>
+                </span>
+                <span className="stat-label">{s.label}</span>
+                <span className="stat-note">{s.note}</span>
+              </Reveal>
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
+
+      <div className="cert-strip">
+        <div className="wrap" style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <div className="cert-grid">
+            {certifications.map((c) => (
+              <div key={c.title} className="cert-cell">
+                <h4>{c.title}</h4>
+                <p>{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <section className="section">
         <div className="wrap split">
           <div className="split-sticky">
-            <Reveal><span className="eyebrow">01 — The story</span></Reveal>
+            <Reveal><span className="eyebrow">The story</span></Reveal>
             <Reveal delay={80}><h2 className="display-lg">Who we are</h2></Reveal>
           </div>
           <div className="split-body">
@@ -77,17 +84,18 @@ export default function About() {
                 src={images.about}
                 alt="Earth Movers International team and machinery at work"
                 className="about-photo"
+                style={{ borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)', border: 'none' }}
               />
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section hairline-top">
+      <section className="section section-mist hairline-top">
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">02 — Milestones</span></Reveal>
+              <Reveal><span className="eyebrow">Milestones</span></Reveal>
               <Reveal delay={80}><h2 className="display-lg">The road so far.</h2></Reveal>
             </div>
           </div>
@@ -108,7 +116,7 @@ export default function About() {
       <section className="on-dark section">
         <div className="wrap split">
           <div className="split-sticky">
-            <Reveal><span className="eyebrow">03 — Direction</span></Reveal>
+            <Reveal><span className="eyebrow">Direction</span></Reveal>
             <Reveal delay={80}><h2 className="display-lg">Mission &amp; vision</h2></Reveal>
           </div>
           <div className="split-body">
@@ -133,17 +141,16 @@ export default function About() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">04 — Values</span></Reveal>
+              <Reveal><span className="eyebrow">Values</span></Reveal>
               <Reveal delay={80}><h2 className="display-lg">Ground rules.</h2></Reveal>
             </div>
             <Reveal delay={160}>
-              <Link to="/services" className="text-link">See our services <Arrow /></Link>
+              <Link to="/services" className="btn btn-ghost">See our services <Arrow className="btn-arrow" /></Link>
             </Reveal>
           </div>
           <div className="values-grid">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={(i % 2) * 90} className="value-card">
-                <span className="index-num">0{i + 1}</span>
                 <h3>{v.title}</h3>
                 <p>{v.text}</p>
               </Reveal>

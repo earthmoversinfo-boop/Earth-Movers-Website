@@ -2,45 +2,33 @@ import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import Gallery from '../components/Gallery.jsx'
-import { TopoBackdrop } from '../components/Art.jsx'
+import PageBanner from '../components/PageBanner.jsx'
 import { projects, sectors, images } from '../data/content.js'
 
 export default function Projects() {
   return (
     <main>
-      <section className="wrap page-hero">
-        <TopoBackdrop className="hero-topo" />
-        <Reveal><span className="eyebrow">Projects</span></Reveal>
-        <Reveal delay={80}>
-          <h1 className="display-xl">A portfolio you can stand on.</h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="lead">
-            Selected works for public authorities and private clients across the
-            UAE — a track record built on safety, quality and client satisfaction.
-          </p>
-        </Reveal>
-      </section>
+      <PageBanner
+        eyebrow="Projects"
+        title="A portfolio you can stand on."
+        text="Selected works for public authorities and private clients across the UAE — a track record built on safety, quality and client satisfaction."
+        img={images.banners.projects}
+      />
 
-      <section className="section hairline-top">
+      <section className="section">
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">01 — Case studies</span></Reveal>
+              <Reveal><span className="eyebrow">Case studies</span></Reveal>
               <Reveal delay={80}><h2 className="display-lg">Selected work.</h2></Reveal>
             </div>
           </div>
           <div className="proj-cards">
             {projects.map((p, i) => (
               <Reveal key={p.client} delay={i * 90} className="proj-card">
-                <Photo
-                  src={images.projects[i]}
-                  alt={`${p.client} — ${p.sector}`}
-                  className="proj-card-photo"
-                />
-                <div className="proj-card-head">
+                <div className="proj-card-media">
+                  <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
                   <span className="proj-card-sector">{p.sector}</span>
-                  <span className="index-num">0{i + 1}</span>
                 </div>
                 <div className="proj-card-body">
                   <h3>{p.client}</h3>
@@ -59,10 +47,6 @@ export default function Projects() {
                     <span className="proj-fact-label">Value</span>
                     <span className="proj-fact-value">{p.value}</span>
                   </div>
-                  <div className="proj-fact">
-                    <span className="proj-fact-label">Status</span>
-                    <span className="proj-fact-value">Delivered</span>
-                  </div>
                 </div>
               </Reveal>
             ))}
@@ -74,28 +58,22 @@ export default function Projects() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">02 — Where we work</span></Reveal>
+              <Reveal><span className="eyebrow">Where we work</span></Reveal>
               <Reveal delay={80}><h2 className="display-lg">Sectors we serve.</h2></Reveal>
             </div>
           </div>
-          <div className="sector-grid" style={{ borderColor: 'var(--dark-line)' }}>
+          <div className="sector-grid">
             {sectors.map((s, i) => (
-              <Reveal
-                key={s.title}
-                delay={(i % 3) * 80}
-                className="sector-cell"
-                style={{ borderColor: 'var(--dark-line)' }}
-              >
-                <span className="index-num">0{i + 1}</span>
+              <Reveal key={s.title} delay={(i % 3) * 80} className="sector-cell">
                 <h3>{s.title}</h3>
-                <p style={{ color: 'var(--sand-soft-on-dark)' }}>{s.text}</p>
+                <p>{s.text}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <Gallery eyebrow="03 — Site gallery" title="The work, in pictures." />
+      <Gallery eyebrow="Site gallery" title="The work, in pictures." />
 
       <CTA
         title="Your project, next on this page."
