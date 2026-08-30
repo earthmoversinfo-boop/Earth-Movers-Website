@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Logo } from './Icons.jsx'
-import { company } from '../data/content.js'
+import { company, approvals } from '../data/content.js'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -38,13 +38,15 @@ export default function Nav() {
     <>
       <div className="topbar">
         <div className="wrap topbar-inner">
-          <div className="topbar-group">
-            <span className="topbar-badge">RTA-Approved Road Contractor</span>
-            <span className="topbar-hide-sm">Est. 1990 — Montreal · Dubai</span>
-          </div>
-          <div className="topbar-group">
-            <span className="topbar-hide-sm">One of Dubai’s largest excavation fleets</span>
-            <span>24/7 Fleet Operations</span>
+          <span className="topbar-badge">Approved by</span>
+          <div className="topbar-marquee" aria-label="Approving authorities">
+            {[0, 1].map((n) => (
+              <div className="topbar-track" aria-hidden={n === 1} key={n}>
+                {[...approvals, ...approvals].map((a, i) => (
+                  <span className="topbar-logo" key={i}>{a}</span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>

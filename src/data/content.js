@@ -112,6 +112,20 @@ export const stats = [
   { value: 24, suffix: '/7', label: 'Fleet availability', note: 'Across the Emirates' },
 ]
 
+// Authorities and organisations whose approvals/registrations EMI holds.
+export const approvals = [
+  'RTA',
+  'FNRC',
+  'Dubai Municipality',
+  'TAQA',
+  'Fujairah Municipality',
+  'Sharjah RTA',
+  'Parsons',
+  'DDA',
+  'Dubai South',
+  'Dubai Ports',
+]
+
 export const clients = [
   'Nakheel PJSC',
   'Dubai Municipality',
