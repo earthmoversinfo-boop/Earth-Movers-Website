@@ -105,9 +105,8 @@ CATEGORY = {
 CAT_W, CAT_H = 1600, 1066
 
 # Home-page slots that the job photographs serve better than the stock frames
-# they replace: two of the three hero slides, and the fleet picture.
+# they replace. The hero slides keep their original frames.
 NAMED = {
-    'hero-slide-1.jpg': (f'{S}/leveling-and-compaction.jpg', (0.00, 0.00, 1.00, 1.00), (1920, 820), None),
     # the fleet picture sits in a dark band, so the pale sand needs holding up
     'fleet.jpg':        (f'{S}/backfilling.jpg',             (0.02, 0.02, 0.98, 0.86), (1400, 875), (1.18, 1.30)),
 }
