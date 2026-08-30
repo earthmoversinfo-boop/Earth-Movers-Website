@@ -287,13 +287,16 @@ h1, h2, h3, h4 {
 .hero-slide.active { opacity: 1; }
 .hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
+.hero-slide img { filter: brightness(1.06) saturate(1.04) contrast(1.02); }
+
+/* light scrim: only enough to hold the headline, so the photo stays open */
 .hero-slide::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(80deg, rgba(15, 16, 19, 0.84) 0%, rgba(15, 16, 19, 0.55) 46%, rgba(15, 16, 19, 0.12) 78%),
-    linear-gradient(to top, rgba(15, 16, 19, 0.5), transparent 34%);
+    linear-gradient(84deg, rgba(22, 24, 28, 0.74) 0%, rgba(22, 24, 28, 0.46) 34%, rgba(22, 24, 28, 0.14) 58%, transparent 78%),
+    linear-gradient(to bottom, rgba(22, 24, 28, 0.32), transparent 22%);
 }
 
 .hero-content {
@@ -307,13 +310,22 @@ h1, h2, h3, h4 {
   justify-items: start;
 }
 
-.hero-content .eyebrow { color: var(--accent); }
+.hero-content .eyebrow { color: var(--accent); text-shadow: 0 1px 12px rgba(16, 18, 21, 0.5); }
 
-.hero-content h1 { max-width: 14em; color: #fff; font-size: clamp(2.4rem, 4.8vw, 3.9rem); }
+.hero-content h1 {
+  max-width: 14em;
+  color: #fff;
+  font-size: clamp(2.4rem, 4.8vw, 3.9rem);
+  text-shadow: 0 2px 22px rgba(14, 16, 19, 0.6);
+}
 
 .hero-content h1 em { font-style: normal; color: var(--accent); }
 
-.hero-content .lead { color: rgba(255, 255, 255, 0.86); max-width: 37em; }
+.hero-content .lead {
+  color: rgba(255, 255, 255, 0.94);
+  max-width: 37em;
+  text-shadow: 0 1px 16px rgba(16, 18, 21, 0.5);
+}
 
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem 1.5rem; margin-top: 0.5rem; }
 
@@ -812,13 +824,13 @@ h1, h2, h3, h4 {
   color: #fff;
 }
 
-.page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.03); }
 
 .page-hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 16, 19, 0.82), rgba(15, 16, 19, 0.32) 62%, rgba(15, 16, 19, 0.25));
+  background: linear-gradient(to top, rgba(24, 26, 30, 0.68), rgba(24, 26, 30, 0.2) 58%, rgba(24, 26, 30, 0.08));
 }
 
 .page-hero-inner {
@@ -835,7 +847,7 @@ h1, h2, h3, h4 {
 
 .page-hero-inner .eyebrow { color: var(--accent); }
 
-.page-hero-inner h1 { color: #fff; max-width: 16em; }
+.page-hero-inner h1 { color: #fff; max-width: 16em; text-shadow: 0 2px 20px rgba(16, 18, 21, 0.5); }
 
 .page-hero-inner .lead { color: rgba(255, 255, 255, 0.85); }
 
