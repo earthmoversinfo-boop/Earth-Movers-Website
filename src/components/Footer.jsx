@@ -63,39 +63,29 @@ export default function Footer() {
             {company.address.map((line) => (
               <span key={line}>{line}</span>
             ))}
-            <span style={{ marginTop: '0.6rem' }}>
+
+            <a
+              className="footer-map"
+              href={company.mapsLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${company.legalName} — open in Google Maps`}
+            >
+              <iframe
+                title={`${company.legalName} — location`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                tabIndex={-1}
+              />
+              <span className="footer-map-cta">Get directions</span>
+            </a>
+
+            <span style={{ marginTop: '0.4rem' }}>
               <a href={company.social.facebook} target="_blank" rel="noreferrer">Facebook</a>
               {'  ·  '}
               <a href={company.social.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
             </span>
-          </div>
-        </div>
-
-        <div className="footer-location">
-          <div className="footer-location-text">
-            <h4>Our Location</h4>
-            <p className="footer-legal-name">{company.legalName}</p>
-            <address>
-              {company.address.map((line) => (
-                <span key={line}>{line}<br /></span>
-              ))}
-            </address>
-            <a
-              href={company.mapsLink}
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              Get directions
-            </a>
-          </div>
-          <div className="footer-map">
-            <iframe
-              title={`${company.legalName} — location on Google Maps`}
-              src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
           </div>
         </div>
 

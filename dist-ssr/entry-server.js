@@ -664,156 +664,141 @@ function Footer() {
 		className: "footer",
 		children: /* @__PURE__ */ jsxs("div", {
 			className: "wrap",
-			children: [
-				/* @__PURE__ */ jsxs("div", {
-					className: "footer-grid",
-					children: [
-						/* @__PURE__ */ jsxs("div", {
-							className: "footer-brand",
-							children: [
-								/* @__PURE__ */ jsx(Link, {
-									to: "/",
-									className: "brand",
-									"aria-label": "Earth Movers International — home",
-									children: /* @__PURE__ */ jsx(Logo, { variant: "light" })
-								}),
-								/* @__PURE__ */ jsxs("p", { children: [
-									"Founded in Montreal in ",
-									company.founded,
-									", in Dubai since ",
-									company.inUAE,
-									". An RTA-approved earthworks and road construction contractor serving infrastructure, commercial and industrial projects across the UAE."
-								] }),
-								/* @__PURE__ */ jsxs("div", {
-									className: "footer-certs",
-									children: [
-										/* @__PURE__ */ jsx("span", {
-											className: "footer-cert",
-											children: "RTA Approved"
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "footer-cert",
-											children: "Dubai Municipality"
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "footer-cert",
-											children: "Since 1990"
-										})
-									]
-								})
-							]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "footer-col",
-							children: [
-								/* @__PURE__ */ jsx("h4", { children: "Company" }),
-								/* @__PURE__ */ jsx(Link, {
-									to: "/about",
-									children: "About"
-								}),
-								/* @__PURE__ */ jsx(Link, {
-									to: "/services",
-									children: "Services"
-								}),
-								/* @__PURE__ */ jsx(Link, {
-									to: "/projects",
-									children: "Projects"
-								}),
-								/* @__PURE__ */ jsx(Link, {
-									to: "/contact",
-									children: "Contact"
-								})
-							]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "footer-col",
-							children: [/* @__PURE__ */ jsx("h4", { children: "Services" }), serviceCategories.map((c) => /* @__PURE__ */ jsx(Link, {
-								to: `/services/${c.slug}`,
-								children: c.name
-							}, c.slug))]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "footer-col",
-							children: [/* @__PURE__ */ jsx("h4", { children: "Areas We Serve" }), emirates.map((e) => /* @__PURE__ */ jsx(Link, {
-								to: `/services/road-works/${e.slug}`,
-								children: e.name
-							}, e.slug))]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "footer-col",
-							children: [
-								/* @__PURE__ */ jsx("h4", { children: "Contact" }),
-								/* @__PURE__ */ jsx("a", {
-									href: company.phoneHref,
-									children: company.phone
-								}),
-								/* @__PURE__ */ jsx("a", {
-									href: `mailto:${company.email}`,
-									children: company.email
-								}),
-								company.address.map((line) => /* @__PURE__ */ jsx("span", { children: line }, line)),
-								/* @__PURE__ */ jsxs("span", {
-									style: { marginTop: "0.6rem" },
-									children: [
-										/* @__PURE__ */ jsx("a", {
-											href: company.social.facebook,
-											target: "_blank",
-											rel: "noreferrer",
-											children: "Facebook"
-										}),
-										"  ·  ",
-										/* @__PURE__ */ jsx("a", {
-											href: company.social.linkedin,
-											target: "_blank",
-											rel: "noreferrer",
-											children: "LinkedIn"
-										})
-									]
-								})
-							]
-						})
-					]
-				}),
-				/* @__PURE__ */ jsxs("div", {
-					className: "footer-location",
-					children: [/* @__PURE__ */ jsxs("div", {
-						className: "footer-location-text",
+			children: [/* @__PURE__ */ jsxs("div", {
+				className: "footer-grid",
+				children: [
+					/* @__PURE__ */ jsxs("div", {
+						className: "footer-brand",
 						children: [
-							/* @__PURE__ */ jsx("h4", { children: "Our Location" }),
-							/* @__PURE__ */ jsx("p", {
-								className: "footer-legal-name",
-								children: company.legalName
+							/* @__PURE__ */ jsx(Link, {
+								to: "/",
+								className: "brand",
+								"aria-label": "Earth Movers International — home",
+								children: /* @__PURE__ */ jsx(Logo, { variant: "light" })
 							}),
-							/* @__PURE__ */ jsx("address", { children: company.address.map((line) => /* @__PURE__ */ jsxs("span", { children: [line, /* @__PURE__ */ jsx("br", {})] }, line)) }),
+							/* @__PURE__ */ jsxs("p", { children: [
+								"Founded in Montreal in ",
+								company.founded,
+								", in Dubai since ",
+								company.inUAE,
+								". An RTA-approved earthworks and road construction contractor serving infrastructure, commercial and industrial projects across the UAE."
+							] }),
+							/* @__PURE__ */ jsxs("div", {
+								className: "footer-certs",
+								children: [
+									/* @__PURE__ */ jsx("span", {
+										className: "footer-cert",
+										children: "RTA Approved"
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "footer-cert",
+										children: "Dubai Municipality"
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "footer-cert",
+										children: "Since 1990"
+									})
+								]
+							})
+						]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "footer-col",
+						children: [
+							/* @__PURE__ */ jsx("h4", { children: "Company" }),
+							/* @__PURE__ */ jsx(Link, {
+								to: "/about",
+								children: "About"
+							}),
+							/* @__PURE__ */ jsx(Link, {
+								to: "/services",
+								children: "Services"
+							}),
+							/* @__PURE__ */ jsx(Link, {
+								to: "/projects",
+								children: "Projects"
+							}),
+							/* @__PURE__ */ jsx(Link, {
+								to: "/contact",
+								children: "Contact"
+							})
+						]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "footer-col",
+						children: [/* @__PURE__ */ jsx("h4", { children: "Services" }), serviceCategories.map((c) => /* @__PURE__ */ jsx(Link, {
+							to: `/services/${c.slug}`,
+							children: c.name
+						}, c.slug))]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "footer-col",
+						children: [/* @__PURE__ */ jsx("h4", { children: "Areas We Serve" }), emirates.map((e) => /* @__PURE__ */ jsx(Link, {
+							to: `/services/road-works/${e.slug}`,
+							children: e.name
+						}, e.slug))]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "footer-col",
+						children: [
+							/* @__PURE__ */ jsx("h4", { children: "Contact" }),
 							/* @__PURE__ */ jsx("a", {
+								href: company.phoneHref,
+								children: company.phone
+							}),
+							/* @__PURE__ */ jsx("a", {
+								href: `mailto:${company.email}`,
+								children: company.email
+							}),
+							company.address.map((line) => /* @__PURE__ */ jsx("span", { children: line }, line)),
+							/* @__PURE__ */ jsxs("a", {
+								className: "footer-map",
 								href: company.mapsLink,
 								target: "_blank",
 								rel: "noreferrer",
-								className: "text-link",
-								children: "Get directions"
+								"aria-label": `${company.legalName} — open in Google Maps`,
+								children: [/* @__PURE__ */ jsx("iframe", {
+									title: `${company.legalName} — location`,
+									src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
+									loading: "lazy",
+									referrerPolicy: "no-referrer-when-downgrade",
+									tabIndex: -1
+								}), /* @__PURE__ */ jsx("span", {
+									className: "footer-map-cta",
+									children: "Get directions"
+								})]
+							}),
+							/* @__PURE__ */ jsxs("span", {
+								style: { marginTop: "0.4rem" },
+								children: [
+									/* @__PURE__ */ jsx("a", {
+										href: company.social.facebook,
+										target: "_blank",
+										rel: "noreferrer",
+										children: "Facebook"
+									}),
+									"  ·  ",
+									/* @__PURE__ */ jsx("a", {
+										href: company.social.linkedin,
+										target: "_blank",
+										rel: "noreferrer",
+										children: "LinkedIn"
+									})
+								]
 							})
 						]
-					}), /* @__PURE__ */ jsx("div", {
-						className: "footer-map",
-						children: /* @__PURE__ */ jsx("iframe", {
-							title: `${company.legalName} — location on Google Maps`,
-							src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
-							loading: "lazy",
-							referrerPolicy: "no-referrer-when-downgrade"
-						})
-					})]
-				}),
-				/* @__PURE__ */ jsxs("div", {
-					className: "footer-bottom",
-					children: [/* @__PURE__ */ jsxs("span", { children: [
-						"© ",
-						year,
-						" ",
-						company.legalName,
-						". All rights reserved."
-					] }), /* @__PURE__ */ jsxs("span", { children: [company.coordinates, " — Dubai, UAE"] })]
-				})
-			]
+					})
+				]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "footer-bottom",
+				children: [/* @__PURE__ */ jsxs("span", { children: [
+					"© ",
+					year,
+					" ",
+					company.legalName,
+					". All rights reserved."
+				] }), /* @__PURE__ */ jsxs("span", { children: [company.coordinates, " — Dubai, UAE"] })]
+			})]
 		})
 	});
 }
