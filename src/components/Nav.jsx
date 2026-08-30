@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Logo } from './Icons.jsx'
+import { Arrow, Logo } from './Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { LOCALES, localeHref, splitLocale } from '../i18n/locale.js'
 
@@ -75,16 +75,40 @@ export default function Nav() {
                   >
                     {t(l.key)}
                   </NavLink>
-                  <div className="nav-menu">
-                    {tax.categories.map((c) => (
-                      <Link key={c.slug} to={href(`/services/${c.slug}`)}>
-                        <strong>{c.name}</strong>
-                        <span>
-                          {c.services.slice(0, 3).map((x) => x.name).join(' · ')} —{' '}
-                          {c.coverage === 'all' ? t('cov.all') : t('cov.dubai')}
+                  {/* Full-width mega menu: one column per category, every
+                      service its own link, so the header reaches all 22 pages
+                      rather than four. */}
+                  <div className="nav-mega">
+                    <div className="wrap nav-mega-inner">
+                      {tax.categories.map((c) => (
+                        <div className="nav-mega-col" key={c.slug}>
+                          <Link to={href(`/services/${c.slug}`)} className="nav-mega-head">
+                            <span>{c.name}</span>
+                            <Arrow />
+                          </Link>
+                          <span className="nav-mega-where">
+                            {c.coverage === 'all' ? t('cov.availableAll') : t('cov.availableDubai')}
+                          </span>
+                          <ul className="nav-mega-list">
+                            {c.services.map((sv) => (
+                              <li key={sv.slug}>
+                                <Link to={href(`/services/${c.slug}/${sv.slug}`)}>{sv.name}</Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+
+                      <div className="nav-mega-foot">
+                        <Link to={href('/services')} className="text-link">
+                          {t('nav.allServices')} <Arrow />
+                        </Link>
+                        <span className="nav-mega-contact">
+                          {t('nav.talkToUs')}{' '}
+                          <a href={company.phoneHref} dir="ltr">{company.phone}</a>
                         </span>
-                      </Link>
-                    ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (

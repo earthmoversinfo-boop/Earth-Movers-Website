@@ -197,7 +197,7 @@ h1, h2, h3, h4 {
 
 .logo-chip .logo-img { height: 2.1rem; }
 
-@media (max-width: 940px) { .logo-img { height: 2.1rem; } }
+@media (max-width: 1180px) { .logo-img { height: 2.15rem; } }
 
 .nav-links { display: flex; align-items: center; gap: 0.4rem; }
 
@@ -210,6 +210,7 @@ h1, h2, h3, h4 {
   color: var(--body-c);
   padding: 0.55rem 0.85rem;
   position: relative;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
@@ -227,7 +228,7 @@ h1, h2, h3, h4 {
   background: var(--accent);
 }
 
-.nav-cta { margin-inline-start: 0.9rem; padding: 0.8rem 1.3rem; }
+.nav-cta { margin-inline-start: 0.9rem; padding: 0.8rem 1.3rem; white-space: nowrap; }
 
 .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 2.6rem; height: 2.6rem; align-items: center; }
 .nav-burger span { display: block; width: 1.5rem; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
@@ -278,9 +279,18 @@ h1, h2, h3, h4 {
   display: block;
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1024px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
+}
+
+/* Between the burger and full width the row is tightened rather than wrapped:
+   a header link that breaks over two lines pushes the bar out of its height. */
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.15rem; }
+  .nav-link { padding-inline: 0.6rem; font-size: 0.78rem; letter-spacing: 0.09em; }
+  .nav-lang { padding-inline: 0.6rem; }
+  .nav-cta { margin-inline-start: 0.5rem; padding: 0.72rem 1.05rem; font-size: 0.78rem; }
 }
 
 /* ---- hero -------------------------------------------------------------------- */
@@ -1112,54 +1122,169 @@ h1, h2, h3, h4 {
 
 @media (max-width: 860px) { .cat-split { grid-template-columns: 1fr; } }
 
-/* nav dropdown for services */
-.nav-item { position: relative; display: flex; align-items: center; }
+/* ---- services mega menu --------------------------------------------------
+   A full-width panel under the header rather than a floating card: it lines
+   up with the same 76rem grid as the logo and the nav, so it reads as an
+   extension of the header instead of a box dropped on top of the hero.
 
-.nav-menu {
+   One column per category, every service its own link — the header reaches
+   all 22 service pages, not just the four category pages. Coverage is a
+   caption under the category name, not the tail of a run-on sentence.
+   ------------------------------------------------------------------------ */
+
+/* static, so the panel anchors to the fixed header and can span its full
+   width rather than being trapped inside the nav's content column */
+.nav-item { position: static; display: flex; align-items: center; }
+
+.nav-mega {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  min-width: 34rem;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
   background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 50px rgba(19, 20, 23, 0.14);
-  padding: 1.3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem 1.5rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 24px 48px -24px rgba(19, 20, 23, 0.22);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transform: translateY(-8px);
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
 }
 
-.nav-item:hover .nav-menu, .nav-item:focus-within .nav-menu {
+.nav-item:hover .nav-mega,
+.nav-item:focus-within .nav-mega {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
-.nav-menu a {
+.nav-mega-inner {
   display: grid;
-  gap: 0.15rem;
-  padding: 0.6rem 0.7rem;
-  border-radius: var(--radius-sm);
-  transition: background 0.18s ease;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 clamp(1.4rem, 2.6vw, 2.6rem);
+  padding-block: 2.3rem 0;
 }
 
-.nav-menu a:hover { background: var(--paper); }
+/* hairlines between the columns, the same rule used everywhere else */
+.nav-mega-col + .nav-mega-col {
+  border-inline-start: 1px solid var(--line);
+  padding-inline-start: clamp(1.4rem, 2.6vw, 2.6rem);
+  margin-inline-start: clamp(-1.4rem, -2.6vw, -2.6rem);
+}
 
-.nav-menu strong {
+.nav-mega-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--font-display);
-  font-size: 0.84rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
   color: var(--ink);
-  text-transform: none;
+  transition: color 0.18s ease;
 }
 
-.nav-menu span { font-size: 0.78rem; color: var(--body-c); line-height: 1.45; }
+.nav-mega-head svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-mega-head:hover { color: var(--accent-deep); }
+.nav-mega-head:hover svg { opacity: 1; transform: translateX(0); }
+
+.nav-mega-where {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nav-mega-list {
+  list-style: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.1rem;
+}
+
+/* same gold bullet as the service lists on the home page tiles */
+.nav-mega-list li { position: relative; padding-inline-start: 0.9rem; }
+
+.nav-mega-list li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.95em;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.nav-mega-list a {
+  display: block;
+  padding: 0.32rem 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--body-c);
+  transition: color 0.16s ease;
+}
+
+.nav-mega-list a:hover { color: var(--ink); }
+
+.nav-mega-foot {
+  grid-column: 1 / -1;
+  margin-top: 1.9rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-mega-contact {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.nav-mega-contact a {
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 0.18s ease;
+}
+
+.nav-mega-contact a:hover { color: var(--accent-deep); }
+
+/* Four columns are held all the way down to 1024px, where the mobile menu
+   takes over: folding to two would double the panel's height and swallow the
+   viewport. The columns tighten instead. */
+@media (max-width: 1180px) {
+  .nav-mega-inner { gap: 0 1.25rem; padding-block: 1.9rem 0; }
+  .nav-mega-col + .nav-mega-col {
+    padding-inline-start: 1.25rem;
+    margin-inline-start: -1.25rem;
+  }
+  .nav-mega-head { font-size: 0.94rem; }
+  .nav-mega-list a { font-size: 0.82rem; }
+}
+
+/* On a short screen the panel scrolls rather than running off the bottom. */
+@media (max-height: 760px) {
+  .nav-mega {
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
 
 .mobile-menu .sub-links { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0.9rem 0 0.4rem; }
 

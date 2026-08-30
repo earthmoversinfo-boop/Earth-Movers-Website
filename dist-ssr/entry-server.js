@@ -115,6 +115,8 @@ var UI = {
 		"nav.language": "Language",
 		"nav.switchTo": "العربية",
 		"nav.switchAria": "Switch to Arabic",
+		"nav.allServices": "All services",
+		"nav.talkToUs": "Talk to us",
 		"cov.all": "all 7 emirates",
 		"cov.dubai": "Dubai",
 		"cov.allLong": "all seven emirates",
@@ -298,6 +300,8 @@ var UI = {
 		"nav.language": "اللغة",
 		"nav.switchTo": "English",
 		"nav.switchAria": "التبديل إلى الإنجليزية",
+		"nav.allServices": "كل الخدمات",
+		"nav.talkToUs": "تحدّث إلينا",
 		"cov.all": "جميع إمارات الدولة السبع",
 		"cov.dubai": "دبي",
 		"cov.allLong": "إمارات الدولة السبع",
@@ -3362,16 +3366,53 @@ function Nav() {
 								className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
 								children: t(l.key)
 							}), /* @__PURE__ */ jsx("div", {
-								className: "nav-menu",
-								children: tax.categories.map((c) => /* @__PURE__ */ jsxs(Link, {
-									to: href(`/services/${c.slug}`),
-									children: [/* @__PURE__ */ jsx("strong", { children: c.name }), /* @__PURE__ */ jsxs("span", { children: [
-										c.services.slice(0, 3).map((x) => x.name).join(" · "),
-										" —",
-										" ",
-										c.coverage === "all" ? t("cov.all") : t("cov.dubai")
-									] })]
-								}, c.slug))
+								className: "nav-mega",
+								children: /* @__PURE__ */ jsxs("div", {
+									className: "wrap nav-mega-inner",
+									children: [tax.categories.map((c) => /* @__PURE__ */ jsxs("div", {
+										className: "nav-mega-col",
+										children: [
+											/* @__PURE__ */ jsxs(Link, {
+												to: href(`/services/${c.slug}`),
+												className: "nav-mega-head",
+												children: [/* @__PURE__ */ jsx("span", { children: c.name }), /* @__PURE__ */ jsx(Arrow, {})]
+											}),
+											/* @__PURE__ */ jsx("span", {
+												className: "nav-mega-where",
+												children: c.coverage === "all" ? t("cov.availableAll") : t("cov.availableDubai")
+											}),
+											/* @__PURE__ */ jsx("ul", {
+												className: "nav-mega-list",
+												children: c.services.map((sv) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(Link, {
+													to: href(`/services/${c.slug}/${sv.slug}`),
+													children: sv.name
+												}) }, sv.slug))
+											})
+										]
+									}, c.slug)), /* @__PURE__ */ jsxs("div", {
+										className: "nav-mega-foot",
+										children: [/* @__PURE__ */ jsxs(Link, {
+											to: href("/services"),
+											className: "text-link",
+											children: [
+												t("nav.allServices"),
+												" ",
+												/* @__PURE__ */ jsx(Arrow, {})
+											]
+										}), /* @__PURE__ */ jsxs("span", {
+											className: "nav-mega-contact",
+											children: [
+												t("nav.talkToUs"),
+												" ",
+												/* @__PURE__ */ jsx("a", {
+													href: company.phoneHref,
+													dir: "ltr",
+													children: company.phone
+												})
+											]
+										})]
+									})]
+								})
 							})]
 						}, l.path) : /* @__PURE__ */ jsx(NavLink, {
 							to: href(l.path),

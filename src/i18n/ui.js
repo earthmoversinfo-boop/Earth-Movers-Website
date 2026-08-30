@@ -24,6 +24,8 @@ export const UI = {
     'nav.language': 'Language',
     'nav.switchTo': 'العربية',
     'nav.switchAria': 'Switch to Arabic',
+    'nav.allServices': 'All services',
+    'nav.talkToUs': 'Talk to us',
 
     'cov.all': 'all 7 emirates',
     'cov.dubai': 'Dubai',
@@ -252,6 +254,8 @@ export const UI = {
     'nav.language': 'اللغة',
     'nav.switchTo': 'English',
     'nav.switchAria': 'التبديل إلى الإنجليزية',
+    'nav.allServices': 'كل الخدمات',
+    'nav.talkToUs': 'تحدّث إلينا',
 
     'cov.all': 'جميع إمارات الدولة السبع',
     'cov.dubai': 'دبي',
