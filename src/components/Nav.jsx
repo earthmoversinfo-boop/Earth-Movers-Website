@@ -39,12 +39,12 @@ export default function Nav() {
       <div className="topbar">
         <div className="wrap topbar-inner">
           <div className="topbar-group">
-            <a href={company.phoneHref}>{company.phone}</a>
-            <a href={`mailto:${company.email}`} className="topbar-hide-sm">{company.email}</a>
+            <span className="topbar-badge">RTA-Approved Road Contractor</span>
+            <span className="topbar-hide-sm">Est. 1990 — Montreal · Dubai</span>
           </div>
           <div className="topbar-group">
-            <span className="topbar-hide-sm">Business Bay, Dubai, UAE</span>
-            <span className="topbar-badge">RTA-Approved Contractor</span>
+            <span className="topbar-hide-sm">One of Dubai’s largest excavation fleets</span>
+            <span>24/7 Fleet Operations</span>
           </div>
         </div>
       </div>
