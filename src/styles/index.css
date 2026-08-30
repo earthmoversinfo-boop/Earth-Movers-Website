@@ -263,7 +263,20 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 
-.mobile-menu-contact { margin-top: 2rem; display: grid; gap: 0.35rem; color: var(--body-c); font-size: 0.95rem; }
+.mobile-menu-contact { margin-top: 2rem; display: grid; gap: 0.5rem; color: var(--body-c); }
+
+/* The contact block is a footnote to the menu, not part of it — the row type
+   above would otherwise set it at headline size and run the address off the
+   edge of a narrow screen. */
+.mobile-menu-contact a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--body-c);
+  padding: 0;
+  border-bottom: 0;
+  display: block;
+}
 
 @media (max-width: 940px) {
   .nav-links { display: none; }
@@ -1379,29 +1392,63 @@ h1, h2, h3, h4 {
     linear-gradient(to top, rgba(24, 26, 30, 0.84), rgba(24, 26, 30, 0.42) 48%, rgba(24, 26, 30, 0.14));
 }
 
-/* The language switch sits beside the primary links rather than in them. */
-.nav-lang {
+/* ---- language switch -----------------------------------------------------
+   Built from the header's own parts rather than added to them: it is a
+   .nav-link, so it carries the same face, size and colour transitions as the
+   page links, and a hairline rule — the same rule used everywhere else on the
+   site — separates it from them so it reads as a utility beside the CTA
+   rather than a sixth page. Muted by default, it sits one step below the
+   links and two below the gold button.
+   ------------------------------------------------------------------------ */
+
+/* The rule carries no margin of its own: the row's gap plus each link's own
+   inline padding then falls equally on both sides of it, so it reads as
+   centred between the last page link and the language. */
+.nav-rule {
+  flex: none;
+  width: 1px;
+  height: 1.25rem;
+  background: var(--line);
+  transition: background 0.28s ease;
+}
+
+.nav.overlay .nav-rule { background: rgba(255, 255, 255, 0.32); }
+
+.nav-lang { color: var(--muted); padding-inline: 0.85rem; }
+.nav-lang:hover { color: var(--ink); }
+
+.nav.overlay .nav-lang { color: rgba(255, 255, 255, 0.7); }
+.nav.overlay .nav-lang:hover { color: #fff; }
+
+/* The label is always written in the language it leads to, so one script sits
+   inside a header set in the other. Arabic takes no tracking — it would break
+   the joins between letters — and runs optically smaller at the same size. */
+.nav-lang[lang='ar'] {
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-display);
+  line-height: 1;
+}
+
+.nav-lang[lang='en'] { letter-spacing: 0.12em; }
+
+/* In the mobile menu it takes the same row treatment as the page links, held
+   back in weight and colour, with the word "Language" in the right-hand slot
+   those rows already leave open. */
+.mobile-lang {
+  color: var(--muted);
+  font-weight: 600 !important;
+}
+
+.mobile-lang:hover { color: var(--ink); }
+
+.mobile-lang-note {
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 0.7rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  opacity: 0.75;
-  transition: opacity 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.nav-lang:hover { opacity: 1; color: var(--accent-deep); }
-
-.nav.overlay .nav-lang { color: #fff; }
-.nav.overlay .nav-lang:hover { color: var(--accent); }
-
-[dir='rtl'] .nav-lang { letter-spacing: 0.04em; }
-
-.mobile-menu-contact .nav-lang,
-.mobile-menu-contact a[hreflang] {
-  display: inline-block;
-  margin-top: 0.6rem;
-}
+[dir='rtl'] .mobile-lang-note { letter-spacing: 0; text-transform: none; }

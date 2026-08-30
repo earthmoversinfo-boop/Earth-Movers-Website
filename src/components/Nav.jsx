@@ -98,12 +98,13 @@ export default function Nav() {
                 </NavLink>
               )
             )}
+            <span className="nav-rule" aria-hidden="true" />
             <Link
               to={otherHref}
-              className="nav-lang"
+              className="nav-link nav-lang"
               lang={other}
               hrefLang={other}
-              aria-label={t('nav.language')}
+              aria-label={t('nav.switchAria')}
             >
               {t('nav.switchTo')}
             </Link>
@@ -142,12 +143,23 @@ export default function Nav() {
             )}
           </div>
         ))}
+        <div>
+          <Link
+            to={otherHref}
+            className="mobile-lang"
+            lang={other}
+            hrefLang={other}
+            aria-label={t('nav.switchAria')}
+            onClick={() => setOpen(false)}
+          >
+            {t('nav.switchTo')}
+            <span className="mobile-lang-note">{t('nav.language')}</span>
+          </Link>
+        </div>
+
         <div className="mobile-menu-contact">
           <a href={company.phoneHref} dir="ltr">{company.phone}</a>
           <a href={`mailto:${company.email}`} dir="ltr">{company.email}</a>
-          <Link to={otherHref} lang={other} hrefLang={other} onClick={() => setOpen(false)}>
-            {t('nav.switchTo')}
-          </Link>
         </div>
       </div>
     </>

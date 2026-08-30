@@ -114,6 +114,7 @@ var UI = {
 		"nav.homeAria": "Earth Movers International — home",
 		"nav.language": "Language",
 		"nav.switchTo": "العربية",
+		"nav.switchAria": "Switch to Arabic",
 		"cov.all": "all 7 emirates",
 		"cov.dubai": "Dubai",
 		"cov.allLong": "all seven emirates",
@@ -296,6 +297,7 @@ var UI = {
 		"nav.homeAria": "إيرث موفرز إنترناشيونال — الصفحة الرئيسية",
 		"nav.language": "اللغة",
 		"nav.switchTo": "English",
+		"nav.switchAria": "التبديل إلى الإنجليزية",
 		"cov.all": "جميع إمارات الدولة السبع",
 		"cov.dubai": "دبي",
 		"cov.allLong": "إمارات الدولة السبع",
@@ -3377,12 +3379,16 @@ function Nav() {
 							className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
 							children: t(l.key)
 						}, l.path)),
+						/* @__PURE__ */ jsx("span", {
+							className: "nav-rule",
+							"aria-hidden": "true"
+						}),
 						/* @__PURE__ */ jsx(Link, {
 							to: otherHref,
-							className: "nav-lang",
+							className: "nav-link nav-lang",
 							lang: other,
 							hrefLang: other,
-							"aria-label": t("nav.language"),
+							"aria-label": t("nav.switchAria"),
 							children: t("nav.switchTo")
 						}),
 						/* @__PURE__ */ jsx(Link, {
@@ -3407,39 +3413,44 @@ function Nav() {
 		})
 	}), /* @__PURE__ */ jsxs("div", {
 		className: `mobile-menu${open ? " open" : ""}`,
-		children: [LINKS.map((l) => /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx(Link, {
-			to: href(l.path),
-			onClick: () => setOpen(false),
-			children: t(l.key)
-		}), l.path === "/services" && /* @__PURE__ */ jsx("div", {
-			className: "sub-links",
-			children: tax.categories.map((c) => /* @__PURE__ */ jsx(Link, {
-				to: href(`/services/${c.slug}`),
+		children: [
+			LINKS.map((l) => /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx(Link, {
+				to: href(l.path),
 				onClick: () => setOpen(false),
-				children: c.name
-			}, c.slug))
-		})] }, l.path)), /* @__PURE__ */ jsxs("div", {
-			className: "mobile-menu-contact",
-			children: [
-				/* @__PURE__ */ jsx("a", {
+				children: t(l.key)
+			}), l.path === "/services" && /* @__PURE__ */ jsx("div", {
+				className: "sub-links",
+				children: tax.categories.map((c) => /* @__PURE__ */ jsx(Link, {
+					to: href(`/services/${c.slug}`),
+					onClick: () => setOpen(false),
+					children: c.name
+				}, c.slug))
+			})] }, l.path)),
+			/* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs(Link, {
+				to: otherHref,
+				className: "mobile-lang",
+				lang: other,
+				hrefLang: other,
+				"aria-label": t("nav.switchAria"),
+				onClick: () => setOpen(false),
+				children: [t("nav.switchTo"), /* @__PURE__ */ jsx("span", {
+					className: "mobile-lang-note",
+					children: t("nav.language")
+				})]
+			}) }),
+			/* @__PURE__ */ jsxs("div", {
+				className: "mobile-menu-contact",
+				children: [/* @__PURE__ */ jsx("a", {
 					href: company.phoneHref,
 					dir: "ltr",
 					children: company.phone
-				}),
-				/* @__PURE__ */ jsx("a", {
+				}), /* @__PURE__ */ jsx("a", {
 					href: `mailto:${company.email}`,
 					dir: "ltr",
 					children: company.email
-				}),
-				/* @__PURE__ */ jsx(Link, {
-					to: otherHref,
-					lang: other,
-					hrefLang: other,
-					onClick: () => setOpen(false),
-					children: t("nav.switchTo")
-				})
-			]
-		})]
+				})]
+			})
+		]
 	})] });
 }
 //#endregion

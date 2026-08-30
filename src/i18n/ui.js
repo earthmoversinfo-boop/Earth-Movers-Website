@@ -23,6 +23,7 @@ export const UI = {
     'nav.homeAria': 'Earth Movers International — home',
     'nav.language': 'Language',
     'nav.switchTo': 'العربية',
+    'nav.switchAria': 'Switch to Arabic',
 
     'cov.all': 'all 7 emirates',
     'cov.dubai': 'Dubai',
@@ -250,6 +251,7 @@ export const UI = {
     'nav.homeAria': 'إيرث موفرز إنترناشيونال — الصفحة الرئيسية',
     'nav.language': 'اللغة',
     'nav.switchTo': 'English',
+    'nav.switchAria': 'التبديل إلى الإنجليزية',
 
     'cov.all': 'جميع إمارات الدولة السبع',
     'cov.dubai': 'دبي',
