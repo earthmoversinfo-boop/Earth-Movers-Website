@@ -283,12 +283,18 @@ function buildCategories(locale) {
     return {
       ...c,
       ...(co ? { name: co.name, tagline: co.tagline, intro: co.intro } : {}),
-      services: c.services.map((s) => ({
-        ...s,
-        ...(serviceContent[s.slug] || {}),
-        ...(co?.services?.[s.slug] || {}),
-        ...(overlay?.content?.[s.slug] || {}),
-      })),
+      tallImg: `/images/services/category-${c.slug}-tall.jpg`,
+      services: c.services.map((s) => {
+        const merged = {
+          ...s,
+          ...(serviceContent[s.slug] || {}),
+          ...(co?.services?.[s.slug] || {}),
+          ...(overlay?.content?.[s.slug] || {}),
+        }
+        // Each service ships a wide crop for the banner and a portrait one for
+        // the rail beside the overview; both come out of make-service-images.py.
+        return { ...merged, tallImg: merged.img.replace(/\.jpg$/, '-tall.jpg') }
+      }),
     }
   })
 }

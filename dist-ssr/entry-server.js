@@ -164,6 +164,7 @@ var UI = {
 		"loc.ourServices": "Our {category} services",
 		"loc.areasWeCover": "Areas we cover in {emirate}:",
 		"loc.areasTail": "Whether the scope is a single plot or a multi-phase infrastructure package, the same plant, operators and supervision deliver it.",
+		"loc.figCaption": "{category} in {emirate} — our own plant, operators and supervision.",
 		"loc.elsewhere": "{category} elsewhere in the UAE",
 		"loc.ctaTitle": "{category} in {emirate}?",
 		"loc.ctaText": "Tell us about the site and scope — we’ll price the real work and mobilise from Dubai.",
@@ -366,6 +367,7 @@ var UI = {
 		"loc.ourServices": "خدمات {category} لدينا",
 		"loc.areasWeCover": "المناطق التي نغطيها في {emirate}:",
 		"loc.areasTail": "وسواء كان النطاق قطعة أرض واحدة أو حزمة بنية تحتية متعددة المراحل، فإن المعدات والمشغّلين والإشراف هم أنفسهم في الحالتين.",
+		"loc.figCaption": "{category} في {emirate} — بمعداتنا ومشغّلينا وإشرافنا.",
 		"loc.elsewhere": "{category} في باقي إمارات الدولة",
 		"loc.ctaTitle": "هل تحتاج {category} في {emirate}؟",
 		"loc.ctaText": "أخبرنا عن الموقع ونطاق العمل — نُسعّر العمل الفعلي ونجهّز التعبئة من دبي.",
@@ -521,6 +523,7 @@ var serviceContent = {
 		img: "/images/services/excavation.jpg",
 		h1: "Excavation Contractor in the UAE",
 		lead: "Bulk and detailed excavation for basements, foundations, services and infrastructure corridors — in sand, fill or hard rock.",
+		caption: "Tracked excavator cutting to formation level through sand and caprock.",
 		intro: "Excavation is where a programme is won or lost. We take a plot from existing ground to a surveyed, inspected formation level using our own excavators, breakers, loaders and tippers — so the platform is handed to the next trade on the date it was promised, not the date a hire company could supply a machine.",
 		body: ["Ground across the UAE rarely behaves the same way twice. Coastal Dubai and Sharjah plots are typically loose sand over a caprock band; Ras Al Khaimah and Fujairah put you into hard strata within the first few metres; older industrial plots hide uncontrolled fill, buried slabs and abandoned services. We read the geotechnical report before mobilising and match the spread to it — long-reach machines where batters have to be pulled back, hydraulic breakers where the rock line comes up early, and confined-space machines where boundaries leave no room to slope.", "Everything is cut to survey control, with levels checked as the dig proceeds rather than at the end. Batters, benching and temporary slope protection are set out to the design; arisings are classified, loaded and hauled under municipal disposal permits with tickets retained for the project file. Where dewatering, shoring or piling contractors are working alongside us, the sequence is agreed up front so the excavation face is never waiting on someone else."],
 		scope: [
@@ -557,6 +560,7 @@ var serviceContent = {
 		img: "/images/services/back-filling.jpg",
 		h1: "Backfilling Contractor in the UAE",
 		lead: "Structural and service backfill placed in controlled, tested layers — the work that stops settlement appearing a year later.",
+		caption: "Backhoe placing surround material over a service trench.",
 		intro: "Backfilling looks like the simplest operation on a site and is the most common source of long-term defects. Trench reinstatement that settles, basement surrounds that pull away from the structure, slabs that crack over a service run — almost all of it traces back to material tipped in bulk instead of placed and compacted in layers.",
 		body: ["We backfill with approved material to the specified layer thickness, watering to optimum moisture content and compacting each lift before the next is placed. Around structures, the fill is brought up evenly on all sides so nothing is pushed out of line. Around services, bedding and surround are placed by hand or with light plate compactors to protect the pipe or duct, and only then is machine compaction taken over the top.", "Field density testing is carried out lift by lift and the results are compiled into the compaction records the consultant and the authority need at handover. Where imported fill is required we source approved granular material with test certificates rather than whatever is closest, because the certificate is what gets the layer signed off."],
 		scope: [
@@ -593,6 +597,7 @@ var serviceContent = {
 		img: "/images/services/cut-and-fill.jpg",
 		h1: "Cut and Fill Contractor in the UAE",
 		lead: "Balanced cut-and-fill that brings a site to design levels while keeping material on site wherever it is suitable.",
+		caption: "Dozer pushing site-won material up to design level.",
 		intro: "Cut and fill is an earthworks balance exercise before it is a machine exercise. Every cubic metre you export and then re-import is paid for twice, so the first thing we do is model the earthworks quantities against the design levels and find how much of the cut can legitimately become fill.",
 		body: ["Dozers and scrapers move the bulk, graders trim to profile and rollers compact each layer as it is placed. Machine control and survey checks hold the design surface across large, featureless areas — the sort of plot where a few centimetres of drift over a hundred metres turns into an expensive correction at slab stage.", "Where cut and fill do not balance, we tell you at tender stage rather than after mobilisation, along with the haulage and disposal or import cost that closes the gap. Stockpile locations, haul routes and dust control are planned into the site layout so the operation does not choke its own access or attract a municipal notice."],
 		scope: [
@@ -629,6 +634,7 @@ var serviceContent = {
 		img: "/images/services/leveling.jpg",
 		h1: "Land Levelling & Grading Contractor in the UAE",
 		lead: "Grading and fine levelling to design elevations and falls — formation levels, slab platforms, yards and laydown areas.",
+		caption: "Motor graders trimming a formation to design level and crossfall.",
 		intro: "Levelling and grading is the last earthworks operation before something permanent is built on top, which is why tolerance matters more here than anywhere else in the sequence. A formation that is out by a few centimetres is paid for again in extra base, extra asphalt or extra blinding.",
 		body: ["Motor graders with GPS-guided blades hold the design surface across large areas, with survey checks taken on a grid rather than at a handful of convenient points. Falls are set to the drainage design so water leaves the platform where the drawings say it should — a yard that ponds is a levelling failure, not a drainage one.", "We grade to formation level for roads and pavements, to platform level for slabs and buildings, and to finished level for open yards, laydown areas and hardstandings. Where the surface will carry traffic before construction starts, the graded formation is compacted and sealed so it survives site traffic rather than rutting in the first week."],
 		scope: [
@@ -665,6 +671,7 @@ var serviceContent = {
 		img: "/images/services/compaction.jpg",
 		h1: "Compaction Works Contractor in the UAE",
 		lead: "Layer-by-layer compaction with the right roller for the material, backed by field density testing and compaction certificates.",
+		caption: "Vibratory roller closing a formation before the base goes down.",
 		intro: "Compaction is the part of earthworks that is invisible once it is finished and expensive when it is wrong. Everything above it — base, asphalt, slabs, kerbs — depends on a platform that has been brought to the specified density in controlled layers, with results that a consultant will actually accept.",
 		body: ["The roller has to suit the material. Vibratory smooth drums for granular fill and sub-base, padfoot rollers for cohesive material, plate compactors and trench rollers in confined areas and around services. Layer thickness is controlled to what the plant can genuinely compact rather than what is quick to spread, and moisture is brought to optimum with bowsers before rolling starts.", "Field density tests are taken layer by layer and issued as compaction records with the handover pack. Where a layer fails, it is reworked and retested rather than covered — a habit that costs an afternoon and saves a rebuild."],
 		scope: [
@@ -701,6 +708,7 @@ var serviceContent = {
 		img: "/images/services/access-roads.jpg",
 		h1: "Access Roads Contractor in the UAE",
 		lead: "Temporary and permanent access roads into plots, sites, plants and remote facilities — built for the loads that will actually use them.",
+		caption: "Graders forming an access road ahead of the base layers.",
 		intro: "An access road is the first thing a project needs and the last thing anyone budgets properly. Deliveries that cannot reach the plot, low-loaders bogged at the boundary and a haul route that turns to ruts after the first rain all cost more than building the road correctly at the start.",
 		body: ["We build access roads as a full pavement rather than a graded track: formation, compacted sub-base, road base and a surface sized for the axle loads the route will carry. For a construction access that will later be replaced, that may be a compacted base with a bituminous seal. For a permanent plant or facility access, it is a designed pavement with kerbs, drainage falls and markings.", "Alignment, turning circles and gradients are set for the vehicles that will actually use the road — low-loaders, concrete trucks, tankers and container trailers need geometry that a car does not. Where the access ties into a public road, the connection is an RTA entry-and-exit or municipal approval matter, and we handle that permit chain as part of the same package."],
 		scope: [
@@ -737,6 +745,7 @@ var serviceContent = {
 		img: "/images/services/road-base-laying.jpg",
 		h1: "Road Base Laying Contractor in the UAE",
 		lead: "Supply, spreading, watering and compaction of aggregate sub-base and road base to specified thickness and density.",
+		caption: "Loader working an aggregate stockpile for road base.",
 		intro: "Road base is the layer that decides whether a road lasts. Asphalt is a wearing surface, not a structure — if the base beneath it is under-compacted, badly graded or laid to the wrong thickness, the surface will crack and rut no matter how good the mix was.",
 		body: ["We supply approved aggregate with test certificates, spread it to controlled layer thickness, condition it to optimum moisture and compact it to the specified density. Levels are surveyed before and after each layer, and field density testing is carried out lift by lift rather than once at the top. Proof rolling before paving picks up soft spots while they are still cheap to fix.", "Grading matters as much as compaction. Material that segregates during tipping or spreading gives a layer that tests well in one spot and fails in another, so stockpiling, haulage and spreading are handled to keep the aggregate consistent from the quarry to the blade."],
 		scope: [
@@ -773,6 +782,7 @@ var serviceContent = {
 		img: "/images/services/asphalt-works.jpg",
 		h1: "Asphalt Contractor in the UAE",
 		lead: "Binder and wearing course asphalt laid by paver to specified thickness, temperature and joint detail, from approved plant mixes.",
+		caption: "Rollers closing a wearing course behind the paver.",
 		intro: "Asphalt is unforgiving about temperature and joints. A mix that arrives too cool, a joint that is not properly cut and tacked, or rolling that starts too late will show up as ravelling and cracking within a season — usually just after the defects period closes.",
 		body: ["We lay binder and wearing course by paver to the specified thickness, working from approved mixes at certified plants with delivery temperatures recorded. Prime and tack coats are applied at the correct rate, longitudinal and transverse joints are cut back and tacked, and the rolling pattern is set to reach density while the mat is still within its temperature window.", "For overlays and reconstruction, existing surfaces are milled to profile, edges are saw-cut clean and levels are checked so the new surface ties in without a lip. As an RTA-approved road contractor we work to authority specification on public roads, with material approvals, testing and core results documented as the work proceeds rather than assembled afterwards."],
 		scope: [
@@ -809,6 +819,7 @@ var serviceContent = {
 		img: "/images/services/road-maintenance.jpg",
 		h1: "Road Maintenance Contractor in the UAE",
 		lead: "Planned and reactive maintenance for internal roads, industrial estates and community networks — programmed to keep the network open.",
+		caption: "Resurfacing a carriageway under half-width working.",
 		intro: "Road maintenance is a scheduling problem as much as a construction one. The works themselves are straightforward; doing them without closing the estate, blocking a loading bay or stranding residents is what separates a maintenance contractor from a paving contractor.",
 		body: ["We survey the network, grade the defects and put a programme against them, so spend goes to the sections that are failing rather than the sections that are easiest to reach. Crack sealing and edge repair early is a fraction of the cost of reconstruction later, and a condition survey makes that argument with evidence instead of opinion.", "Work is sequenced and phased so access is maintained throughout — half-width working, night shifts, temporary diversions and staged handbacks. On public roads the traffic management and permits are handled by our own team; on private estates we coordinate with facilities management and residents so nobody discovers the closure on the morning it starts."],
 		scope: [
@@ -845,6 +856,7 @@ var serviceContent = {
 		img: "/images/services/asphalt-patch-works.jpg",
 		h1: "Asphalt Patch Repair Contractor in the UAE",
 		lead: "Saw-cut, excavate, reinstate and compact — patch repairs done so the joint does not fail in the first season.",
+		caption: "Break-out and reinstatement at a utility crossing.",
 		intro: "Most failed patches fail at the edge. A ragged break-out, no tack on the vertical face and backfill that was never properly compacted give you a patch that sinks, opens at the joint and lets water into the layers you were trying to protect.",
 		body: ["We saw-cut the perimeter to a clean rectangle, break out to sound material, and rebuild the layers properly — compacted base, tack coat on every face, asphalt in lifts and rolled to density. The joint is sealed so the repair is watertight, and the finished surface is flush with the surrounding road rather than proud or dished.", "Patching is most often needed after a utility crossing, a trench reinstatement that has settled, or localised failure over a soft spot. In each case we look at why the failure happened — repairing the surface over a base that is still failing simply buys a few months."],
 		scope: [
@@ -881,6 +893,7 @@ var serviceContent = {
 		img: "/images/services/parkings.jpg",
 		h1: "Car Park Construction Contractor in the UAE",
 		lead: "Complete parking areas from sub-grade to line marking — base, surfacing, kerbing, drainage falls, bays and signage.",
+		caption: "Surfacing an open parking area before kerbs and marking.",
 		intro: "A car park is a small road network with tight geometry and a lot of edges, and it is usually the last package on a project — which is exactly why it ends up rushed. Bay dimensions, aisle widths, accessible bays and falls to the gullies all have to satisfy the authority layout standard before the surface can be signed off.",
 		body: ["We build the whole thing: sub-grade preparation, compacted base, surfacing in asphalt or heavy-duty interlock, kerbing to the bay and island layout, drainage falls and gullies, wheel stops, bollards, bay marking, numbering, directional arrows and signage. Because it is one contractor, the falls actually reach the gullies and the marking actually fits the kerb lines.", "Surface choice is driven by use. Asphalt is faster and cheaper over large open areas; heavy-duty interlock is the better answer where vehicles turn on the spot, where fuel and oil spillage is likely, or where sections may need lifting later for services beneath."],
 		scope: [
@@ -917,6 +930,7 @@ var serviceContent = {
 		img: "/images/services/heavy-duty-interlock-paving.jpg",
 		h1: "Interlock Paving Contractor in the UAE",
 		lead: "Heavy-duty interlock and paver block for yards, container areas, service roads and hardstandings that carry loaded trucks.",
+		caption: "Setting out a hardstanding before the blocks are laid.",
 		intro: "Interlock either holds for twenty years or ruts in the first month, and the difference is almost never the block itself. Block thickness, bedding sand grading and depth, laying pattern and — above all — edge restraint are what decide whether a heavily loaded yard stays flat.",
 		body: ["For trafficked areas we use heavy-duty blocks laid in a herringbone pattern, which locks under braking and turning loads in a way that stretcher bond does not. Bedding sand is laid to a consistent depth over a compacted, level base, and every free edge gets a concrete-haunched restraint — kerb, edging or channel — because a yard fails from the edges inwards.", "The base underneath is built as a full pavement, not a levelling layer. Once laid, blocks are vibrated in and jointing sand is swept and re-swept until the joints are full, which is when the surface actually starts behaving as an interlocking pavement rather than a set of loose blocks."],
 		scope: [
@@ -953,6 +967,7 @@ var serviceContent = {
 		img: "/images/services/kerbstones.jpg",
 		h1: "Kerbstone Installation Contractor in the UAE",
 		lead: "Supply and installation of kerbstones and channels to line and level on concrete haunching, finished to authority profile.",
+		caption: "The finished edge — kerb line, channel and asphalt shoulder.",
 		intro: "Kerbs are the visible line that every other element is judged against. A kerb run that wanders in plan or dips in level makes a well-built road look badly built, and it is the first thing an authority inspector puts a string line to.",
 		body: ["We set kerbs to line and level on a concrete bed with haunching to the back, using survey control on straights and templates on radii so curves are true rather than approximate. Joints are consistent, drop kerbs at crossings and entrances are transitioned properly, and the channel line is set so water actually runs to the gullies.", "We install road kerbs, parking and island kerbs, radius units, drop kerbs and channels, in the profiles specified by RTA, Dubai Municipality and the other emirate authorities. Kerbing is usually the interface between road, parking and landscaping packages, so we sequence it with whoever is either side of us rather than fixing the line and leaving them to cope."],
 		scope: [
@@ -989,6 +1004,7 @@ var serviceContent = {
 		img: "/images/services/road-markings.jpg",
 		h1: "Road Marking Contractor in the UAE",
 		lead: "Thermoplastic and cold-paint markings — lane lines, hatching, arrows, crossings, bays and numbering to authority standards.",
+		caption: "Lane markings and traffic management on a live carriageway.",
 		intro: "Markings are the last operation and the one everybody sees. They also have the shortest weather window: applied to a surface that is damp, dusty or too cool, thermoplastic will lift within weeks no matter how good the set-out was.",
 		body: ["We set out from the drawings, prepare the surface, and apply thermoplastic or cold paint at the specified thickness with reflective beading where the specification calls for it. On new asphalt we allow the surface to cure before application; on existing surfaces we clean, and remove old markings by grinding or blasting rather than painting over them.", "Work covers highway and estate lane lines, hatching, arrows and legends, pedestrian crossings, cycle lanes, parking bays and numbering, rumble strips and speed table markings. On live roads the marking operation runs under lane closure with our own traffic management and, where the road is RTA, our own permit."],
 		scope: [
@@ -1025,6 +1041,7 @@ var serviceContent = {
 		img: "/images/services/lane-closure-permits.jpg",
 		h1: "Lane Closure Permits in Dubai",
 		lead: "Application, drawings and approval for single and multi-lane closures on RTA roads, from submission through to permit issue.",
+		caption: "Cones, barriers and signage set to an approved closure layout.",
 		intro: "A lane closure permit is a drawing exercise with a deadline attached. The RTA does not approve an intention to close a lane — it approves a specific taper, a specific signage schedule, a specific working window and a specific set of safety measures, drawn and justified.",
 		body: ["We prepare the traffic diversion drawings, set the taper lengths and signage schedule to the approach speed, define the working window — almost always night hours on a busy corridor — and submit the package. Comments are answered and resubmitted by the same team, so the application does not stall waiting for someone to interpret the response.", "Because we also install and maintain the traffic management on site, the permit that gets approved is the layout that actually gets built. That matters at inspection: most stop-work notices on a closure are not for working without a permit but for working to a layout that does not match the one approved."],
 		scope: [
@@ -1061,6 +1078,7 @@ var serviceContent = {
 		img: "/images/services/road-closure-permits.jpg",
 		h1: "Road Closure Permits in Dubai",
 		lead: "Full road and carriageway closures with approved diversion routes, staged programmes and stakeholder coordination.",
+		caption: "A signed diversion in place around a closed carriageway.",
 		intro: "A full road closure is a bigger conversation than a lane closure. The RTA is being asked to send traffic somewhere else, so the application has to justify why the closure is necessary, prove the diversion route can absorb the traffic, and show the works cannot be staged any other way.",
 		body: ["We prepare the traffic impact justification, the diversion route drawings and the staging programme, and coordinate with the RTA, Dubai Police and the stakeholders the closure affects — businesses, buildings, bus routes and emergency access. Where a single closure will not be approved, we restructure the works into stages that will be.", "Once approved, the closure is installed, signed, lit and maintained by our own crews and handed back to the agreed programme. Diversion signage is checked through the closure period rather than installed and forgotten, because a diversion that has lost a sign is what generates the complaint that ends the permit early."],
 		scope: [
@@ -1097,6 +1115,7 @@ var serviceContent = {
 		img: "/images/services/traffic-management.jpg",
 		h1: "Traffic Management Contractor in Dubai",
 		lead: "Supply, installation, maintenance and removal of compliant traffic management — cones, barriers, signage, arrow boards, TMA units and flagmen.",
+		caption: "Traffic management maintained around works in a live road.",
 		intro: "Traffic management is what stands between a live carriageway and the people working in it. It is also the element most often installed once and then left to degrade — cones scattered by passing traffic, a sign turned by the wind, a taper that has shortened by twenty metres since the first night.",
 		body: ["We supply and install traffic management to the approved layout: advance warning and directional signage, cones and delineators, safety barriers, flashing arrow boards, lighting, and truck-mounted attenuator (TMA) units on high-speed roads. Trained flagmen are provided where the layout requires manual control at accesses and crossings.", "The layout is then inspected and maintained for the life of the works, not just on the first shift, and it is removed cleanly at the end so the road is handed back without residual signage confusing drivers. Where the works are on an RTA road, we prepare the diversion drawings and hold the permit as well, so one team is accountable for the drawing, the approval and what is physically on the ground."],
 		scope: [
@@ -1133,6 +1152,7 @@ var serviceContent = {
 		img: "/images/services/rta-approved-entry-exit-works.jpg",
 		h1: "RTA Approved Entry & Exit Works Contractor in Dubai",
 		lead: "Plot entrances and exits onto RTA roads, constructed by an RTA-approved contractor so the access is accepted and legally usable.",
+		caption: "A new plot access tying into the public road.",
 		intro: "An entry-exit onto an RTA road is not a kerb job. It is a controlled connection to the public highway, and the RTA will only accept it if the design is approved, the contractor is approved, and what was built matches what was drawn.",
 		body: ["We handle the package end to end: the entry-exit drawings and submission, the permit, and the construction itself — drop kerbs, apron, transitions and levels, continuity of the road drainage across the access, surfacing, marking and signage — followed by reinstatement of everything disturbed within the road reserve.", "The most common reason an access fails inspection is drainage. An entrance that interrupts the channel line, or that discharges plot water onto the carriageway, will not be signed off however well it is finished. We set the levels so the road drainage runs through unbroken and the plot drains to its own system."],
 		scope: [
@@ -1169,6 +1189,7 @@ var serviceContent = {
 		img: "/images/services/rta-service-protection.jpg",
 		h1: "RTA Service Protection Works in Dubai",
 		lead: "Protection of existing utilities inside the road reserve during construction — scanning, trial pits, physical protection and reinstatement.",
+		caption: "Survey and setting out before excavating near live services.",
 		intro: "Every metre of road reserve in Dubai has something buried in it: DEWA cables, Etisalat and du ducts, water mains, irrigation, district cooling. Service protection is the discipline of proving where those services are before a machine goes near them, and physically protecting them while the works proceed.",
 		body: ["We scan and trace the route, open trial pits to expose and confirm depths and alignments, and record what is actually there against what the drawings claimed — the two frequently differ. Where services are exposed or at risk, they are physically protected: concrete surround, sleeving, protection slabs, or supports and cradles where a service is spanning an open excavation.", "The works are carried out to RTA and utility-owner requirements, with the relevant NOCs in place, and everything disturbed inside the road reserve is reinstated to authority standard afterwards. Getting this wrong is expensive in a way that is out of all proportion to the works — a struck 11kV cable or a severed fibre route costs far more than the protection would have."],
 		scope: [
@@ -1205,6 +1226,7 @@ var serviceContent = {
 		img: "/images/services/row-permits.jpg",
 		h1: "ROW Permits in Dubai",
 		lead: "Right-of-way permit applications for works within road reserves and public land — drawings, NOCs and compliance to completion.",
+		caption: "An RTA-approved permit drawing for works in the road reserve.",
 		intro: "A ROW permit is what makes work inside a road reserve or on public land lawful. It is also the item most likely to sit on a programme as a single line with no duration against it, until the day someone discovers the works cannot start.",
 		body: ["We prepare the full application: layout and section drawings, method statements, traffic arrangements, the stakeholder NOCs the authority requires, and the supporting documents that stop the submission being returned. Comments are answered by the same team that drew the package, which is usually the difference between a resubmission cycle of days and one of weeks.", "The permit is only half the job. Conditions attached to it — working hours, protection measures, reinstatement standards, notification requirements — have to be complied with for the permit to stay valid through to completion, and we manage that on site as well as on paper."],
 		scope: [
@@ -1241,6 +1263,7 @@ var serviceContent = {
 		img: "/images/services/utilities-shifting.jpg",
 		h1: "Utility Shifting Contractor in Dubai",
 		lead: "Diversion and relocation of services that clash with new works — ducts, cables, water and irrigation — coordinated with the utility owners.",
+		caption: "Excavating a new route for a diverted service.",
 		intro: "Utility shifting is a coordination problem wearing a construction costume. The excavation and the new route are straightforward; the shutdown window, the owner approval and the sequence in which three different utilities can be moved without any of them losing supply are what set the programme.",
 		body: ["We identify the clash, agree the new route with the owner, secure the NOCs and permits, and carry out the diversion — new duct or pipe route, protection, connection, commissioning support and abandonment or removal of the redundant run. Shutdown windows with DEWA, Etisalat, du and Empower are booked and worked to, because a missed window can put weeks into a programme.", "Where a clash can be designed out instead of moved, we say so. Shifting a service is always more expensive than adjusting a level or an alignment, and it is worth an hour of review before committing to a diversion that the project may not actually need."],
 		scope: [
@@ -1277,6 +1300,7 @@ var serviceContent = {
 		img: "/images/services/noc-services.jpg",
 		h1: "NOC Services in Dubai",
 		lead: "Preparation and processing of No Objection Certificates across the authorities and utility owners a project touches.",
+		caption: "The drawing package prepared for authority and utility-owner approval.",
 		intro: "NOCs are the quiet critical path. A project can be fully designed, funded and resourced and still be unable to start because one utility owner has not signed off a drawing that was submitted incomplete two months earlier.",
 		body: ["We work out which NOCs a scope actually needs, assemble the drawing package each authority and owner wants to see, submit, answer comments and track the approvals through to issue. Different bodies want different things — a DEWA submission does not look like an RTA submission, and sending the wrong package is what generates the first rejection.", "The value is in knowing the sequence. Some NOCs depend on others being issued first, and submitting them in the wrong order guarantees a return. We run them in parallel where that is possible and in sequence where it is not, and give you a realistic view of the approval programme rather than an optimistic one."],
 		scope: [
@@ -1316,6 +1340,7 @@ var serviceContentAr = {
 	excavation: {
 		h1: "مقاول حفريات في الإمارات",
 		lead: "حفر كلي وتفصيلي للبدرومات والأساسات والخدمات وممرات البنية التحتية — في الرمل أو الردم أو الصخر الصلب.",
+		caption: "حفارة مجنزرة تحفر حتى منسوب التأسيس في الرمل والطبقة الصخرية.",
 		intro: "الحفر هو المرحلة التي يُكسب فيها البرنامج الزمني أو يُخسر. ننقل قطعة الأرض من مستواها القائم إلى منسوب تأسيس مرصود ومعتمَد باستخدام حفاراتنا وكسّاراتنا ولوادرنا وقلاباتنا — فتُسلَّم المنصة للمقاول التالي في الموعد الموعود، لا في الموعد الذي يتيحه مكتب تأجير معدات.",
 		body: ["نادراً ما تتصرف الأرض في الإمارات بالطريقة نفسها مرتين. فقطع الأراضي الساحلية في دبي والشارقة رمل سائب فوق طبقة صخرية سطحية؛ ورأس الخيمة والفجيرة تضعانك في طبقات صلبة خلال الأمتار الأولى؛ والمواقع الصناعية القديمة تخفي ردماً غير مضبوط وبلاطات مدفونة وخدمات مهجورة. نقرأ التقرير الجيوتقني قبل التعبئة ونطابق المعدات عليه — أذرع طويلة حيث يلزم تراجع الميول، وكسّارات هيدروليكية حيث يرتفع خط الصخر مبكراً، ومعدات ضيقة حيث لا تترك الحدود مجالاً للميل.", "يُنفَّذ كل شيء بضبط مساحي، وتُراجَع المناسيب أثناء الحفر لا عند نهايته. وتُخطَّط الميول والمدرّجات وحماية الجوانب المؤقتة وفق التصميم؛ ويُصنَّف الناتج ويُحمَّل ويُنقَل ويُطرَح بموجب تصاريح بلدية مع الاحتفاظ بالإيصالات لملف المشروع. وحيث يعمل مقاولو نزح المياه أو الحوائط الساندة أو الخوازيق إلى جانبنا، يُتَّفق على التسلسل مسبقاً حتى لا تنتظر جبهة الحفر أحداً."],
 		scope: [
@@ -1351,6 +1376,7 @@ var serviceContentAr = {
 	"back-filling": {
 		h1: "مقاول أعمال ردم في الإمارات",
 		lead: "ردم إنشائي وردم حول الخدمات يُوضع على طبقات مضبوطة ومُختبَرة — العمل الذي يمنع ظهور الهبوط بعد عام.",
+		caption: "لودر خلفي يضع مادة الغلاف فوق خندق خدمات.",
 		intro: "يبدو الردم أبسط عملية في الموقع، وهو في الواقع أكثر مصادر العيوب طويلة الأمد. خندق يهبط بعد إعادة الحالة، ومحيط بدروم ينفصل عن الهيكل، وبلاطة تتشقق فوق مسار خدمة — كلها تعود غالباً إلى مادة أُلقيت دفعة واحدة بدل أن تُوضع وتُدمك على طبقات.",
 		body: ["نردم بمواد معتمدة بسماكة الطبقة المحددة، مع الترطيب حتى المحتوى الرطوبي الأمثل ودمك كل طبقة قبل وضع التالية. وحول المنشآت يُرفع الردم بالتساوي من جميع الجهات حتى لا يُدفع شيء عن استقامته. وحول الخدمات تُوضع طبقة الفرش والغلاف يدوياً أو بصفيحة دمك خفيفة لحماية الأنبوب أو المجرى، وعندها فقط يُنقَل الدمك الآلي إلى ما فوقها.", "تُجرى اختبارات الكثافة الحقلية طبقة بطبقة وتُجمَّع نتائجها في سجلات الدمك التي يطلبها الاستشاري والجهة المختصة عند التسليم. وحيث يلزم ردم مستورد، نوفّر مادة حبيبية معتمدة بشهادات اختبار بدل أقرب مادة متاحة، لأن الشهادة هي ما يعتمد الطبقة."],
 		scope: [
@@ -1386,6 +1412,7 @@ var serviceContentAr = {
 	"cut-and-fill": {
 		h1: "مقاول أعمال قطع وردم في الإمارات",
 		lead: "قطع وردم متوازن يصل بالموقع إلى المناسيب التصميمية مع إبقاء المواد في الموقع حيثما كانت صالحة.",
+		caption: "جرافة تدفع مادة الموقع حتى المنسوب التصميمي.",
 		intro: "القطع والردم عملية موازنة كميات قبل أن تكون عملية معدات. فكل متر مكعب تُصدّره ثم تعيد استيراده تدفع ثمنه مرتين، لذا أول ما نفعله هو نمذجة كميات الأعمال الترابية مقابل المناسيب التصميمية لمعرفة كم من القطع يمكن أن يصبح ردماً بشكل مشروع.",
 		body: ["تنقل الجرافات والقاشطات الكتلة الأكبر، وتشذّب المسوّيات المقطع، وتدمك المداحل كل طبقة عند وضعها. ويحافظ التوجيه الآلي والمراجعة المساحية على السطح التصميمي عبر مساحات واسعة وخالية من المعالم — وهي المواقع التي يتحول فيها انحراف بضعة سنتيمترات على مئة متر إلى تصحيح مكلف عند مرحلة البلاطة.", "وحين لا يتوازن القطع مع الردم نُخبرك بذلك في مرحلة العطاء لا بعد التعبئة، ومعه تكلفة النقل والطرح أو الاستيراد التي تسدّ الفارق. وتُدرَج مواقع أكوام التخزين ومسارات النقل وضبط الغبار في مخطط الموقع حتى لا تخنق العملية وصولها ولا تستدعي مخالفة بلدية."],
 		scope: [
@@ -1421,6 +1448,7 @@ var serviceContentAr = {
 	leveling: {
 		h1: "مقاول تسوية وتمهيد أراضٍ في الإمارات",
 		lead: "تمهيد وتسوية دقيقة حتى المناسيب والميول التصميمية — مناسيب التأسيس ومنصات البلاطات والساحات ومناطق التخزين.",
+		caption: "مسوّيات تشذّب منسوب التأسيس حتى المنسوب والميل العرضي التصميميين.",
 		intro: "التسوية والتمهيد آخر عملية ترابية قبل أن يُبنى فوقها شيء دائم، ولذلك تكون السماحية هنا أهم منها في أي مرحلة أخرى. فمنسوب تأسيس يزيد أو ينقص بضعة سنتيمترات يُدفع ثمنه مرة أخرى في طبقة أساس إضافية أو أسفلت إضافي أو خرسانة نظافة إضافية.",
 		body: ["تحافظ المسوّيات ذات الشفرات الموجَّهة بالأقمار الاصطناعية على السطح التصميمي عبر مساحات واسعة، مع مراجعة مساحية تُؤخذ على شبكة نقاط لا على بضع نقاط مريحة. وتُضبط الميول وفق تصميم التصريف ليغادر الماء المنصة من حيث تقول المخططات — فالساحة التي يتجمع فيها الماء عيب تسوية لا عيب تصريف.", "نُمهّد حتى منسوب التأسيس للطرق والأرصفة، وحتى منسوب المنصة للبلاطات والمباني، وحتى المنسوب النهائي للساحات ومناطق التخزين والأرضيات المكشوفة. وحيث يحمل السطح حركة قبل بدء الإنشاء، يُدمك المنسوب المُمهَّد ويُغلَق ليصمد أمام حركة الموقع بدل أن يتخدّد في الأسبوع الأول."],
 		scope: [
@@ -1456,6 +1484,7 @@ var serviceContentAr = {
 	compaction: {
 		h1: "مقاول أعمال دمك في الإمارات",
 		lead: "دمك طبقة بطبقة بالمدحلة المناسبة للمادة، مدعوماً باختبارات الكثافة الحقلية وشهادات الدمك.",
+		caption: "مدحلة هزّازة تُغلق منسوب التأسيس قبل فرش طبقة الأساس.",
 		intro: "الدمك هو الجزء الذي يختفي عن العين حين ينتهي، ويصبح مكلفاً حين يكون خاطئاً. فكل ما فوقه — طبقة الأساس والأسفلت والبلاطات وأحجار الأرصفة — يعتمد على منصة بلغت الكثافة المحددة على طبقات مضبوطة، وبنتائج يقبلها الاستشاري فعلاً.",
 		body: ["المدحلة يجب أن تناسب المادة: مداحل هزّازة ملساء للمواد الحبيبية وطبقة ما تحت الأساس، ومداحل ذات أقدام للمواد المتماسكة، وصفائح دمك ومداحل خنادق في الأماكن الضيقة وحول الخدمات. وتُضبط سماكة الطبقة على ما تستطيع المعدات دمكه فعلاً لا على ما يسهل فرشه، وتُرفع الرطوبة إلى الحد الأمثل بالصهاريج قبل بدء الدحل.", "تُؤخذ اختبارات الكثافة الحقلية طبقة بطبقة وتُصدَر كسجلات دمك ضمن حزمة التسليم. وحين ترسب طبقة، تُعاد معالجتها وتُختبَر من جديد بدل تغطيتها — عادة تكلّف بعد ظهيرة وتوفّر إعادة بناء كاملة."],
 		scope: [
@@ -1491,6 +1520,7 @@ var serviceContentAr = {
 	"access-roads": {
 		h1: "مقاول طرق وصول في الإمارات",
 		lead: "طرق وصول مؤقتة ودائمة إلى قطع الأراضي والمواقع والمصانع والمنشآت البعيدة — مصمَّمة للأحمال التي ستستخدمها فعلاً.",
+		caption: "مسوّيات تشكّل طريق وصول قبل فرش طبقات الأساس.",
 		intro: "طريق الوصول أول ما يحتاجه المشروع وآخر ما تُرصد له ميزانية صحيحة. فالتوريدات التي لا تصل إلى قطعة الأرض، والمقطورات المنخفضة العالقة عند الحدود، ومسار نقل يتحول إلى أخاديد بعد أول مطر — كلها تكلّف أكثر من بناء الطريق بشكل صحيح من البداية.",
 		body: ["نبني طرق الوصول كرصف كامل لا كمسار مُمهَّد: منسوب تأسيس، وطبقة ما تحت الأساس مدموكة، وطبقة أساس، وسطح مصمَّم لأحمال المحاور التي سيحملها المسار. وبالنسبة لطريق وصول إنشائي سيُستبدل لاحقاً، قد يكون ذلك طبقة أساس مدموكة بطبقة إغلاق بيتومينية. أما لطريق مصنع أو منشأة دائم، فهو رصف مصمَّم بأحجار أرصفة وميول تصريف وتخطيط أرضي.", "تُضبط الاستقامة وأنصاف أقطار الدوران والميول للمركبات التي ستستخدم الطريق فعلاً — فالمقطورات المنخفضة وخلاطات الخرسانة والصهاريج ومقطورات الحاويات تحتاج هندسة لا تحتاجها السيارة. وحيث يرتبط الطريق بطريق عام، تكون الوصلة مسألة اعتماد مداخل ومخارج لدى هيئة الطرق والمواصلات أو موافقة بلدية، ونتولى سلسلة التصاريح تلك ضمن الحزمة نفسها."],
 		scope: [
@@ -1526,6 +1556,7 @@ var serviceContentAr = {
 	"road-base-laying": {
 		h1: "مقاول فرش طبقة الأساس في الإمارات",
 		lead: "توريد وفرش وترطيب ودمك طبقة ما تحت الأساس وطبقة الأساس بالسماكة والكثافة المحددتين.",
+		caption: "لودر يعمل على كومة ركام مخصصة لطبقة الأساس.",
 		intro: "طبقة الأساس هي التي تقرّر عمر الطريق. فالأسفلت طبقة تآكل لا هيكل إنشائي — وإذا كانت الطبقة تحته ناقصة الدمك أو سيئة التدرّج أو مفروشة بسماكة خاطئة، فسيتشقق السطح ويتخدّد مهما كانت الخلطة جيدة.",
 		body: ["نورّد ركاماً معتمداً بشهادات اختبار، ونفرشه بسماكة طبقة مضبوطة، ونهيّئه حتى المحتوى الرطوبي الأمثل، وندمكه حتى الكثافة المحددة. وتُرصد المناسيب مساحياً قبل كل طبقة وبعدها، وتُجرى اختبارات الكثافة الحقلية لكل طبقة لا مرة واحدة في الأعلى. والدحل الاختباري قبل التبليط يكشف المواضع اللينة وهي ما تزال رخيصة الإصلاح.", "والتدرّج لا يقل أهمية عن الدمك. فالمادة التي تنفصل حبيباتها أثناء التفريغ أو الفرش تعطي طبقة تنجح في موضع وترسب في آخر، لذلك تُدار أكوام التخزين والنقل والفرش لإبقاء الركام متجانساً من المحجر حتى الشفرة."],
 		scope: [
@@ -1561,6 +1592,7 @@ var serviceContentAr = {
 	"asphalt-works": {
 		h1: "مقاول أسفلت في الإمارات",
 		lead: "أسفلت طبقة الرابطة والطبقة السطحية يُفرَش بالفرّادة وفق السماكة ودرجة الحرارة وتفصيل الوصلات المحددة، من خلطات محطات معتمدة.",
+		caption: "مداحل تُغلق الطبقة السطحية خلف الفرّادة.",
 		intro: "الأسفلت لا يسامح في درجة الحرارة ولا في الوصلات. فخلطة تصل باردة، أو وصلة لم تُقصّ وتُلصَّق بشكل صحيح، أو دحل بدأ متأخراً — كلها تظهر تفتّتاً وتشققاً خلال موسم واحد، غالباً بعد انتهاء فترة الصيانة مباشرة.",
 		body: ["نفرش طبقة الرابطة والطبقة السطحية بالفرّادة وفق السماكة المحددة، من خلطات معتمدة في محطات مرخّصة مع تسجيل درجات حرارة التوريد. وتُطبَّق طبقتا التأسيس والتلصيق بالمعدلات الصحيحة، وتُقَصّ الوصلات الطولية والعرضية وتُلصَّق، ويُضبط نمط الدحل لبلوغ الكثافة والفرشة ما تزال ضمن نافذة حرارتها.", "وفي أعمال إعادة الطبقة السطحية وإعادة البناء، تُكشط الأسطح القائمة حتى المقطع المطلوب، وتُقَصّ الحواف بالمنشار، وتُراجَع المناسيب ليرتبط السطح الجديد دون حافة بارزة. وبصفتنا مقاول طرق معتمداً لدى هيئة الطرق والمواصلات، ننفّذ وفق مواصفة الجهة المختصة على الطرق العامة، مع توثيق اعتمادات المواد والاختبارات ونتائج العينات الأسطوانية أثناء العمل لا بعده."],
 		scope: [
@@ -1596,6 +1628,7 @@ var serviceContentAr = {
 	"road-maintenance": {
 		h1: "مقاول صيانة طرق في الإمارات",
 		lead: "صيانة مُبرمَجة وطارئة للطرق الداخلية والمناطق الصناعية وشبكات المجمعات — مُجدوَلة لإبقاء الشبكة مفتوحة.",
+		caption: "إعادة الطبقة السطحية لمسار مع العمل بنصف العرض.",
 		intro: "صيانة الطرق مسألة جدولة بقدر ما هي مسألة تنفيذ. فالأعمال نفسها مباشرة؛ لكن إنجازها دون إغلاق المنطقة أو تعطيل رصيف تحميل أو عزل السكان هو ما يفرّق بين مقاول صيانة ومقاول تبليط.",
 		body: ["نمسح الشبكة ونصنّف العيوب ونضع لها برنامجاً، فيذهب الإنفاق إلى المقاطع المتدهورة فعلاً لا إلى المقاطع الأسهل وصولاً. وسدّ الشقوق وإصلاح الحواف مبكراً جزء يسير من كلفة إعادة البناء لاحقاً، ومسح الحالة يقدّم هذه الحجة بالدليل لا بالرأي.", "ويُقسَّم العمل ويُرتَّب للحفاظ على الوصول طوال المدة — عمل بنصف عرض الطريق، ومناوبات ليلية، وتحويلات مؤقتة، وتسليم على مراحل. وعلى الطرق العامة يتولى فريقنا إدارة المرور والتصاريح؛ وفي المجمعات الخاصة ننسّق مع إدارة المرافق والسكان حتى لا يكتشف أحد الإغلاق صباح يوم بدئه."],
 		scope: [
@@ -1631,6 +1664,7 @@ var serviceContentAr = {
 	"asphalt-patch-works": {
 		h1: "مقاول ترقيع أسفلت في الإمارات",
 		lead: "قصّ بالمنشار وتكسير وإعادة تنفيذ ودمك — ترقيع يُنفَّذ بأصوله حتى لا تفشل الوصلة في الموسم الأول.",
+		caption: "تكسير وإعادة حالة عند نقطة عبور خدمات.",
 		intro: "معظم الترقيعات الفاشلة تفشل عند الحافة. فتكسير غير منتظم، وعدم تلصيق الوجه الرأسي، وردم لم يُدمك أصلاً، تعطيك رقعة تهبط وتنفتح عند الوصلة وتُدخل الماء إلى الطبقات التي كنت تحاول حمايتها.",
 		body: ["نقصّ المحيط بالمنشار ليصبح مستطيلاً نظيفاً، ونكسّر حتى المادة السليمة، ثم نعيد بناء الطبقات بأصولها — طبقة أساس مدموكة، وطبقة تلصيق على كل وجه، وأسفلت على طبقات مدحولة حتى الكثافة. وتُغلق الوصلة لتكون الرقعة مانعة للماء، ويأتي السطح النهائي مستوياً مع الطريق المحيط لا بارزاً ولا غائراً.", "والترقيع يُطلب غالباً بعد عبور خدمة، أو إعادة حالة خندق هبطت، أو انهيار موضعي فوق موضع لين. وفي كل حالة نبحث في سبب الانهيار — فإصلاح السطح فوق طبقة أساس ما تزال تنهار لا يشتري سوى بضعة أشهر."],
 		scope: [
@@ -1666,6 +1700,7 @@ var serviceContentAr = {
 	parkings: {
 		h1: "مقاول إنشاء مواقف سيارات في الإمارات",
 		lead: "مواقف متكاملة من التربة الطبيعية حتى التخطيط الأرضي — طبقة أساس وسطح وأحجار أرصفة وميول تصريف ومواقف ولوحات.",
+		caption: "تنفيذ الطبقة السطحية لموقف مكشوف قبل أحجار الأرصفة والتخطيط.",
 		intro: "الموقف شبكة طرق مصغّرة بهندسة ضيقة وحواف كثيرة، وهو عادةً آخر حزمة في المشروع — ولهذا تحديداً ينتهي به الأمر مستعجلاً. فأبعاد المواقف وعروض الممرات ومواقف أصحاب الهمم والميول نحو المصافي، كلها يجب أن تستوفي معيار التخطيط المعتمد قبل اعتماد السطح.",
 		body: ["ننفّذ الحزمة كاملة: تجهيز التربة الطبيعية، وطبقة أساس مدموكة، وسطح أسفلتي أو إنترلوك للأحمال الثقيلة، وأحجار أرصفة وفق تخطيط المواقف والجزر، وميول ومصافي تصريف، وصدّامات وأعمدة، وتخطيط المواقف وترقيمها وأسهم الاتجاه واللوحات. ولأن المقاول واحد، تصل الميول إلى المصافي فعلاً ويطابق التخطيط خطوط أحجار الأرصفة فعلاً.", "واختيار السطح يحكمه الاستخدام. فالأسفلت أسرع وأقل كلفة على المساحات المفتوحة الواسعة؛ والإنترلوك للأحمال الثقيلة أنسب حيث تدور المركبات في مكانها، أو حيث يُحتمل انسكاب الوقود والزيوت، أو حيث قد يلزم رفع مقاطع لاحقاً للوصول إلى خدمات تحتها."],
 		scope: [
@@ -1701,6 +1736,7 @@ var serviceContentAr = {
 	"heavy-duty-interlock-paving": {
 		h1: "مقاول تبليط إنترلوك في الإمارات",
 		lead: "إنترلوك وبلوك للأحمال الثقيلة للساحات ومناطق الحاويات وطرق الخدمة والأرضيات التي تحمل الشاحنات المحمّلة.",
+		caption: "توقيع أرضية صلبة قبل البدء بفرش البلوك.",
 		intro: "الإنترلوك إما أن يصمد عشرين عاماً أو يتخدّد في الشهر الأول، والفارق لا يكاد يكون البلوك نفسه. فسماكة البلوك، وتدرّج رمل الفرش وعمقه، ونمط الفرش، وقبل ذلك كله حصر الحواف — هي ما يقرّر بقاء الساحة المحمّلة مستوية.",
 		body: ["في المناطق التي تعبرها الحركة نستخدم بلوكاً للأحمال الثقيلة يُفرَش بنمط عظمة السمكة، وهو يتشابك تحت أحمال الكبح والدوران بشكل لا يوفّره النمط المستقيم. ويُفرَش رمل الفرش بعمق ثابت فوق طبقة أساس مدموكة ومستوية، وتحصل كل حافة حرة على حصر خرساني الكتف — رصيف أو حجر حدّي أو مجرى — لأن الساحة تنهار من الحواف إلى الداخل.", "وتُبنى الطبقة أسفلها كرصف كامل لا كطبقة تسوية. وبعد الفرش، تُهزّ البلوكات وتُكنَس رمال الفواصل مراراً حتى تمتلئ الفواصل، وعندها فقط يبدأ السطح بالتصرف كرصف متشابك لا كمجموعة بلوكات سائبة."],
 		scope: [
@@ -1736,6 +1772,7 @@ var serviceContentAr = {
 	kerbstones: {
 		h1: "مقاول تركيب أحجار الأرصفة في الإمارات",
 		lead: "توريد وتركيب أحجار الأرصفة والمجاري على استقامة ومنسوب فوق كتف خرساني، وفق القطاع المعتمد لدى الجهة المختصة.",
+		caption: "الحافة المنتهية — خط أحجار الرصيف والمجرى وكتف الأسفلت.",
 		intro: "أحجار الأرصفة هي الخط الظاهر الذي يُقاس عليه كل عنصر آخر. فمسار حجر يتمايل أفقياً أو ينخفض رأسياً يجعل طريقاً جيد التنفيذ يبدو رديئاً، وهو أول ما يضع عليه مفتّش الجهة المختصة خيط الاستقامة.",
 		body: ["نركّب الأحجار على استقامة ومنسوب فوق قاعدة خرسانية بكتف خلفي، بضبط مساحي في المستقيمات وقوالب في الأقواس لتأتي المنحنيات صحيحة لا تقريبية. وتكون الفواصل منتظمة، وتُنفَّذ الأحجار المنخفضة عند المعابر والمداخل بوصلات انتقالية سليمة، ويُضبط خط المجرى ليجري الماء إلى المصافي فعلاً.", "ونركّب أحجار الطرق وأحجار المواقف والجزر والقطاعات المنحنية والأحجار المنخفضة والمجاري، بالقطاعات التي تحددها هيئة الطرق والمواصلات وبلدية دبي وسائر الجهات في الإمارات الأخرى. وأحجار الأرصفة عادةً نقطة التقاء بين حزم الطرق والمواقف وتنسيق الموقع، لذا نُرتّب تسلسلها مع من يسبقنا ومن يلينا بدل تثبيت الخط وتركهم يتدبرون أمرهم."],
 		scope: [
@@ -1771,6 +1808,7 @@ var serviceContentAr = {
 	"road-markings": {
 		h1: "مقاول تخطيط ودهان طرق في الإمارات",
 		lead: "تخطيط بالثيرموبلاستيك والدهان البارد — خطوط المسارات والتظليل والأسهم والمعابر والمواقف والترقيم وفق المعايير المعتمدة.",
+		caption: "تخطيط المسارات وإدارة المرور على مسار مفتوح للحركة.",
 		intro: "التخطيط آخر عملية وأكثر ما يراه الناس. وهو كذلك صاحب أضيق نافذة مناخية: فالثيرموبلاستيك المطبَّق على سطح رطب أو مغبَّر أو بارد أكثر من اللازم سينفصل خلال أسابيع مهما كان التوقيع دقيقاً.",
 		body: ["نوقّع من المخططات، ونهيّئ السطح، ونطبّق الثيرموبلاستيك أو الدهان البارد بالسماكة المحددة مع حبيبات عاكسة حيثما اشترطت المواصفة. وعلى الأسفلت الجديد نترك السطح ليتماسك قبل التطبيق؛ وعلى الأسطح القائمة ننظّف ونزيل التخطيط القديم بالجلخ أو السفع بدل الدهان فوقه.", "وتشمل الأعمال خطوط المسارات على الطرق السريعة والطرق الداخلية، والتظليل والأسهم والعبارات، ومعابر المشاة، ومسارات الدراجات، ومواقف السيارات وترقيمها، والمطبّات الصوتية وتخطيط المطبّات. وعلى الطرق الحيّة تجري عملية التخطيط تحت إغلاق مسار بإدارة مرور من فريقنا، وبتصريحنا نحن حيث يكون الطريق تابعاً لهيئة الطرق والمواصلات."],
 		scope: [
@@ -1806,6 +1844,7 @@ var serviceContentAr = {
 	"lane-closure-permits": {
 		h1: "تصاريح إغلاق المسارات في دبي",
 		lead: "إعداد الطلب والمخططات واستصدار الموافقة لإغلاق مسار أو عدة مسارات على طرق هيئة الطرق والمواصلات، من التقديم حتى صدور التصريح.",
+		caption: "مخاريط وحواجز ولوحات وفق مخطط إغلاق معتمد.",
 		intro: "تصريح إغلاق المسار عمل مخططات يرتبط بموعد نهائي. فالهيئة لا تعتمد نيّة بإغلاق مسار — بل تعتمد طول انحراف محدداً، وجدول لوحات محدداً، ونافذة عمل محددة، ومجموعة محددة من إجراءات السلامة، مرسومة ومبرَّرة.",
 		body: ["نُعِدّ مخططات التحويل المروري، ونضبط أطوال الانحراف وجدول اللوحات وفق سرعة الاقتراب، ونحدد نافذة العمل — وهي في الممرات المزدحمة ساعات ليلية دائماً تقريباً — ثم نقدّم الحزمة. ويردّ الفريق نفسه على الملاحظات ويعيد التقديم، فلا يتعثر الطلب في انتظار من يفسّر الرد.", "ولأننا كذلك ننصب منظومة إدارة المرور في الموقع ونصونها، فإن التصريح الذي يُعتمَد هو المخطط الذي يُنفَّذ فعلاً. وهذا مهم عند التفتيش: فمعظم إشعارات إيقاف العمل على إغلاق ما لا تصدر لعدم وجود تصريح، بل للعمل وفق مخطط يخالف المعتمد."],
 		scope: [
@@ -1841,6 +1880,7 @@ var serviceContentAr = {
 	"road-closure-permits": {
 		h1: "تصاريح إغلاق الطرق في دبي",
 		lead: "إغلاق كامل للطرق والمسارات مع مسارات تحويل معتمدة وبرامج مرحلية وتنسيق مع الجهات المعنية.",
+		caption: "تحويلة مُلوَّحة قائمة حول مسار مغلق.",
 		intro: "الإغلاق الكامل للطريق حديث أكبر من إغلاق مسار. فأنت تطلب من هيئة الطرق والمواصلات أن ترسل الحركة إلى مكان آخر، ولذلك يجب أن يبرّر الطلب ضرورة الإغلاق، وأن يثبت قدرة مسار التحويل على استيعاب الحركة، وأن يبيّن تعذّر تنفيذ الأعمال على مراحل بأي صورة أخرى.",
 		body: ["نُعِدّ تبرير الأثر المروري ومخططات مسار التحويل وبرنامج المراحل، وننسّق مع هيئة الطرق والمواصلات وشرطة دبي والجهات التي يمسّها الإغلاق — من منشآت تجارية ومبانٍ وخطوط حافلات ومسارات طوارئ. وحيث لا يُتوقَّع اعتماد إغلاق واحد، نعيد هيكلة الأعمال إلى مراحل قابلة للاعتماد.", "وبعد الاعتماد، يُنصَب الإغلاق ويُلوَّح ويُضاء ويُصان بفرقنا ويُسلَّم وفق البرنامج المتفق عليه. وتُراجَع لوحات التحويل طوال مدة الإغلاق لا أن تُنصَب وتُنسى، لأن تحويلاً فقد لوحة هو ما يولّد الشكوى التي تنهي التصريح مبكراً."],
 		scope: [
@@ -1876,6 +1916,7 @@ var serviceContentAr = {
 	"traffic-management": {
 		h1: "مقاول إدارة المرور في دبي",
 		lead: "توريد وتركيب وصيانة وإزالة منظومة إدارة مرور مطابقة — مخاريط وحواجز ولوحات ولوحات أسهم ووحدات TMA ومنظّمو مرور.",
+		caption: "إدارة مرور مصانة حول أعمال داخل طريق مفتوح للحركة.",
 		intro: "إدارة المرور هي ما يفصل بين مسار حيّ والعاملين داخله. وهي كذلك العنصر الأكثر عرضة للتركيب مرة واحدة ثم تُترك لتتدهور — مخاريط تبعثرها الحركة العابرة، ولوحة أدارتها الريح، وانحراف قَصُر عشرات الأمتار منذ الليلة الأولى.",
 		body: ["نورّد وننصب منظومة إدارة المرور وفق المخطط المعتمد: لوحات تحذير مسبق ولوحات إرشادية، ومخاريط وعواكس، وحواجز سلامة، ولوحات أسهم ضوئية، وإنارة، ووحدات تخفيف الصدم المركّبة على الشاحنات (TMA) على الطرق عالية السرعة. ويُوفَّر منظّمو مرور مدرَّبون حيث يستلزم المخطط ضبطاً يدوياً عند المداخل والمعابر.", "ثم يُفتَّش المخطط ويُصان طوال مدة الأعمال لا في المناوبة الأولى فحسب، ويُزال بالكامل عند الانتهاء ليُسلَّم الطريق دون لوحات متبقية تربك السائقين. وحيث تكون الأعمال على طريق تابع لهيئة الطرق والمواصلات، نُعِدّ مخططات التحويل ونحمل التصريح كذلك، فيكون فريق واحد مسؤولاً عن المخطط والاعتماد وما هو قائم فعلاً على الأرض."],
 		scope: [
@@ -1911,6 +1952,7 @@ var serviceContentAr = {
 	"rta-approved-entry-exit-works": {
 		h1: "مقاول مداخل ومخارج معتمد من هيئة الطرق والمواصلات في دبي",
 		lead: "مداخل ومخارج قطع الأراضي على طرق الهيئة، ينفّذها مقاول معتمد فيُقبَل العمل ويصبح المدخل قابلاً للاستخدام نظامياً.",
+		caption: "مدخل قطعة أرض جديد يرتبط بالطريق العام.",
 		intro: "المدخل والمخرج على طريق تابع لهيئة الطرق والمواصلات ليس عمل أحجار أرصفة. إنه وصلة منضبطة بالطريق العام، ولن تقبلها الهيئة إلا إذا كان التصميم معتمداً والمقاول معتمداً وما نُفِّذ مطابقاً لما رُسِم.",
 		body: ["نتولى الحزمة من طرفها إلى طرفها: مخططات المدخل والمخرج وتقديمها، والتصريح، والتنفيذ نفسه — أحجار منخفضة وأرضية مدخل ووصلات انتقالية ومناسيب، واستمرارية تصريف الطريق عبر المدخل، وطبقة سطحية وتخطيط ولوحات — يليها إعادة كل ما مُسّ داخل حرم الطريق إلى حالته.", "وأكثر أسباب رسوب المدخل في التفتيش هو التصريف. فمدخل يقطع خط المجرى، أو يصرّف مياه القطعة إلى المسار، لن يُعتمَد مهما كان تشطيبه جيداً. لذلك نضبط المناسيب ليمرّ تصريف الطريق دون انقطاع وتصرّف القطعة إلى شبكتها الخاصة."],
 		scope: [
@@ -1946,6 +1988,7 @@ var serviceContentAr = {
 	"rta-service-protection": {
 		h1: "أعمال حماية الخدمات في دبي",
 		lead: "حماية المرافق القائمة داخل حرم الطريق أثناء التنفيذ — مسح وحفر استكشافي وحماية مادية وإعادة حالة.",
+		caption: "مسح وتوقيع قبل الحفر بجوار خدمات حيّة.",
 		intro: "كل متر من حرم الطريق في دبي يخفي شيئاً مدفوناً: كابلات هيئة كهرباء ومياه دبي، ومجاري اتصالات ودو، وخطوط مياه رئيسية، وري، وتبريد مركزي. وحماية الخدمات هي انضباط إثبات مواقع تلك الخدمات قبل أن تقترب منها أي معدة، ثم حمايتها مادياً أثناء الأعمال.",
 		body: ["نمسح المسار ونتتبّعه، ونفتح حفراً استكشافية لكشف الأعماق والاستقامات وتأكيدها، ونوثّق ما هو موجود فعلاً مقابل ما تدّعيه المخططات — وكثيراً ما يختلف الاثنان. وحيث تكون الخدمات مكشوفة أو معرّضة للخطر، تُحمى مادياً: غلاف خرساني أو أكمام أو بلاطات حماية أو دعامات وحوامل للخدمة العابرة فوق حفر مفتوح.", "وتُنفَّذ الأعمال وفق متطلبات هيئة الطرق والمواصلات ومالكي المرافق، مع شهادات عدم الممانعة اللازمة، ويُعاد كل ما مُسّ داخل حرم الطريق إلى معايير الجهة المختصة بعد ذلك. والخطأ هنا مكلف بصورة لا تتناسب إطلاقاً مع حجم الأعمال — فكابل جهد متوسط مقطوع أو مسار ألياف مقطوع يكلّف أضعاف ما كانت ستكلّفه الحماية."],
 		scope: [
@@ -1981,6 +2024,7 @@ var serviceContentAr = {
 	"row-permits": {
 		h1: "تصاريح حق الطريق في دبي",
 		lead: "طلبات تصاريح حق الطريق للأعمال داخل حرم الطرق والأراضي العامة — المخططات وشهادات عدم الممانعة والالتزام حتى الإنجاز.",
+		caption: "مخطط تصريح معتمد من هيئة الطرق والمواصلات لأعمال داخل حرم الطريق.",
 		intro: "تصريح حق الطريق هو ما يجعل العمل داخل حرم الطريق أو على أرض عامة عملاً مشروعاً. وهو كذلك البند الأكثر احتمالاً لأن يظهر في البرنامج الزمني كسطر واحد بلا مدة، حتى يكتشف أحدهم يوماً أن الأعمال لا تستطيع البدء.",
 		body: ["نُعِدّ الطلب كاملاً: مخططات المسقط والقطاعات، وبيانات طرق العمل، وترتيبات المرور، وشهادات عدم الممانعة التي تشترطها الجهة، والمستندات المساندة التي تمنع إعادة الطلب. ويردّ على الملاحظات الفريق نفسه الذي أعدّ الحزمة، وهو عادةً الفارق بين دورة إعادة تقديم بأيام وأخرى بأسابيع.", "والتصريح نصف العمل فحسب. فالاشتراطات المرفقة به — ساعات العمل وإجراءات الحماية ومعايير إعادة الحالة ومتطلبات الإخطار — يجب الالتزام بها ليبقى التصريح سارياً حتى الإنجاز، ونحن ندير ذلك في الموقع كما نديره على الورق."],
 		scope: [
@@ -2016,6 +2060,7 @@ var serviceContentAr = {
 	"utilities-shifting": {
 		h1: "مقاول نقل وتحويل المرافق في دبي",
 		lead: "تحويل ونقل الخدمات المتعارضة مع الأعمال الجديدة — مجاري الكابلات والكابلات والمياه والري — بالتنسيق مع مالكي المرافق.",
+		caption: "حفر مسار جديد لخدمة يجري تحويلها.",
 		intro: "نقل المرافق مشكلة تنسيق ترتدي ثوب التنفيذ. فالحفر والمسار الجديد أمران مباشران؛ أما نافذة الفصل وموافقة المالك والتسلسل الذي يمكن به تحريك ثلاث خدمات مختلفة دون أن تفقد أي منها التغذية، فهو ما يحدّد البرنامج الزمني.",
 		body: ["نحدد التعارض، ونتفق على المسار الجديد مع المالك، ونستخرج شهادات عدم الممانعة والتصاريح، وننفّذ التحويل — مسار مجارٍ أو أنابيب جديد وحماية وربط ودعم للتشغيل التجريبي وإلغاء أو إزالة الخط الملغى. وتُحجَز نوافذ الفصل مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور ويُلتزَم بها، لأن نافذة فائتة قد تضيف أسابيع إلى البرنامج.", "وحيث يمكن تفادي التعارض بالتصميم بدل تحريكه، نقول ذلك. فنقل خدمة أغلى دائماً من تعديل منسوب أو استقامة، ويستحق الأمر ساعة مراجعة قبل الالتزام بتحويل قد لا يحتاجه المشروع أصلاً."],
 		scope: [
@@ -2051,6 +2096,7 @@ var serviceContentAr = {
 	"noc-services": {
 		h1: "خدمات شهادات عدم الممانعة في دبي",
 		lead: "إعداد ومعالجة شهادات عدم الممانعة لدى الجهات ومالكي المرافق الذين يمسّهم المشروع.",
+		caption: "حزمة المخططات المُعدّة لاعتماد الجهات ومالكي المرافق.",
 		intro: "شهادات عدم الممانعة هي المسار الحرج الصامت. فقد يكون المشروع مصمَّماً وممولاً ومجهَّزاً بالكامل ومع ذلك يعجز عن البدء لأن مالك مرفق واحداً لم يعتمد مخططاً قُدِّم ناقصاً قبل شهرين.",
 		body: ["نحدد شهادات عدم الممانعة التي يحتاجها نطاق العمل فعلاً، ونُجهّز حزمة المخططات التي تطلبها كل جهة ومالك، ونقدّم ونردّ على الملاحظات ونتابع الموافقات حتى الإصدار. فلكل جهة متطلباتها — وحزمة هيئة كهرباء ومياه دبي لا تشبه حزمة هيئة الطرق والمواصلات، وإرسال الحزمة الخاطئة هو ما يولّد أول رفض.", "والقيمة الحقيقية في معرفة التسلسل. فبعض الشهادات مشروطة بصدور غيرها أولاً، وتقديمها بترتيب خاطئ يضمن إعادتها. نُشغّلها بالتوازي حيث يمكن وبالتتابع حيث يلزم، ونعطيك صورة واقعية عن برنامج الموافقات لا صورة متفائلة."],
 		scope: [
@@ -2524,12 +2570,19 @@ function buildCategories(locale) {
 				tagline: co.tagline,
 				intro: co.intro
 			} : {},
-			services: c.services.map((s) => ({
-				...s,
-				...serviceContent[s.slug] || {},
-				...co?.services?.[s.slug] || {},
-				...overlay?.content?.[s.slug] || {}
-			}))
+			tallImg: `/images/services/category-${c.slug}-tall.jpg`,
+			services: c.services.map((s) => {
+				const merged = {
+					...s,
+					...serviceContent[s.slug] || {},
+					...co?.services?.[s.slug] || {},
+					...overlay?.content?.[s.slug] || {}
+				};
+				return {
+					...merged,
+					tallImg: merged.img.replace(/\.jpg$/, "-tall.jpg")
+				};
+			})
 		};
 	});
 }
@@ -4989,7 +5042,7 @@ function ServiceDetail({ category, service }) {
 					className: "split",
 					style: { marginTop: "2.5rem" },
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "split-sticky",
+						className: "split-sticky has-figure",
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
@@ -5011,6 +5064,18 @@ function ServiceDetail({ category, service }) {
 									to: href("/contact"),
 									className: "btn btn-solid",
 									children: t("cta.quote")
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 200,
+								className: "rail-figure-wrap",
+								children: /* @__PURE__ */ jsxs("figure", {
+									className: "rail-figure",
+									children: [/* @__PURE__ */ jsx("img", {
+										src: service.tallImg,
+										alt: service.caption,
+										loading: "lazy"
+									}), /* @__PURE__ */ jsx("figcaption", { children: service.caption })]
 								})
 							})
 						]
@@ -5288,7 +5353,7 @@ function ServiceLocation({ category, emirate }) {
 					className: "split",
 					style: { marginTop: "2.5rem" },
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "split-sticky",
+						className: "split-sticky has-figure",
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
@@ -5310,6 +5375,24 @@ function ServiceLocation({ category, emirate }) {
 									to: href("/contact"),
 									className: "btn btn-solid",
 									children: t("cta.quote")
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 200,
+								className: "rail-figure-wrap",
+								children: /* @__PURE__ */ jsxs("figure", {
+									className: "rail-figure",
+									children: [/* @__PURE__ */ jsx("img", {
+										src: category.tallImg,
+										alt: t("loc.figCaption", {
+											category: category.name,
+											emirate: emirate.name
+										}),
+										loading: "lazy"
+									}), /* @__PURE__ */ jsx("figcaption", { children: t("loc.figCaption", {
+										category: category.name,
+										emirate: emirate.name
+									}) })]
 								})
 							})
 						]

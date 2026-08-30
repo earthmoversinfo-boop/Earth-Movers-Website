@@ -36,13 +36,19 @@ export default function ServiceDetail({ category, service }) {
           />
 
           <div className="split" style={{ marginTop: '2.5rem' }}>
-            <div className="split-sticky">
+            <div className="split-sticky has-figure">
               <Reveal><span className="eyebrow">{t('lbl.overview')}</span></Reveal>
               <Reveal delay={80}>
                 <h2 className="display-md">{t('svc.withOwnFleet', { name: service.name, where })}</h2>
               </Reveal>
               <Reveal delay={140}>
                 <Link to={href('/contact')} className="btn btn-solid">{t('cta.quote')}</Link>
+              </Reveal>
+              <Reveal delay={200} className="rail-figure-wrap">
+                <figure className="rail-figure">
+                  <img src={service.tallImg} alt={service.caption} loading="lazy" />
+                  <figcaption>{service.caption}</figcaption>
+                </figure>
               </Reveal>
             </div>
             <div className="split-body">

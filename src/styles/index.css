@@ -577,9 +577,58 @@ h1, h2, h3, h4 {
 
 .on-dark .split-body p { color: var(--soft-on-dark); }
 
+/* A rail carrying a photograph is taller than the viewport, so it scrolls with
+   the page instead of sticking. It is also stretched to the height of the body
+   beside it and the picture fills whatever is left over — so neither column
+   ever ends in a run of empty white, however long the text on the right is. */
+.split:has(.has-figure) { align-items: stretch; }
+
+/* Stretching the columns must not stretch the paragraphs inside them: the
+   body packs to the top and only the picture takes up the slack. */
+.split:has(.has-figure) .split-body { align-content: start; }
+
+.split-sticky.has-figure {
+  position: static;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+}
+
+.rail-figure-wrap { width: 100%; margin-top: 0.6rem; min-height: 0; }
+
+.rail-figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.9rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.rail-figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+}
+
+/* The caption is what turns a stock-looking picture into a record of work:
+   it names the operation in the frame. Set as a note against a gold rule
+   rather than as body copy, so it reads as a caption and not as more text. */
+.rail-figure figcaption {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--body-c);
+  padding-inline-start: 0.9rem;
+  border-inline-start: 2px solid var(--accent);
+}
+
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; }
   .split-sticky { position: static; }
+  .rail-figure img { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
 }
 
 .about-photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-top: 0.5rem; border-radius: var(--radius-lg); }

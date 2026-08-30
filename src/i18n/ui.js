@@ -84,6 +84,7 @@ export const UI = {
     'loc.areasWeCover': 'Areas we cover in {emirate}:',
     'loc.areasTail':
       'Whether the scope is a single plot or a multi-phase infrastructure package, the same plant, operators and supervision deliver it.',
+    'loc.figCaption': '{category} in {emirate} — our own plant, operators and supervision.',
     'loc.elsewhere': '{category} elsewhere in the UAE',
     'loc.ctaTitle': '{category} in {emirate}?',
     'loc.ctaText':
@@ -332,6 +333,7 @@ export const UI = {
     'loc.areasWeCover': 'المناطق التي نغطيها في {emirate}:',
     'loc.areasTail':
       'وسواء كان النطاق قطعة أرض واحدة أو حزمة بنية تحتية متعددة المراحل، فإن المعدات والمشغّلين والإشراف هم أنفسهم في الحالتين.',
+    'loc.figCaption': '{category} في {emirate} — بمعداتنا ومشغّلينا وإشرافنا.',
     'loc.elsewhere': '{category} في باقي إمارات الدولة',
     'loc.ctaTitle': 'هل تحتاج {category} في {emirate}؟',
     'loc.ctaText':

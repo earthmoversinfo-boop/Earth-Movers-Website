@@ -35,7 +35,7 @@ export default function ServiceLocation({ category, emirate }) {
           />
 
           <div className="split" style={{ marginTop: '2.5rem' }}>
-            <div className="split-sticky">
+            <div className="split-sticky has-figure">
               <Reveal><span className="eyebrow">{t('lbl.localCoverage')}</span></Reveal>
               <Reveal delay={80}>
                 <h2 className="display-md">
@@ -44,6 +44,18 @@ export default function ServiceLocation({ category, emirate }) {
               </Reveal>
               <Reveal delay={140}>
                 <Link to={href('/contact')} className="btn btn-solid">{t('cta.quote')}</Link>
+              </Reveal>
+              <Reveal delay={200} className="rail-figure-wrap">
+                <figure className="rail-figure">
+                  <img
+                    src={category.tallImg}
+                    alt={t('loc.figCaption', { category: category.name, emirate: emirate.name })}
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    {t('loc.figCaption', { category: category.name, emirate: emirate.name })}
+                  </figcaption>
+                </figure>
               </Reveal>
             </div>
             <div className="split-body">
