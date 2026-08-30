@@ -161,14 +161,9 @@ export default function Home() {
                   </div>
                   <h3>{c.name}</h3>
                   <ul className="cat-tile-list">
-                    {c.services.slice(0, 6).map((s) => (
+                    {c.services.map((s) => (
                       <li key={s.slug}>{s.name}</li>
                     ))}
-                    {c.services.length > 6 && (
-                      <li className="cat-tile-more">
-                        {`+ ${c.services.length - 6} more services`}
-                      </li>
-                    )}
                   </ul>
                   <span className="cat-tile-foot">
                     <span className="cat-tile-where">
