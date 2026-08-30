@@ -1,6 +1,11 @@
 // ---------------------------------------------------------------------------
 // Service taxonomy and location coverage.
 //
+// Services carrying `hideOnHome: true` are still full services — they appear on
+// the services page, their category page and every emirate page, and in the
+// sitemap and structured data. The flag only keeps them off the compact list
+// shown in the home page tiles.
+//
 // Four categories. Earth Works and Road Works are offered across all seven
 // emirates; Traffic Management and Utilities are Dubai-only (they hang off RTA
 // permitting). Every category/emirate pair becomes its own indexable page.
@@ -141,6 +146,20 @@ export const serviceCategories = [
         name: 'Road Maintenance',
         keyword: 'road maintenance contractor',
         text: 'Planned and reactive maintenance for internal roads, industrial estates and community networks: resurfacing, crack sealing, edge repair, drainage clearing and reinstatement — programmed to keep the network open while work proceeds.',
+      },
+      {
+        slug: 'asphalt-patch-works',
+        name: 'Asphalt Patch Works',
+        keyword: 'asphalt patch repair contractor',
+        hideOnHome: true,
+        text: 'Saw-cut, excavate, reinstate and compact — patch repairs done properly so the joint does not fail in the first season. Ideal after utility crossings, trench reinstatement, or pothole and settlement repair across car parks and estate roads.',
+      },
+      {
+        slug: 'parkings',
+        name: 'Car Parks & Parking Areas',
+        keyword: 'car park construction contractor',
+        hideOnHome: true,
+        text: 'Complete parking areas from sub-grade to line marking: base, surfacing in asphalt or interlock, kerbing, drainage falls, wheel stops, bay marking and signage — built to authority layout standards and handed over ready to use.',
       },
       {
         slug: 'heavy-duty-interlock-paving',

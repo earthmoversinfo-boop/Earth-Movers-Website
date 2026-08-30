@@ -403,6 +403,20 @@ var serviceCategories = [
 				text: "Planned and reactive maintenance for internal roads, industrial estates and community networks: resurfacing, crack sealing, edge repair, drainage clearing and reinstatement — programmed to keep the network open while work proceeds."
 			},
 			{
+				slug: "asphalt-patch-works",
+				name: "Asphalt Patch Works",
+				keyword: "asphalt patch repair contractor",
+				hideOnHome: true,
+				text: "Saw-cut, excavate, reinstate and compact — patch repairs done properly so the joint does not fail in the first season. Ideal after utility crossings, trench reinstatement, or pothole and settlement repair across car parks and estate roads."
+			},
+			{
+				slug: "parkings",
+				name: "Car Parks & Parking Areas",
+				keyword: "car park construction contractor",
+				hideOnHome: true,
+				text: "Complete parking areas from sub-grade to line marking: base, surfacing in asphalt or interlock, kerbing, drainage falls, wheel stops, bay marking and signage — built to authority layout standards and handed over ready to use."
+			},
+			{
 				slug: "heavy-duty-interlock-paving",
 				name: "Heavy Duty Interlock Paving",
 				keyword: "interlock paving contractor",
@@ -1354,7 +1368,7 @@ function Home() {
 								/* @__PURE__ */ jsx("h3", { children: c.name }),
 								/* @__PURE__ */ jsx("ul", {
 									className: "cat-tile-list",
-									children: c.services.map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug))
+									children: c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug))
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "cat-tile-foot",

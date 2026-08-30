@@ -161,9 +161,11 @@ export default function Home() {
                   </div>
                   <h3>{c.name}</h3>
                   <ul className="cat-tile-list">
-                    {c.services.map((s) => (
-                      <li key={s.slug}>{s.name}</li>
-                    ))}
+                    {c.services
+                      .filter((s) => !s.hideOnHome)
+                      .map((s) => (
+                        <li key={s.slug}>{s.name}</li>
+                      ))}
                   </ul>
                   <span className="cat-tile-foot">
                     <span className="cat-tile-where">
