@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------------------------------
 # Builds the site for a GitHub Pages project site and publishes it to the
-# gh-pages branch. The base path is taken from the git remote, so it follows
-# the repository name automatically and cannot drift from it.
+# gh-pages branch.
+#
+# The base path comes from "pagesRepo" in package.json, NOT from the git
+# remote: this environment rewrites the remote URL back to the repository's
+# pre-rename name, which once published the whole site at the wrong base and
+# broke every asset on it. If the repository is renamed again, change
+# pagesRepo to match.
 #
 #   ./scripts/deploy-pages.sh
 #
@@ -14,7 +19,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 REMOTE=$(git config --get remote.origin.url)
-REPO=$(basename -s .git "$REMOTE")
+REPO=$(node -p "require('./package.json').pagesRepo")
 STAGE=$(mktemp -d)
 
 echo "→ building for base /$REPO/"
@@ -38,4 +43,4 @@ rm -rf "$STAGE"
 echo "→ restoring the production build"
 npm run build >/dev/null
 
-echo "done — https://$(basename "$(dirname "$REMOTE")").github.io/$REPO/"
+echo "done — https://earthmoversinfo-boop.github.io/$REPO/"
