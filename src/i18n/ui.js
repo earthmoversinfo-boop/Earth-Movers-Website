@@ -165,7 +165,7 @@ export const UI = {
     'home.rentEquipment': 'Rent equipment',
     'home.fleetCaption': 'Fleet operations — Dubai',
     'home.fleetOperated': 'Operated · 24/7',
-    'home.fleetAlt': 'Wheel loader working sand stockpiles',
+    'home.fleetAlt': 'Excavators and a dozer moving fill on an Earth Movers site',
     'home.marquee': 'Trusted across the UAE',
     'home.ctaText':
       'Tell us about your site and scope — we’ll walk the ground with you and price the real work.',
@@ -421,7 +421,7 @@ export const UI = {
     'home.rentEquipment': 'استئجار المعدات',
     'home.fleetCaption': 'عمليات الأسطول — دبي',
     'home.fleetOperated': 'بمشغّلين · على مدار الساعة',
-    'home.fleetAlt': 'لودر بعجل يعمل على أكوام الرمل',
+    'home.fleetAlt': 'حفارات وجرافة تنقل الردم في أحد مواقع إيرث موفرز',
     'home.marquee': 'موضع ثقة في مختلف أنحاء الإمارات',
     'home.ctaText':
       'أخبرنا عن موقعك ونطاق العمل — نعاين الأرض معك ونُسعّر العمل الفعلي.',

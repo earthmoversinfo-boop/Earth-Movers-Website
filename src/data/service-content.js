@@ -24,7 +24,7 @@ export const serviceContent = {
     img: '/images/services/excavation.jpg',
     h1: 'Excavation Contractor in the UAE',
     lead: 'Bulk and detailed excavation for basements, foundations, services and infrastructure corridors — in sand, fill or hard rock.',
-    caption: 'Tracked excavator cutting to formation level through sand and caprock.',
+    caption: 'Tracked excavator lifting spoil clear of an open cut.',
     intro:
       'Excavation is where a programme is won or lost. We take a plot from existing ground to a surveyed, inspected formation level using our own excavators, breakers, loaders and tippers — so the platform is handed to the next trade on the date it was promised, not the date a hire company could supply a machine.',
     body: [
@@ -66,7 +66,7 @@ export const serviceContent = {
     img: '/images/services/back-filling.jpg',
     h1: 'Backfilling Contractor in the UAE',
     lead: 'Structural and service backfill placed in controlled, tested layers — the work that stops settlement appearing a year later.',
-    caption: 'Backhoe placing surround material over a service trench.',
+    caption: 'Excavators placing and spreading imported fill across the platform.',
     intro:
       'Backfilling looks like the simplest operation on a site and is the most common source of long-term defects. Trench reinstatement that settles, basement surrounds that pull away from the structure, slabs that crack over a service run — almost all of it traces back to material tipped in bulk instead of placed and compacted in layers.',
     body: [
@@ -150,7 +150,7 @@ export const serviceContent = {
     img: '/images/services/leveling-and-compaction.jpg',
     h1: 'Leveling & Compaction Contractor in the UAE',
     lead: 'Fine levelling to design elevations and falls, then compaction in tested layers — the two operations that decide whether what goes on top holds.',
-    caption: 'Motor graders trimming a formation to level before the rollers close it.',
+    caption: 'A single-drum roller closing the trimmed formation to level.',
     intro:
       'Levelling and compaction are the last earthworks operations before something permanent is built on top, and they only work as a pair. A surface trimmed to perfect tolerance over a platform that was never brought to density will settle anyway; a well-compacted platform at the wrong level is paid for again in extra base, extra asphalt or extra blinding.',
     body: [
@@ -196,7 +196,7 @@ export const serviceContent = {
     img: '/images/services/access-roads.jpg',
     h1: 'Access Roads Contractor in the UAE',
     lead: 'Temporary and permanent access roads into plots, sites, plants and remote facilities — built for the loads that will actually use them.',
-    caption: 'Graders forming an access road ahead of the base layers.',
+    caption: 'A grader forming an access road ahead of the base layers.',
     intro:
       'An access road is the first thing a project needs and the last thing anyone budgets properly. Deliveries that cannot reach the plot, low-loaders bogged at the boundary and a haul route that turns to ruts after the first rain all cost more than building the road correctly at the start.',
     body: [
@@ -238,7 +238,7 @@ export const serviceContent = {
     img: '/images/services/road-base-laying.jpg',
     h1: 'Road Base Laying Contractor in the UAE',
     lead: 'Supply, spreading, watering and compaction of aggregate sub-base and road base to specified thickness and density.',
-    caption: 'Loader working an aggregate stockpile for road base.',
+    caption: 'A granular base course trimmed and compacted, ready for surfacing.',
     intro:
       'Road base is the layer that decides whether a road lasts. Asphalt is a wearing surface, not a structure — if the base beneath it is under-compacted, badly graded or laid to the wrong thickness, the surface will crack and rut no matter how good the mix was.',
     body: [
@@ -322,7 +322,7 @@ export const serviceContent = {
     img: '/images/services/road-maintenance.jpg',
     h1: 'Road Maintenance Contractor in the UAE',
     lead: 'Planned and reactive maintenance for internal roads, industrial estates and community networks — programmed to keep the network open.',
-    caption: 'Resurfacing a carriageway under half-width working.',
+    caption: 'Fatigue cracking at the carriageway edge, recorded before repair.',
     intro:
       'Road maintenance is a scheduling problem as much as a construction one. The works themselves are straightforward; doing them without closing the estate, blocking a loading bay or stranding residents is what separates a maintenance contractor from a paving contractor.',
     body: [
@@ -364,7 +364,7 @@ export const serviceContent = {
     img: '/images/services/asphalt-patch-works.jpg',
     h1: 'Asphalt Patch Repair Contractor in the UAE',
     lead: 'Saw-cut, excavate, reinstate and compact — patch repairs done so the joint does not fail in the first season.',
-    caption: 'Break-out and reinstatement at a utility crossing.',
+    caption: 'Hand-working the joints as a reinstated section is laid and closed.',
     intro:
       'Most failed patches fail at the edge. A ragged break-out, no tack on the vertical face and backfill that was never properly compacted give you a patch that sinks, opens at the joint and lets water into the layers you were trying to protect.',
     body: [
@@ -406,7 +406,7 @@ export const serviceContent = {
     img: '/images/services/parking-construction.jpg',
     h1: 'Parking Construction Contractor in the UAE',
     lead: 'Complete parking areas from sub-grade to line marking — base, surfacing, kerbing, drainage falls, bays and signage.',
-    caption: 'Surfacing an open parking area before kerbs and marking.',
+    caption: 'Marked bays and wheel stops on a finished parking deck.',
     intro:
       'A car park is a small road network with tight geometry and a lot of edges, and it is usually the last package on a project — which is exactly why it ends up rushed. Bay dimensions, aisle widths, accessible bays and falls to the gullies all have to satisfy the authority layout standard before the surface can be signed off.',
     body: [
@@ -448,7 +448,7 @@ export const serviceContent = {
     img: '/images/services/heavy-duty-interlock-paving.jpg',
     h1: 'Interlock Paving Contractor in the UAE',
     lead: 'Heavy-duty interlock and paver block for yards, container areas, service roads and hardstandings that carry loaded trucks.',
-    caption: 'Setting out a hardstanding before the blocks are laid.',
+    caption: 'Interlocking blocks laid to line and level across a heavy-duty deck.',
     intro:
       'Interlock either holds for twenty years or ruts in the first month, and the difference is almost never the block itself. Block thickness, bedding sand grading and depth, laying pattern and — above all — edge restraint are what decide whether a heavily loaded yard stays flat.',
     body: [
@@ -532,7 +532,7 @@ export const serviceContent = {
     img: '/images/services/road-markings.jpg',
     h1: 'Road Marking Contractor in the UAE',
     lead: 'Thermoplastic and cold-paint markings — lane lines, hatching, arrows, crossings, bays and numbering to authority standards.',
-    caption: 'Lane markings and traffic management on a live carriageway.',
+    caption: 'Thermoplastic laid to line — crossing bars and lane edge in one pass.',
     intro:
       'Markings are the last operation and the one everybody sees. They also have the shortest weather window: applied to a surface that is damp, dusty or too cool, thermoplastic will lift within weeks no matter how good the set-out was.',
     body: [
@@ -702,7 +702,7 @@ export const serviceContent = {
     img: '/images/services/rta-approved-entry-exit-works.jpg',
     h1: 'RTA Approved Entry & Exit Works Contractor in Dubai',
     lead: 'Plot entrances and exits onto RTA roads, constructed by an RTA-approved contractor so the access is accepted and legally usable.',
-    caption: 'A new plot access tying into the public road.',
+    caption: 'Checking an approved entry and exit against the drawing on site.',
     intro:
       'An entry-exit onto an RTA road is not a kerb job. It is a controlled connection to the public highway, and the RTA will only accept it if the design is approved, the contractor is approved, and what was built matches what was drawn.',
     body: [
