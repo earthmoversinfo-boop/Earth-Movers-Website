@@ -261,6 +261,23 @@ var UI = {
 		"proj.galleryTitle": "The places behind our work.",
 		"proj.ctaTitle": "Your project, next on this page.",
 		"proj.ctaText": "From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery.",
+		"ct.reachEyebrow": "Reach us",
+		"ct.callLabel": "Call the office",
+		"ct.callNote": "Fastest route — we answer during working hours",
+		"ct.emailLabel": "Email us",
+		"ct.emailNote": "Best for drawings and bills of quantities",
+		"ct.officeNote": "Visits by appointment",
+		"ct.formEyebrow": "Send your scope",
+		"ct.formTitle": "Tell us what you need built.",
+		"ct.formLead": "Three details and a sentence about the job is enough to start. We price the real scope, and where it helps we walk the ground with you first.",
+		"ct.need": "What do you need?",
+		"ct.needPlaceholder": "Choose a service",
+		"ct.notSure": "Not sure yet — advise me",
+		"ct.optional": "optional",
+		"ct.detailsHint": "Location, approximate quantities and your target dates, if you have them.",
+		"ct.noteBefore": "Sending opens your own email app with everything filled in, addressed to {email}. Nothing is submitted to this website.",
+		"ct.mapEyebrow": "Find us",
+		"ct.mapHeading": "Business Bay, Dubai.",
 		"ct.eyebrow": "Contact",
 		"ct.title": "Let’s walk your site.",
 		"ct.lead": "Call, write or drop by — tell us about your scope and we’ll come back with a clear plan and an honest price.",
@@ -446,6 +463,23 @@ var UI = {
 		"proj.galleryTitle": "الأماكن التي تقف خلف أعمالنا.",
 		"proj.ctaTitle": "مشروعك، التالي على هذه الصفحة.",
 		"proj.ctaText": "من عمليات نقل بقيمة 0.3 مليون درهم إلى تجديد طرق بملايين الدراهم — كل نطاق يحصل على المستوى نفسه من التنفيذ.",
+		"ct.reachEyebrow": "تواصل مباشر",
+		"ct.callLabel": "اتصل بالمكتب",
+		"ct.callNote": "أسرع وسيلة — نردّ خلال ساعات العمل",
+		"ct.emailLabel": "راسلنا بالبريد",
+		"ct.emailNote": "الأنسب لإرسال المخططات وجداول الكميات",
+		"ct.officeNote": "الزيارة بموعد مسبق",
+		"ct.formEyebrow": "أرسل نطاق عملك",
+		"ct.formTitle": "أخبرنا بما تريد تنفيذه.",
+		"ct.formLead": "ثلاث معلومات وسطر واحد عن العمل تكفي للبدء. نُسعّر النطاق الفعلي، وعند الحاجة نعاين الموقع معك أولاً.",
+		"ct.need": "ما الذي تحتاجه؟",
+		"ct.needPlaceholder": "اختر الخدمة",
+		"ct.notSure": "لست متأكداً — أرجو المشورة",
+		"ct.optional": "اختياري",
+		"ct.detailsHint": "الموقع والكميات التقريبية والمواعيد المستهدفة، إن توفّرت.",
+		"ct.noteBefore": "الإرسال يفتح تطبيق البريد لديك وقد عُبّئت الرسالة بالكامل، موجَّهة إلى {email}. لا يُرسَل شيء إلى هذا الموقع.",
+		"ct.mapEyebrow": "موقعنا",
+		"ct.mapHeading": "الخليج التجاري، دبي.",
 		"ct.eyebrow": "تواصل معنا",
 		"ct.title": "لنعاين موقعك.",
 		"ct.lead": "اتصل أو راسلنا أو زُرنا — أخبرنا عن نطاق عملك ونعود إليك بخطة واضحة وسعر صادق.",
@@ -457,7 +491,7 @@ var UI = {
 		"ct.hoursSite": "العمليات في المواقع: على مدار الساعة",
 		"ct.name": "الاسم",
 		"ct.namePlaceholder": "اسمك",
-		"ct.phonePlaceholder": "971+ …",
+		"ct.phonePlaceholder": "+971 …",
 		"ct.emailPlaceholder": "you@company.com",
 		"ct.interest": "الخدمات محل الاهتمام",
 		"ct.details": "تفاصيل المشروع",
@@ -5703,192 +5737,313 @@ function Projects() {
 //#endregion
 //#region src/pages/Contact.jsx
 function Contact() {
+	const { t, locale, tax, content } = useLocale();
+	const { company, images } = content;
 	const [form, setForm] = useState({
 		name: "",
 		phone: "",
 		email: "",
+		service: "",
 		message: ""
 	});
-	const [services, setServices] = useState([]);
-	const { t, locale, tax, content } = useLocale();
-	const { company, images } = content;
-	const serviceOptions = tax.categories.flatMap((c) => c.services.filter((s) => !s.hideOnHome).map((s) => s.name));
 	const set = (key) => (e) => setForm({
 		...form,
 		[key]: e.target.value
 	});
-	const toggleService = (s) => setServices((cur) => cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]);
 	const submit = (e) => {
 		e.preventDefault();
-		const picked = services.join(locale === "ar" ? "، " : ", ") || t("ct.general");
+		const picked = form.service || t("ct.general");
 		const subject = encodeURIComponent(t("ct.subject", {
 			picked,
 			name: form.name
 		}));
-		const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nServices: ${picked}\n\n${form.message}`);
+		const body = encodeURIComponent([
+			`${t("ct.name")}: ${form.name}`,
+			`${t("ct.phone")}: ${form.phone}`,
+			`${t("ct.email")}: ${form.email}`,
+			`${t("ct.need")} ${picked}`,
+			"",
+			form.message
+		].join("\n"));
 		window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
 	};
-	return /* @__PURE__ */ jsxs("main", { children: [/* @__PURE__ */ jsx(PageBanner, {
-		eyebrow: t("ct.eyebrow"),
-		title: t("ct.title"),
-		text: t("ct.lead"),
-		img: images.banners.contact
-	}), /* @__PURE__ */ jsxs("section", {
-		className: "section",
-		children: [/* @__PURE__ */ jsxs("div", {
-			className: "wrap contact-grid",
-			children: [/* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("div", {
-				className: "contact-info",
+	return /* @__PURE__ */ jsxs("main", { children: [
+		/* @__PURE__ */ jsx(PageBanner, {
+			eyebrow: t("ct.eyebrow"),
+			title: t("ct.title"),
+			text: t("ct.lead"),
+			img: images.banners.contact
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
 				children: [
-					/* @__PURE__ */ jsxs(Reveal, {
-						className: "contact-item",
-						children: [/* @__PURE__ */ jsx("span", {
-							className: "label",
-							children: t("ct.phone")
-						}), /* @__PURE__ */ jsx("a", {
+					/* @__PURE__ */ jsx("h2", {
+						className: "block-label",
+						children: t("ct.reachEyebrow")
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "reach-grid",
+						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("a", {
 							href: company.phoneHref,
-							dir: "ltr",
-							children: company.phone
+							className: "reach-card",
+							children: [
+								/* @__PURE__ */ jsx("span", {
+									className: "reach-label",
+									children: t("ct.callLabel")
+								}),
+								/* @__PURE__ */ jsx("span", {
+									className: "reach-value",
+									dir: "ltr",
+									children: company.phone
+								}),
+								/* @__PURE__ */ jsx("span", {
+									className: "reach-note",
+									children: t("ct.callNote")
+								})
+							]
+						}) }), /* @__PURE__ */ jsx(Reveal, {
+							delay: 70,
+							children: /* @__PURE__ */ jsxs("a", {
+								href: `mailto:${company.email}`,
+								className: "reach-card",
+								children: [
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-label",
+										children: t("ct.emailLabel")
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-value",
+										dir: "ltr",
+										children: company.email
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-note",
+										children: t("ct.emailNote")
+									})
+								]
+							})
 						})]
 					}),
-					/* @__PURE__ */ jsxs(Reveal, {
-						delay: 60,
-						className: "contact-item",
-						children: [/* @__PURE__ */ jsx("span", {
-							className: "label",
-							children: t("ct.email")
-						}), /* @__PURE__ */ jsx("a", {
-							href: `mailto:${company.email}`,
-							dir: "ltr",
-							children: company.email
+					/* @__PURE__ */ jsxs("div", {
+						className: "reach-meta",
+						children: [/* @__PURE__ */ jsxs(Reveal, {
+							className: "reach-meta-item",
+							children: [
+								/* @__PURE__ */ jsx("span", {
+									className: "label",
+									children: t("ct.office")
+								}),
+								/* @__PURE__ */ jsx("address", { children: company.address.join(", ") }),
+								/* @__PURE__ */ jsx("span", {
+									className: "reach-note",
+									children: t("ct.officeNote")
+								})
+							]
+						}), /* @__PURE__ */ jsxs(Reveal, {
+							delay: 70,
+							className: "reach-meta-item",
+							children: [/* @__PURE__ */ jsx("span", {
+								className: "label",
+								children: t("ct.hours")
+							}), /* @__PURE__ */ jsxs("address", { children: [
+								t("ct.hoursValue"),
+								/* @__PURE__ */ jsx("br", {}),
+								t("ct.hoursSite")
+							] })]
 						})]
-					}),
-					/* @__PURE__ */ jsxs(Reveal, {
-						delay: 120,
-						className: "contact-item",
-						children: [/* @__PURE__ */ jsx("span", {
-							className: "label",
-							children: t("ct.office")
-						}), /* @__PURE__ */ jsx("address", { children: company.address.map((line) => /* @__PURE__ */ jsxs("span", { children: [line, /* @__PURE__ */ jsx("br", {})] }, line)) })]
-					}),
-					/* @__PURE__ */ jsxs(Reveal, {
-						delay: 180,
-						className: "contact-item",
-						children: [/* @__PURE__ */ jsx("span", {
-							className: "label",
-							children: t("ct.hours")
-						}), /* @__PURE__ */ jsxs("address", { children: [
-							t("ct.hoursValue"),
-							/* @__PURE__ */ jsx("br", {}),
-							t("ct.hoursSite")
-						] })]
 					})
 				]
-			}) }), /* @__PURE__ */ jsx(Reveal, {
-				delay: 120,
-				children: /* @__PURE__ */ jsxs("form", {
-					className: "contact-form",
-					onSubmit: submit,
+			})
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section section-paper hairline-top",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "form-head",
 					children: [
-						/* @__PURE__ */ jsxs("div", {
-							className: "form-row",
-							children: [/* @__PURE__ */ jsxs("div", {
-								className: "field",
-								children: [/* @__PURE__ */ jsx("label", {
-									htmlFor: "cf-name",
-									children: t("ct.name")
-								}), /* @__PURE__ */ jsx("input", {
-									id: "cf-name",
-									required: true,
-									value: form.name,
-									onChange: set("name"),
-									placeholder: t("ct.namePlaceholder")
-								})]
-							}), /* @__PURE__ */ jsxs("div", {
-								className: "field",
-								children: [/* @__PURE__ */ jsx("label", {
-									htmlFor: "cf-phone",
-									children: t("ct.phone")
-								}), /* @__PURE__ */ jsx("input", {
-									id: "cf-phone",
-									value: form.phone,
-									onChange: set("phone"),
-									placeholder: t("ct.phonePlaceholder"),
-									dir: "ltr"
-								})]
-							})]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "field",
-							children: [/* @__PURE__ */ jsx("label", {
-								htmlFor: "cf-email",
-								children: t("ct.email")
-							}), /* @__PURE__ */ jsx("input", {
-								id: "cf-email",
-								type: "email",
-								required: true,
-								value: form.email,
-								onChange: set("email"),
-								placeholder: t("ct.emailPlaceholder"),
-								dir: "ltr"
-							})]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "field",
-							children: [/* @__PURE__ */ jsx("label", { children: t("ct.interest") }), /* @__PURE__ */ jsx("div", {
-								className: "chip-checks",
-								children: serviceOptions.map((s) => /* @__PURE__ */ jsxs("label", {
-									className: "chip-check",
-									children: [/* @__PURE__ */ jsx("input", {
-										type: "checkbox",
-										checked: services.includes(s),
-										onChange: () => toggleService(s)
-									}), /* @__PURE__ */ jsx("span", { children: s })]
-								}, s))
-							})]
-						}),
-						/* @__PURE__ */ jsxs("div", {
-							className: "field",
-							children: [/* @__PURE__ */ jsx("label", {
-								htmlFor: "cf-message",
-								children: t("ct.details")
-							}), /* @__PURE__ */ jsx("textarea", {
-								id: "cf-message",
-								required: true,
-								value: form.message,
-								onChange: set("message"),
-								placeholder: t("ct.detailsPlaceholder")
-							})]
-						}),
-						/* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("button", {
-							type: "submit",
-							className: "btn btn-solid",
-							children: [
-								t("ct.send"),
-								" ",
-								/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
-							]
+						/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+							className: "eyebrow",
+							children: t("ct.formEyebrow")
 						}) }),
-						/* @__PURE__ */ jsx("p", {
-							className: "form-note",
-							children: t("ct.note", { email: company.email })
+						/* @__PURE__ */ jsx(Reveal, {
+							delay: 80,
+							children: /* @__PURE__ */ jsx("h2", {
+								className: "display-md",
+								children: t("ct.formTitle")
+							})
+						}),
+						/* @__PURE__ */ jsx(Reveal, {
+							delay: 140,
+							children: /* @__PURE__ */ jsx("p", {
+								className: "lead",
+								children: t("ct.formLead")
+							})
 						})
 					]
-				})
-			})]
-		}), /* @__PURE__ */ jsx("div", {
-			className: "wrap",
-			children: /* @__PURE__ */ jsx(Reveal, {
-				className: "map-frame",
-				children: /* @__PURE__ */ jsx("iframe", {
-					title: "Earth Movers International — Capital Golden Tower, Business Bay, Dubai",
-					src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
-					loading: "lazy",
-					referrerPolicy: "no-referrer-when-downgrade"
-				})
+				}), /* @__PURE__ */ jsx(Reveal, {
+					delay: 160,
+					children: /* @__PURE__ */ jsxs("form", {
+						className: "contact-form",
+						onSubmit: submit,
+						children: [
+							/* @__PURE__ */ jsxs("div", {
+								className: "form-row",
+								children: [/* @__PURE__ */ jsxs("div", {
+									className: "field",
+									children: [/* @__PURE__ */ jsx("label", {
+										htmlFor: "cf-name",
+										children: t("ct.name")
+									}), /* @__PURE__ */ jsx("input", {
+										id: "cf-name",
+										name: "name",
+										autoComplete: "name",
+										required: true,
+										value: form.name,
+										onChange: set("name"),
+										placeholder: t("ct.namePlaceholder")
+									})]
+								}), /* @__PURE__ */ jsxs("div", {
+									className: "field",
+									children: [/* @__PURE__ */ jsx("label", {
+										htmlFor: "cf-phone",
+										children: t("ct.phone")
+									}), /* @__PURE__ */ jsx("input", {
+										id: "cf-phone",
+										name: "phone",
+										type: "tel",
+										autoComplete: "tel",
+										inputMode: "tel",
+										required: true,
+										dir: "ltr",
+										value: form.phone,
+										onChange: set("phone"),
+										placeholder: t("ct.phonePlaceholder")
+									})]
+								})]
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "field",
+								children: [/* @__PURE__ */ jsxs("label", {
+									htmlFor: "cf-email",
+									children: [
+										t("ct.email"),
+										" ",
+										/* @__PURE__ */ jsx("span", {
+											className: "field-optional",
+											children: t("ct.optional")
+										})
+									]
+								}), /* @__PURE__ */ jsx("input", {
+									id: "cf-email",
+									name: "email",
+									type: "email",
+									autoComplete: "email",
+									inputMode: "email",
+									dir: "ltr",
+									value: form.email,
+									onChange: set("email"),
+									placeholder: t("ct.emailPlaceholder")
+								})]
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "field",
+								children: [/* @__PURE__ */ jsx("label", {
+									htmlFor: "cf-service",
+									children: t("ct.need")
+								}), /* @__PURE__ */ jsx("div", {
+									className: "select-wrap",
+									children: /* @__PURE__ */ jsxs("select", {
+										id: "cf-service",
+										name: "service",
+										value: form.service,
+										onChange: set("service"),
+										children: [
+											/* @__PURE__ */ jsx("option", {
+												value: "",
+												children: t("ct.needPlaceholder")
+											}),
+											tax.categories.map((c) => /* @__PURE__ */ jsx("option", {
+												value: c.name,
+												children: c.name
+											}, c.slug)),
+											/* @__PURE__ */ jsx("option", {
+												value: t("ct.notSure"),
+												children: t("ct.notSure")
+											})
+										]
+									})
+								})]
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "field",
+								children: [
+									/* @__PURE__ */ jsx("label", {
+										htmlFor: "cf-message",
+										children: t("ct.details")
+									}),
+									/* @__PURE__ */ jsx("textarea", {
+										id: "cf-message",
+										name: "message",
+										required: true,
+										value: form.message,
+										onChange: set("message"),
+										placeholder: t("ct.detailsPlaceholder")
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "field-hint",
+										children: t("ct.detailsHint")
+									})
+								]
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "form-note",
+								children: t("ct.noteBefore", { email: company.email })
+							}),
+							/* @__PURE__ */ jsxs("button", {
+								type: "submit",
+								className: "btn btn-solid form-submit",
+								children: [
+									t("ct.send"),
+									" ",
+									/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
+								]
+							})
+						]
+					})
+				})]
 			})
-		})]
-	})] });
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "form-head",
+					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+						className: "eyebrow",
+						children: t("ct.mapEyebrow")
+					}) }), /* @__PURE__ */ jsx(Reveal, {
+						delay: 80,
+						children: /* @__PURE__ */ jsx("h2", {
+							className: "display-md",
+							children: t("ct.mapHeading")
+						})
+					})]
+				}), /* @__PURE__ */ jsx(Reveal, {
+					className: "map-frame",
+					children: /* @__PURE__ */ jsx("iframe", {
+						title: t("ct.mapTitle"),
+						src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
+						loading: "lazy",
+						referrerPolicy: "no-referrer-when-downgrade"
+					})
+				})]
+			})
+		})
+	] });
 }
 //#endregion
 //#region src/seo.js

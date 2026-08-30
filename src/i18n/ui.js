@@ -212,6 +212,25 @@ export const UI = {
     'proj.ctaText':
       'From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery.',
 
+    'ct.reachEyebrow': 'Reach us',
+    'ct.callLabel': 'Call the office',
+    'ct.callNote': 'Fastest route — we answer during working hours',
+    'ct.emailLabel': 'Email us',
+    'ct.emailNote': 'Best for drawings and bills of quantities',
+    'ct.officeNote': 'Visits by appointment',
+    'ct.formEyebrow': 'Send your scope',
+    'ct.formTitle': 'Tell us what you need built.',
+    'ct.formLead':
+      'Three details and a sentence about the job is enough to start. We price the real scope, and where it helps we walk the ground with you first.',
+    'ct.need': 'What do you need?',
+    'ct.needPlaceholder': 'Choose a service',
+    'ct.notSure': 'Not sure yet — advise me',
+    'ct.optional': 'optional',
+    'ct.detailsHint': 'Location, approximate quantities and your target dates, if you have them.',
+    'ct.noteBefore':
+      'Sending opens your own email app with everything filled in, addressed to {email}. Nothing is submitted to this website.',
+    'ct.mapEyebrow': 'Find us',
+    'ct.mapHeading': 'Business Bay, Dubai.',
     'ct.eyebrow': 'Contact',
     'ct.title': 'Let’s walk your site.',
     'ct.lead':
@@ -440,6 +459,25 @@ export const UI = {
     'proj.ctaText':
       'من عمليات نقل بقيمة 0.3 مليون درهم إلى تجديد طرق بملايين الدراهم — كل نطاق يحصل على المستوى نفسه من التنفيذ.',
 
+    'ct.reachEyebrow': 'تواصل مباشر',
+    'ct.callLabel': 'اتصل بالمكتب',
+    'ct.callNote': 'أسرع وسيلة — نردّ خلال ساعات العمل',
+    'ct.emailLabel': 'راسلنا بالبريد',
+    'ct.emailNote': 'الأنسب لإرسال المخططات وجداول الكميات',
+    'ct.officeNote': 'الزيارة بموعد مسبق',
+    'ct.formEyebrow': 'أرسل نطاق عملك',
+    'ct.formTitle': 'أخبرنا بما تريد تنفيذه.',
+    'ct.formLead':
+      'ثلاث معلومات وسطر واحد عن العمل تكفي للبدء. نُسعّر النطاق الفعلي، وعند الحاجة نعاين الموقع معك أولاً.',
+    'ct.need': 'ما الذي تحتاجه؟',
+    'ct.needPlaceholder': 'اختر الخدمة',
+    'ct.notSure': 'لست متأكداً — أرجو المشورة',
+    'ct.optional': 'اختياري',
+    'ct.detailsHint': 'الموقع والكميات التقريبية والمواعيد المستهدفة، إن توفّرت.',
+    'ct.noteBefore':
+      'الإرسال يفتح تطبيق البريد لديك وقد عُبّئت الرسالة بالكامل، موجَّهة إلى {email}. لا يُرسَل شيء إلى هذا الموقع.',
+    'ct.mapEyebrow': 'موقعنا',
+    'ct.mapHeading': 'الخليج التجاري، دبي.',
     'ct.eyebrow': 'تواصل معنا',
     'ct.title': 'لنعاين موقعك.',
     'ct.lead':
@@ -452,7 +490,7 @@ export const UI = {
     'ct.hoursSite': 'العمليات في المواقع: على مدار الساعة',
     'ct.name': 'الاسم',
     'ct.namePlaceholder': 'اسمك',
-    'ct.phonePlaceholder': '971+ …',
+    'ct.phonePlaceholder': '+971 …',
     'ct.emailPlaceholder': 'you@company.com',
     'ct.interest': 'الخدمات محل الاهتمام',
     'ct.details': 'تفاصيل المشروع',
