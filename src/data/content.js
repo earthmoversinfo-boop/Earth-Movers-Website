@@ -5,13 +5,18 @@
 
 export const company = {
   name: 'Earth Movers International',
+  legalName: 'Earth Movers International Prime Contracting L.L.C',
   short: 'EMI',
   tagline: 'Earthworks & Road Construction — Dubai, UAE',
   phone: '+971 55 172 7024',
   phoneHref: 'tel:+971551727024',
   email: 'Earthmoversinfo@gmail.com',
   address: ['Capital Golden Tower', 'Office 706, 7th Floor', 'Business Bay, Dubai, UAE'],
-  mapQuery: 'Capital Golden Tower, Business Bay, Dubai',
+  // Google Business listing — used for the footer map and directions link
+  mapQuery: 'Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai',
+  mapsLink:
+    'https://www.google.com/maps/search/?api=1&query=' +
+    encodeURIComponent('Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai'),
   coordinates: "25.1857° N, 55.2766° E",
   founded: 1990,
   inUAE: 2005,

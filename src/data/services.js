@@ -73,7 +73,7 @@ export const serviceCategories = [
     name: 'Earth Works',
     coverage: 'all',
     tagline: 'Ground moved, shaped and compacted to specification.',
-    img: '/images/hero-slide-2.jpg',
+    img: '/images/svc-earth-works.jpg',
     intro:
       'Everything that happens before a structure or a road can be built: cutting, filling, levelling and compacting raw ground into a tested, build-ready platform. We own the fleet — excavators, dozers, loaders, graders, rollers and rock breakers — so programme is set by the works, not by hire availability.',
     services: [
@@ -114,7 +114,7 @@ export const serviceCategories = [
     name: 'Road Works',
     coverage: 'all',
     tagline: 'Access roads, asphalt and everything that carries traffic.',
-    img: '/images/hero-slide-1.jpg',
+    img: '/images/svc-road-works.jpg',
     intro:
       'Full road packages from formation to final surface: sub-base and road base, asphalt binder and wearing courses, interlock, kerbs, parking and markings. As an RTA-approved road contractor we build to authority specification, with material approvals and testing documented as we go.',
     services: [
@@ -179,7 +179,7 @@ export const serviceCategories = [
     name: 'Traffic Management',
     coverage: ['dubai'],
     tagline: 'Permits, diversions and safe works within live traffic.',
-    img: '/images/hero-slide-3.jpg',
+    img: '/images/svc-traffic-management.jpg',
     intro:
       'Working inside a live road corridor is a permitting exercise as much as a construction one. We prepare traffic diversion drawings, secure RTA permits and install and maintain compliant traffic management so your works proceed without shutting the network — or attracting a stop-work notice.',
     services: [
@@ -208,7 +208,7 @@ export const serviceCategories = [
     name: 'Utilities',
     coverage: ['dubai'],
     tagline: 'Entry-exit works, service protection and the approvals behind them.',
-    img: '/images/library/survey-setting-out.jpg',
+    img: '/images/svc-utilities.jpg',
     intro:
       'The works that connect a plot to the network and keep existing services safe while you build. We are RTA-approved for entry and exit works and handle the permit chain — ROW, NOCs, service protection and utility shifting — so approvals do not become the critical path on your programme.',
     services: [

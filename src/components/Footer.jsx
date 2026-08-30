@@ -71,8 +71,36 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className="footer-location">
+          <div className="footer-location-text">
+            <h4>Our Location</h4>
+            <p className="footer-legal-name">{company.legalName}</p>
+            <address>
+              {company.address.map((line) => (
+                <span key={line}>{line}<br /></span>
+              ))}
+            </address>
+            <a
+              href={company.mapsLink}
+              target="_blank"
+              rel="noreferrer"
+              className="text-link"
+            >
+              Get directions
+            </a>
+          </div>
+          <div className="footer-map">
+            <iframe
+              title={`${company.legalName} — location on Google Maps`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+
         <div className="footer-bottom">
-          <span>© {year} {company.name}. All rights reserved.</span>
+          <span>© {year} {company.legalName}. All rights reserved.</span>
           <span>{company.coordinates} — Dubai, UAE</span>
         </div>
       </div>
