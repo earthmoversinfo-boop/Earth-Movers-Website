@@ -10,6 +10,8 @@ export const company = {
   tagline: 'Earthworks & Road Construction — Dubai, UAE',
   phone: '+971 55 172 7024',
   phoneHref: 'tel:+971551727024',
+  // wa.me takes the number in international form with no plus or spaces
+  whatsapp: '971551727024',
   email: 'Earthmoversinfo@gmail.com',
   address: ['Capital Golden Tower', 'Office 706, 7th Floor', 'Business Bay, Dubai, UAE'],
   // Google Business listing — used for the footer map and directions link

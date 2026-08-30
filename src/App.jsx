@@ -1,6 +1,7 @@
 import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
+import WhatsAppButton from './components/WhatsAppButton.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
@@ -40,6 +41,7 @@ export function AppRoutes() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }

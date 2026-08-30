@@ -955,7 +955,7 @@ h1, h2, h3, h4 {
 
 .reach-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 2.5vw, 1.5rem);
   margin-top: 1.1rem;
 }
@@ -1122,6 +1122,10 @@ h1, h2, h3, h4 {
 .map-frame { border: 1px solid var(--line); overflow: hidden; border-radius: var(--radius-lg); }
 
 .map-frame iframe { width: 100%; height: clamp(15rem, 45vw, 24rem); border: 0; display: block; }
+
+@media (max-width: 980px) {
+  .reach-grid { grid-template-columns: 1fr 1fr; }
+}
 
 @media (max-width: 720px) {
   .reach-grid { grid-template-columns: 1fr; }
@@ -1795,3 +1799,69 @@ h1, h2, h3, h4 {
 
   .footer-bottom { font-size: 0.72rem; line-height: 1.7; }
 }
+
+/* ===========================================================================
+   WhatsApp
+   A fixed button on every page, and a third card beside call and email on the
+   contact page. The message is written before it opens and names the work on
+   the page it was pressed from, so an enquiry arrives with a subject rather
+   than as "hi". The mark keeps WhatsApp's own green — recognition is the whole
+   point of a utility button — while the shape, radius and label type are the
+   site's.
+   =========================================================================== */
+
+:root { --wa: #25d366; --wa-deep: #128c7e; }
+
+.wa-fab {
+  position: fixed;
+  inset-block-end: 1.25rem;
+  inset-inline-end: 1.25rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: 999px;
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 10px 28px -8px rgba(18, 60, 40, 0.5);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-fab:hover {
+  background: var(--wa-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -8px rgba(18, 60, 40, 0.55);
+}
+
+.wa-fab:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.wa-fab-icon { flex: none; }
+
+.wa-fab-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[dir='rtl'] .wa-fab-label { letter-spacing: 0; text-transform: none; font-size: 0.9rem; }
+
+/* Clear of the iOS home indicator, and out of the way of the hero dots, which
+   sit on the opposite side in both directions. */
+@media (max-width: 720px) {
+  .wa-fab {
+    inset-block-end: calc(1rem + env(safe-area-inset-bottom, 0px));
+    inset-inline-end: 1rem;
+    padding: 0.8rem 1rem;
+  }
+  .wa-fab-label { font-size: 0.74rem; }
+}
+
+.reach-card-wa:hover { border-color: var(--wa-deep); }
+
+.reach-card-wa .reach-label { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+.reach-wa-icon { width: 1rem; height: 1rem; color: var(--wa-deep); }

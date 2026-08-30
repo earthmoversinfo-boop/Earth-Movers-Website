@@ -213,6 +213,14 @@ export const UI = {
     'proj.ctaText':
       'From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery.',
 
+    'wa.label': 'WhatsApp us',
+    'wa.aria': 'Message Earth Movers International on WhatsApp',
+    'wa.cardLabel': 'WhatsApp',
+    'wa.cardNote': 'Send a location pin, site photos or a drawing',
+    'wa.msg':
+      'Hello Earth Movers International — I would like to discuss a project.\nLocation and scope:',
+    'wa.msgService':
+      'Hello Earth Movers International — I would like a price.\nService: {service}\nLocation and scope:',
     'ct.reachEyebrow': 'Reach us',
     'ct.callLabel': 'Call the office',
     'ct.callNote': 'Fastest route — we answer during working hours',
@@ -461,6 +469,16 @@ export const UI = {
     'proj.ctaText':
       'من عمليات نقل بقيمة 0.3 مليون درهم إلى تجديد طرق بملايين الدراهم — كل نطاق يحصل على المستوى نفسه من التنفيذ.',
 
+    'wa.label': 'واتساب',
+    'wa.aria': 'راسل إيرث موفرز إنترناشيونال على واتساب',
+    'wa.cardLabel': 'واتساب',
+    'wa.cardNote': 'أرسل موقعاً على الخريطة أو صوراً من الموقع أو مخططاً',
+    'wa.msg':
+      'السلام عليكم، إيرث موفرز إنترناشيونال — أرغب في مناقشة مشروع.\nالموقع ونطاق العمل:',
+    // Structured rather than joined with a preposition: several service names
+    // already begin with "أعمال", which "لأعمال {service}" would double.
+    'wa.msgService':
+      'السلام عليكم، إيرث موفرز إنترناشيونال — أرغب في الحصول على عرض سعر.\nالخدمة: {service}\nالموقع ونطاق العمل:',
     'ct.reachEyebrow': 'تواصل مباشر',
     'ct.callLabel': 'اتصل بالمكتب',
     'ct.callNote': 'أسرع وسيلة — نردّ خلال ساعات العمل',

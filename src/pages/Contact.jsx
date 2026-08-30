@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import PageBanner from '../components/PageBanner.jsx'
-import { Arrow } from '../components/Icons.jsx'
+import { Arrow, WhatsApp } from '../components/Icons.jsx'
+import { whatsAppHref, whatsAppMessage } from '../components/WhatsAppButton.jsx'
 import useLocale from '../i18n/useLocale.js'
 
 export default function Contact() {
   const { t, locale, tax, content } = useLocale()
   const { company, images } = content
+  const waHref = whatsAppHref(company.whatsapp, whatsAppMessage('/contact', locale, t, tax))
   const [form, setForm] = useState({ name: '', phone: '', email: '', service: '', message: '' })
 
   const set = (key) => (e) => setForm({ ...form, [key]: e.target.value })
@@ -53,6 +55,15 @@ export default function Contact() {
               </a>
             </Reveal>
             <Reveal delay={70}>
+              <a href={waHref} target="_blank" rel="noreferrer" className="reach-card reach-card-wa">
+                <span className="reach-label">
+                  <WhatsApp className="reach-wa-icon" /> {t('wa.cardLabel')}
+                </span>
+                <span className="reach-value" dir="ltr">{company.phone}</span>
+                <span className="reach-note">{t('wa.cardNote')}</span>
+              </a>
+            </Reveal>
+            <Reveal delay={140}>
               <a href={`mailto:${company.email}`} className="reach-card">
                 <span className="reach-label">{t('ct.emailLabel')}</span>
                 <span className="reach-value" dir="ltr">{company.email}</span>
