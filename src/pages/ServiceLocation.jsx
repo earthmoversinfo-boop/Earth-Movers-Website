@@ -6,6 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { emiratesFor } from '../data/services.js'
+import { asset } from '../lib/asset.js'
 
 export default function ServiceLocation({ category, emirate }) {
   const { t, locale, content, href } = useLocale()
@@ -48,7 +49,7 @@ export default function ServiceLocation({ category, emirate }) {
               <Reveal delay={200} className="rail-figure-wrap">
                 <figure className="rail-figure">
                   <img
-                    src={category.tallImg}
+                    src={asset(category.tallImg)}
                     alt={t('loc.figCaption', { category: category.name, emirate: emirate.name })}
                     loading="lazy"
                   />

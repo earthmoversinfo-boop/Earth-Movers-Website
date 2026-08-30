@@ -1,5 +1,6 @@
 import Reveal from './Reveal.jsx'
 import gallery from '../data/gallery.json'
+import { asset } from '../lib/asset.js'
 
 // Renders the photo gallery pulled from the live site's media library.
 // Invisible until `npm run fetch-images` populates src/data/gallery.json.
@@ -19,7 +20,7 @@ export default function Gallery({ eyebrow = 'From our sites', title = 'The work,
         <div className="gallery-grid">
           {shots.map((g, i) => (
             <Reveal key={g.src} delay={(i % 3) * 70}>
-              <img src={g.src} alt={g.alt} loading="lazy" />
+              <img src={asset(g.src)} alt={g.alt} loading="lazy" />
             </Reveal>
           ))}
         </div>

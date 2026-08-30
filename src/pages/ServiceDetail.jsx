@@ -6,6 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { emiratesFor } from '../data/services.js'
+import { asset } from '../lib/asset.js'
 
 // One page per individual service, at /services/<category>/<service>.
 export default function ServiceDetail({ category, service }) {
@@ -46,7 +47,7 @@ export default function ServiceDetail({ category, service }) {
               </Reveal>
               <Reveal delay={200} className="rail-figure-wrap">
                 <figure className="rail-figure">
-                  <img src={service.tallImg} alt={service.caption} loading="lazy" />
+                  <img src={asset(service.tallImg)} alt={service.caption} loading="lazy" />
                   <figcaption>{service.caption}</figcaption>
                 </figure>
               </Reveal>

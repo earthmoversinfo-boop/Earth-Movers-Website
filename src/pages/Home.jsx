@@ -8,6 +8,7 @@ import Photo from '../components/Photo.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { FleetScene } from '../components/Art.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { asset } from '../lib/asset.js'
 
 function HeroSlider() {
   const [active, setActive] = useState(0)
@@ -25,7 +26,7 @@ function HeroSlider() {
     <section className="hero" aria-label={t('home.heroAria')}>
       {heroSlides.map((s, i) => (
         <div key={s.img} className={`hero-slide${i === active ? ' active' : ''}`} aria-hidden={i !== active}>
-          <img src={s.img} alt="" loading={i === 0 ? 'eager' : 'lazy'} />
+          <img src={asset(s.img)} alt="" loading={i === 0 ? 'eager' : 'lazy'} />
         </div>
       ))}
       <div className="wrap hero-content" key={active}>

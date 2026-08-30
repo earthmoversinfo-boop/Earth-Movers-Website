@@ -49,9 +49,13 @@ export function AppRoutes() {
 export default function App() {
   // Real paths for the deployed site (required for SEO); hash routing only for
   // the single-file preview build, which has no server to resolve paths.
-  const Router = import.meta.env.VITE_HASH_ROUTER === '1' ? HashRouter : BrowserRouter
+  const hash = import.meta.env.VITE_HASH_ROUTER === '1'
+  const Router = hash ? HashRouter : BrowserRouter
+  // On a project Pages site every route sits under /<repo>/; BASE_URL is '/'
+  // for the real deployment, so this is a no-op there.
+  const basename = hash ? undefined : import.meta.env.BASE_URL.replace(/\/+$/, '')
   return (
-    <Router>
+    <Router basename={basename || undefined}>
       <AppRoutes />
     </Router>
   )

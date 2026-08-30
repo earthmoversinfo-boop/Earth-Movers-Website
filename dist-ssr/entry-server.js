@@ -3,10 +3,17 @@ import { StaticRouter } from "react-router";
 import { Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
+//#region src/lib/asset.js
+var BASE = "/".replace(/\/+$/, "");
+function asset(path) {
+	if (!path || !path.startsWith("/")) return path;
+	return BASE + path;
+}
+//#endregion
 //#region src/components/Icons.jsx
 function Logo({ variant = "dark" }) {
 	const img = /* @__PURE__ */ jsx("img", {
-		src: "/images/logo.png",
+		src: asset("/images/logo.png"),
 		alt: "Earth Movers International",
 		className: "logo-img"
 	});
@@ -3953,7 +3960,7 @@ function Photo({ src, alt = "", className = "", fallback = null, style }) {
 	const [failed, setFailed] = useState(false);
 	if (!src || failed) return fallback;
 	return /* @__PURE__ */ jsx("img", {
-		src,
+		src: asset(src),
 		alt,
 		className,
 		style,
@@ -4146,7 +4153,7 @@ function HeroSlider() {
 				className: `hero-slide${i === active ? " active" : ""}`,
 				"aria-hidden": i !== active,
 				children: /* @__PURE__ */ jsx("img", {
-					src: s.img,
+					src: asset(s.img),
 					alt: "",
 					loading: i === 0 ? "eager" : "lazy"
 				})
@@ -5133,7 +5140,7 @@ function ServiceDetail({ category, service }) {
 								children: /* @__PURE__ */ jsxs("figure", {
 									className: "rail-figure",
 									children: [/* @__PURE__ */ jsx("img", {
-										src: service.tallImg,
+										src: asset(service.tallImg),
 										alt: service.caption,
 										loading: "lazy"
 									}), /* @__PURE__ */ jsx("figcaption", { children: service.caption })]
@@ -5444,7 +5451,7 @@ function ServiceLocation({ category, emirate }) {
 								children: /* @__PURE__ */ jsxs("figure", {
 									className: "rail-figure",
 									children: [/* @__PURE__ */ jsx("img", {
-										src: category.tallImg,
+										src: asset(category.tallImg),
 										alt: t("loc.figCaption", {
 											category: category.name,
 											emirate: emirate.name
@@ -5753,7 +5760,7 @@ function Gallery({ eyebrow = "From our sites", title = "The work, in pictures.",
 				children: shots.map((g, i) => /* @__PURE__ */ jsx(Reveal, {
 					delay: i % 3 * 70,
 					children: /* @__PURE__ */ jsx("img", {
-						src: g.src,
+						src: asset(g.src),
 						alt: g.alt,
 						loading: "lazy"
 					})

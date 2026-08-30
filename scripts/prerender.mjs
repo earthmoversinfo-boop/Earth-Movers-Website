@@ -10,6 +10,10 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const dist = path.resolve('dist')
+// '/' for the real site, '/<repo>/' for a GitHub Pages project site
+const BASE = (process.env.PUBLIC_BASE || '/').replace(/\/+$/, '')
+// A staging copy must never be indexed — the live site is the one that ranks
+const STAGING = Boolean(process.env.PUBLIC_BASE)
 const bundle = pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href
 const { render, routes, headTagsFor, seoFor, SITE, BASE_ROUTES, LOCALES, localeHref } =
   await import(bundle)
@@ -35,6 +39,8 @@ for (const route of routes) {
     .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
 
   const dir = route === '/' ? dist : path.join(dist, route)
+  // note: `route` is already relative to the site root, so the base prefix
+  // belongs in the URLs inside the page, not in the file path on disk
   fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(path.join(dir, 'index.html'), html)
 }
@@ -80,12 +86,22 @@ ${urls}
 
 fs.writeFileSync(
   path.join(dist, 'robots.txt'),
-  `User-agent: *
+  STAGING
+    ? `User-agent: *
+Disallow: /
+`
+    : `User-agent: *
 Allow: /
 
 Sitemap: ${SITE}/sitemap.xml
 `
 )
+
+if (STAGING) {
+  // GitHub Pages: skip Jekyll, and serve the app for any unmatched path
+  fs.writeFileSync(path.join(dist, '.nojekyll'), '')
+  fs.copyFileSync(path.join(dist, 'index.html'), path.join(dist, '404.html'))
+}
 
 // SPA fallbacks — the prerendered files are served first where they exist.
 fs.writeFileSync(path.join(dist, '_redirects'), '/*    /index.html   200\n')
@@ -103,5 +119,6 @@ fs.writeFileSync(
 )
 
 console.log(
-  `prerendered ${routes.length} routes (${LOCALES.join(', ')}) -> sitemap.xml, robots.txt, _redirects, .htaccess`
+  `prerendered ${routes.length} routes (${LOCALES.join(', ')}) at base "${BASE || '/'}"` +
+    `${STAGING ? ' [staging: noindex, 404 fallback]' : ''} -> sitemap.xml, robots.txt, _redirects, .htaccess`
 )
