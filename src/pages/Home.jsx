@@ -151,18 +151,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="svc-rows">
+          <div className="svc-grid">
             {featuredServices.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 2) * 70}>
-                <Link to="/services" className="svc-row">
-                  <div className="svc-row-media">
+              <Reveal key={s.id} delay={(i % 3) * 70}>
+                <Link to="/services" className="svc-tile">
+                  <div className="svc-tile-media">
                     <Photo src={s.img} alt={s.title} />
                   </div>
-                  <div className="svc-row-body">
-                    <h3>{s.title}</h3>
-                    <p>{s.blurb}</p>
-                    <span className="text-link">Explore <Arrow /></span>
-                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.blurb}</p>
+                  <span className="text-link">Explore <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
