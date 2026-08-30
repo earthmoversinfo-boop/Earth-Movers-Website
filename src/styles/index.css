@@ -580,6 +580,12 @@ h1, h2, h3, h4 {
 
 .check-item p { color: var(--body-c); font-size: 0.92rem; }
 
+/* on the category page each checked item is a link to that service's own page */
+.check-item-link { color: inherit; }
+.check-item-link h3 { transition: color 0.2s ease; }
+.check-item-link:hover h3 { color: var(--accent-deep); }
+.check-item-link .text-link { margin-top: 0.55rem; font-size: 0.68rem; }
+
 @media (max-width: 760px) { .check-grid { grid-template-columns: 1fr; } }
 
 /* ---- values / hse / process / sectors -------------------------------------------------- */
@@ -824,13 +830,18 @@ h1, h2, h3, h4 {
   color: #fff;
 }
 
-.page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.03); }
+.page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.02) saturate(1.03); }
 
+/* Two scrims: one up from the base for the heading block, one in from the left
+   so the copy stays readable over the bright desert and asphalt photographs as
+   well as the darker ones. */
 .page-hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(24, 26, 30, 0.68), rgba(24, 26, 30, 0.2) 58%, rgba(24, 26, 30, 0.08));
+  background:
+    linear-gradient(to right, rgba(24, 26, 30, 0.58), rgba(24, 26, 30, 0.12) 58%, rgba(24, 26, 30, 0)),
+    linear-gradient(to top, rgba(24, 26, 30, 0.84), rgba(24, 26, 30, 0.42) 48%, rgba(24, 26, 30, 0.14));
 }
 
 .page-hero-inner {
@@ -845,11 +856,11 @@ h1, h2, h3, h4 {
   justify-items: start;
 }
 
-.page-hero-inner .eyebrow { color: var(--accent); }
+.page-hero-inner .eyebrow { color: var(--accent); text-shadow: 0 1px 12px rgba(16, 18, 21, 0.6); }
 
 .page-hero-inner h1 { color: #fff; max-width: 16em; text-shadow: 0 2px 20px rgba(16, 18, 21, 0.5); }
 
-.page-hero-inner .lead { color: rgba(255, 255, 255, 0.85); }
+.page-hero-inner .lead { color: rgba(255, 255, 255, 0.9); text-shadow: 0 1px 14px rgba(16, 18, 21, 0.55); }
 
 /* ---- contact ------------------------------------------------------------------------------------- */
 
@@ -1056,6 +1067,19 @@ h1, h2, h3, h4 {
   color: var(--body-c);
 }
 
+.tag-list-links li { padding: 0; border: 0; }
+
+.tag-list-links a {
+  display: block;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--body-c);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.tag-list-links a:hover { border-color: var(--ink); color: var(--ink); background: var(--white); }
+
 .loc-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 .loc-links a {
@@ -1243,3 +1267,35 @@ h1, h2, h3, h4 {
 }
 
 .footer-map:hover .footer-map-cta { color: #fff; }
+
+/* ---- service page: at-a-glance spec table -------------------------------------------- */
+
+.spec-table {
+  display: grid;
+  border-top: 1px solid var(--line);
+  margin-top: 0.9rem;
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) 3fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-row dt {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.14rem;
+}
+
+.spec-row dd { color: var(--body-c); font-size: 0.94rem; line-height: 1.6; }
+
+@media (max-width: 620px) {
+  .spec-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}

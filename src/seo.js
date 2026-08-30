@@ -5,7 +5,13 @@
 // ---------------------------------------------------------------------------
 
 import { company } from './data/content.js'
-import { serviceCategories, categoryBySlug, emirateBySlug, emiratesFor } from './data/services.js'
+import {
+  serviceCategories,
+  categoryBySlug,
+  emirateBySlug,
+  emiratesFor,
+  resolveServiceSegment,
+} from './data/services.js'
 
 export const SITE = 'https://www.earthmoversint.com'
 const BRAND = 'Earth Movers International'
@@ -96,9 +102,73 @@ function categorySeo(category) {
             name: `${category.name} services`,
             itemListElement: category.services.map((s) => ({
               '@type': 'Offer',
-              itemOffered: { '@type': 'Service', name: s.name, description: s.text },
+              itemOffered: {
+                '@type': 'Service',
+                name: s.name,
+                description: s.text,
+                url: `${SITE}/services/${category.slug}/${s.slug}`,
+              },
             })),
           },
+        },
+        {
+          '@type': 'ItemList',
+          name: `${category.name} services`,
+          itemListElement: category.services.map((s, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: s.name,
+            url: `${SITE}/services/${category.slug}/${s.slug}`,
+          })),
+        },
+      ],
+    }
+  )
+}
+
+function serviceSeo(category, service) {
+  const list = emiratesFor(category)
+  const where = category.coverage === 'all' ? 'the UAE' : 'Dubai'
+  return page(
+    `${service.h1} | ${BRAND}`,
+    `${service.lead} ${BRAND} is an RTA-approved contractor delivering ${service.name.toLowerCase()} across ${list.map((e) => e.name).join(', ')}.`.slice(0, 300),
+    `/services/${category.slug}/${service.slug}`,
+    {
+      jsonLd: [
+        breadcrumbs([
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+          { name: category.name, path: `/services/${category.slug}` },
+          { name: service.name, path: `/services/${category.slug}/${service.slug}` },
+        ]),
+        {
+          '@type': 'Service',
+          name: service.h1,
+          serviceType: service.name,
+          description: service.intro,
+          provider: organisation,
+          areaServed: list.map((e) => ({ '@type': 'AdministrativeArea', name: e.name })),
+          isPartOf: {
+            '@type': 'Service',
+            name: category.name,
+            url: `${SITE}/services/${category.slug}`,
+          },
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: `${service.name} — what is included`,
+            itemListElement: service.scope.map((item) => ({
+              '@type': 'Offer',
+              itemOffered: { '@type': 'Service', name: item },
+            })),
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: service.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
         },
       ],
     }
@@ -197,9 +267,10 @@ export function seoFor(pathname) {
   if (m) {
     const category = categoryBySlug[m[1]]
     if (category && !m[2]) return categorySeo(category)
-    const emirate = emirateBySlug[m[2]]
-    if (category && emirate && emiratesFor(category).some((e) => e.slug === emirate.slug)) {
-      return locationSeo(category, emirate)
+    if (category) {
+      const found = resolveServiceSegment(category, m[2])
+      if (found.kind === 'service') return serviceSeo(category, found.service)
+      if (found.kind === 'emirate') return locationSeo(category, found.emirate)
     }
   }
 

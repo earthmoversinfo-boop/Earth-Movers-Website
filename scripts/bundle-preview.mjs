@@ -2,7 +2,9 @@
 // images inlined) for sharing as a preview link. Not used for deployment.
 
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
+import { execFileSync } from 'node:child_process'
 
 const dist = path.resolve('dist')
 const out = process.argv[2] || path.resolve('preview.html')
@@ -23,13 +25,29 @@ const walk = (dir) =>
     e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]
   )
 
+// Every photograph ends up base64 in this one file, and the whole site's
+// imagery at full resolution overruns what a single page can carry. The
+// preview only has to look right on screen, so images are downscaled into a
+// temp directory first; the deployed build still ships the originals.
+const PREVIEW_MAX_W = 1100
+const shrunk = fs.mkdtempSync(path.join(os.tmpdir(), 'emi-preview-'))
+try {
+  execFileSync('python3', [path.resolve('scripts/shrink-for-preview.py'), path.join(dist, 'images'), shrunk, String(PREVIEW_MAX_W)], { stdio: 'inherit' })
+} catch {
+  console.warn('  (could not downscale images — inlining originals)')
+}
+const previewCopy = (f) => {
+  const alt = path.join(shrunk, path.relative(path.join(dist, 'images'), f))
+  return fs.existsSync(alt) ? alt : f
+}
+
 // longest paths first so /images/library/x.jpg never collides with a prefix
 const files = walk(path.join(dist, 'images'))
   .filter((f) => /\.(jpg|png)$/.test(f))
   .map((f) => ({ f, rel: '/' + path.relative(dist, f).split(path.sep).join('/') }))
   .sort((a, b) => b.rel.length - a.rel.length)
 
-for (const { f, rel } of files) js = js.split(rel).join(dataUri(f))
+for (const { f, rel } of files) js = js.split(rel).join(dataUri(previewCopy(f)))
 js = js.replace(/<\/script/gi, '<\\/script')
 
 const leftover = (js.match(/"\/images\/[a-z0-9/-]+\.(jpg|png)"/g) || []).length
@@ -47,6 +65,8 @@ ${js}
 </script>
 `
 )
+
+fs.rmSync(shrunk, { recursive: true, force: true })
 
 console.log(
   `preview bundle -> ${out} (${(fs.statSync(out).size / 1048576).toFixed(2)} MB, ${files.length} images inlined, ${leftover} paths left)`

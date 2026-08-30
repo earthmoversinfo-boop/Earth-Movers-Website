@@ -8,8 +8,17 @@
 //
 // Four categories. Earth Works and Road Works are offered across all seven
 // emirates; Traffic Management and Utilities are Dubai-only (they hang off RTA
-// permitting). Every category/emirate pair becomes its own indexable page.
+// permitting).
+//
+// Three page families come out of this file:
+//   /services/<category>            the category overview
+//   /services/<category>/<service>  one page per individual service
+//   /services/<category>/<emirate>  the category in one emirate
+// Service slugs and emirate slugs never collide, so the second segment alone
+// tells the router which of the last two it is looking at.
 // ---------------------------------------------------------------------------
+
+import { serviceContent } from './service-content.js'
 
 export const emirates = [
   {
@@ -70,9 +79,7 @@ export const emirates = [
   },
 ]
 
-export const emirateBySlug = Object.fromEntries(emirates.map((e) => [e.slug, e]))
-
-export const serviceCategories = [
+const CATEGORIES = [
   {
     slug: 'earth-works',
     name: 'Earth Works',
@@ -255,7 +262,25 @@ export const serviceCategories = [
   },
 ]
 
+// Each service is published as its own page, so the long-form content in
+// service-content.js is merged onto the taxonomy here rather than looked up
+// separately by every consumer.
+export const serviceCategories = CATEGORIES.map((c) => ({
+  ...c,
+  services: c.services.map((s) => ({ ...s, ...(serviceContent[s.slug] || {}) })),
+}))
+
 export const categoryBySlug = Object.fromEntries(serviceCategories.map((c) => [c.slug, c]))
+
+export const emirateBySlug = Object.fromEntries(emirates.map((e) => [e.slug, e]))
+
+// Every service, flattened, with the category it belongs to. Service slugs are
+// unique across all four categories, so one lookup covers the whole site.
+export const allServices = serviceCategories.flatMap((c) =>
+  c.services.map((s) => ({ ...s, category: c, path: `/services/${c.slug}/${s.slug}` }))
+)
+
+export const serviceBySlug = Object.fromEntries(allServices.map((s) => [s.slug, s]))
 
 // Emirates a given category serves.
 export function emiratesFor(category) {
@@ -264,11 +289,22 @@ export function emiratesFor(category) {
     : emirates.filter((e) => category.coverage.includes(e.slug))
 }
 
-// Every category/emirate combination that should exist as a page.
+// /services/<category>/<sub> carries both emirate pages and service pages. The
+// two slug sets do not overlap, so the second segment alone decides which.
+export function resolveServiceSegment(category, slug) {
+  if (emirateBySlug[slug] && emiratesFor(category).some((e) => e.slug === slug)) {
+    return { kind: 'emirate', emirate: emirateBySlug[slug] }
+  }
+  const service = category.services.find((s) => s.slug === slug)
+  return service ? { kind: 'service', service } : { kind: 'none' }
+}
+
+// Every services URL that should exist as a prerendered, indexable page.
 export function allServiceRoutes() {
   const routes = ['/services']
   for (const c of serviceCategories) {
     routes.push(`/services/${c.slug}`)
+    for (const s of c.services) routes.push(`/services/${c.slug}/${s.slug}`)
     for (const e of emiratesFor(c)) routes.push(`/services/${c.slug}/${e.slug}`)
   }
   return routes

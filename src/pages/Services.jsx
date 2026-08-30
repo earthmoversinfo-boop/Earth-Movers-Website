@@ -46,9 +46,11 @@ export default function Services() {
                 </div>
                 <div>
                   <h3 className="block-label">Services</h3>
-                  <ul className="tag-list">
+                  <ul className="tag-list tag-list-links">
                     {category.services.map((s) => (
-                      <li key={s.slug}>{s.name}</li>
+                      <li key={s.slug}>
+                        <Link to={`/services/${category.slug}/${s.slug}`}>{s.name}</Link>
+                      </li>
                     ))}
                   </ul>
 

@@ -1,22 +1,14 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
-import NotFound from './NotFound.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
-import { categoryBySlug, emirateBySlug, emiratesFor } from '../data/services.js'
+import { emiratesFor } from '../data/services.js'
 import { company } from '../data/content.js'
 
-export default function ServiceLocation() {
-  const { category: cSlug, emirate: eSlug } = useParams()
-  const category = categoryBySlug[cSlug]
-  const emirate = emirateBySlug[eSlug]
-  if (!category || !emirate) return <NotFound />
-
+export default function ServiceLocation({ category, emirate }) {
   const covered = emiratesFor(category)
-  if (!covered.some((e) => e.slug === emirate.slug)) return <NotFound />
-
   const siblings = covered.filter((e) => e.slug !== emirate.slug)
 
   return (
@@ -87,6 +79,9 @@ export default function ServiceLocation() {
                 <div>
                   <h3>{`${s.name} in ${emirate.name}`}</h3>
                   <p>{s.text}</p>
+                  <Link to={`/services/${category.slug}/${s.slug}`} className="text-link">
+                    {`More on ${s.name.toLowerCase()}`} <Arrow />
+                  </Link>
                 </div>
               </Reveal>
             ))}

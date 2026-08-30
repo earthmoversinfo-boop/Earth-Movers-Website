@@ -49,12 +49,18 @@ export default function ServiceCategory() {
           <h3 className="block-label">What&rsquo;s included</h3>
           <div className="check-grid">
             {category.services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 2) * 60} className="check-item">
-                <CheckCircle className="check-ico" />
-                <div>
-                  <h3>{s.name}</h3>
-                  <p>{s.text}</p>
-                </div>
+              <Reveal key={s.slug} delay={(i % 2) * 60}>
+                <Link
+                  to={`/services/${category.slug}/${s.slug}`}
+                  className="check-item check-item-link"
+                >
+                  <CheckCircle className="check-ico" />
+                  <div>
+                    <h3>{s.name}</h3>
+                    <p>{s.text}</p>
+                    <span className="text-link">{`${s.name} in detail`} <Arrow /></span>
+                  </div>
+                </Link>
               </Reveal>
             ))}
           </div>

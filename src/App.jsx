@@ -5,7 +5,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
 import ServiceCategory from './pages/ServiceCategory.jsx'
-import ServiceLocation from './pages/ServiceLocation.jsx'
+import ServiceSegment from './pages/ServiceSegment.jsx'
 import Projects from './pages/Projects.jsx'
 import Contact from './pages/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -21,7 +21,7 @@ export function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:category" element={<ServiceCategory />} />
-        <Route path="/services/:category/:emirate" element={<ServiceLocation />} />
+        <Route path="/services/:category/:segment" element={<ServiceSegment />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
