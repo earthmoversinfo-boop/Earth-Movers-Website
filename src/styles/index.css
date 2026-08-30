@@ -14,8 +14,8 @@
   --line: #e5e6e9;
   --accent: #eda63a;
   --accent-deep: #c9881c;
-  --dark: #17181b;
-  --dark-2: #1f2024;
+  --dark: #3d4249;
+  --dark-2: #484d55;
   --grey-dark: #3d4249;
   --dark-line: rgba(255, 255, 255, 0.14);
   --light-on-dark: #f0f1f3;
@@ -136,11 +136,11 @@ h1, h2, h3, h4 {
 .btn-solid { background: var(--accent); color: var(--ink); }
 .btn-solid:hover { background: var(--accent-deep); }
 
-.btn-ink { background: var(--ink); color: #fff; }
-.btn-ink:hover { background: #000; }
+.btn-ink { background: var(--grey-dark); color: #fff; }
+.btn-ink:hover { background: #2e3237; }
 
 .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
-.btn-ghost:hover { background: var(--ink); color: #fff; }
+.btn-ghost:hover { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
 
 .btn-outline-light { border-color: rgba(255, 255, 255, 0.6); color: #fff; }
 .btn-outline-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.12); }
@@ -636,8 +636,8 @@ h1, h2, h3, h4 {
   transition: all 0.2s ease;
 }
 
-.pill:hover { border-color: var(--ink); color: var(--ink); }
-.pill.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+.pill:hover { border-color: var(--grey-dark); color: var(--ink); }
+.pill.active { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
 
 .proj-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
 
@@ -737,7 +737,7 @@ h1, h2, h3, h4 {
 .cta-contact-row a:hover { border-color: var(--ink); color: var(--ink); }
 
 .cta-panel .btn-ghost { border-color: rgba(19, 20, 23, 0.5); color: var(--ink); }
-.cta-panel .btn-ghost:hover { background: var(--ink); color: #fff; }
+.cta-panel .btn-ghost:hover { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
 
 /* ---- footer ----------------------------------------------------------------------------------- */
 
@@ -913,7 +913,7 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
-.chip-check input:checked + span { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip-check input:checked + span { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
 
 .chip-check input:focus-visible + span { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
 
