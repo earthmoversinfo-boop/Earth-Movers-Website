@@ -166,6 +166,11 @@ export default function Home() {
                       .map((s) => (
                         <li key={s.slug}>{s.name}</li>
                       ))}
+                    {c.services.some((s) => s.hideOnHome) && (
+                      <li className="cat-tile-more">
+                        {`plus ${c.services.filter((s) => s.hideOnHome).length} services`}
+                      </li>
+                    )}
                   </ul>
                   <span className="cat-tile-foot">
                     <span className="cat-tile-where">

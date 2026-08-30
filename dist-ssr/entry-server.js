@@ -426,12 +426,14 @@ var serviceCategories = [
 				slug: "kerbstones",
 				name: "Kerbstones",
 				keyword: "kerbstone installation contractor",
+				hideOnHome: true,
 				text: "Supply and installation of kerbstones and channels to line and level on concrete haunching — road kerbs, parking kerbs, radius units and drop kerbs at crossings and entrances, finished to authority profile."
 			},
 			{
 				slug: "road-markings",
 				name: "Road Markings",
 				keyword: "road marking contractor",
+				hideOnHome: true,
 				text: "Thermoplastic and cold-paint road markings: lane lines, hatching, arrows, crossings, parking bays, numbering and rumble strips — applied to authority standards with reflective beading where specified."
 			}
 		]
@@ -1366,9 +1368,12 @@ function Home() {
 									})
 								}),
 								/* @__PURE__ */ jsx("h3", { children: c.name }),
-								/* @__PURE__ */ jsx("ul", {
+								/* @__PURE__ */ jsxs("ul", {
 									className: "cat-tile-list",
-									children: c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug))
+									children: [c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug)), c.services.some((s) => s.hideOnHome) && /* @__PURE__ */ jsx("li", {
+										className: "cat-tile-more",
+										children: `plus ${c.services.filter((s) => s.hideOnHome).length} services`
+									})]
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "cat-tile-foot",
