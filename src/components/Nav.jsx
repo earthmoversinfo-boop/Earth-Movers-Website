@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Logo } from './Icons.jsx'
-import { company, approvals } from '../data/content.js'
+import { company } from '../data/content.js'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -38,16 +38,19 @@ export default function Nav() {
     <>
       <div className="topbar">
         <div className="wrap topbar-inner">
-          <span className="topbar-badge">Approved by</span>
-          <div className="topbar-marquee" aria-label="Approving authorities">
-            {[0, 1].map((n) => (
-              <div className="topbar-track" aria-hidden={n === 1} key={n}>
-                {[...approvals, ...approvals].map((a, i) => (
-                  <span className="topbar-logo" key={i}>{a}</span>
-                ))}
-              </div>
+          <span className="topbar-badge topbar-hide-sm">RTA-Approved Road Contractor</span>
+          <nav className="topbar-nav" aria-label="Primary">
+            {links.map((l) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.to === '/'}
+                className={({ isActive }) => `topbar-link${isActive ? ' active' : ''}`}
+              >
+                {l.label}
+              </NavLink>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
 
@@ -57,28 +60,18 @@ export default function Nav() {
             <Logo />
           </Link>
 
-          <nav className="nav-links" aria-label="Primary">
-            {links.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === '/'}
-                className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-              >
-                {l.label}
-              </NavLink>
-            ))}
+          <div className="nav-right">
+            <span className="nav-tagline topbar-hide-sm">Earthworks &amp; Road Construction — Dubai, UAE</span>
             <Link to="/contact" className="btn btn-solid nav-cta">Get a Quote</Link>
-          </nav>
-
-          <button
-            className={`nav-burger${open ? ' open' : ''}`}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            <span /><span /><span />
-          </button>
+            <button
+              className={`nav-burger${open ? ' open' : ''}`}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen(!open)}
+            >
+              <span /><span /><span />
+            </button>
+          </div>
         </div>
       </header>
 
