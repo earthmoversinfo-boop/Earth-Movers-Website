@@ -79,3 +79,31 @@ map at the top of `src/data/content.js`. Drop files with these names into
 
 …or edit the `images` map to point at files in `images/library/` after fetching.
 Photos with dark, warm tones work best against the sand/ink palette.
+
+## SEO structure
+
+The site is pre-rendered: `npm run build` emits a real HTML file for every route
+with its own `<title>`, meta description, canonical URL and JSON-LD, plus
+`sitemap.xml`, `robots.txt` and rewrite rules for Netlify (`_redirects`) and
+Apache/cPanel (`.htaccess`). Search engines read finished HTML, not an empty
+app shell.
+
+### Service pages
+
+| Route | Targets |
+| --- | --- |
+| `/services` | All four disciplines |
+| `/services/earth-works` + `/{emirate}` | Excavation, back filling, cut & fill, levelling, compaction — all 7 emirates |
+| `/services/road-works` + `/{emirate}` | Access roads, road base, asphalt, maintenance, patch works, parkings, interlock, kerbstones, markings — all 7 emirates |
+| `/services/traffic-management/dubai` | Lane/road closure permits, traffic management |
+| `/services/utilities/dubai` | RTA entry & exit works, service protection, ROW permits, utilities shifting, NOC services |
+
+Emirate slugs: `dubai`, `abu-dhabi`, `sharjah`, `ajman`, `ras-al-khaimah`,
+`fujairah`, `umm-al-quwain`.
+
+Each location page carries a keyword-matched `<h1>` ("Road Works Contractor in
+Sharjah"), an `<h3>` per service ("Access Roads in Sharjah"), local authority
+context, an FAQ block marked up as `FAQPage`, and links to the other emirates.
+
+To add or edit services, emirates or their copy, edit **`src/data/services.js`** —
+routes, navigation, sitemap and structured data all follow from it.

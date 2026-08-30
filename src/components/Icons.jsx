@@ -43,7 +43,7 @@ export function GlobeMark({ className }) {
 // background). The dark charcoal lettering needs a light ground, so the
 // footer's dark variant sits it on a white chip.
 export function Logo({ variant = 'dark' }) {
-  const img = <img src="images/logo.png" alt="Earth Movers International" className="logo-img" />
+  const img = <img src="/images/logo.png" alt="Earth Movers International" className="logo-img" />
   if (variant === 'light') return <span className="logo-chip">{img}</span>
   return img
 }

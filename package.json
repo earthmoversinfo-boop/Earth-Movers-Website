@@ -4,9 +4,11 @@
   "description": "",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "fetch-images": "node scripts/fetch-images.mjs"
+    "fetch-images": "node scripts/fetch-images.mjs",
+    "build:preview": "VITE_HASH_ROUTER=1 vite build && node scripts/bundle-preview.mjs",
+    "build:client": "vite build"
   },
   "repository": {
     "type": "git",

@@ -25,22 +25,22 @@ export const company = {
 // entries at files in public/images/library/ after running `npm run fetch-images`)
 // and the site uses them automatically; missing files fall back to vector art.
 export const images = {
-  hero: 'images/hero.jpg',
-  fleet: 'images/fleet.jpg',
-  about: 'images/about.jpg',
-  projects: ['images/project-fujairah.jpg', 'images/project-municipality.jpg', 'images/project-nakheel.jpg'],
+  hero: '/images/hero.jpg',
+  fleet: '/images/fleet.jpg',
+  about: '/images/about.jpg',
+  projects: ['/images/project-fujairah.jpg', '/images/project-municipality.jpg', '/images/project-nakheel.jpg'],
   banners: {
-    about: 'images/banner-about.jpg',
-    services: 'images/banner-services.jpg',
-    projects: 'images/banner-projects.jpg',
-    contact: 'images/banner-contact.jpg',
+    about: '/images/banner-about.jpg',
+    services: '/images/banner-services.jpg',
+    projects: '/images/banner-projects.jpg',
+    contact: '/images/banner-contact.jpg',
   },
 }
 
 // Hero slides. Title is split so the highlighted words render in brand gold.
 export const heroSlides = [
   {
-    img: 'images/hero-slide-1.jpg',
+    img: '/images/hero-slide-1.jpg',
     eyebrow: 'Earth Movers International — Dubai, UAE',
     titlePre: 'No.1 RTA-Approved ',
     titleGold: 'Road Contractor',
@@ -48,7 +48,7 @@ export const heroSlides = [
     text: 'We deliver reliable, high-quality road construction with advanced technology — your trusted partner for highways, access roads and infrastructure projects.',
   },
   {
-    img: 'images/hero-slide-2.jpg',
+    img: '/images/hero-slide-2.jpg',
     eyebrow: 'Building the ground the UAE rises from',
     titlePre: 'Earthworks, excavation and ',
     titleGold: 'heavy construction',
@@ -56,7 +56,7 @@ export const heroSlides = [
     text: 'Infrastructure, commercial and industrial projects across the Emirates — founded in Montreal in 1990, in Dubai since 2005.',
   },
   {
-    img: 'images/hero-slide-3.jpg',
+    img: '/images/hero-slide-3.jpg',
     eyebrow: 'RTA-approved asphalt & road works',
     titlePre: 'Asphalt laid to ',
     titleGold: 'tight tolerances',
@@ -140,7 +140,7 @@ export const featuredServices = [
     id: 'excavation',
     title: 'Excavation',
     icon: 'excavator',
-    img: 'images/library/operator-backhoe.jpg',
+    img: '/images/library/operator-backhoe.jpg',
     blurb:
       'Bulk excavation, basements and deep digs, powered by one of the largest heavy-excavation fleets in Dubai.',
   },
@@ -148,7 +148,7 @@ export const featuredServices = [
     id: 'road-construction',
     title: 'Road Construction',
     icon: 'road',
-    img: 'images/project-fujairah.jpg',
+    img: '/images/project-fujairah.jpg',
     blurb:
       'RTA-approved road contracting — road base, sub-base, compaction and finishing for roads across the UAE.',
   },
@@ -156,7 +156,7 @@ export const featuredServices = [
     id: 'cut-and-fill',
     title: 'Cut & Fill',
     icon: 'grade',
-    img: 'images/fleet.jpg',
+    img: '/images/fleet.jpg',
     blurb:
       'Precision grading and levelling to design elevations, balancing cut and fill for efficient earthworks.',
   },
@@ -164,7 +164,7 @@ export const featuredServices = [
     id: 'site-preparation',
     title: 'Site Preparation',
     icon: 'site',
-    img: 'images/about.jpg',
+    img: '/images/about.jpg',
     blurb:
       'Land clearing, demolition and ground stabilisation that hands over a clean, build-ready site.',
   },
@@ -172,7 +172,7 @@ export const featuredServices = [
     id: 'asphalt',
     title: 'Asphalt Works',
     icon: 'asphalt',
-    img: 'images/library/golden-hour-site.jpg',
+    img: '/images/library/golden-hour-site.jpg',
     blurb:
       'Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances.',
   },
@@ -180,7 +180,7 @@ export const featuredServices = [
     id: 'equipment-rental',
     title: 'Equipment Rental',
     icon: 'crane',
-    img: 'images/library/tower-cranes.jpg',
+    img: '/images/library/tower-cranes.jpg',
     blurb:
       'Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready.',
   },

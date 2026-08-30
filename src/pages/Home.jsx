@@ -8,9 +8,10 @@ import Photo from '../components/Photo.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { FleetScene } from '../components/Art.jsx'
 import {
-  company, stats, featuredServices, projects, fleet,
+  company, stats, projects, fleet,
   heroSlides, certifications, images,
 } from '../data/content.js'
+import { serviceCategories, emiratesFor } from '../data/services.js'
 
 function HeroSlider() {
   const [active, setActive] = useState(0)
@@ -140,26 +141,35 @@ export default function Home() {
             <div className="kicker">
               <Reveal><span className="eyebrow">What We Do</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">Seventeen disciplines. One accountable partner.</h2>
+                <h2 className="display-lg">Four disciplines. One accountable partner.</h2>
               </Reveal>
               <Reveal delay={140}>
                 <p className="lead">
-                  From earthworks and excavation to RTA-approved road construction —
-                  delivered with our own fleet and our own people.
+                  Earth works, road works, traffic management and utilities — delivered
+                  with our own fleet, our own operators and RTA-approved processes.
                 </p>
               </Reveal>
             </div>
           </div>
 
-          <div className="svc-grid">
-            {featuredServices.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3) * 70}>
-                <Link to="/services" className="svc-tile">
+          <div className="cat-grid">
+            {serviceCategories.map((c, i) => (
+              <Reveal key={c.slug} delay={(i % 4) * 70}>
+                <Link to={`/services/${c.slug}`} className="cat-tile">
                   <div className="svc-tile-media">
-                    <Photo src={s.img} alt={s.title} />
+                    <Photo src={c.img} alt={c.name} />
                   </div>
-                  <h3>{s.title}</h3>
-                  <p>{s.blurb}</p>
+                  <h3>{c.name}</h3>
+                  <ul className="cat-tile-list">
+                    {c.services.map((s) => (
+                      <li key={s.slug}>{s.name}</li>
+                    ))}
+                  </ul>
+                  <span className="cat-tile-where">
+                    {c.coverage === 'all'
+                      ? 'Available in all 7 emirates'
+                      : 'Available in Dubai'}
+                  </span>
                   <span className="text-link">Explore <Arrow /></span>
                 </Link>
               </Reveal>

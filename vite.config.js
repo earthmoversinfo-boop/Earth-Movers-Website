@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // base './' so the built site works from any static host or subdirectory
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/',
 })

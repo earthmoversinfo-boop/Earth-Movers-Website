@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Logo } from './Icons.jsx'
-import { company, serviceGroups } from '../data/content.js'
+import { company } from '../data/content.js'
+import { serviceCategories, emirates } from '../data/services.js'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -43,8 +44,15 @@ export default function Footer() {
 
           <div className="footer-col">
             <h4>Services</h4>
-            {footerServices.map((s) => (
-              <Link key={s} to="/services">{s}</Link>
+            {serviceCategories.map((c) => (
+              <Link key={c.slug} to={`/services/${c.slug}`}>{c.name}</Link>
+            ))}
+          </div>
+
+          <div className="footer-col">
+            <h4>Areas We Serve</h4>
+            {emirates.map((e) => (
+              <Link key={e.slug} to={`/services/road-works/${e.slug}`}>{e.name}</Link>
             ))}
           </div>
 
