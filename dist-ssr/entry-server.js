@@ -681,77 +681,46 @@ var serviceContent = {
 			}
 		]
 	},
-	leveling: {
-		img: "/images/services/leveling.jpg",
-		h1: "Land Levelling & Grading Contractor in the UAE",
-		lead: "Grading and fine levelling to design elevations and falls — formation levels, slab platforms, yards and laydown areas.",
-		caption: "Motor graders trimming a formation to design level and crossfall.",
-		intro: "Levelling and grading is the last earthworks operation before something permanent is built on top, which is why tolerance matters more here than anywhere else in the sequence. A formation that is out by a few centimetres is paid for again in extra base, extra asphalt or extra blinding.",
-		body: ["Motor graders with GPS-guided blades hold the design surface across large areas, with survey checks taken on a grid rather than at a handful of convenient points. Falls are set to the drainage design so water leaves the platform where the drawings say it should — a yard that ponds is a levelling failure, not a drainage one.", "We grade to formation level for roads and pavements, to platform level for slabs and buildings, and to finished level for open yards, laydown areas and hardstandings. Where the surface will carry traffic before construction starts, the graded formation is compacted and sealed so it survives site traffic rather than rutting in the first week."],
+	"leveling-and-compaction": {
+		img: "/images/services/leveling-and-compaction.jpg",
+		h1: "Leveling & Compaction Contractor in the UAE",
+		lead: "Fine levelling to design elevations and falls, then compaction in tested layers — the two operations that decide whether what goes on top holds.",
+		caption: "Motor graders trimming a formation to level before the rollers close it.",
+		intro: "Levelling and compaction are the last earthworks operations before something permanent is built on top, and they only work as a pair. A surface trimmed to perfect tolerance over a platform that was never brought to density will settle anyway; a well-compacted platform at the wrong level is paid for again in extra base, extra asphalt or extra blinding.",
+		body: [
+			"Motor graders with GPS-guided blades hold the design surface across large areas, with survey checks taken on a grid rather than at a handful of convenient points. Falls are set to the drainage design so water leaves the platform where the drawings say it should — a yard that ponds is a levelling failure, not a drainage one.",
+			"The roller then has to suit the material: vibratory smooth drums for granular fill and sub-base, padfoot rollers for cohesive material, plate compactors and trench rollers in confined areas and around services. Layer thickness is controlled to what the plant can genuinely compact rather than what is quick to spread, and moisture is brought to optimum with bowsers before rolling starts.",
+			"We work to formation level for roads and pavements, to platform level for slabs and buildings, and to finished level for open yards, laydown areas and hardstandings. Field density tests are taken layer by layer and issued as compaction records with the handover pack; where a layer fails it is reworked and retested rather than covered — a habit that costs an afternoon and saves a rebuild."
+		],
 		scope: [
-			"Grading to formation level for roads, pavements and hardstandings",
-			"Fine levelling of slab and building platforms to design elevation",
+			"Grading and fine levelling to formation, platform and finished levels",
 			"Setting falls and crossfalls to the drainage design",
-			"Trimming, boxing out and profiling of yards and laydown areas",
-			"GPS and machine-guided blade control on open areas",
-			"Grid-based survey checks with recorded level sheets",
-			"Compaction and sealing of the graded surface against site traffic"
-		],
-		specs: [
-			["Plant", "Motor graders with blade control, vibratory rollers, tracked and wheeled excavators, water bowsers"],
-			["Typical use", "Road formation, slab platforms, industrial yards, laydown and storage areas, car park sub-grade"],
-			["Control", "Total station and GPS survey, grid level sheets, tolerance checks before sign-off"],
-			["Coverage", "All seven emirates, mobilised from Dubai"]
-		],
-		faqs: [
-			{
-				q: "What tolerance do you work to on levelling?",
-				a: "To the tolerance stated in the specification for the layer concerned — formation, sub-base and finished surfaces each carry a different allowance. Levels are checked on a survey grid and recorded, so the sign-off is based on evidence rather than a walk-round."
-			},
-			{
-				q: "Can you level a site that has already been filled by someone else?",
-				a: "Yes, though we survey the existing surface first. If the fill underneath was not placed in tested layers, grading the top of it only hides the problem — we will say so and price the correction rather than paper over it."
-			},
-			{
-				q: "Do you set the falls for drainage?",
-				a: "Yes. Crossfalls and longitudinal falls are set to the drainage design and checked before the surface is signed off, so the platform sheds water to the gullies and channels instead of ponding in the middle."
-			}
-		]
-	},
-	compaction: {
-		img: "/images/services/compaction.jpg",
-		h1: "Compaction Works Contractor in the UAE",
-		lead: "Layer-by-layer compaction with the right roller for the material, backed by field density testing and compaction certificates.",
-		caption: "Vibratory roller closing a formation before the base goes down.",
-		intro: "Compaction is the part of earthworks that is invisible once it is finished and expensive when it is wrong. Everything above it — base, asphalt, slabs, kerbs — depends on a platform that has been brought to the specified density in controlled layers, with results that a consultant will actually accept.",
-		body: ["The roller has to suit the material. Vibratory smooth drums for granular fill and sub-base, padfoot rollers for cohesive material, plate compactors and trench rollers in confined areas and around services. Layer thickness is controlled to what the plant can genuinely compact rather than what is quick to spread, and moisture is brought to optimum with bowsers before rolling starts.", "Field density tests are taken layer by layer and issued as compaction records with the handover pack. Where a layer fails, it is reworked and retested rather than covered — a habit that costs an afternoon and saves a rebuild."],
-		scope: [
+			"GPS and machine-guided blade control across open areas",
 			"Compaction of fill, sub-grade and sub-base in controlled layers",
-			"Selection of roller type to suit granular or cohesive material",
+			"Roller selection to suit granular or cohesive material",
 			"Moisture conditioning to optimum content with water bowsers",
 			"Confined-area compaction with plate compactors and trench rollers",
-			"Proof rolling of formation before base or paving",
-			"Field density testing layer by layer, with rework where a layer fails",
-			"Compaction certificates and records for consultant and authority sign-off"
+			"Grid survey level sheets, field density testing and proof rolling",
+			"Compaction certificates for consultant and authority sign-off"
 		],
 		specs: [
-			["Plant", "Single and tandem vibratory rollers, padfoot rollers, pneumatic tyred rollers, plate compactors, water bowsers"],
-			["Typical use", "Road formation and sub-base, structural fill, trench reinstatement, yard and platform sub-grade"],
-			["Control", "Layer thickness control, moisture control, field density testing, compaction certificates"],
+			["Plant", "Motor graders with blade control, single and tandem vibratory rollers, padfoot and pneumatic tyred rollers, plate compactors, water bowsers"],
+			["Typical use", "Road formation and sub-base, slab platforms, industrial yards, laydown and storage areas, car park sub-grade"],
+			["Control", "Total station and GPS survey, grid level sheets, layer thickness and moisture control, field density testing, compaction certificates"],
 			["Coverage", "All seven emirates, mobilised from Dubai"]
 		],
 		faqs: [
 			{
-				q: "What density do you compact to?",
-				a: "To the percentage of maximum dry density stated in the project specification for that layer — typically higher for sub-base under a road than for general fill. The target is agreed before work starts and tested as the layers go in."
+				q: "What tolerance and density do you work to?",
+				a: "Both come from the project specification for the layer concerned — formation, sub-base and finished surfaces each carry their own level tolerance, and density is a stated percentage of maximum dry density, typically higher under a road than for general fill. Levels are checked on a survey grid and density is tested as the layers go in, so sign-off rests on records rather than a walk-round."
 			},
 			{
-				q: "Do you supply compaction test certificates?",
-				a: "Yes. Field density testing is carried out through an approved laboratory and the certificates are issued as part of the handover documentation, which is what the consultant and the authority ask for at inspection."
+				q: "Do you supply level sheets and compaction certificates?",
+				a: "Yes. Grid level sheets and field density testing through an approved laboratory are both issued as part of the handover documentation, which is what the consultant and the authority ask for at inspection."
 			},
 			{
-				q: "Can you compact in confined areas and around services?",
-				a: "Yes. Trench rollers and plate compactors are used where a full-size roller cannot reach or would risk damaging a service, with the bedding and surround compacted by hand before machine compaction is taken over the top."
+				q: "Can you level and compact a site someone else has already filled?",
+				a: "Yes, though we survey and test the existing surface first. If the fill underneath was not placed in tested layers, trimming and rolling the top of it only hides the problem — we will say so and price the correction rather than paper over it."
 			}
 		]
 	},
@@ -1496,75 +1465,45 @@ var serviceContentAr = {
 			}
 		]
 	},
-	leveling: {
-		h1: "مقاول تسوية وتمهيد أراضٍ في الإمارات",
-		lead: "تمهيد وتسوية دقيقة حتى المناسيب والميول التصميمية — مناسيب التأسيس ومنصات البلاطات والساحات ومناطق التخزين.",
-		caption: "مسوّيات تشذّب منسوب التأسيس حتى المنسوب والميل العرضي التصميميين.",
-		intro: "التسوية والتمهيد آخر عملية ترابية قبل أن يُبنى فوقها شيء دائم، ولذلك تكون السماحية هنا أهم منها في أي مرحلة أخرى. فمنسوب تأسيس يزيد أو ينقص بضعة سنتيمترات يُدفع ثمنه مرة أخرى في طبقة أساس إضافية أو أسفلت إضافي أو خرسانة نظافة إضافية.",
-		body: ["تحافظ المسوّيات ذات الشفرات الموجَّهة بالأقمار الاصطناعية على السطح التصميمي عبر مساحات واسعة، مع مراجعة مساحية تُؤخذ على شبكة نقاط لا على بضع نقاط مريحة. وتُضبط الميول وفق تصميم التصريف ليغادر الماء المنصة من حيث تقول المخططات — فالساحة التي يتجمع فيها الماء عيب تسوية لا عيب تصريف.", "نُمهّد حتى منسوب التأسيس للطرق والأرصفة، وحتى منسوب المنصة للبلاطات والمباني، وحتى المنسوب النهائي للساحات ومناطق التخزين والأرضيات المكشوفة. وحيث يحمل السطح حركة قبل بدء الإنشاء، يُدمك المنسوب المُمهَّد ويُغلَق ليصمد أمام حركة الموقع بدل أن يتخدّد في الأسبوع الأول."],
+	"leveling-and-compaction": {
+		h1: "مقاول تسوية ودمك في الإمارات",
+		lead: "تسوية دقيقة حتى المناسيب والميول التصميمية، ثم دمك على طبقات مُختبَرة — العمليتان اللتان تقرران ثبات ما يُبنى فوقهما.",
+		caption: "مسوّيات تشذّب منسوب التأسيس قبل أن تُغلقه المداحل.",
+		intro: "التسوية والدمك آخر عمليتين ترابيتين قبل أن يُبنى فوقهما شيء دائم، وهما لا تعملان إلا معاً. فسطح مشذَّب بسماحية مثالية فوق منصة لم تبلغ كثافتها سيهبط رغم ذلك؛ ومنصة مدموكة جيداً عند منسوب خاطئ يُدفع ثمنها مرة أخرى في طبقة أساس إضافية أو أسفلت إضافي أو خرسانة نظافة إضافية.",
+		body: [
+			"تحافظ المسوّيات ذات الشفرات الموجَّهة بالأقمار الاصطناعية على السطح التصميمي عبر مساحات واسعة، مع مراجعة مساحية تُؤخذ على شبكة نقاط لا على بضع نقاط مريحة. وتُضبط الميول وفق تصميم التصريف ليغادر الماء المنصة من حيث تقول المخططات — فالساحة التي يتجمع فيها الماء عيب تسوية لا عيب تصريف.",
+			"ثم يجب أن تناسب المدحلة المادة: مداحل هزّازة ملساء للمواد الحبيبية وطبقة ما تحت الأساس، ومداحل ذات أقدام للمواد المتماسكة، وصفائح دمك ومداحل خنادق في الأماكن الضيقة وحول الخدمات. وتُضبط سماكة الطبقة على ما تستطيع المعدات دمكه فعلاً لا على ما يسهل فرشه، وتُرفع الرطوبة إلى الحد الأمثل بالصهاريج قبل بدء الدحل.",
+			"نعمل حتى منسوب التأسيس للطرق والأرصفة، وحتى منسوب المنصة للبلاطات والمباني، وحتى المنسوب النهائي للساحات ومناطق التخزين والأرضيات المكشوفة. وتُؤخذ اختبارات الكثافة الحقلية طبقة بطبقة وتُصدَر كسجلات دمك ضمن حزمة التسليم؛ وحين ترسب طبقة تُعاد معالجتها وتُختبَر من جديد بدل تغطيتها — عادة تكلّف بعد ظهيرة وتوفّر إعادة بناء كاملة."
+		],
 		scope: [
-			"التمهيد حتى منسوب التأسيس للطرق والأرصفة والأرضيات الصلبة",
-			"تسوية دقيقة لمنصات البلاطات والمباني حتى المنسوب التصميمي",
+			"التمهيد والتسوية الدقيقة حتى مناسيب التأسيس والمنصة والمنسوب النهائي",
 			"ضبط الميول الطولية والعرضية وفق تصميم التصريف",
-			"التشذيب والتحديد وتشكيل الساحات ومناطق التخزين",
 			"ضبط الشفرة بالتوجيه الآلي وأنظمة الأقمار الاصطناعية في المساحات المفتوحة",
-			"مراجعة مساحية على شبكة نقاط مع كشوف مناسيب موثّقة",
-			"دمك وإغلاق السطح المُمهَّد لمقاومة حركة الموقع"
-		],
-		specs: [
-			["المعدات", "مسوّيات بضبط شفرة ومداحل هزّازة وحفارات مجنزرة وبعجل وصهاريج مياه"],
-			["الاستخدامات", "منسوب تأسيس الطرق ومنصات البلاطات والساحات الصناعية ومناطق التخزين وتربة المواقف"],
-			["الضبط والتوثيق", "مسح بالمحطة المتكاملة والأقمار الاصطناعية وكشوف مناسيب شبكية ومراجعة السماحية قبل الاعتماد"],
-			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
-		],
-		faqs: [
-			{
-				q: "ما السماحية التي تعملون ضمنها في التسوية؟",
-				a: "السماحية المنصوص عليها في المواصفة للطبقة المعنية — فمنسوب التأسيس وطبقة ما تحت الأساس والأسطح النهائية لكلٍّ سماحيته. وتُراجَع المناسيب على شبكة مساحية وتُوثَّق، فيكون الاعتماد مبنياً على دليل لا على جولة ميدانية."
-			},
-			{
-				q: "هل يمكنكم تسوية موقع سبق أن ردمه مقاول آخر؟",
-				a: "نعم، لكننا نمسح السطح القائم أولاً. فإذا لم يكن الردم أسفله قد وُضع على طبقات مُختبَرة، فإن تمهيد سطحه يخفي المشكلة فقط — وسنقول ذلك ونُسعّر التصحيح بدل تجميل الوضع."
-			},
-			{
-				q: "هل تضبطون ميول التصريف؟",
-				a: "نعم. تُضبط الميول العرضية والطولية وفق تصميم التصريف وتُراجَع قبل اعتماد السطح، ليصرّف السطح إلى المصافي والمجاري بدل تجمّع الماء في وسطه."
-			}
-		]
-	},
-	compaction: {
-		h1: "مقاول أعمال دمك في الإمارات",
-		lead: "دمك طبقة بطبقة بالمدحلة المناسبة للمادة، مدعوماً باختبارات الكثافة الحقلية وشهادات الدمك.",
-		caption: "مدحلة هزّازة تُغلق منسوب التأسيس قبل فرش طبقة الأساس.",
-		intro: "الدمك هو الجزء الذي يختفي عن العين حين ينتهي، ويصبح مكلفاً حين يكون خاطئاً. فكل ما فوقه — طبقة الأساس والأسفلت والبلاطات وأحجار الأرصفة — يعتمد على منصة بلغت الكثافة المحددة على طبقات مضبوطة، وبنتائج يقبلها الاستشاري فعلاً.",
-		body: ["المدحلة يجب أن تناسب المادة: مداحل هزّازة ملساء للمواد الحبيبية وطبقة ما تحت الأساس، ومداحل ذات أقدام للمواد المتماسكة، وصفائح دمك ومداحل خنادق في الأماكن الضيقة وحول الخدمات. وتُضبط سماكة الطبقة على ما تستطيع المعدات دمكه فعلاً لا على ما يسهل فرشه، وتُرفع الرطوبة إلى الحد الأمثل بالصهاريج قبل بدء الدحل.", "تُؤخذ اختبارات الكثافة الحقلية طبقة بطبقة وتُصدَر كسجلات دمك ضمن حزمة التسليم. وحين ترسب طبقة، تُعاد معالجتها وتُختبَر من جديد بدل تغطيتها — عادة تكلّف بعد ظهيرة وتوفّر إعادة بناء كاملة."],
-		scope: [
 			"دمك الردم والتربة الطبيعية وطبقة ما تحت الأساس على طبقات مضبوطة",
 			"اختيار نوع المدحلة بما يناسب المواد الحبيبية أو المتماسكة",
 			"تهيئة الرطوبة حتى المحتوى الأمثل بصهاريج المياه",
 			"الدمك في الأماكن الضيقة بصفائح الدمك ومداحل الخنادق",
-			"الدحل الاختباري لمنسوب التأسيس قبل طبقة الأساس أو التبليط",
-			"اختبارات الكثافة الحقلية طبقة بطبقة مع إعادة المعالجة عند الرسوب",
-			"شهادات وسجلات دمك لاعتماد الاستشاري والجهة المختصة"
+			"كشوف مناسيب شبكية واختبارات كثافة حقلية ودحل اختباري",
+			"شهادات دمك لاعتماد الاستشاري والجهة المختصة"
 		],
 		specs: [
-			["المعدات", "مداحل هزّازة مفردة ومزدوجة ومداحل ذات أقدام ومداحل إطارات هوائية وصفائح دمك وصهاريج مياه"],
-			["الاستخدامات", "منسوب تأسيس الطرق وطبقة ما تحت الأساس والردم الإنشائي وإعادة حالة الخنادق وتربة الساحات"],
-			["الضبط والتوثيق", "ضبط سماكة الطبقة والرطوبة واختبارات الكثافة الحقلية وشهادات الدمك"],
+			["المعدات", "مسوّيات بضبط شفرة ومداحل هزّازة مفردة ومزدوجة ومداحل ذات أقدام وإطارات هوائية وصفائح دمك وصهاريج مياه"],
+			["الاستخدامات", "منسوب تأسيس الطرق وطبقة ما تحت الأساس ومنصات البلاطات والساحات الصناعية ومناطق التخزين وتربة المواقف"],
+			["الضبط والتوثيق", "مسح بالمحطة المتكاملة والأقمار الاصطناعية وكشوف مناسيب شبكية وضبط سماكة الطبقة والرطوبة واختبارات الكثافة الحقلية وشهادات الدمك"],
 			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
 		],
 		faqs: [
 			{
-				q: "إلى أي كثافة تدمكون؟",
-				a: "إلى النسبة المئوية من الكثافة الجافة القصوى المنصوص عليها في مواصفة المشروع لتلك الطبقة — وهي عادة أعلى لطبقة ما تحت الأساس تحت الطريق منها للردم العام. ويُتَّفق على المستهدف قبل البدء ويُختبَر مع وضع الطبقات."
+				q: "ما السماحية والكثافة التي تعملون ضمنها؟",
+				a: "كلتاهما من مواصفة المشروع للطبقة المعنية — فمنسوب التأسيس وطبقة ما تحت الأساس والأسطح النهائية لكلٍّ سماحيته، والكثافة نسبة محددة من الكثافة الجافة القصوى، وهي عادة أعلى تحت الطريق منها للردم العام. وتُراجَع المناسيب على شبكة مساحية وتُختبَر الكثافة مع وضع الطبقات، فيقوم الاعتماد على سجلات لا على جولة ميدانية."
 			},
 			{
-				q: "هل توفّرون شهادات اختبار الدمك؟",
-				a: "نعم. تُجرى اختبارات الكثافة الحقلية عبر مختبر معتمد وتُصدَر الشهادات ضمن وثائق التسليم، وهي ما تطلبه الجهة المختصة والاستشاري عند التفتيش."
+				q: "هل تقدّمون كشوف المناسيب وشهادات الدمك؟",
+				a: "نعم. تُصدَر كشوف المناسيب الشبكية واختبارات الكثافة الحقلية عبر مختبر معتمد ضمن وثائق التسليم، وهي ما يطلبه الاستشاري والجهة المختصة عند التفتيش."
 			},
 			{
-				q: "هل يمكنكم الدمك في الأماكن الضيقة وحول الخدمات؟",
-				a: "نعم. تُستخدم مداحل الخنادق وصفائح الدمك حيث لا تصل المدحلة الكاملة أو حيث قد تُلحق ضرراً بخدمة قائمة، مع دمك طبقة الفرش والغلاف يدوياً قبل نقل الدمك الآلي إلى ما فوقها."
+				q: "هل يمكنكم تسوية ودمك موقع سبق أن ردمه مقاول آخر؟",
+				a: "نعم، لكننا نمسح السطح القائم ونختبره أولاً. فإذا لم يكن الردم أسفله قد وُضع على طبقات مُختبَرة، فإن تشذيب سطحه ودحله يخفي المشكلة فقط — وسنقول ذلك ونُسعّر التصحيح بدل تجميل الوضع."
 			}
 		]
 	},
@@ -2248,15 +2187,10 @@ var categoriesAr = {
 				keyword: "مقاول قطع وردم",
 				text: "عمليات قطع وردم متوازنة تصل بالموقع إلى المناسيب التصميمية مع إبقاء المواد في الموقع حيثما كانت صالحة. تُنفَّذ بضبط مساحي وتوجيه آلي، فتنخفض تكاليف النقل والاستيراد والطرح دون فقدان المقطع التصميمي."
 			},
-			leveling: {
-				name: "التسوية والتمهيد",
-				keyword: "مقاول تسوية أراضي",
-				text: "تمهيد وتسوية دقيقة حتى المناسيب والميول التصميمية، سواء كان المطلوب منسوب تأسيس لطريق أو منصة بلاطة أو ساحة أو منطقة تخزين. وتحافظ المسوّيات وشفرات التوجيه بالأقمار الاصطناعية على السماحية عبر مساحات واسعة."
-			},
-			compaction: {
-				name: "الدمك",
-				keyword: "مقاول أعمال دمك",
-				text: "دمك طبقة بطبقة بالمدحلة المناسبة لنوع المادة — هزّازة أسطوانية ملساء أو ذات أقدام أو صفيحة في الأماكن الضيقة — مدعوماً باختبارات الكثافة الحقلية وشهادات دمك تفي باعتماد الاستشاري والجهة المختصة."
+			"leveling-and-compaction": {
+				name: "التسوية والدمك",
+				keyword: "مقاول تسوية ودمك",
+				text: "تسوية دقيقة حتى المناسيب والميول التصميمية، ثم دمك طبقة بطبقة بالمدحلة المناسبة لنوع المادة — مدعوماً باختبارات الكثافة الحقلية وشهادات دمك تفي باعتماد الاستشاري والجهة المختصة."
 			}
 		}
 	},
@@ -2448,16 +2382,10 @@ var CATEGORIES = [
 				text: "Balanced cut-and-fill operations that bring a site to design levels while keeping material on site wherever it is suitable. Survey-controlled with machine guidance, so haulage, import and disposal costs are cut without losing the design profile."
 			},
 			{
-				slug: "leveling",
-				name: "Leveling & Grading",
-				keyword: "land leveling contractor",
-				text: "Grading and fine levelling to design elevations and falls, whether that is a formation level for a road, a slab platform, a yard or a laydown area. Graders and GPS-guided blades hold tolerance across large areas."
-			},
-			{
-				slug: "compaction",
-				name: "Compaction",
-				keyword: "compaction works contractor",
-				text: "Layer-by-layer compaction with the right roller for the material — vibratory smooth drum, padfoot or plate in confined areas — supported by field density testing and compaction certificates that satisfy consultant and authority sign-off."
+				slug: "leveling-and-compaction",
+				name: "Leveling & Compaction",
+				keyword: "leveling and compaction contractor",
+				text: "Fine levelling to design elevations and falls, then layer-by-layer compaction with the right roller for the material — supported by field density testing and compaction certificates that satisfy consultant and authority sign-off."
 			}
 		]
 	},
@@ -5356,28 +5284,34 @@ function ServiceDetail({ category, service }) {
 						})
 					})]
 				}), /* @__PURE__ */ jsx("div", {
-					className: "loc-grid",
+					className: "svc-card-grid",
 					children: siblings.map((s, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsxs(Link, {
 							to: href(`/services/${category.slug}/${s.slug}`),
-							className: "loc-card",
+							className: "svc-card",
 							children: [
 								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-name",
-									children: s.name
-								}),
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-meta",
-									children: s.lead
+									className: "svc-card-media",
+									children: /* @__PURE__ */ jsx("img", {
+										src: asset(s.img),
+										alt: s.name,
+										loading: "lazy"
+									})
 								}),
 								/* @__PURE__ */ jsxs("span", {
-									className: "text-link",
-									children: [
-										t("cta.view"),
-										" ",
-										/* @__PURE__ */ jsx(Arrow, {})
-									]
+									className: "svc-card-body",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "svc-card-name",
+										children: s.name
+									}), /* @__PURE__ */ jsx("span", {
+										className: "svc-card-text",
+										children: s.text
+									})]
+								}),
+								/* @__PURE__ */ jsx("span", {
+									className: "svc-card-arrow",
+									children: /* @__PURE__ */ jsx(Arrow, {})
 								})
 							]
 						})

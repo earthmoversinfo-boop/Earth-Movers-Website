@@ -1,8 +1,8 @@
 /* ===========================================================================
    Earth Movers International — design system
    Editorial minimalism in the Operon mould: white ground, black and grey,
-   one gold accent. Sharp corners, hairline rules, letterspaced caps, flat
-   photo cards. No shadows, no rounding — precision over decoration.
+   one gold accent. Rounded corners, hairline rules, letterspaced caps and
+   photo-led cards that lift on hover.
    =========================================================================== */
 
 :root {
@@ -1898,6 +1898,7 @@ h1, h2, h3, h4 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.28);
   transition: background 0.24s ease, border-color 0.24s ease, transform 0.24s ease,
     box-shadow 0.24s ease;
 }
@@ -1971,3 +1972,97 @@ h1, h2, h3, h4 {
 @media (max-width: 1080px) { .em-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 800px) { .em-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .em-grid { grid-template-columns: 1fr; } }
+
+/* ===========================================================================
+   Related-service cards
+   The related services were the same plain white boxes as the emirates, each
+   ending in a "View" the whole card already was. They carry the service's own
+   photograph now — the images already exist, one per service — which is what
+   puts colour on the section, and the descriptions sit at a common height so
+   the row does not go ragged when one runs longer than the rest.
+   =========================================================================== */
+
+.svc-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.4rem);
+  align-items: stretch;
+}
+
+.svc-card-grid > .reveal { display: flex; }
+
+.svc-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.28);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.svc-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -20px rgba(19, 20, 23, 0.5);
+}
+
+.svc-card-media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--paper); }
+
+.svc-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.svc-card:hover .svc-card-media img { transform: scale(1.05); }
+
+.svc-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.05rem 1.1rem 0.4rem;
+  flex: 1;
+}
+
+.svc-card-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.24s ease;
+}
+
+.svc-card:hover .svc-card-name { color: var(--accent-deep); }
+
+.svc-card-text {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--body-c);
+  /* four lines keeps every card the same shape whatever the copy does */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.svc-card-arrow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.1rem 1rem;
+  color: var(--muted);
+  transition: color 0.24s ease, transform 0.24s ease;
+}
+
+.svc-card:hover .svc-card-arrow { color: var(--accent-deep); transform: translateX(3px); }
+[dir='rtl'] .svc-card:hover .svc-card-arrow { transform: scaleX(-1) translateX(3px); }
+[dir='rtl'] .svc-card-arrow { justify-content: flex-start; }
+
+@media (max-width: 1080px) { .svc-card-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .svc-card-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .svc-card-grid { grid-template-columns: 1fr; } }

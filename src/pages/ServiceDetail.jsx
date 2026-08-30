@@ -189,13 +189,18 @@ export default function ServiceDetail({ category, service }) {
               </Link>
             </Reveal>
           </div>
-          <div className="loc-grid">
+          <div className="svc-card-grid">
             {siblings.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 4) * 60}>
-                <Link to={href(`/services/${category.slug}/${s.slug}`)} className="loc-card">
-                  <span className="loc-card-name">{s.name}</span>
-                  <span className="loc-card-meta">{s.lead}</span>
-                  <span className="text-link">{t('cta.view')} <Arrow /></span>
+                <Link to={href(`/services/${category.slug}/${s.slug}`)} className="svc-card">
+                  <span className="svc-card-media">
+                    <img src={asset(s.img)} alt={s.name} loading="lazy" />
+                  </span>
+                  <span className="svc-card-body">
+                    <span className="svc-card-name">{s.name}</span>
+                    <span className="svc-card-text">{s.text}</span>
+                  </span>
+                  <span className="svc-card-arrow"><Arrow /></span>
                 </Link>
               </Reveal>
             ))}

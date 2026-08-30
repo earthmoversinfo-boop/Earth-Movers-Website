@@ -34,8 +34,7 @@ PLAN = {
     'excavation':                  ('public/images/svc-earth-works.jpg', (0.18, 0.10, 0.95, 1.00)),
     'back-filling':                (f'{L}/operator-backhoe.jpg',         (0.00, 0.00, 1.00, 1.00)),
     'cut-and-fill':                ('1.jpg',                             (0.10, 0.10, 0.90, 1.00)),
-    'leveling':                    ('public/images/hero-slide-1.jpg',    (0.30, 0.00, 1.00, 1.00)),
-    'compaction':                  ('public/images/hero-slide-3.jpg',    (0.28, 0.00, 1.00, 1.00)),
+    'leveling-and-compaction':     ('public/images/hero-slide-1.jpg',    (0.24, 0.00, 1.00, 1.00)),
 
     # Road Works
     'access-roads':                ('public/images/hero-slide-1.jpg',    (0.00, 0.00, 0.62, 1.00)),
@@ -68,8 +67,7 @@ TALL = {
     'excavation':                  (0.30, 0.00, 0.85, 1.00),
     'back-filling':                (0.18, 0.00, 0.92, 1.00),
     'cut-and-fill':                (0.28, 0.05, 0.86, 1.00),
-    'leveling':                    (0.02, 0.06, 0.42, 1.00),
-    'compaction':                  (0.46, 0.00, 1.00, 1.00),
+    'leveling-and-compaction':     (0.02, 0.06, 0.42, 1.00),
     'access-roads':                (0.06, 0.00, 0.55, 1.00),
     'road-base-laying':            (0.10, 0.00, 0.80, 1.00),
     'asphalt-works':               (0.44, 0.00, 1.00, 1.00),

@@ -146,86 +146,47 @@ export const serviceContent = {
     ],
   },
 
-  leveling: {
-    img: '/images/services/leveling.jpg',
-    h1: 'Land Levelling & Grading Contractor in the UAE',
-    lead: 'Grading and fine levelling to design elevations and falls — formation levels, slab platforms, yards and laydown areas.',
-    caption: 'Motor graders trimming a formation to design level and crossfall.',
+  'leveling-and-compaction': {
+    img: '/images/services/leveling-and-compaction.jpg',
+    h1: 'Leveling & Compaction Contractor in the UAE',
+    lead: 'Fine levelling to design elevations and falls, then compaction in tested layers — the two operations that decide whether what goes on top holds.',
+    caption: 'Motor graders trimming a formation to level before the rollers close it.',
     intro:
-      'Levelling and grading is the last earthworks operation before something permanent is built on top, which is why tolerance matters more here than anywhere else in the sequence. A formation that is out by a few centimetres is paid for again in extra base, extra asphalt or extra blinding.',
+      'Levelling and compaction are the last earthworks operations before something permanent is built on top, and they only work as a pair. A surface trimmed to perfect tolerance over a platform that was never brought to density will settle anyway; a well-compacted platform at the wrong level is paid for again in extra base, extra asphalt or extra blinding.',
     body: [
       'Motor graders with GPS-guided blades hold the design surface across large areas, with survey checks taken on a grid rather than at a handful of convenient points. Falls are set to the drainage design so water leaves the platform where the drawings say it should — a yard that ponds is a levelling failure, not a drainage one.',
-      'We grade to formation level for roads and pavements, to platform level for slabs and buildings, and to finished level for open yards, laydown areas and hardstandings. Where the surface will carry traffic before construction starts, the graded formation is compacted and sealed so it survives site traffic rather than rutting in the first week.',
+      'The roller then has to suit the material: vibratory smooth drums for granular fill and sub-base, padfoot rollers for cohesive material, plate compactors and trench rollers in confined areas and around services. Layer thickness is controlled to what the plant can genuinely compact rather than what is quick to spread, and moisture is brought to optimum with bowsers before rolling starts.',
+      'We work to formation level for roads and pavements, to platform level for slabs and buildings, and to finished level for open yards, laydown areas and hardstandings. Field density tests are taken layer by layer and issued as compaction records with the handover pack; where a layer fails it is reworked and retested rather than covered — a habit that costs an afternoon and saves a rebuild.',
     ],
     scope: [
-      'Grading to formation level for roads, pavements and hardstandings',
-      'Fine levelling of slab and building platforms to design elevation',
+      'Grading and fine levelling to formation, platform and finished levels',
       'Setting falls and crossfalls to the drainage design',
-      'Trimming, boxing out and profiling of yards and laydown areas',
-      'GPS and machine-guided blade control on open areas',
-      'Grid-based survey checks with recorded level sheets',
-      'Compaction and sealing of the graded surface against site traffic',
-    ],
-    specs: [
-      ['Plant', 'Motor graders with blade control, vibratory rollers, tracked and wheeled excavators, water bowsers'],
-      ['Typical use', 'Road formation, slab platforms, industrial yards, laydown and storage areas, car park sub-grade'],
-      ['Control', 'Total station and GPS survey, grid level sheets, tolerance checks before sign-off'],
-      ['Coverage', 'All seven emirates, mobilised from Dubai'],
-    ],
-    faqs: [
-      {
-        q: 'What tolerance do you work to on levelling?',
-        a: 'To the tolerance stated in the specification for the layer concerned — formation, sub-base and finished surfaces each carry a different allowance. Levels are checked on a survey grid and recorded, so the sign-off is based on evidence rather than a walk-round.',
-      },
-      {
-        q: 'Can you level a site that has already been filled by someone else?',
-        a: 'Yes, though we survey the existing surface first. If the fill underneath was not placed in tested layers, grading the top of it only hides the problem — we will say so and price the correction rather than paper over it.',
-      },
-      {
-        q: 'Do you set the falls for drainage?',
-        a: 'Yes. Crossfalls and longitudinal falls are set to the drainage design and checked before the surface is signed off, so the platform sheds water to the gullies and channels instead of ponding in the middle.',
-      },
-    ],
-  },
-
-  compaction: {
-    img: '/images/services/compaction.jpg',
-    h1: 'Compaction Works Contractor in the UAE',
-    lead: 'Layer-by-layer compaction with the right roller for the material, backed by field density testing and compaction certificates.',
-    caption: 'Vibratory roller closing a formation before the base goes down.',
-    intro:
-      'Compaction is the part of earthworks that is invisible once it is finished and expensive when it is wrong. Everything above it — base, asphalt, slabs, kerbs — depends on a platform that has been brought to the specified density in controlled layers, with results that a consultant will actually accept.',
-    body: [
-      'The roller has to suit the material. Vibratory smooth drums for granular fill and sub-base, padfoot rollers for cohesive material, plate compactors and trench rollers in confined areas and around services. Layer thickness is controlled to what the plant can genuinely compact rather than what is quick to spread, and moisture is brought to optimum with bowsers before rolling starts.',
-      'Field density tests are taken layer by layer and issued as compaction records with the handover pack. Where a layer fails, it is reworked and retested rather than covered — a habit that costs an afternoon and saves a rebuild.',
-    ],
-    scope: [
+      'GPS and machine-guided blade control across open areas',
       'Compaction of fill, sub-grade and sub-base in controlled layers',
-      'Selection of roller type to suit granular or cohesive material',
+      'Roller selection to suit granular or cohesive material',
       'Moisture conditioning to optimum content with water bowsers',
       'Confined-area compaction with plate compactors and trench rollers',
-      'Proof rolling of formation before base or paving',
-      'Field density testing layer by layer, with rework where a layer fails',
-      'Compaction certificates and records for consultant and authority sign-off',
+      'Grid survey level sheets, field density testing and proof rolling',
+      'Compaction certificates for consultant and authority sign-off',
     ],
     specs: [
-      ['Plant', 'Single and tandem vibratory rollers, padfoot rollers, pneumatic tyred rollers, plate compactors, water bowsers'],
-      ['Typical use', 'Road formation and sub-base, structural fill, trench reinstatement, yard and platform sub-grade'],
-      ['Control', 'Layer thickness control, moisture control, field density testing, compaction certificates'],
+      ['Plant', 'Motor graders with blade control, single and tandem vibratory rollers, padfoot and pneumatic tyred rollers, plate compactors, water bowsers'],
+      ['Typical use', 'Road formation and sub-base, slab platforms, industrial yards, laydown and storage areas, car park sub-grade'],
+      ['Control', 'Total station and GPS survey, grid level sheets, layer thickness and moisture control, field density testing, compaction certificates'],
       ['Coverage', 'All seven emirates, mobilised from Dubai'],
     ],
     faqs: [
       {
-        q: 'What density do you compact to?',
-        a: 'To the percentage of maximum dry density stated in the project specification for that layer — typically higher for sub-base under a road than for general fill. The target is agreed before work starts and tested as the layers go in.',
+        q: 'What tolerance and density do you work to?',
+        a: 'Both come from the project specification for the layer concerned — formation, sub-base and finished surfaces each carry their own level tolerance, and density is a stated percentage of maximum dry density, typically higher under a road than for general fill. Levels are checked on a survey grid and density is tested as the layers go in, so sign-off rests on records rather than a walk-round.',
       },
       {
-        q: 'Do you supply compaction test certificates?',
-        a: 'Yes. Field density testing is carried out through an approved laboratory and the certificates are issued as part of the handover documentation, which is what the consultant and the authority ask for at inspection.',
+        q: 'Do you supply level sheets and compaction certificates?',
+        a: 'Yes. Grid level sheets and field density testing through an approved laboratory are both issued as part of the handover documentation, which is what the consultant and the authority ask for at inspection.',
       },
       {
-        q: 'Can you compact in confined areas and around services?',
-        a: 'Yes. Trench rollers and plate compactors are used where a full-size roller cannot reach or would risk damaging a service, with the bedding and surround compacted by hand before machine compaction is taken over the top.',
+        q: 'Can you level and compact a site someone else has already filled?',
+        a: 'Yes, though we survey and test the existing surface first. If the fill underneath was not placed in tested layers, trimming and rolling the top of it only hides the problem — we will say so and price the correction rather than paper over it.',
       },
     ],
   },
