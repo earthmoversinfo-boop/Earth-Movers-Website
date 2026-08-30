@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import useLocale from '../i18n/useLocale.js'
 
 export default function Breadcrumbs({ items }) {
+  const { href } = useLocale()
   return (
     <nav className="crumbs" aria-label="Breadcrumb">
       {items.map((it, i) => (
@@ -9,7 +11,7 @@ export default function Breadcrumbs({ items }) {
           {i === items.length - 1 ? (
             <span aria-current="page">{it.name}</span>
           ) : (
-            <Link to={it.path}>{it.name}</Link>
+            <Link to={href(it.path)}>{it.name}</Link>
           )}
         </span>
       ))}

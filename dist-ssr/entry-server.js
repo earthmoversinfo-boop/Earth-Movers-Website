@@ -54,227 +54,426 @@ function Arrow({ className }) {
 	});
 }
 //#endregion
-//#region src/data/content.js
-var company = {
-	name: "Earth Movers International",
-	legalName: "Earth Movers International Prime Contracting L.L.C",
-	short: "EMI",
-	tagline: "Earthworks & Road Construction — Dubai, UAE",
-	phone: "+971 55 172 7024",
-	phoneHref: "tel:+971551727024",
-	email: "Earthmoversinfo@gmail.com",
-	address: [
-		"Capital Golden Tower",
-		"Office 706, 7th Floor",
-		"Business Bay, Dubai, UAE"
-	],
-	mapQuery: "Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai",
-	mapsLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai"),
-	coordinates: "25.1857° N, 55.2766° E",
-	founded: 1990,
-	inUAE: 2005,
-	social: {
-		facebook: "https://www.facebook.com/earthmoversint/",
-		linkedin: "https://www.linkedin.com/company/earth-movers-international"
+//#region src/i18n/locale.js
+var LOCALES = ["en", "ar"];
+var LOCALE_META = {
+	en: {
+		code: "en",
+		htmlLang: "en",
+		hreflang: "en-AE",
+		dir: "ltr",
+		name: "English",
+		short: "EN"
+	},
+	ar: {
+		code: "ar",
+		htmlLang: "ar",
+		hreflang: "ar-AE",
+		dir: "rtl",
+		name: "العربية",
+		short: "ع"
 	}
 };
-var images = {
-	hero: "/images/hero.jpg",
-	fleet: "/images/fleet.jpg",
-	about: "/images/about.jpg",
-	projects: [
-		"/images/project-fujairah.jpg",
-		"/images/project-municipality.jpg",
-		"/images/project-nakheel.jpg"
-	],
-	banners: {
-		about: "/images/banner-about.jpg",
-		services: "/images/banner-services.jpg",
-		projects: "/images/banner-projects.jpg",
-		contact: "/images/banner-contact.jpg"
+var trimTrailing = (p) => p.replace(/\/+$/, "") || "/";
+function splitLocale(pathname) {
+	const path = trimTrailing(pathname || "/");
+	const m = path.match(/^\/(ar)(\/.*)?$/);
+	if (m) return {
+		locale: m[1],
+		base: trimTrailing(m[2] || "/")
+	};
+	return {
+		locale: "en",
+		base: path
+	};
+}
+function localeHref(base, locale = "en") {
+	const path = trimTrailing(base);
+	if (locale === "en") return path;
+	return path === "/" ? `/${locale}` : `/${locale}${path}`;
+}
+function alternatesFor(base) {
+	return LOCALES.map((locale) => ({
+		locale,
+		path: localeHref(base, locale)
+	}));
+}
+//#endregion
+//#region src/i18n/ui.js
+var UI = {
+	en: {
+		"nav.home": "Home",
+		"nav.about": "About Us",
+		"nav.services": "Services",
+		"nav.projects": "Projects",
+		"nav.contact": "Contact",
+		"nav.quote": "Get a Quote",
+		"nav.primary": "Primary",
+		"nav.openMenu": "Open menu",
+		"nav.closeMenu": "Close menu",
+		"nav.homeAria": "Earth Movers International — home",
+		"nav.language": "Language",
+		"nav.switchTo": "العربية",
+		"cov.all": "all 7 emirates",
+		"cov.dubai": "Dubai",
+		"cov.allLong": "all seven emirates",
+		"cov.whereAll": "the UAE",
+		"cov.availableAll": "Available in all 7 emirates",
+		"cov.availableDubai": "Available in Dubai",
+		"cov.availableIn": "Available in {where}",
+		"crumb.home": "Home",
+		"crumb.services": "Services",
+		"cta.quote": "Request a quote",
+		"cta.proposal": "Request a proposal",
+		"cta.start": "Start a project",
+		"cta.explore": "Explore",
+		"cta.view": "View",
+		"cta.readMore": "Read more",
+		"lbl.overview": "Overview",
+		"lbl.scope": "Scope",
+		"lbl.glance": "At a glance",
+		"lbl.whereWeWork": "Where we work",
+		"lbl.faq": "Common questions",
+		"lbl.related": "Related services",
+		"lbl.included": "What’s included",
+		"lbl.services": "Services",
+		"lbl.exploreMore": "Explore more",
+		"lbl.otherServices": "Other services",
+		"lbl.localCoverage": "Local coverage",
+		"lbl.otherEmirates": "Other emirates",
+		"svc.detailLink": "{name} in detail",
+		"svc.moreOn": "More on {name}",
+		"svc.covers": "What our {name} package covers.",
+		"svc.acrossWhere": "{name} across {where}.",
+		"svc.withOwnFleet": "{name} in {where}, delivered with our own fleet.",
+		"svc.faqHeading": "{name} — FAQs",
+		"svc.chooseEmirate": "We deliver {name} as part of our {category} package. Choose your emirate for local coverage and the approving authority.",
+		"svc.chooseEmirateCategory": "Choose your emirate for local coverage, approving authority and the areas we operate in.",
+		"svc.allOf": "All {category}",
+		"svc.priceQ": "How do I get a price for {name}?",
+		"svc.priceA": "Send drawings, a bill of quantities or a description of the scope to {email}, or call {phone}. Where it helps, we walk the ground with you before pricing.",
+		"svc.needPriced": "Need {name} priced?",
+		"svc.ctaText": "Send your drawings or bill of quantities and we’ll come back with a clear, realistic price.",
+		"svc.otherIn": "Other {category} services",
+		"loc.inEmirate": "{name} in {emirate}",
+		"loc.deliveredIn": "{category} in {emirate}, delivered with our own fleet.",
+		"loc.whatWeDeliver": "What we deliver in {emirate}.",
+		"loc.ourServices": "Our {category} services",
+		"loc.areasWeCover": "Areas we cover in {emirate}:",
+		"loc.areasTail": "Whether the scope is a single plot or a multi-phase infrastructure package, the same plant, operators and supervision deliver it.",
+		"loc.elsewhere": "{category} elsewhere in the UAE",
+		"loc.ctaTitle": "{category} in {emirate}?",
+		"loc.ctaText": "Tell us about the site and scope — we’ll price the real work and mobilise from Dubai.",
+		"loc.q1": "Do you carry out {category} in {emirate}?",
+		"loc.a1": "Yes. We deliver {category} across {emirate}, including {areas}, working to {authority} standards with our own excavators, dozers, graders and rollers.",
+		"loc.q2": "Are you an approved contractor for works in {emirate}?",
+		"loc.a2": "We are an RTA-approved contractor and work to the requirements of {authority}. Method statements, permits and material approvals are prepared and submitted by our own team.",
+		"loc.q3": "How do I get a price for {service} in {emirate}?",
+		"loc.q4": "How quickly can you mobilise to {emirate}?",
+		"loc.a4": "Because the fleet is owned rather than hired, mobilisation is a scheduling question rather than an availability one — typically within days of approval.",
+		"foot.company": "Company",
+		"foot.areas": "Areas We Serve",
+		"foot.contact": "Contact",
+		"foot.directions": "Get directions",
+		"foot.rights": "All rights reserved.",
+		"foot.blurb": "Founded in Montreal in {founded}, in Dubai since {inUAE}. An RTA-approved earthworks and road construction contractor serving infrastructure, commercial and industrial projects across the UAE.",
+		"foot.certRta": "RTA Approved",
+		"foot.certDm": "Dubai Municipality",
+		"foot.certSince": "Since 1990",
+		"foot.place": "Dubai, UAE",
+		"seo.brand": "Earth Movers International",
+		"seo.homeTitle": "RTA-Approved Road & Earthworks Contractor in Dubai | {brand}",
+		"seo.homeDesc": "Earth Movers International is an RTA-approved road and earthworks contractor in Dubai, UAE. Excavation, road construction, asphalt works, traffic management and utilities across all seven emirates since 1990.",
+		"seo.aboutTitle": "About Us — Earthworks & Road Contractor Since 1990 | {brand}",
+		"seo.aboutDesc": "Founded in Montreal in 1990 and established in Dubai since 2005, Earth Movers International delivers earthworks, road construction and heavy equipment services across the UAE.",
+		"seo.projectsTitle": "Projects — Road & Earthworks Case Studies in the UAE | {brand}",
+		"seo.projectsDesc": "Selected road, earthworks and marine projects delivered for Fujairah Cement Industry, Dubai Municipality and Nakheel PJSC across the UAE.",
+		"seo.contactTitle": "Contact — Request a Quote | {brand}, Dubai",
+		"seo.contactDesc": "Contact Earth Movers International in Business Bay, Dubai. Call {phone} or send your scope and drawings for a priced proposal.",
+		"seo.servicesTitle": "Services — Earth Works, Road Works, Traffic Management & Utilities | {brand}",
+		"seo.servicesDesc": "Earthworks, road works, traffic management and utilities across the UAE. Excavation, asphalt, access roads, RTA permits, entry-exit works and service protection from an RTA-approved contractor.",
+		"seo.categoryH1": "{category} Contractor in {where}",
+		"seo.categoryTitle": "{category} Contractor in {where} — {first} & More | {brand}",
+		"seo.categoryDesc": "{category} services across {where}: {list}. RTA-approved contractor with its own fleet, operating in {emirates}.",
+		"seo.locationTitle": "{category} Contractor in {emirate} — {lead} | {brand}",
+		"seo.locationDesc": "{category} in {emirate}: {list}. Approved contractor working to {authority} standards, with our own plant and operators.",
+		"seo.serviceTitle": "{h1} | {brand}",
+		"seo.serviceDesc": "{lead} {brand} is an RTA-approved contractor delivering {service} across {emirates}.",
+		"seo.notFoundTitle": "Page Not Found | {brand}",
+		"seo.notFoundDesc": "The page you are looking for does not exist.",
+		"home.heroAria": "Earth Movers International highlights",
+		"home.slidesAria": "Hero slides",
+		"home.slideN": "Slide {n}",
+		"home.exploreProjects": "Explore our projects",
+		"home.certRow": "Certifications & registrations",
+		"home.workEyebrow": "Our Work",
+		"home.workTitle": "The projects that tell our story.",
+		"home.allProjects": "All projects",
+		"home.promiseEyebrow": "Our Promise",
+		"home.promise": "We move the earth, we build the roads, and we earn the trust of every client we serve — ",
+		"home.promiseEm": "every single day.",
+		"home.whatEyebrow": "What We Do",
+		"home.whatTitle": "Four disciplines. One accountable partner.",
+		"home.whatLead": "Earth works, road works, traffic management and utilities — delivered with our own fleet, our own operators and RTA-approved processes.",
+		"home.plusServices": "plus {n} services",
+		"home.fleetEyebrow": "The Fleet",
+		"home.fleetTitle": "One of the largest heavy-excavation fleets in Dubai.",
+		"home.fleetLead": "Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine.",
+		"home.rentEquipment": "Rent equipment",
+		"home.fleetCaption": "Fleet operations — Dubai",
+		"home.fleetOperated": "Operated · 24/7",
+		"home.fleetAlt": "Wheel loader working sand stockpiles",
+		"home.marquee": "Trusted across the UAE",
+		"home.ctaText": "Tell us about your site and scope — we’ll walk the ground with you and price the real work.",
+		"about.eyebrow": "About Us",
+		"about.title": "Three decades of moving ground.",
+		"about.lead": "From Montreal in {founded} to Dubai since {inUAE} — a contractor built around heavy machines, experienced hands and ground that gets handed over right.",
+		"about.storyEyebrow": "The story",
+		"about.storyTitle": "Who we are",
+		"about.story1": "Earth Movers International is a dynamic and preferred solution provider in the fields of civil and heavy construction, engineering, oil & gas, recycling and demolition.",
+		"about.story2": "Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, heavy equipment, material supply, transportation and logistics. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor.",
+		"about.story3": "We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, piling rigs, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.",
+		"about.photoAlt": "Earth Movers International team and machinery at work",
+		"about.milestones": "Milestones",
+		"about.milestonesTitle": "The road so far.",
+		"about.directionEyebrow": "Direction",
+		"about.directionTitle": "Mission & vision",
+		"about.vision": "Our vision is to make Earth Movers International a global brand in the field of earth works, heavy construction equipment and services.",
+		"about.mission": "Our mission is simpler still: deliver practical, build-ready ground — safely, on programme and to specification — so every client can build with confidence on what we hand over.",
+		"about.valuesEyebrow": "Values",
+		"about.valuesTitle": "Ground rules.",
+		"about.seeServices": "See our services",
+		"about.ctaTitle": "Build on solid ground.",
+		"about.ctaText": "Talk to the team that has been moving the earth since 1990.",
+		"proj.eyebrow": "Projects",
+		"proj.title": "Selected work across the UAE.",
+		"proj.lead": "From public authorities to private clients — a track record built on safety, quality and client satisfaction.",
+		"proj.all": "All",
+		"proj.year": "Year",
+		"proj.value": "Value",
+		"proj.delivered": "Delivered",
+		"proj.whereEyebrow": "Where We Work",
+		"proj.whereTitle": "Sectors we serve.",
+		"proj.galleryEyebrow": "Site Gallery",
+		"proj.galleryTitle": "The places behind our work.",
+		"proj.ctaTitle": "Your project, next on this page.",
+		"proj.ctaText": "From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery.",
+		"ct.eyebrow": "Contact",
+		"ct.title": "Let’s walk your site.",
+		"ct.lead": "Call, write or drop by — tell us about your scope and we’ll come back with a clear plan and an honest price.",
+		"ct.phone": "Phone",
+		"ct.email": "Email",
+		"ct.office": "Office",
+		"ct.hours": "Hours",
+		"ct.hoursValue": "Monday – Saturday, 8:00 – 18:00",
+		"ct.hoursSite": "Site operations: 24/7",
+		"ct.name": "Name",
+		"ct.namePlaceholder": "Your name",
+		"ct.phonePlaceholder": "+971 …",
+		"ct.emailPlaceholder": "you@company.com",
+		"ct.interest": "Services of interest",
+		"ct.details": "Project details",
+		"ct.detailsPlaceholder": "Location, scope, timeline — whatever you have so far.",
+		"ct.send": "Send enquiry",
+		"ct.note": "Submitting opens your email app with the enquiry addressed to {email}.",
+		"ct.subject": "Enquiry: {picked} — {name}",
+		"ct.general": "General",
+		"ct.mapTitle": "Earth Movers International — Capital Golden Tower, Business Bay, Dubai",
+		"nf.title": "This ground hasn’t been broken yet.",
+		"nf.text": "The page you’re looking for doesn’t exist — but the rest of the site does.",
+		"nf.back": "Back to home"
+	},
+	ar: {
+		"nav.home": "الرئيسية",
+		"nav.about": "من نحن",
+		"nav.services": "خدماتنا",
+		"nav.projects": "مشاريعنا",
+		"nav.contact": "اتصل بنا",
+		"nav.quote": "اطلب عرض سعر",
+		"nav.primary": "القائمة الرئيسية",
+		"nav.openMenu": "فتح القائمة",
+		"nav.closeMenu": "إغلاق القائمة",
+		"nav.homeAria": "إيرث موفرز إنترناشيونال — الصفحة الرئيسية",
+		"nav.language": "اللغة",
+		"nav.switchTo": "English",
+		"cov.all": "جميع إمارات الدولة السبع",
+		"cov.dubai": "دبي",
+		"cov.allLong": "إمارات الدولة السبع",
+		"cov.whereAll": "الإمارات",
+		"cov.availableAll": "متوفرة في جميع الإمارات السبع",
+		"cov.availableDubai": "متوفرة في دبي",
+		"cov.availableIn": "متوفرة في {where}",
+		"crumb.home": "الرئيسية",
+		"crumb.services": "الخدمات",
+		"cta.quote": "اطلب عرض سعر",
+		"cta.proposal": "اطلب عرضاً فنياً",
+		"cta.start": "ابدأ مشروعك",
+		"cta.explore": "استعرض",
+		"cta.view": "عرض",
+		"cta.readMore": "اقرأ المزيد",
+		"lbl.overview": "نظرة عامة",
+		"lbl.scope": "نطاق العمل",
+		"lbl.glance": "لمحة سريعة",
+		"lbl.whereWeWork": "أين نعمل",
+		"lbl.faq": "أسئلة متكررة",
+		"lbl.related": "خدمات ذات صلة",
+		"lbl.included": "ما الذي يشمله العمل",
+		"lbl.services": "الخدمات",
+		"lbl.exploreMore": "استعرض المزيد",
+		"lbl.otherServices": "خدمات أخرى",
+		"lbl.localCoverage": "التغطية المحلية",
+		"lbl.otherEmirates": "إمارات أخرى",
+		"svc.detailLink": "تفاصيل {name}",
+		"svc.moreOn": "المزيد عن {name}",
+		"svc.covers": "ما الذي تشمله حزمة {name} لدينا.",
+		"svc.acrossWhere": "{name} في {where}.",
+		"svc.withOwnFleet": "ننفذ {name} في {where} بمعداتنا وكوادرنا.",
+		"svc.faqHeading": "{name} — أسئلة متكررة",
+		"svc.chooseEmirate": "ننفذ {name} ضمن حزمة {category}. اختر إمارتك للاطلاع على التغطية المحلية والجهة المانحة للموافقات.",
+		"svc.chooseEmirateCategory": "اختر إمارتك للاطلاع على التغطية المحلية والجهة المانحة للموافقات والمناطق التي نعمل فيها.",
+		"svc.allOf": "كل {category}",
+		"svc.priceQ": "كيف أحصل على عرض سعر لأعمال {name}؟",
+		"svc.priceA": "أرسل المخططات أو جدول الكميات أو وصفاً لنطاق العمل إلى {email}، أو اتصل على {phone}. وعند الحاجة نعاين الموقع معك قبل التسعير.",
+		"svc.needPriced": "تحتاج تسعير أعمال {name}؟",
+		"svc.ctaText": "أرسل مخططاتك أو جدول الكميات وسنعود إليك بسعر واضح وواقعي.",
+		"svc.otherIn": "خدمات {category} الأخرى",
+		"loc.inEmirate": "{name} في {emirate}",
+		"loc.deliveredIn": "ننفذ {category} في {emirate} بمعداتنا وكوادرنا.",
+		"loc.whatWeDeliver": "ما ننفذه في {emirate}.",
+		"loc.ourServices": "خدمات {category} لدينا",
+		"loc.areasWeCover": "المناطق التي نغطيها في {emirate}:",
+		"loc.areasTail": "وسواء كان النطاق قطعة أرض واحدة أو حزمة بنية تحتية متعددة المراحل، فإن المعدات والمشغّلين والإشراف هم أنفسهم في الحالتين.",
+		"loc.elsewhere": "{category} في باقي إمارات الدولة",
+		"loc.ctaTitle": "هل تحتاج {category} في {emirate}؟",
+		"loc.ctaText": "أخبرنا عن الموقع ونطاق العمل — نُسعّر العمل الفعلي ونجهّز التعبئة من دبي.",
+		"loc.q1": "هل تنفذون {category} في {emirate}؟",
+		"loc.a1": "نعم. ننفذ {category} في مختلف أنحاء {emirate}، بما في ذلك {areas}، وفق اشتراطات {authority}، وبحفاراتنا وجرافاتنا ومسوّياتنا ومداحلنا الخاصة.",
+		"loc.q2": "هل أنتم مقاول معتمد للأعمال في {emirate}؟",
+		"loc.a2": "نحن مقاول معتمد لدى هيئة الطرق والمواصلات ونعمل وفق متطلبات {authority}. ويتولى فريقنا إعداد وتقديم بيانات الطرق والتصاريح واعتمادات المواد.",
+		"loc.q3": "كيف أحصل على سعر لأعمال {service} في {emirate}؟",
+		"loc.q4": "ما سرعة تعبئتكم إلى {emirate}؟",
+		"loc.a4": "لأن المعدات مملوكة لنا وليست مستأجرة، فإن التعبئة مسألة جدولة لا مسألة توفّر — وعادة خلال أيام من الاعتماد.",
+		"foot.company": "الشركة",
+		"foot.areas": "مناطق التغطية",
+		"foot.contact": "التواصل",
+		"foot.directions": "الاتجاهات على الخريطة",
+		"foot.rights": "جميع الحقوق محفوظة.",
+		"foot.blurb": "تأسست في مونتريال عام {founded}، وتعمل في دبي منذ عام {inUAE}. مقاول أعمال ترابية وإنشاء طرق معتمد لدى هيئة الطرق والمواصلات، ينفذ مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات.",
+		"foot.certRta": "معتمد من هيئة الطرق والمواصلات",
+		"foot.certDm": "بلدية دبي",
+		"foot.certSince": "منذ عام 1990",
+		"foot.place": "دبي، الإمارات",
+		"seo.brand": "إيرث موفرز إنترناشيونال",
+		"seo.homeTitle": "مقاول طرق وأعمال ترابية معتمد من هيئة الطرق والمواصلات في دبي | {brand}",
+		"seo.homeDesc": "إيرث موفرز إنترناشيونال مقاول طرق وأعمال ترابية معتمد لدى هيئة الطرق والمواصلات في دبي، الإمارات. حفريات وإنشاء طرق وأعمال أسفلت وإدارة مرور وأعمال مرافق في إمارات الدولة السبع منذ عام 1990.",
+		"seo.aboutTitle": "من نحن — مقاول أعمال ترابية وطرق منذ عام 1990 | {brand}",
+		"seo.aboutDesc": "تأسست في مونتريال عام 1990 وتعمل في دبي منذ 2005. تقدّم إيرث موفرز إنترناشيونال خدمات الأعمال الترابية وإنشاء الطرق والمعدات الثقيلة في مختلف أنحاء الإمارات.",
+		"seo.projectsTitle": "مشاريعنا — نماذج أعمال طرق وأعمال ترابية في الإمارات | {brand}",
+		"seo.projectsDesc": "مختارات من مشاريع الطرق والأعمال الترابية والبحرية المنفَّذة لشركة الفجيرة لصناعة الإسمنت وبلدية دبي ونخيل ش.م.ع في مختلف أنحاء الإمارات.",
+		"seo.contactTitle": "اتصل بنا — اطلب عرض سعر | {brand}، دبي",
+		"seo.contactDesc": "تواصل مع إيرث موفرز إنترناشيونال في الخليج التجاري بدبي. اتصل على {phone} أو أرسل نطاق العمل والمخططات للحصول على عرض سعر.",
+		"seo.servicesTitle": "خدماتنا — أعمال ترابية وطرق وإدارة مرور ومرافق | {brand}",
+		"seo.servicesDesc": "أعمال ترابية وأعمال طرق وإدارة مرور وأعمال مرافق في مختلف أنحاء الإمارات. حفريات وأسفلت وطرق وصول وتصاريح هيئة الطرق والمواصلات وأعمال مداخل ومخارج وحماية خدمات، من مقاول معتمد.",
+		"seo.categoryH1": "مقاول {category} في {where}",
+		"seo.categoryTitle": "مقاول {category} في {where} — {first} والمزيد | {brand}",
+		"seo.categoryDesc": "خدمات {category} في {where}: {list}. مقاول معتمد من هيئة الطرق والمواصلات بمعداته الخاصة، ويعمل في {emirates}.",
+		"seo.locationTitle": "مقاول {category} في {emirate} — {lead} | {brand}",
+		"seo.locationDesc": "{category} في {emirate}: {list}. مقاول معتمد يعمل وفق معايير {authority}، بمعداته ومشغّليه الخاصين.",
+		"seo.serviceTitle": "{h1} | {brand}",
+		"seo.serviceDesc": "{lead} {brand} مقاول معتمد ينفّذ {service} في {emirates}.",
+		"seo.notFoundTitle": "الصفحة غير موجودة | {brand}",
+		"seo.notFoundDesc": "الصفحة التي تبحث عنها غير موجودة.",
+		"home.heroAria": "أبرز أعمال إيرث موفرز إنترناشيونال",
+		"home.slidesAria": "شرائح الواجهة",
+		"home.slideN": "شريحة {n}",
+		"home.exploreProjects": "استعرض مشاريعنا",
+		"home.certRow": "الاعتمادات والتسجيلات",
+		"home.workEyebrow": "أعمالنا",
+		"home.workTitle": "المشاريع التي تروي قصتنا.",
+		"home.allProjects": "كل المشاريع",
+		"home.promiseEyebrow": "وعدنا",
+		"home.promise": "نحرّك التربة، ونبني الطرق، ونكسب ثقة كل عميل نعمل معه — ",
+		"home.promiseEm": "كل يوم دون استثناء.",
+		"home.whatEyebrow": "ما الذي نقدّمه",
+		"home.whatTitle": "أربعة تخصصات. شريك واحد مسؤول.",
+		"home.whatLead": "أعمال ترابية وأعمال طرق وإدارة مرور وأعمال مرافق — تُنفَّذ بمعداتنا ومشغّلينا ووفق إجراءات معتمدة من هيئة الطرق والمواصلات.",
+		"home.plusServices": "و{n} خدمات أخرى",
+		"home.fleetEyebrow": "الأسطول",
+		"home.fleetTitle": "أحد أكبر أساطيل الحفر الثقيل في دبي.",
+		"home.fleetLead": "حفارات وجرافات وحفارات خوازيق وكسّارات صخور — مملوكة لنا ونتولى صيانتها وتشغيلها. برنامجك الزمني لا ينتظر معدة.",
+		"home.rentEquipment": "استئجار المعدات",
+		"home.fleetCaption": "عمليات الأسطول — دبي",
+		"home.fleetOperated": "بمشغّلين · على مدار الساعة",
+		"home.fleetAlt": "لودر بعجل يعمل على أكوام الرمل",
+		"home.marquee": "موضع ثقة في مختلف أنحاء الإمارات",
+		"home.ctaText": "أخبرنا عن موقعك ونطاق العمل — نعاين الأرض معك ونُسعّر العمل الفعلي.",
+		"about.eyebrow": "من نحن",
+		"about.title": "ثلاثة عقود من تحريك الأرض.",
+		"about.lead": "من مونتريال عام {founded} إلى دبي منذ {inUAE} — مقاول قائم على معدات ثقيلة وأيدٍ خبيرة وأرض تُسلَّم كما ينبغي.",
+		"about.storyEyebrow": "الحكاية",
+		"about.storyTitle": "من نحن",
+		"about.story1": "إيرث موفرز إنترناشيونال مزوّد حلول نشط ومفضَّل في مجالات الإنشاءات المدنية والثقيلة والهندسة والنفط والغاز وإعادة التدوير والهدم.",
+		"about.story2": "تأسّس فريقنا لمواجهة التحديات التي يواجهها قطاع الإنشاءات في مجالات الأعمال الترابية والمعدات الثقيلة وتوريد المواد والنقل والخدمات اللوجستية. واليوم ندعم مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات، بصفتنا مقاول إنشاء طرق وأعمال ترابية مقرّه دبي.",
+		"about.story3": "نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات وحفارات خوازيق وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.",
+		"about.photoAlt": "فريق إيرث موفرز إنترناشيونال ومعداته أثناء العمل",
+		"about.milestones": "محطات",
+		"about.milestonesTitle": "الطريق حتى الآن.",
+		"about.directionEyebrow": "الاتجاه",
+		"about.directionTitle": "الرسالة والرؤية",
+		"about.vision": "رؤيتنا أن تصبح إيرث موفرز إنترناشيونال علامة عالمية في مجال الأعمال الترابية ومعدات وخدمات الإنشاءات الثقيلة.",
+		"about.mission": "ورسالتنا أبسط من ذلك: تسليم أرض عملية جاهزة للبناء — بأمان وفي موعدها ووفق المواصفات — ليبني كل عميل بثقة على ما نسلّمه.",
+		"about.valuesEyebrow": "قيمنا",
+		"about.valuesTitle": "قواعد راسخة.",
+		"about.seeServices": "اطّلع على خدماتنا",
+		"about.ctaTitle": "ابنِ على أرض صلبة.",
+		"about.ctaText": "تحدّث إلى الفريق الذي يحرّك الأرض منذ عام 1990.",
+		"proj.eyebrow": "مشاريعنا",
+		"proj.title": "مختارات من أعمالنا في الإمارات.",
+		"proj.lead": "من الجهات الحكومية إلى العملاء من القطاع الخاص — سجلّ مبني على السلامة والجودة ورضا العميل.",
+		"proj.all": "الكل",
+		"proj.year": "السنة",
+		"proj.value": "القيمة",
+		"proj.delivered": "مُسلَّم",
+		"proj.whereEyebrow": "أين نعمل",
+		"proj.whereTitle": "القطاعات التي نخدمها.",
+		"proj.galleryEyebrow": "معرض المواقع",
+		"proj.galleryTitle": "الأماكن التي تقف خلف أعمالنا.",
+		"proj.ctaTitle": "مشروعك، التالي على هذه الصفحة.",
+		"proj.ctaText": "من عمليات نقل بقيمة 0.3 مليون درهم إلى تجديد طرق بملايين الدراهم — كل نطاق يحصل على المستوى نفسه من التنفيذ.",
+		"ct.eyebrow": "تواصل معنا",
+		"ct.title": "لنعاين موقعك.",
+		"ct.lead": "اتصل أو راسلنا أو زُرنا — أخبرنا عن نطاق عملك ونعود إليك بخطة واضحة وسعر صادق.",
+		"ct.phone": "الهاتف",
+		"ct.email": "البريد الإلكتروني",
+		"ct.office": "المكتب",
+		"ct.hours": "ساعات العمل",
+		"ct.hoursValue": "الاثنين – السبت، 8:00 – 18:00",
+		"ct.hoursSite": "العمليات في المواقع: على مدار الساعة",
+		"ct.name": "الاسم",
+		"ct.namePlaceholder": "اسمك",
+		"ct.phonePlaceholder": "971+ …",
+		"ct.emailPlaceholder": "you@company.com",
+		"ct.interest": "الخدمات محل الاهتمام",
+		"ct.details": "تفاصيل المشروع",
+		"ct.detailsPlaceholder": "الموقع ونطاق العمل والجدول الزمني — أي معلومات متاحة لديك.",
+		"ct.send": "إرسال الطلب",
+		"ct.note": "الإرسال يفتح تطبيق البريد لديك والرسالة موجَّهة إلى {email}.",
+		"ct.subject": "طلب: {picked} — {name}",
+		"ct.general": "استفسار عام",
+		"ct.mapTitle": "إيرث موفرز إنترناشيونال — برج كابيتال الذهبي، الخليج التجاري، دبي",
+		"nf.title": "هذه الأرض لم تُفتح بعد.",
+		"nf.text": "الصفحة التي تبحث عنها غير موجودة — لكن بقية الموقع موجودة.",
+		"nf.back": "العودة إلى الرئيسية"
 	}
 };
-var heroSlides = [
-	{
-		img: "/images/hero-slide-1.jpg",
-		eyebrow: "Earth Movers International — Dubai, UAE",
-		titlePre: "No.1 RTA-Approved ",
-		titleGold: "Road Contractor",
-		titlePost: " in Dubai",
-		text: "We deliver reliable, high-quality road construction with advanced technology — your trusted partner for highways, access roads and infrastructure projects."
-	},
-	{
-		img: "/images/hero-slide-2.jpg",
-		eyebrow: "Building the ground the UAE rises from",
-		titlePre: "Earthworks, excavation and ",
-		titleGold: "heavy construction",
-		titlePost: ".",
-		text: "Infrastructure, commercial and industrial projects across the Emirates — founded in Montreal in 1990, in Dubai since 2005."
-	},
-	{
-		img: "/images/hero-slide-3.jpg",
-		eyebrow: "RTA-approved asphalt & road works",
-		titlePre: "Asphalt laid to ",
-		titleGold: "tight tolerances",
-		titlePost: ".",
-		text: "From sub-base to wearing course — compacted, tested and handed over ready for traffic."
-	}
-];
-var certifications = [
-	{
-		title: "RTA Approved",
-		text: "Roads & Transport Authority approved road contractor"
-	},
-	{
-		title: "Dubai Municipality",
-		text: "Aligned with municipality standards and permits"
-	},
-	{
-		title: "Since 1990",
-		text: "Founded in Montreal, in Dubai since 2005"
-	},
-	{
-		title: "HSE First",
-		text: "Method statements and permits on every lift"
-	}
-];
-var stats = [
-	{
-		value: 35,
-		suffix: "+",
-		label: "Years since founding",
-		note: "Montreal, 1990"
-	},
-	{
-		value: 20,
-		suffix: "+",
-		label: "Years in the UAE",
-		note: "Dubai, since 2005"
-	},
-	{
-		value: 17,
-		suffix: "",
-		label: "Service disciplines",
-		note: "Earthworks to asphalt"
-	},
-	{
-		value: 24,
-		suffix: "/7",
-		label: "Fleet availability",
-		note: "Across the Emirates"
-	}
-];
-var clients = [
-	"Nakheel PJSC",
-	"Dubai Municipality",
-	"Fujairah Cement Industry",
-	"RTA-Approved Contractor",
-	"Infrastructure · Commercial · Industrial"
-];
-var projects = [
-	{
-		client: "Fujairah Cement Industry",
-		location: "Dibba, Fujairah",
-		year: "2021",
-		value: "AED 1.8M",
-		sector: "Roads & Asphalt",
-		scope: "Removal of old asphalt, levelling, road base and sub-base, compaction, and new asphalt laying."
-	},
-	{
-		client: "Dubai Municipality",
-		location: "Dubai",
-		year: "2017",
-		value: "AED 0.3M",
-		sector: "Specialised Logistics",
-		scope: "Relocation of animals from Dubai Airport to the Safari — planned, permitted and executed without incident."
-	},
-	{
-		client: "Nakheel PJSC",
-		location: "Dubai",
-		year: "2015",
-		value: "AED 0.7M",
-		sector: "Marine Works",
-		scope: "Levelling of beach sand, placement of boulders, and compaction of the area."
-	}
-];
-var sectors = [
-	{
-		title: "Infrastructure",
-		text: "Roads, highways and utility corridors for public authorities."
-	},
-	{
-		title: "Commercial",
-		text: "Site preparation and enabling works for commercial developments."
-	},
-	{
-		title: "Industrial",
-		text: "Heavy earthworks for plants, cement works and logistics facilities."
-	},
-	{
-		title: "Oil & Gas",
-		text: "Trenching and pipeline works executed to sector standards."
-	},
-	{
-		title: "Marine & Coastal",
-		text: "Beach profiling, boulder placement and coastal protection."
-	},
-	{
-		title: "Residential",
-		text: "Land clearing and grading for master-planned communities."
-	}
-];
-var values = [
-	{
-		title: "Safety, first and always",
-		text: "Every method statement, every permit, every lift — planned so that people go home safe."
-	},
-	{
-		title: "Compliance built in",
-		text: "RTA-approved and aligned with municipality standards, so approvals never stall your programme."
-	},
-	{
-		title: "Fleet depth",
-		text: "One of the largest heavy-excavation fleets in Dubai means no waiting on machines."
-	},
-	{
-		title: "Straight dealing",
-		text: "Clear scope, honest pricing and communication you can plan around."
-	}
-];
-var fleet = [
-	"Excavators",
-	"Bulldozers",
-	"Wheel Loaders",
-	"Piling Rigs",
-	"Rock Breakers",
-	"Graders",
-	"Compactors",
-	"Cranes",
-	"Tippers & Trailers",
-	"TMA Units"
-];
-var timeline = [
-	{
-		year: "1990",
-		title: "Founded in Montreal, Canada",
-		text: "Earth Movers International begins as an earthworks and heavy-equipment contractor in Montreal."
-	},
-	{
-		year: "2005",
-		title: "Expansion to Dubai, UAE",
-		text: "EMI establishes its Dubai operation as the emirate accelerates into a global construction market."
-	},
-	{
-		year: "2015–2021",
-		title: "Landmark deliveries",
-		text: "Projects for Nakheel PJSC, Dubai Municipality and Fujairah Cement Industry cement EMI’s reputation across sectors."
-	},
-	{
-		year: "Today",
-		title: "RTA-approved, fleet-strong",
-		text: "A trusted road and earthworks contractor with one of the largest heavy-excavation fleets in Dubai."
-	}
-];
+function translator(locale) {
+	const table = UI[locale] || UI.en;
+	return (key, vars) => {
+		const raw = table[key] ?? UI.en[key] ?? key;
+		if (!vars) return raw;
+		return raw.replace(/\{(\w+)\}/g, (m, k) => k in vars ? String(vars[k]) : m);
+	};
+}
 //#endregion
 //#region src/data/service-content.js
 var serviceContent = {
@@ -1072,8 +1271,968 @@ var serviceContent = {
 	}
 };
 //#endregion
+//#region src/data/service-content.ar.js
+var serviceContentAr = {
+	excavation: {
+		h1: "مقاول حفريات في الإمارات",
+		lead: "حفر كلي وتفصيلي للبدرومات والأساسات والخدمات وممرات البنية التحتية — في الرمل أو الردم أو الصخر الصلب.",
+		intro: "الحفر هو المرحلة التي يُكسب فيها البرنامج الزمني أو يُخسر. ننقل قطعة الأرض من مستواها القائم إلى منسوب تأسيس مرصود ومعتمَد باستخدام حفاراتنا وكسّاراتنا ولوادرنا وقلاباتنا — فتُسلَّم المنصة للمقاول التالي في الموعد الموعود، لا في الموعد الذي يتيحه مكتب تأجير معدات.",
+		body: ["نادراً ما تتصرف الأرض في الإمارات بالطريقة نفسها مرتين. فقطع الأراضي الساحلية في دبي والشارقة رمل سائب فوق طبقة صخرية سطحية؛ ورأس الخيمة والفجيرة تضعانك في طبقات صلبة خلال الأمتار الأولى؛ والمواقع الصناعية القديمة تخفي ردماً غير مضبوط وبلاطات مدفونة وخدمات مهجورة. نقرأ التقرير الجيوتقني قبل التعبئة ونطابق المعدات عليه — أذرع طويلة حيث يلزم تراجع الميول، وكسّارات هيدروليكية حيث يرتفع خط الصخر مبكراً، ومعدات ضيقة حيث لا تترك الحدود مجالاً للميل.", "يُنفَّذ كل شيء بضبط مساحي، وتُراجَع المناسيب أثناء الحفر لا عند نهايته. وتُخطَّط الميول والمدرّجات وحماية الجوانب المؤقتة وفق التصميم؛ ويُصنَّف الناتج ويُحمَّل ويُنقَل ويُطرَح بموجب تصاريح بلدية مع الاحتفاظ بالإيصالات لملف المشروع. وحيث يعمل مقاولو نزح المياه أو الحوائط الساندة أو الخوازيق إلى جانبنا، يُتَّفق على التسلسل مسبقاً حتى لا تنتظر جبهة الحفر أحداً."],
+		scope: [
+			"حفر كلي حتى منسوب التأسيس للبدرومات والمنصات",
+			"حفر تفصيلي للقواعد وهامات الخوازيق والجسور الأرضية والحُفَر",
+			"حفر خنادق للتصريف ومجاري الكابلات والمياه",
+			"تكسير الصخور وإزالة الطبقات الصلبة بالكسّارات الهيدروليكية",
+			"الميول والمدرّجات وحماية الجوانب المؤقتة وفق التصميم",
+			"التحميل والنقل والطرح والتخلص بموجب تصريح بلدي",
+			"التوقيع المساحي ومراجعة المناسيب ومسح ما بعد الحفر"
+		],
+		specs: [
+			["المعدات", "حفارات مجنزرة وكسّارات صخور هيدروليكية ولوادر ذات إطارات وقلابات ومقطورات"],
+			["الاستخدامات", "البدرومات والأساسات وممرات الخدمات وحُفَر الخزانات وخنادق البنية التحتية"],
+			["الضبط والتوثيق", "توقيع مساحي ومراجعة مناسيب الطبقات وإيصالات الطرح وسجلات ما بعد الحفر"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "هل تنفذون الحفر في الصخر؟",
+				a: "نعم. الكسّارات الصخرية الهيدروليكية وحاملاتها عالية التدفق جزء من أسطولنا، وهو أمر مهم في مواقع رأس الخيمة والفجيرة حيث يرتفع خط الصخر بسرعة. ونُسعّر الصخر بشكل منفصل عن الحفر اللين حتى ترى بالضبط ما تكلّفه الأرض."
+			},
+			{
+				q: "هل تتولون نقل ناتج الحفر والتخلص منه؟",
+				a: "نعم. التحميل والنقل والطرح مشمولة، وتُنفَّذ بموجب تصريح الطرح البلدي المعني مع الاحتفاظ بالإيصالات. وحيث تكون المادة صالحة لإعادة الاستخدام كردم نُشير إلى ذلك في مرحلة العطاء — فإبقاؤها في الموقع عادةً أرخص من استيراد بديل لاحقاً."
+			},
+			{
+				q: "هل يمكنكم العمل بالتوازي مع مقاول حوائط ساندة أو خوازيق؟",
+				a: "بشكل اعتيادي. نتفق على تسلسل الحفر والوصول ونوافذ الرافعات مع فرق الحوائط الساندة والخوازيق ونزح المياه قبل التعبئة، فلا تعيق جبهة الحفر الأعمال المتخصصة ولا العكس."
+			}
+		]
+	},
+	"back-filling": {
+		h1: "مقاول أعمال ردم في الإمارات",
+		lead: "ردم إنشائي وردم حول الخدمات يُوضع على طبقات مضبوطة ومُختبَرة — العمل الذي يمنع ظهور الهبوط بعد عام.",
+		intro: "يبدو الردم أبسط عملية في الموقع، وهو في الواقع أكثر مصادر العيوب طويلة الأمد. خندق يهبط بعد إعادة الحالة، ومحيط بدروم ينفصل عن الهيكل، وبلاطة تتشقق فوق مسار خدمة — كلها تعود غالباً إلى مادة أُلقيت دفعة واحدة بدل أن تُوضع وتُدمك على طبقات.",
+		body: ["نردم بمواد معتمدة بسماكة الطبقة المحددة، مع الترطيب حتى المحتوى الرطوبي الأمثل ودمك كل طبقة قبل وضع التالية. وحول المنشآت يُرفع الردم بالتساوي من جميع الجهات حتى لا يُدفع شيء عن استقامته. وحول الخدمات تُوضع طبقة الفرش والغلاف يدوياً أو بصفيحة دمك خفيفة لحماية الأنبوب أو المجرى، وعندها فقط يُنقَل الدمك الآلي إلى ما فوقها.", "تُجرى اختبارات الكثافة الحقلية طبقة بطبقة وتُجمَّع نتائجها في سجلات الدمك التي يطلبها الاستشاري والجهة المختصة عند التسليم. وحيث يلزم ردم مستورد، نوفّر مادة حبيبية معتمدة بشهادات اختبار بدل أقرب مادة متاحة، لأن الشهادة هي ما يعتمد الطبقة."],
+		scope: [
+			"ردم إنشائي حول البدرومات والجدران الساندة والعبّارات وغرف التفتيش",
+			"ردم الخنادق فوق خطوط التصريف والمياه والري والكابلات والمجاري",
+			"فرش وغلاف الأنابيب والمجاري يدوياً أو بصفيحة دمك",
+			"توريد ردم حبيبي مستورد معتمد بشهادات اختبار",
+			"وضع الطبقات وترطيبها ودمكها حتى الكثافة المحددة",
+			"اختبارات الكثافة الحقلية وسجلات الدمك للتسليم",
+			"إعادة السطح العلوي — أسفلت أو إنترلوك أو تنسيق موقع"
+		],
+		specs: [
+			["المعدات", "لوادر خلفية ولوادر ذات إطارات ومداحل ملساء وذات أقدام وصفائح دمك وصهاريج مياه"],
+			["الاستخدامات", "محيط البدرومات وإعادة حالة الخنادق والعبّارات وغرف التفتيش والمنشآت الساندة"],
+			["الضبط والتوثيق", "ضبط سماكة الطبقة والمحتوى الرطوبي واختبارات الكثافة الحقلية وشهادات الدمك"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما المادة التي تستخدمونها في الردم؟",
+				a: "المادة الناتجة من الحفر حيث تكون صالحة ومعتمدة، وردم حبيبي مستورد حيث لا تكون كذلك. وفي الحالتين تُختبَر المادة وتُعتمَد قبل وضعها — فإعادة استخدام مادة الموقع لا تُعدّ توفيراً إلا إذا اجتازت الاختبار فعلاً."
+			},
+			{
+				q: "هل تقدّمون نتائج اختبارات الدمك؟",
+				a: "نعم. تُجرى اختبارات الكثافة الحقلية طبقة بطبقة وتُجمَّع النتائج في سجلات دمك تُسلَّم ضمن وثائق التسليم، وهي ما يطلبه الاستشاري والجهة المختصة عند التفتيش."
+			},
+			{
+				q: "هل تعيدون السطح إلى حالته بعد الردم؟",
+				a: "نعم. ولأننا ننفّذ كذلك أعمال طبقة الأساس والأسفلت والإنترلوك وأحجار الأرصفة، يمكن إنهاء إعادة حالة الخندق حتى السطح النهائي بمقاول واحد بدل تسليمها لمقاول ثانٍ."
+			}
+		]
+	},
+	"cut-and-fill": {
+		h1: "مقاول أعمال قطع وردم في الإمارات",
+		lead: "قطع وردم متوازن يصل بالموقع إلى المناسيب التصميمية مع إبقاء المواد في الموقع حيثما كانت صالحة.",
+		intro: "القطع والردم عملية موازنة كميات قبل أن تكون عملية معدات. فكل متر مكعب تُصدّره ثم تعيد استيراده تدفع ثمنه مرتين، لذا أول ما نفعله هو نمذجة كميات الأعمال الترابية مقابل المناسيب التصميمية لمعرفة كم من القطع يمكن أن يصبح ردماً بشكل مشروع.",
+		body: ["تنقل الجرافات والقاشطات الكتلة الأكبر، وتشذّب المسوّيات المقطع، وتدمك المداحل كل طبقة عند وضعها. ويحافظ التوجيه الآلي والمراجعة المساحية على السطح التصميمي عبر مساحات واسعة وخالية من المعالم — وهي المواقع التي يتحول فيها انحراف بضعة سنتيمترات على مئة متر إلى تصحيح مكلف عند مرحلة البلاطة.", "وحين لا يتوازن القطع مع الردم نُخبرك بذلك في مرحلة العطاء لا بعد التعبئة، ومعه تكلفة النقل والطرح أو الاستيراد التي تسدّ الفارق. وتُدرَج مواقع أكوام التخزين ومسارات النقل وضبط الغبار في مخطط الموقع حتى لا تخنق العملية وصولها ولا تستدعي مخالفة بلدية."],
+		scope: [
+			"موازنة كميات الأعمال الترابية مقابل المناسيب التصميمية قبل التعبئة",
+			"القطع الكلي بالجرافات والحفارات ولوادر التحميل",
+			"وضع الردم الناتج من الموقع على طبقات مضبوطة ومدموكة",
+			"التشذيب حتى المقطع التصميمي بالمسوّيات والتوجيه الآلي",
+			"إدارة أكوام التخزين وتشكيل طرق النقل وضبط الغبار",
+			"استيراد ردم معتمد أو تصدير الفائض حسبما تقتضيه الموازنة",
+			"الضبط المساحي وسجلات المناسيب المنفَّذة في كل مرحلة"
+		],
+		specs: [
+			["المعدات", "جرافات مجنزرة وحفارات مجنزرة ولوادر ذات إطارات ومسوّيات ومداحل هزّازة وصهاريج مياه"],
+			["الاستخدامات", "منصات قطع الأراضي والساحات الصناعية ومنسوب تأسيس الطرق والمواقع المدرّجة"],
+			["الضبط والتوثيق", "نموذج موازنة الكميات والتوجيه الآلي ومراجعة المناسيب واختبار الطبقات"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "كيف تخفّضون تكاليف النقل في أعمال القطع والردم؟",
+				a: "بموازنة الأعمال الترابية قبل أن تتحرك أي معدة. فالمادة الصالحة لإعادة الاستخدام كردم تبقى في الموقع، وهو ما يلغي رسوم الطرح ورسوم الاستيراد معاً. ونُظهر الموازنة في العطاء ليكون الافتراض واضحاً لا مدفوناً داخل سعر بند."
+			},
+			{
+				q: "هل تعملون وفق نموذج توجيه آلي؟",
+				a: "نعم. حيث يصدر سطح تصميمي نعمل بالضبط المساحي والتوجيه الآلي، وهو يحافظ على السماحية أفضل بكثير من العمل بالنظر والخيط في المساحات المفتوحة، ويقلّل أعمال التصحيح عند منسوب التأسيس."
+			},
+			{
+				q: "هل تتولون ضبط الغبار وطرق النقل؟",
+				a: "نعم. تُدرَج صهاريج المياه وتشكيل مسارات النقل ومواقع أكوام التخزين في مخطط الموقع منذ البداية، لأن شكاوى الغبار وإعاقة الوصول توقف عملية الأعمال الترابية أسرع من أعطال المعدات."
+			}
+		]
+	},
+	leveling: {
+		h1: "مقاول تسوية وتمهيد أراضٍ في الإمارات",
+		lead: "تمهيد وتسوية دقيقة حتى المناسيب والميول التصميمية — مناسيب التأسيس ومنصات البلاطات والساحات ومناطق التخزين.",
+		intro: "التسوية والتمهيد آخر عملية ترابية قبل أن يُبنى فوقها شيء دائم، ولذلك تكون السماحية هنا أهم منها في أي مرحلة أخرى. فمنسوب تأسيس يزيد أو ينقص بضعة سنتيمترات يُدفع ثمنه مرة أخرى في طبقة أساس إضافية أو أسفلت إضافي أو خرسانة نظافة إضافية.",
+		body: ["تحافظ المسوّيات ذات الشفرات الموجَّهة بالأقمار الاصطناعية على السطح التصميمي عبر مساحات واسعة، مع مراجعة مساحية تُؤخذ على شبكة نقاط لا على بضع نقاط مريحة. وتُضبط الميول وفق تصميم التصريف ليغادر الماء المنصة من حيث تقول المخططات — فالساحة التي يتجمع فيها الماء عيب تسوية لا عيب تصريف.", "نُمهّد حتى منسوب التأسيس للطرق والأرصفة، وحتى منسوب المنصة للبلاطات والمباني، وحتى المنسوب النهائي للساحات ومناطق التخزين والأرضيات المكشوفة. وحيث يحمل السطح حركة قبل بدء الإنشاء، يُدمك المنسوب المُمهَّد ويُغلَق ليصمد أمام حركة الموقع بدل أن يتخدّد في الأسبوع الأول."],
+		scope: [
+			"التمهيد حتى منسوب التأسيس للطرق والأرصفة والأرضيات الصلبة",
+			"تسوية دقيقة لمنصات البلاطات والمباني حتى المنسوب التصميمي",
+			"ضبط الميول الطولية والعرضية وفق تصميم التصريف",
+			"التشذيب والتحديد وتشكيل الساحات ومناطق التخزين",
+			"ضبط الشفرة بالتوجيه الآلي وأنظمة الأقمار الاصطناعية في المساحات المفتوحة",
+			"مراجعة مساحية على شبكة نقاط مع كشوف مناسيب موثّقة",
+			"دمك وإغلاق السطح المُمهَّد لمقاومة حركة الموقع"
+		],
+		specs: [
+			["المعدات", "مسوّيات بضبط شفرة ومداحل هزّازة وحفارات مجنزرة وبعجل وصهاريج مياه"],
+			["الاستخدامات", "منسوب تأسيس الطرق ومنصات البلاطات والساحات الصناعية ومناطق التخزين وتربة المواقف"],
+			["الضبط والتوثيق", "مسح بالمحطة المتكاملة والأقمار الاصطناعية وكشوف مناسيب شبكية ومراجعة السماحية قبل الاعتماد"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما السماحية التي تعملون ضمنها في التسوية؟",
+				a: "السماحية المنصوص عليها في المواصفة للطبقة المعنية — فمنسوب التأسيس وطبقة ما تحت الأساس والأسطح النهائية لكلٍّ سماحيته. وتُراجَع المناسيب على شبكة مساحية وتُوثَّق، فيكون الاعتماد مبنياً على دليل لا على جولة ميدانية."
+			},
+			{
+				q: "هل يمكنكم تسوية موقع سبق أن ردمه مقاول آخر؟",
+				a: "نعم، لكننا نمسح السطح القائم أولاً. فإذا لم يكن الردم أسفله قد وُضع على طبقات مُختبَرة، فإن تمهيد سطحه يخفي المشكلة فقط — وسنقول ذلك ونُسعّر التصحيح بدل تجميل الوضع."
+			},
+			{
+				q: "هل تضبطون ميول التصريف؟",
+				a: "نعم. تُضبط الميول العرضية والطولية وفق تصميم التصريف وتُراجَع قبل اعتماد السطح، ليصرّف السطح إلى المصافي والمجاري بدل تجمّع الماء في وسطه."
+			}
+		]
+	},
+	compaction: {
+		h1: "مقاول أعمال دمك في الإمارات",
+		lead: "دمك طبقة بطبقة بالمدحلة المناسبة للمادة، مدعوماً باختبارات الكثافة الحقلية وشهادات الدمك.",
+		intro: "الدمك هو الجزء الذي يختفي عن العين حين ينتهي، ويصبح مكلفاً حين يكون خاطئاً. فكل ما فوقه — طبقة الأساس والأسفلت والبلاطات وأحجار الأرصفة — يعتمد على منصة بلغت الكثافة المحددة على طبقات مضبوطة، وبنتائج يقبلها الاستشاري فعلاً.",
+		body: ["المدحلة يجب أن تناسب المادة: مداحل هزّازة ملساء للمواد الحبيبية وطبقة ما تحت الأساس، ومداحل ذات أقدام للمواد المتماسكة، وصفائح دمك ومداحل خنادق في الأماكن الضيقة وحول الخدمات. وتُضبط سماكة الطبقة على ما تستطيع المعدات دمكه فعلاً لا على ما يسهل فرشه، وتُرفع الرطوبة إلى الحد الأمثل بالصهاريج قبل بدء الدحل.", "تُؤخذ اختبارات الكثافة الحقلية طبقة بطبقة وتُصدَر كسجلات دمك ضمن حزمة التسليم. وحين ترسب طبقة، تُعاد معالجتها وتُختبَر من جديد بدل تغطيتها — عادة تكلّف بعد ظهيرة وتوفّر إعادة بناء كاملة."],
+		scope: [
+			"دمك الردم والتربة الطبيعية وطبقة ما تحت الأساس على طبقات مضبوطة",
+			"اختيار نوع المدحلة بما يناسب المواد الحبيبية أو المتماسكة",
+			"تهيئة الرطوبة حتى المحتوى الأمثل بصهاريج المياه",
+			"الدمك في الأماكن الضيقة بصفائح الدمك ومداحل الخنادق",
+			"الدحل الاختباري لمنسوب التأسيس قبل طبقة الأساس أو التبليط",
+			"اختبارات الكثافة الحقلية طبقة بطبقة مع إعادة المعالجة عند الرسوب",
+			"شهادات وسجلات دمك لاعتماد الاستشاري والجهة المختصة"
+		],
+		specs: [
+			["المعدات", "مداحل هزّازة مفردة ومزدوجة ومداحل ذات أقدام ومداحل إطارات هوائية وصفائح دمك وصهاريج مياه"],
+			["الاستخدامات", "منسوب تأسيس الطرق وطبقة ما تحت الأساس والردم الإنشائي وإعادة حالة الخنادق وتربة الساحات"],
+			["الضبط والتوثيق", "ضبط سماكة الطبقة والرطوبة واختبارات الكثافة الحقلية وشهادات الدمك"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "إلى أي كثافة تدمكون؟",
+				a: "إلى النسبة المئوية من الكثافة الجافة القصوى المنصوص عليها في مواصفة المشروع لتلك الطبقة — وهي عادة أعلى لطبقة ما تحت الأساس تحت الطريق منها للردم العام. ويُتَّفق على المستهدف قبل البدء ويُختبَر مع وضع الطبقات."
+			},
+			{
+				q: "هل توفّرون شهادات اختبار الدمك؟",
+				a: "نعم. تُجرى اختبارات الكثافة الحقلية عبر مختبر معتمد وتُصدَر الشهادات ضمن وثائق التسليم، وهي ما تطلبه الجهة المختصة والاستشاري عند التفتيش."
+			},
+			{
+				q: "هل يمكنكم الدمك في الأماكن الضيقة وحول الخدمات؟",
+				a: "نعم. تُستخدم مداحل الخنادق وصفائح الدمك حيث لا تصل المدحلة الكاملة أو حيث قد تُلحق ضرراً بخدمة قائمة، مع دمك طبقة الفرش والغلاف يدوياً قبل نقل الدمك الآلي إلى ما فوقها."
+			}
+		]
+	},
+	"access-roads": {
+		h1: "مقاول طرق وصول في الإمارات",
+		lead: "طرق وصول مؤقتة ودائمة إلى قطع الأراضي والمواقع والمصانع والمنشآت البعيدة — مصمَّمة للأحمال التي ستستخدمها فعلاً.",
+		intro: "طريق الوصول أول ما يحتاجه المشروع وآخر ما تُرصد له ميزانية صحيحة. فالتوريدات التي لا تصل إلى قطعة الأرض، والمقطورات المنخفضة العالقة عند الحدود، ومسار نقل يتحول إلى أخاديد بعد أول مطر — كلها تكلّف أكثر من بناء الطريق بشكل صحيح من البداية.",
+		body: ["نبني طرق الوصول كرصف كامل لا كمسار مُمهَّد: منسوب تأسيس، وطبقة ما تحت الأساس مدموكة، وطبقة أساس، وسطح مصمَّم لأحمال المحاور التي سيحملها المسار. وبالنسبة لطريق وصول إنشائي سيُستبدل لاحقاً، قد يكون ذلك طبقة أساس مدموكة بطبقة إغلاق بيتومينية. أما لطريق مصنع أو منشأة دائم، فهو رصف مصمَّم بأحجار أرصفة وميول تصريف وتخطيط أرضي.", "تُضبط الاستقامة وأنصاف أقطار الدوران والميول للمركبات التي ستستخدم الطريق فعلاً — فالمقطورات المنخفضة وخلاطات الخرسانة والصهاريج ومقطورات الحاويات تحتاج هندسة لا تحتاجها السيارة. وحيث يرتبط الطريق بطريق عام، تكون الوصلة مسألة اعتماد مداخل ومخارج لدى هيئة الطرق والمواصلات أو موافقة بلدية، ونتولى سلسلة التصاريح تلك ضمن الحزمة نفسها."],
+		scope: [
+			"مسح المسار وضبط الاستقامة والميول لحركة المركبات الثقيلة",
+			"التنظيف وتشكيل منسوب التأسيس وتجهيز التربة الطبيعية المدموكة",
+			"فرش طبقة ما تحت الأساس وطبقة الأساس وترطيبها ودمكها",
+			"سطح أسفلتي أو طبقة إغلاق بيتومينية بحسب عمر الطريق المطلوب",
+			"ميول التصريف والعبّارات والمصارف الجانبية حيث يتطلبها المسار",
+			"أحجار الأرصفة وحماية الحواف ومناطق الدوران للمركبات الثقيلة",
+			"الربط مع الطريق العام باعتماد هيئة الطرق والمواصلات أو البلدية"
+		],
+		specs: [
+			["المعدات", "حفارات وجرافات ومسوّيات ولوادر ومداحل وفرّادات وقلابات وصهاريج مياه"],
+			["الاستخدامات", "وصول مواقع الإنشاء ومداخل قطع الأراضي وطرق المصانع ومسارات النقل وطرق المنشآت البعيدة"],
+			["الضبط والتوثيق", "الاستقامة المساحية واختبارات سماكة الطبقات وكثافتها ومراجعة مناسيب السطح"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "هل يمكنكم بناء طريق وصول مؤقت بسرعة؟",
+				a: "نعم. طريق وصول بطبقة أساس مدموكة وطبقة إغلاق بيتومينية يمكن تنفيذه بتعبئة قصيرة، وهو عادةً الحل الصحيح لمسار سيُحفر مجدداً لاحقاً. وسنخبرك متى يكون الطريق المؤقت اقتصاداً زائفاً بالنسبة للحركة التي وصفتها."
+			},
+			{
+				q: "هل تتولون الربط مع الطريق الرئيسي؟",
+				a: "نعم. حيث يرتبط الوصول بطريق تابع لهيئة الطرق والمواصلات فهو حزمة أعمال مداخل ومخارج، ونحن معتمدون لدى الهيئة لتنفيذها، بما يشمل المخططات والتصريح وإعادة الحالة. وعلى الطرق البلدية نتولى الموافقة المكافئة."
+			},
+			{
+				q: "هل يتحمل طريق الوصول المقطورات المنخفضة وخلاطات الخرسانة؟",
+				a: "هذا ما صُمِّم من أجله. تُضبط سماكة الرصف وأنصاف أقطار الدوران والميول لأثقل مركبة في جدول توريداتك لا لمقطع حركة خفيفة نمطي."
+			}
+		]
+	},
+	"road-base-laying": {
+		h1: "مقاول فرش طبقة الأساس في الإمارات",
+		lead: "توريد وفرش وترطيب ودمك طبقة ما تحت الأساس وطبقة الأساس بالسماكة والكثافة المحددتين.",
+		intro: "طبقة الأساس هي التي تقرّر عمر الطريق. فالأسفلت طبقة تآكل لا هيكل إنشائي — وإذا كانت الطبقة تحته ناقصة الدمك أو سيئة التدرّج أو مفروشة بسماكة خاطئة، فسيتشقق السطح ويتخدّد مهما كانت الخلطة جيدة.",
+		body: ["نورّد ركاماً معتمداً بشهادات اختبار، ونفرشه بسماكة طبقة مضبوطة، ونهيّئه حتى المحتوى الرطوبي الأمثل، وندمكه حتى الكثافة المحددة. وتُرصد المناسيب مساحياً قبل كل طبقة وبعدها، وتُجرى اختبارات الكثافة الحقلية لكل طبقة لا مرة واحدة في الأعلى. والدحل الاختباري قبل التبليط يكشف المواضع اللينة وهي ما تزال رخيصة الإصلاح.", "والتدرّج لا يقل أهمية عن الدمك. فالمادة التي تنفصل حبيباتها أثناء التفريغ أو الفرش تعطي طبقة تنجح في موضع وترسب في آخر، لذلك تُدار أكوام التخزين والنقل والفرش لإبقاء الركام متجانساً من المحجر حتى الشفرة."],
+		scope: [
+			"توريد ركام معتمد لطبقة ما تحت الأساس وطبقة الأساس بشهادات اختبار",
+			"تجهيز التربة الطبيعية والدحل الاختباري قبل فرش طبقة الأساس",
+			"الفرش بسماكة طبقة مضبوطة بالمسوّية أو الفرّادة",
+			"تهيئة الرطوبة بصهاريج المياه حتى المحتوى الأمثل",
+			"الدمك حتى الكثافة المحددة بمداحل هزّازة وإطارات هوائية",
+			"اختبارات كثافة حقلية طبقة بطبقة ومسح للمناسيب",
+			"الدحل الاختباري وتسليم منسوب جاهز للأسفلت أو الإنترلوك"
+		],
+		specs: [
+			["المعدات", "مسوّيات ولوادر ذات إطارات وقلابات ومداحل هزّازة وإطارات هوائية وصهاريج مياه"],
+			["الاستخدامات", "أرصفة الطرق والطرق السريعة والمواقف والساحات الصناعية وأرضيات الحاويات وطرق الوصول"],
+			["الضبط والتوثيق", "شهادات اختبار الركام وضبط سماكة الطبقة واختبارات الكثافة الحقلية ومسح مناسيب السطح"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما سماكة طبقة الأساس التي تفرشونها؟",
+				a: "ما يتطلبه تصميم الرصف، مبنياً على طبقات تستطيع معدات الدمك بلوغ الكثافة خلالها فعلاً. وحين يطلب التصميم طبقة واحدة سميكة نُشير إلى ذلك، لأن الطبقة التي لا يمكن اختبارها مشكلة عند التفتيش."
+			},
+			{
+				q: "هل تورّدون الركام إضافة إلى فرشه؟",
+				a: "نعم. نورّد مواد طبقة ما تحت الأساس وطبقة الأساس المعتمدة بشهادات اختبار من مصادر مرخّصة، أو نعمل مع مورّد يسميه العميل إذا كانت المادة متعاقداً عليها مسبقاً."
+			},
+			{
+				q: "كيف تثبتون أن طبقة الأساس مقبولة قبل الأسفلت؟",
+				a: "باختبارات كثافة حقلية طبقة بطبقة، ومسح لمناسيب الطبقة المنتهية، ودحل اختباري بمركبة محمّلة لكشف المواضع اللينة. وتُوثَّق الثلاثة وتُسلَّم قبل بدء التبليط."
+			}
+		]
+	},
+	"asphalt-works": {
+		h1: "مقاول أسفلت في الإمارات",
+		lead: "أسفلت طبقة الرابطة والطبقة السطحية يُفرَش بالفرّادة وفق السماكة ودرجة الحرارة وتفصيل الوصلات المحددة، من خلطات محطات معتمدة.",
+		intro: "الأسفلت لا يسامح في درجة الحرارة ولا في الوصلات. فخلطة تصل باردة، أو وصلة لم تُقصّ وتُلصَّق بشكل صحيح، أو دحل بدأ متأخراً — كلها تظهر تفتّتاً وتشققاً خلال موسم واحد، غالباً بعد انتهاء فترة الصيانة مباشرة.",
+		body: ["نفرش طبقة الرابطة والطبقة السطحية بالفرّادة وفق السماكة المحددة، من خلطات معتمدة في محطات مرخّصة مع تسجيل درجات حرارة التوريد. وتُطبَّق طبقتا التأسيس والتلصيق بالمعدلات الصحيحة، وتُقَصّ الوصلات الطولية والعرضية وتُلصَّق، ويُضبط نمط الدحل لبلوغ الكثافة والفرشة ما تزال ضمن نافذة حرارتها.", "وفي أعمال إعادة الطبقة السطحية وإعادة البناء، تُكشط الأسطح القائمة حتى المقطع المطلوب، وتُقَصّ الحواف بالمنشار، وتُراجَع المناسيب ليرتبط السطح الجديد دون حافة بارزة. وبصفتنا مقاول طرق معتمداً لدى هيئة الطرق والمواصلات، ننفّذ وفق مواصفة الجهة المختصة على الطرق العامة، مع توثيق اعتمادات المواد والاختبارات ونتائج العينات الأسطوانية أثناء العمل لا بعده."],
+		scope: [
+			"تطبيق طبقة التأسيس وطبقة التلصيق بالمعدلات المحددة",
+			"فرش طبقة الرابطة والطبقة السطحية بالفرّادة",
+			"كشط وتقشير الأسفلت القائم حتى المقطع المطلوب",
+			"تجهيز الوصلات الطولية والعرضية وإغلاقها",
+			"الدحل حتى الكثافة المحددة ضمن نافذة حرارة الخلطة",
+			"اختبار العينات الأسطوانية ومراجعة السماكة ومسح انتظام السطح",
+			"إعادة الحالة حول غرف التفتيش والمصافي وعبور الخدمات"
+		],
+		specs: [
+			["المعدات", "فرّادات أسفلت ومداحل مزدوجة وإطارات هوائية وآلات كشط ورشّاشات بيتومين وقلابات"],
+			["الاستخدامات", "الطرق والطرق السريعة والطرق الداخلية والمواقف والساحات الصناعية وإعادة الطبقة السطحية وإعادة البناء"],
+			["الضبط والتوثيق", "خلطات محطات معتمدة وسجلات حرارة التوريد واختبارات الكثافة والعينات ومسح المناسيب والانتظام"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "هل أنتم مقاول أسفلت معتمد لطرق هيئة الطرق والمواصلات؟",
+				a: "نعم. نحن مقاول طرق معتمد لدى هيئة الطرق والمواصلات وننفّذ وفق مواصفة الجهة المختصة على الطرق العامة، بما يشمل اعتمادات المواد ومنظومة الاختبارات والتوثيق الذي يتطلبه الاعتماد."
+			},
+			{
+				q: "هل يمكنكم العمل ليلاً لتفادي إغلاق الطريق نهاراً؟",
+				a: "نعم، وعلى طرق هيئة الطرق والمواصلات الحيّة يكون العمل الليلي عادةً النافذة الوحيدة المسموح بها. ونُعِدّ مخططات التحويل المروري ونستخرج تصريح إغلاق المسار أو الطريق ضمن الحزمة نفسها."
+			},
+			{
+				q: "هل تنفذون إعادة الطبقة السطحية فوق سطح قائم؟",
+				a: "نعم — كشط حتى المقطع، وقصّ الحواف بالمنشار، وطبقة تلصيق، ثم الطبقة الجديدة، مع مراجعة المناسيب ليرتبط السطح بأحجار الأرصفة والمصافي والمقاطع المجاورة دون حافة بارزة."
+			}
+		]
+	},
+	"road-maintenance": {
+		h1: "مقاول صيانة طرق في الإمارات",
+		lead: "صيانة مُبرمَجة وطارئة للطرق الداخلية والمناطق الصناعية وشبكات المجمعات — مُجدوَلة لإبقاء الشبكة مفتوحة.",
+		intro: "صيانة الطرق مسألة جدولة بقدر ما هي مسألة تنفيذ. فالأعمال نفسها مباشرة؛ لكن إنجازها دون إغلاق المنطقة أو تعطيل رصيف تحميل أو عزل السكان هو ما يفرّق بين مقاول صيانة ومقاول تبليط.",
+		body: ["نمسح الشبكة ونصنّف العيوب ونضع لها برنامجاً، فيذهب الإنفاق إلى المقاطع المتدهورة فعلاً لا إلى المقاطع الأسهل وصولاً. وسدّ الشقوق وإصلاح الحواف مبكراً جزء يسير من كلفة إعادة البناء لاحقاً، ومسح الحالة يقدّم هذه الحجة بالدليل لا بالرأي.", "ويُقسَّم العمل ويُرتَّب للحفاظ على الوصول طوال المدة — عمل بنصف عرض الطريق، ومناوبات ليلية، وتحويلات مؤقتة، وتسليم على مراحل. وعلى الطرق العامة يتولى فريقنا إدارة المرور والتصاريح؛ وفي المجمعات الخاصة ننسّق مع إدارة المرافق والسكان حتى لا يكتشف أحد الإغلاق صباح يوم بدئه."],
+		scope: [
+			"مسح الحالة وتصنيف العيوب على مستوى الشبكة",
+			"إعادة الطبقة السطحية وإعادة البناء الموضعي",
+			"سدّ الشقوق وإصلاح الحواف ومعالجة الوصلات",
+			"إصلاح الحفر والهبوط، بما في ذلك إخفاقات إعادة حالة الخنادق",
+			"تنظيف وإصلاح المصافي والمجاري وشبكة التصريف",
+			"تجديد أحجار الأرصفة والمجاري والتخطيط الأرضي",
+			"برمجة مرحلية مع إدارة المرور لإبقاء الشبكة مفتوحة"
+		],
+		specs: [
+			["المعدات", "آلات كشط وفرّادات ومداحل مزدوجة ومناشير قصّ ومعدات شفط وتنظيف ووحدات إدارة مرور"],
+			["الاستخدامات", "المناطق الصناعية وشبكات المجمعات السكنية وطرق المصانع والمستودعات وشبكات المواقف"],
+			["الضبط والتوثيق", "سجلات مسح الحالة وبرنامج صيانة مرتَّب بالأولوية وتسليم مرحلي مع إدارة المرور"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "هل يمكنكم صيانة شبكة طرق دون إغلاقها؟",
+				a: "في معظم الحالات نعم، بالعمل بنصف العرض أو ليلاً أو بمقاطع مرحلية مع تحويلات مؤقتة. ويُتَّفق على التسلسل قبل التعبئة ليعرف المستأجرون والسكان وجهات التوريد ما الذي يحدث ومتى."
+			},
+			{
+				q: "هل تقدّمون مسح حالة قبل التسعير؟",
+				a: "نعم. مسح العيوب وتصنيفها أولاً يوجّه الميزانية إلى المقاطع المتدهورة فعلاً، ويمنحك مبرراً قابلاً للدفاع عن الإنفاق بدل مبلغ إجمالي بلا أساس."
+			},
+			{
+				q: "هل تتعاملون مع البلاغات الطارئة إضافة إلى الأعمال المبرمجة؟",
+				a: "نعم. الإصلاحات الطارئة — الحفر، والهبوط فوق خندق خدمة، وإعادة حالة فاشلة — يمكن تشغيلها إلى جانب برنامج صيانة مبرمَج ضمن الترتيب نفسه."
+			}
+		]
+	},
+	"asphalt-patch-works": {
+		h1: "مقاول ترقيع أسفلت في الإمارات",
+		lead: "قصّ بالمنشار وتكسير وإعادة تنفيذ ودمك — ترقيع يُنفَّذ بأصوله حتى لا تفشل الوصلة في الموسم الأول.",
+		intro: "معظم الترقيعات الفاشلة تفشل عند الحافة. فتكسير غير منتظم، وعدم تلصيق الوجه الرأسي، وردم لم يُدمك أصلاً، تعطيك رقعة تهبط وتنفتح عند الوصلة وتُدخل الماء إلى الطبقات التي كنت تحاول حمايتها.",
+		body: ["نقصّ المحيط بالمنشار ليصبح مستطيلاً نظيفاً، ونكسّر حتى المادة السليمة، ثم نعيد بناء الطبقات بأصولها — طبقة أساس مدموكة، وطبقة تلصيق على كل وجه، وأسفلت على طبقات مدحولة حتى الكثافة. وتُغلق الوصلة لتكون الرقعة مانعة للماء، ويأتي السطح النهائي مستوياً مع الطريق المحيط لا بارزاً ولا غائراً.", "والترقيع يُطلب غالباً بعد عبور خدمة، أو إعادة حالة خندق هبطت، أو انهيار موضعي فوق موضع لين. وفي كل حالة نبحث في سبب الانهيار — فإصلاح السطح فوق طبقة أساس ما تزال تنهار لا يشتري سوى بضعة أشهر."],
+		scope: [
+			"القصّ بالمنشار حتى محيط نظيف ومستقيم",
+			"تكسير وإزالة المادة المنهارة حتى طبقة الأساس السليمة",
+			"إصلاح طبقة الأساس واستبدالها ودمكها حيث يمتد الانهيار عميقاً",
+			"طبقة تلصيق على جميع الأوجه الرأسية وعلى طبقة الأساس المهيَّأة",
+			"إعادة الأسفلت على طبقات مدحولة حتى الكثافة المحددة",
+			"إغلاق الوصلة وإنهاء السطح مستوياً مع محيطه",
+			"إعادة حالة خنادق الخدمات وعبورها وفق معايير الجهة المختصة"
+		],
+		specs: [
+			["المعدات", "مناشير طرق وكسّارات وحفارات صغيرة وصفائح دمك ومداحل خنادق ومداحل مزدوجة وصناديق حفظ حرارة"],
+			["الاستخدامات", "إعادة حالة عبور الخدمات وإصلاح الخنادق وإصلاح الحفر والهبوط وترقيع المواقف والطرق الداخلية"],
+			["الضبط والتوثيق", "التكسير حتى المادة السليمة واختبار دمك الطبقات ومراجعة استواء السطح وإغلاق الوصلات"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "لماذا تستمر الترقيعات في الفشل على طريقنا؟",
+				a: "عادةً لأن التكسير لم يصل إلى المادة السليمة، أو لأن الأوجه الرأسية لم تُلصَّق، أو لأن طبقة الأساس تحت الرقعة لم تُصلَح أصلاً. فالرقعة بجودة الطبقة التي تجلس عليها، ولذلك نفحص طبقة الأساس بدل استبدال السطح فقط."
+			},
+			{
+				q: "هل يمكن الترقيع والطريق ما يزال مستخدماً؟",
+				a: "نعم. يُنفَّذ الترقيع عادةً تحت إغلاق مسار أو بالعمل بنصف العرض، ويتولى فريقنا إدارة المرور، وعلى طرق هيئة الطرق والمواصلات تصريح الإغلاق كذلك."
+			},
+			{
+				q: "متى يمكن إعادة فتح المقطع المُرقَّع؟",
+				a: "بعد أن يبرد الأسفلت بالقدر الكافي ويُدحل حتى الكثافة — عادةً ضمن المناوبة نفسها لرقعة اعتيادية. والعمل الليلي يتيح إصلاح المقطع وتسليمه قبل ذروة الصباح."
+			}
+		]
+	},
+	parkings: {
+		h1: "مقاول إنشاء مواقف سيارات في الإمارات",
+		lead: "مواقف متكاملة من التربة الطبيعية حتى التخطيط الأرضي — طبقة أساس وسطح وأحجار أرصفة وميول تصريف ومواقف ولوحات.",
+		intro: "الموقف شبكة طرق مصغّرة بهندسة ضيقة وحواف كثيرة، وهو عادةً آخر حزمة في المشروع — ولهذا تحديداً ينتهي به الأمر مستعجلاً. فأبعاد المواقف وعروض الممرات ومواقف أصحاب الهمم والميول نحو المصافي، كلها يجب أن تستوفي معيار التخطيط المعتمد قبل اعتماد السطح.",
+		body: ["ننفّذ الحزمة كاملة: تجهيز التربة الطبيعية، وطبقة أساس مدموكة، وسطح أسفلتي أو إنترلوك للأحمال الثقيلة، وأحجار أرصفة وفق تخطيط المواقف والجزر، وميول ومصافي تصريف، وصدّامات وأعمدة، وتخطيط المواقف وترقيمها وأسهم الاتجاه واللوحات. ولأن المقاول واحد، تصل الميول إلى المصافي فعلاً ويطابق التخطيط خطوط أحجار الأرصفة فعلاً.", "واختيار السطح يحكمه الاستخدام. فالأسفلت أسرع وأقل كلفة على المساحات المفتوحة الواسعة؛ والإنترلوك للأحمال الثقيلة أنسب حيث تدور المركبات في مكانها، أو حيث يُحتمل انسكاب الوقود والزيوت، أو حيث قد يلزم رفع مقاطع لاحقاً للوصول إلى خدمات تحتها."],
+		scope: [
+			"تجهيز التربة الطبيعية وطبقة ما تحت الأساس وطبقة الأساس وفق تصميم الرصف",
+			"سطح أسفلتي أو تبليط إنترلوك للأحمال الثقيلة",
+			"أحجار أرصفة وفق تخطيط المواقف والجزر والمحيط، مع الأحجار المنخفضة",
+			"ميول التصريف والمصافي والمجاري الخطية",
+			"تخطيط المواقف وترقيمها والأسهم والتظليل ومواقف أصحاب الهمم",
+			"صدّامات وأعمدة وحواجز ولوحات إرشادية",
+			"تخطيط وفق معايير المواقف المعتمدة ووثائق التسليم"
+		],
+		specs: [
+			["المعدات", "مسوّيات ومداحل وفرّادات وفرق تبليط إنترلوك وفرق تركيب أحجار أرصفة ومعدات تخطيط"],
+			["الاستخدامات", "مواقف المجمعات التجارية والتجزئة ومواقف سكن الموظفين والعمال ومواقف المستودعات والساحات ومواقف المجمعات السكنية"],
+			["الضبط والتوثيق", "التخطيط وفق المعيار المعتمد ومسح المناسيب والميول واختبارات دمك الطبقات وتوقيع التخطيط الأرضي"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "أسفلت أم إنترلوك للموقف؟",
+				a: "الأسفلت للمساحات المفتوحة الواسعة حيث تهمّ الكلفة والسرعة. والإنترلوك للأحمال الثقيلة حيث تدور المركبات في مكانها، أو يُحتمل الانسكاب، أو قد يلزم رفع مقاطع لاحقاً للوصول إلى خدمات — لأن الإنترلوك يُرفع ويُعاد فرشه دون أثر إصلاح ظاهر."
+			},
+			{
+				q: "هل تخطّطون المواقف وفق المعيار المعتمد؟",
+				a: "نعم. تُضبط أبعاد المواقف وعروض الممرات ومخصصات مواقف أصحاب الهمم واللوحات وفق معيار التخطيط المعتمد لدى الجهة المختصة، وهو ما سيُفتَّش الموقف على أساسه."
+			},
+			{
+				q: "هل يمكنكم إعادة سطح موقف قائم وإعادة تخطيطه؟",
+				a: "نعم — كشط وإعادة طبقة سطحية، أو إصلاح موضعي، يليه تخطيط كامل وتجديد للوحات، على مراحل تُبقي جزءاً من المواقف متاحاً أثناء العمل."
+			}
+		]
+	},
+	"heavy-duty-interlock-paving": {
+		h1: "مقاول تبليط إنترلوك في الإمارات",
+		lead: "إنترلوك وبلوك للأحمال الثقيلة للساحات ومناطق الحاويات وطرق الخدمة والأرضيات التي تحمل الشاحنات المحمّلة.",
+		intro: "الإنترلوك إما أن يصمد عشرين عاماً أو يتخدّد في الشهر الأول، والفارق لا يكاد يكون البلوك نفسه. فسماكة البلوك، وتدرّج رمل الفرش وعمقه، ونمط الفرش، وقبل ذلك كله حصر الحواف — هي ما يقرّر بقاء الساحة المحمّلة مستوية.",
+		body: ["في المناطق التي تعبرها الحركة نستخدم بلوكاً للأحمال الثقيلة يُفرَش بنمط عظمة السمكة، وهو يتشابك تحت أحمال الكبح والدوران بشكل لا يوفّره النمط المستقيم. ويُفرَش رمل الفرش بعمق ثابت فوق طبقة أساس مدموكة ومستوية، وتحصل كل حافة حرة على حصر خرساني الكتف — رصيف أو حجر حدّي أو مجرى — لأن الساحة تنهار من الحواف إلى الداخل.", "وتُبنى الطبقة أسفلها كرصف كامل لا كطبقة تسوية. وبعد الفرش، تُهزّ البلوكات وتُكنَس رمال الفواصل مراراً حتى تمتلئ الفواصل، وعندها فقط يبدأ السطح بالتصرف كرصف متشابك لا كمجموعة بلوكات سائبة."],
+		scope: [
+			"تجهيز التربة الطبيعية وطبقة ما تحت الأساس وطبقة الأساس وفق تصميم الأحمال",
+			"توريد بلوك إنترلوك للأحمال الثقيلة بالسماكة والتشطيب المحددين",
+			"رمل فرش مُسوّى بعمق ثابت فوق طبقة أساس مستوية",
+			"الفرش بنمط عظمة السمكة والأنماط المخصصة للمناطق المرورية",
+			"حصر حواف خرساني الكتف وأحجار أرصفة ومجارٍ وحدّيات",
+			"الهزّ وكنس رمال الفواصل والدمك النهائي",
+			"الميول ومجاري التصريف ومحيط المصافي داخل المنطقة المبلّطة"
+		],
+		specs: [
+			["المعدات", "مسوّيات ومداحل وصفائح دمك بوسائد واقية وقاطعات بلوك وفرق فرش متخصصة"],
+			["الاستخدامات", "ساحات الحاويات والشاحنات وأرضيات المستودعات وطرق الخدمة والساحات الأمامية والمواقف والممرات"],
+			["الضبط والتوثيق", "سماكة البلوك وفق الأحمال وضبط عمق الفرش ومسح المناسيب والميول وفحص حصر الحواف"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما سماكة البلوك المطلوبة لساحة شاحنات؟",
+				a: "سماكة الأحمال الثقيلة لا البلوك الأرق المستخدم للممرات والمواقف الخفيفة، فوق طبقة أساس مصمَّمة لأحمال المحاور. ونحدّد الاثنين معاً، لأن بلوكاً سميكاً فوق طبقة أساس رقيقة يتخدّد أيضاً."
+			},
+			{
+				q: "لماذا يتخدّد الإنترلوك حيث تدور الشاحنات؟",
+				a: "في الغالب بسبب غياب حصر الحواف أو ضعفه، أو رمل فرش مفروش بعمق زائد أو غير منتظم. فأحمال الدوران تدفع البلوكات جانبياً، وبلا كتف خرساني تستند إليه ينفتح النمط."
+			},
+			{
+				q: "هل يمكن رفع الإنترلوك وإعادة فرشه للوصول إلى خدمات تحته؟",
+				a: "نعم، وهو أحد أهم أسباب اختياره على الأسفلت في الساحات. تُرفع البلوكات ويُنفَّذ الخندق ويُردَم وتُعاد البلوكات نفسها — دون رقعة دائمة ظاهرة."
+			}
+		]
+	},
+	kerbstones: {
+		h1: "مقاول تركيب أحجار الأرصفة في الإمارات",
+		lead: "توريد وتركيب أحجار الأرصفة والمجاري على استقامة ومنسوب فوق كتف خرساني، وفق القطاع المعتمد لدى الجهة المختصة.",
+		intro: "أحجار الأرصفة هي الخط الظاهر الذي يُقاس عليه كل عنصر آخر. فمسار حجر يتمايل أفقياً أو ينخفض رأسياً يجعل طريقاً جيد التنفيذ يبدو رديئاً، وهو أول ما يضع عليه مفتّش الجهة المختصة خيط الاستقامة.",
+		body: ["نركّب الأحجار على استقامة ومنسوب فوق قاعدة خرسانية بكتف خلفي، بضبط مساحي في المستقيمات وقوالب في الأقواس لتأتي المنحنيات صحيحة لا تقريبية. وتكون الفواصل منتظمة، وتُنفَّذ الأحجار المنخفضة عند المعابر والمداخل بوصلات انتقالية سليمة، ويُضبط خط المجرى ليجري الماء إلى المصافي فعلاً.", "ونركّب أحجار الطرق وأحجار المواقف والجزر والقطاعات المنحنية والأحجار المنخفضة والمجاري، بالقطاعات التي تحددها هيئة الطرق والمواصلات وبلدية دبي وسائر الجهات في الإمارات الأخرى. وأحجار الأرصفة عادةً نقطة التقاء بين حزم الطرق والمواقف وتنسيق الموقع، لذا نُرتّب تسلسلها مع من يسبقنا ومن يلينا بدل تثبيت الخط وتركهم يتدبرون أمرهم."],
+		scope: [
+			"توريد أحجار الأرصفة والمجاري والقطاعات المنحنية والمنخفضة وفق القطاع المعتمد",
+			"التوقيع على استقامة ومنسوب بضبط مساحي",
+			"قاعدة خرسانية وكتف خلفي وفق المقطع المحدد",
+			"المسارات المستقيمة والأقواس والجزر وخطوط تهدئة السرعة",
+			"الأحجار المنخفضة والوصلات الانتقالية عند المعابر والمداخل والمسارات الميسّرة",
+			"فرش المجاري وضبط الميول نحو المصافي ونقاط التصريف",
+			"الدعم والردم وإنهاء ما خلف خط أحجار الأرصفة"
+		],
+		specs: [
+			["المعدات", "فرق تركيب متخصصة وحفارات صغيرة وتوريد خرسانة ومناشير قصّ وأجهزة مساحة"],
+			["الاستخدامات", "أحجار الطرق والطرق السريعة وأحجار المواقف والجزر والأحجار المنخفضة للمداخل والطرق الداخلية"],
+			["الضبط والتوثيق", "مسح الاستقامة والمنسوب وفحص الكتف الخرساني وانتظام الفواصل ومطابقة القطاع"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما قطاعات أحجار الأرصفة التي تركّبونها؟",
+				a: "القطاعات التي تحددها الجهة المختصة — قطاعات هيئة الطرق والمواصلات وبلدية دبي في دبي، والمعايير المكافئة في الإمارات الأخرى — وتشمل أحجار الطرق وأحجار المواقف والقطاعات المنحنية والأحجار المنخفضة والمجاري."
+			},
+			{
+				q: "هل تركّبون أحجاراً منخفضة لمدخل قطعة أرض؟",
+				a: "نعم. وعلى طريق تابع لهيئة الطرق والمواصلات يكون المدخل حزمة أعمال مداخل ومخارج، ونحن معتمدون لدى الهيئة لتنفيذها، بما يشمل الحجر المنخفض وأرضية المدخل والوصلة الانتقالية واستمرارية التصريف وإعادة الحالة."
+			},
+			{
+				q: "هل يمكنكم استبدال أحجار تالفة على طريق قائم؟",
+				a: "نعم. تُقتلع الوحدات التالفة، وتُعاد القاعدة والكتف، وتُركَّب وحدات جديدة على استقامة ومنسوب مطابقين للقائم، مع إعادة السطح المجاور إلى حالته."
+			}
+		]
+	},
+	"road-markings": {
+		h1: "مقاول تخطيط ودهان طرق في الإمارات",
+		lead: "تخطيط بالثيرموبلاستيك والدهان البارد — خطوط المسارات والتظليل والأسهم والمعابر والمواقف والترقيم وفق المعايير المعتمدة.",
+		intro: "التخطيط آخر عملية وأكثر ما يراه الناس. وهو كذلك صاحب أضيق نافذة مناخية: فالثيرموبلاستيك المطبَّق على سطح رطب أو مغبَّر أو بارد أكثر من اللازم سينفصل خلال أسابيع مهما كان التوقيع دقيقاً.",
+		body: ["نوقّع من المخططات، ونهيّئ السطح، ونطبّق الثيرموبلاستيك أو الدهان البارد بالسماكة المحددة مع حبيبات عاكسة حيثما اشترطت المواصفة. وعلى الأسفلت الجديد نترك السطح ليتماسك قبل التطبيق؛ وعلى الأسطح القائمة ننظّف ونزيل التخطيط القديم بالجلخ أو السفع بدل الدهان فوقه.", "وتشمل الأعمال خطوط المسارات على الطرق السريعة والطرق الداخلية، والتظليل والأسهم والعبارات، ومعابر المشاة، ومسارات الدراجات، ومواقف السيارات وترقيمها، والمطبّات الصوتية وتخطيط المطبّات. وعلى الطرق الحيّة تجري عملية التخطيط تحت إغلاق مسار بإدارة مرور من فريقنا، وبتصريحنا نحن حيث يكون الطريق تابعاً لهيئة الطرق والمواصلات."],
+		scope: [
+			"التوقيع من المخططات والتعليم المسبق في الموقع",
+			"تجهيز السطح وتنظيفه وإزالة التخطيط الملغى",
+			"تطبيق الثيرموبلاستيك بالسماكة المحددة مع حبيبات عاكسة",
+			"الدهان البارد حيث تحدده المواصفة أو للأعمال المؤقتة",
+			"خطوط المسارات والحواف والتظليل والأسهم والعبارات وخطوط الوقوف",
+			"معابر المشاة ومسارات الدراجات ومواقف السيارات وترقيمها",
+			"المطبّات الصوتية وتخطيط المطبّات والأسطح الملوّنة"
+		],
+		specs: [
+			["المعدات", "آلات ثيرموبلاستيك وآلات دهان بارد ومسخّنات وجلاخات وآلات سفع ووحدات إدارة مرور"],
+			["الاستخدامات", "الطرق السريعة والطرق الداخلية والمواقف والساحات الصناعية وطرق المجمعات وأرضيات المستودعات ومسارات الحركة"],
+			["الضبط والتوثيق", "مراجعة التوقيع مقابل المخططات وفحص حالة السطح ودرجة حرارته ومطابقة السماكة والحبيبات"],
+			["التغطية", "جميع إمارات الدولة السبع، بالتعبئة من دبي"]
+		],
+		faqs: [
+			{
+				q: "ثيرموبلاستيك أم دهان؟",
+				a: "الثيرموبلاستيك للتخطيط الدائم على الطرق التي تحمل حركة — فهو أسمك ويدوم أطول بكثير ويستقبل الحبيبات العاكسة بشكل صحيح. والدهان البارد للتخطيط المؤقت والمناطق قليلة الحركة والحالات التي سيتغير فيها التخطيط قريباً."
+			},
+			{
+				q: "هل يمكنكم إزالة التخطيط القائم؟",
+				a: "نعم، بالجلخ أو السفع لا بالدهان فوقه. فالدهان فوق خط ملغى يترك أثراً شبحياً يبقى ظاهراً ليلاً وفي الأجواء الممطرة، وهي بالضبط الظروف التي يسبب فيها التباساً."
+			},
+			{
+				q: "كم يلزم قبل إعادة فتح طريق جرى تخطيطه؟",
+				a: "يتماسك الثيرموبلاستيك خلال دقائق، فيمكن تسليم المقطع عادةً ضمن نافذة الإغلاق نفسها. وهذا ما يجعل التخطيط الليلي تحت إغلاق مسار عملياً على الطرق المزدحمة."
+			}
+		]
+	},
+	"lane-closure-permits": {
+		h1: "تصاريح إغلاق المسارات في دبي",
+		lead: "إعداد الطلب والمخططات واستصدار الموافقة لإغلاق مسار أو عدة مسارات على طرق هيئة الطرق والمواصلات، من التقديم حتى صدور التصريح.",
+		intro: "تصريح إغلاق المسار عمل مخططات يرتبط بموعد نهائي. فالهيئة لا تعتمد نيّة بإغلاق مسار — بل تعتمد طول انحراف محدداً، وجدول لوحات محدداً، ونافذة عمل محددة، ومجموعة محددة من إجراءات السلامة، مرسومة ومبرَّرة.",
+		body: ["نُعِدّ مخططات التحويل المروري، ونضبط أطوال الانحراف وجدول اللوحات وفق سرعة الاقتراب، ونحدد نافذة العمل — وهي في الممرات المزدحمة ساعات ليلية دائماً تقريباً — ثم نقدّم الحزمة. ويردّ الفريق نفسه على الملاحظات ويعيد التقديم، فلا يتعثر الطلب في انتظار من يفسّر الرد.", "ولأننا كذلك ننصب منظومة إدارة المرور في الموقع ونصونها، فإن التصريح الذي يُعتمَد هو المخطط الذي يُنفَّذ فعلاً. وهذا مهم عند التفتيش: فمعظم إشعارات إيقاف العمل على إغلاق ما لا تصدر لعدم وجود تصريح، بل للعمل وفق مخطط يخالف المعتمد."],
+		scope: [
+			"مخططات التحويل المروري وإغلاق المسارات وفق معايير هيئة الطرق والمواصلات",
+			"تصميم الانحرافات وجداول اللوحات والتحذير المسبق المناسب للسرعة",
+			"تحديد نافذة العمل، بما يشمل النوافذ الليلية ونهاية الأسبوع",
+			"التقديم والرد على الملاحظات والمتابعة حتى صدور التصريح",
+			"تركيب المخطط المعتمد في الموقع بفرقنا الخاصة",
+			"صيانة الإغلاق وتفتيشه طوال مدة الأعمال",
+			"تمديد التصريح وتعديله على مراحل عند تغيّر البرنامج"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات — دبي"],
+			["الاستخدامات", "أعمال المرافق داخل المسار وأعمال الأسفلت والترقيع وحماية الخدمات وتنفيذ المداخل والمخارج"],
+			["المخرجات", "مخططات تحويل معتمدة وتصريح صادر ومخطط منصوب ومَصون والتزام أثناء التنفيذ"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "كم يستغرق تصريح إغلاق مسار من هيئة الطرق والمواصلات؟",
+				a: "يعتمد على الطريق ومدى الإغلاق ونظافة الطلب المقدَّم. فحزمة مُعَدّة جيداً لإغلاق ليلي بسيط تتحرك بسرعة؛ أما إغلاق عدة مسارات على ممر استراتيجي فيستغرق وقتاً أطول ويستدعي ملاحظات أكثر. ونعطيك تاريخاً واقعياً من البداية بدل تاريخ متفائل."
+			},
+			{
+				q: "هل تنصبون إدارة المرور إضافة إلى استخراج التصريح؟",
+				a: "نعم، وهذا سبب وجاهة شرائهما معاً. فالمخطط المنصوب يطابق المخطط المعتمد، وهو ما يتحقق منه مفتّش الهيئة في الموقع."
+			},
+			{
+				q: "هل يمكن الحصول على تصريح لإغلاق مسارات نهاراً؟",
+				a: "على بعض الطرق نعم؛ وعلى الممرات الاستراتيجية تسمح الهيئة عادةً بالعمل الليلي فقط. وسنخبرك بأي فئة يقع طريقك قبل أن تبني برنامجاً على نافذة نهارية."
+			}
+		]
+	},
+	"road-closure-permits": {
+		h1: "تصاريح إغلاق الطرق في دبي",
+		lead: "إغلاق كامل للطرق والمسارات مع مسارات تحويل معتمدة وبرامج مرحلية وتنسيق مع الجهات المعنية.",
+		intro: "الإغلاق الكامل للطريق حديث أكبر من إغلاق مسار. فأنت تطلب من هيئة الطرق والمواصلات أن ترسل الحركة إلى مكان آخر، ولذلك يجب أن يبرّر الطلب ضرورة الإغلاق، وأن يثبت قدرة مسار التحويل على استيعاب الحركة، وأن يبيّن تعذّر تنفيذ الأعمال على مراحل بأي صورة أخرى.",
+		body: ["نُعِدّ تبرير الأثر المروري ومخططات مسار التحويل وبرنامج المراحل، وننسّق مع هيئة الطرق والمواصلات وشرطة دبي والجهات التي يمسّها الإغلاق — من منشآت تجارية ومبانٍ وخطوط حافلات ومسارات طوارئ. وحيث لا يُتوقَّع اعتماد إغلاق واحد، نعيد هيكلة الأعمال إلى مراحل قابلة للاعتماد.", "وبعد الاعتماد، يُنصَب الإغلاق ويُلوَّح ويُضاء ويُصان بفرقنا ويُسلَّم وفق البرنامج المتفق عليه. وتُراجَع لوحات التحويل طوال مدة الإغلاق لا أن تُنصَب وتُنسى، لأن تحويلاً فقد لوحة هو ما يولّد الشكوى التي تنهي التصريح مبكراً."],
+		scope: [
+			"دراسة الأثر المروري وتبرير الإغلاق",
+			"تصميم مسار التحويل ومخططاته واستراتيجية اللوحات المسبقة",
+			"برامج إغلاق مرحلية حيث يتعذر اعتماد إغلاق واحد",
+			"التنسيق مع هيئة الطرق والمواصلات وشرطة دبي والجهات المتأثرة",
+			"التقديم والرد على الملاحظات والمتابعة حتى صدور التصريح",
+			"تركيب وإضاءة وصيانة الإغلاق ومسار التحويل",
+			"التسليم وفق البرنامج مع إعادة الفتح على مراحل عند الاقتضاء"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات وشرطة دبي"],
+			["الاستخدامات", "إعادة بناء المسارات وعبور المرافق الكبرى وأعمال الجسور والمنشآت وتركيبات الفعاليات والزينة"],
+			["المخرجات", "مخططات تحويل معتمدة وتصريح صادر وإغلاق وتحويل منصوبان وإشعارات للجهات المعنية"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "متى يُعتمَد إغلاق كامل بدل إغلاق مسار؟",
+				a: "حين يتعذر فعلاً تنفيذ الأعمال تحت إغلاق جزئي ويتوفر مسار تحويل صالح. وإذا لم يتحقق الشرطان يُرفض الطلب — لذلك نقيّم ذلك بصراحة أولاً، ونعيد عند اللزوم تقسيم الأعمال إلى إغلاقات مسارات قابلة للاعتماد."
+			},
+			{
+				q: "هل تُخطرون المنشآت والسكان المتأثرين؟",
+				a: "نعم. إخطار الجهات المعنية والتنسيق معها جزء من الحزمة، إلى جانب ترتيبات وصول الطوارئ. فالإغلاقات تفشل بسبب الشكاوى أكثر بكثير مما تفشل بسبب الهندسة."
+			},
+			{
+				q: "ماذا يحدث إذا تجاوزت الأعمال النافذة المصرَّح بها؟",
+				a: "نخطط للتسليم مع هامش احتياطي، وحيث يلزم تمديد فعلي نتقدّم به مسبقاً. فتجاوز نافذة الإغلاق دون موافقة أسرع طريق لفقدان المصداقية لدى الجهة المختصة في الطلب التالي."
+			}
+		]
+	},
+	"traffic-management": {
+		h1: "مقاول إدارة المرور في دبي",
+		lead: "توريد وتركيب وصيانة وإزالة منظومة إدارة مرور مطابقة — مخاريط وحواجز ولوحات ولوحات أسهم ووحدات TMA ومنظّمو مرور.",
+		intro: "إدارة المرور هي ما يفصل بين مسار حيّ والعاملين داخله. وهي كذلك العنصر الأكثر عرضة للتركيب مرة واحدة ثم تُترك لتتدهور — مخاريط تبعثرها الحركة العابرة، ولوحة أدارتها الريح، وانحراف قَصُر عشرات الأمتار منذ الليلة الأولى.",
+		body: ["نورّد وننصب منظومة إدارة المرور وفق المخطط المعتمد: لوحات تحذير مسبق ولوحات إرشادية، ومخاريط وعواكس، وحواجز سلامة، ولوحات أسهم ضوئية، وإنارة، ووحدات تخفيف الصدم المركّبة على الشاحنات (TMA) على الطرق عالية السرعة. ويُوفَّر منظّمو مرور مدرَّبون حيث يستلزم المخطط ضبطاً يدوياً عند المداخل والمعابر.", "ثم يُفتَّش المخطط ويُصان طوال مدة الأعمال لا في المناوبة الأولى فحسب، ويُزال بالكامل عند الانتهاء ليُسلَّم الطريق دون لوحات متبقية تربك السائقين. وحيث تكون الأعمال على طريق تابع لهيئة الطرق والمواصلات، نُعِدّ مخططات التحويل ونحمل التصريح كذلك، فيكون فريق واحد مسؤولاً عن المخطط والاعتماد وما هو قائم فعلاً على الأرض."],
+		scope: [
+			"تركيب مخططات إدارة المرور وفق المخططات المعتمدة",
+			"لوحات التحذير المسبق والإرشاد والسرعة وفق معايير الجهة المختصة",
+			"المخاريط والعواكس وحواجز السلامة وحماية المشاة",
+			"لوحات الأسهم الضوئية وأضواء التحذير والإنارة الليلية",
+			"وحدات تخفيف الصدم المركّبة على الشاحنات (TMA) للمسارات عالية السرعة",
+			"منظّمو مرور مدرَّبون وضبط يدوي عند المداخل والمعابر",
+			"التفتيش الدوري والصيانة والإزالة الكاملة عند الإنجاز"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات — دبي"],
+			["الاستخدامات", "أعمال المسارات وعبور المرافق وحماية الخدمات والأسفلت والترقيع وتنفيذ المداخل والمخارج والفعاليات"],
+			["المعدات", "مخاريط وعواكس وحواجز ولوحات ولوحات أسهم وإنارة ووحدات TMA ومنظّمو مرور"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "هل توفّرون وحدات TMA؟",
+				a: "نعم. تُوفَّر وحدات تخفيف الصدم المركّبة على الشاحنات حيث تتطلب سرعة الطريق ومخطط العمل حماية من الاصطدام لمنطقة العمل — عادةً على المسارات عالية السرعة والأعمال المتحركة أو قصيرة المدة."
+			},
+			{
+				q: "هل تصونون منظومة إدارة المرور أثناء الأعمال؟",
+				a: "نعم. يُفتَّش المخطط ويُعاد إلى وضعه طوال الأعمال لا أن يُنصَب مرة واحدة. فالمخاريط المزاحة واللوحات المستديرة والانحرافات التي قَصُرت هي الأسباب المعتادة لرسوب التفتيش."
+			},
+			{
+				q: "هل يمكنكم توفير إدارة المرور دون تنفيذ الأعمال الإنشائية؟",
+				a: "نعم. نورّد وننصب ونصون ونزيل منظومة إدارة المرور كحزمة مستقلة، بما يشمل مخططات التحويل وتصريح هيئة الطرق والمواصلات حيث تكون الأعمال على طريق تابع لها."
+			}
+		]
+	},
+	"rta-approved-entry-exit-works": {
+		h1: "مقاول مداخل ومخارج معتمد من هيئة الطرق والمواصلات في دبي",
+		lead: "مداخل ومخارج قطع الأراضي على طرق الهيئة، ينفّذها مقاول معتمد فيُقبَل العمل ويصبح المدخل قابلاً للاستخدام نظامياً.",
+		intro: "المدخل والمخرج على طريق تابع لهيئة الطرق والمواصلات ليس عمل أحجار أرصفة. إنه وصلة منضبطة بالطريق العام، ولن تقبلها الهيئة إلا إذا كان التصميم معتمداً والمقاول معتمداً وما نُفِّذ مطابقاً لما رُسِم.",
+		body: ["نتولى الحزمة من طرفها إلى طرفها: مخططات المدخل والمخرج وتقديمها، والتصريح، والتنفيذ نفسه — أحجار منخفضة وأرضية مدخل ووصلات انتقالية ومناسيب، واستمرارية تصريف الطريق عبر المدخل، وطبقة سطحية وتخطيط ولوحات — يليها إعادة كل ما مُسّ داخل حرم الطريق إلى حالته.", "وأكثر أسباب رسوب المدخل في التفتيش هو التصريف. فمدخل يقطع خط المجرى، أو يصرّف مياه القطعة إلى المسار، لن يُعتمَد مهما كان تشطيبه جيداً. لذلك نضبط المناسيب ليمرّ تصريف الطريق دون انقطاع وتصرّف القطعة إلى شبكتها الخاصة."],
+		scope: [
+			"مخططات تصميم المدخل والمخرج وتقديمها لهيئة الطرق والمواصلات",
+			"طلب التصريح والمتابعة حتى الاعتماد",
+			"الأحجار المنخفضة وأرضية المدخل والوصلات الانتقالية وهندسة الوصول",
+			"استمرارية مجرى الطريق وتصريفه عبر المدخل",
+			"طبقة ما تحت الأساس وطبقة الأساس والسطح الأسفلتي أو الإنترلوك للمدخل",
+			"التخطيط واللوحات، وحواجز الحماية والأعمدة حيث تُشترط",
+			"إعادة حرم الطريق إلى حالته ووثائق التسليم"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات — دبي"],
+			["الاستخدامات", "مداخل قطع الأراضي والفلل والمداخل التجارية ومداخل المستودعات والمنشآت الصناعية ومحطات الوقود"],
+			["الاعتماد", "ينفّذها مقاول معتمد لدى هيئة الطرق والمواصلات، مع المخططات والتصريح ووثائق ما بعد التنفيذ"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "لماذا يجب أن ينفّذ المدخل والمخرج مقاول معتمد من الهيئة؟",
+				a: "لأن الأعمال تقع داخل حرم الطريق. فالهيئة لا تصدر التصريح ولا تقبل المدخل المنجَز ما لم يكن المقاول المنفّذ حاصلاً على اعتمادها. ونحن حاصلون عليه."
+			},
+			{
+				q: "هل تُعِدّون مخططات المدخل والمخرج أيضاً؟",
+				a: "نعم. المخططات والتقديم والرد على الملاحظات والتصريح تُنجَز داخل الشركة، ثم ينفّذ الفريق نفسه العمل — فيطابق المنفَّذ ما اعتُمِد."
+			},
+			{
+				q: "لماذا ترسب مداخل قطع الأراضي في تفتيش الهيئة؟",
+				a: "في الغالب بسبب التصريف: انقطاع خط المجرى عبر المدخل، أو تصريف مياه القطعة إلى المسار. ويليه في الشيوع اختلاف المناسيب والهندسة عن المخطط المعتمد."
+			}
+		]
+	},
+	"rta-service-protection": {
+		h1: "أعمال حماية الخدمات في دبي",
+		lead: "حماية المرافق القائمة داخل حرم الطريق أثناء التنفيذ — مسح وحفر استكشافي وحماية مادية وإعادة حالة.",
+		intro: "كل متر من حرم الطريق في دبي يخفي شيئاً مدفوناً: كابلات هيئة كهرباء ومياه دبي، ومجاري اتصالات ودو، وخطوط مياه رئيسية، وري، وتبريد مركزي. وحماية الخدمات هي انضباط إثبات مواقع تلك الخدمات قبل أن تقترب منها أي معدة، ثم حمايتها مادياً أثناء الأعمال.",
+		body: ["نمسح المسار ونتتبّعه، ونفتح حفراً استكشافية لكشف الأعماق والاستقامات وتأكيدها، ونوثّق ما هو موجود فعلاً مقابل ما تدّعيه المخططات — وكثيراً ما يختلف الاثنان. وحيث تكون الخدمات مكشوفة أو معرّضة للخطر، تُحمى مادياً: غلاف خرساني أو أكمام أو بلاطات حماية أو دعامات وحوامل للخدمة العابرة فوق حفر مفتوح.", "وتُنفَّذ الأعمال وفق متطلبات هيئة الطرق والمواصلات ومالكي المرافق، مع شهادات عدم الممانعة اللازمة، ويُعاد كل ما مُسّ داخل حرم الطريق إلى معايير الجهة المختصة بعد ذلك. والخطأ هنا مكلف بصورة لا تتناسب إطلاقاً مع حجم الأعمال — فكابل جهد متوسط مقطوع أو مسار ألياف مقطوع يكلّف أضعاف ما كانت ستكلّفه الحماية."],
+		scope: [
+			"مسح الخدمات وتتبّعها وتعليم المسار قبل الحفر",
+			"حفر استكشافي لكشف العمق والاستقامة والحالة وتأكيدها",
+			"مقارنة الخدمات المكتشفة بمخططات السجلات مع تقرير بالنتائج",
+			"غلاف خرساني وأكمام وبلاطات حماية للخدمات المكشوفة",
+			"دعامات وحوامل للخدمات العابرة فوق حفر مفتوح",
+			"تنسيق شهادات عدم الممانعة مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور والهيئة",
+			"إعادة حرم الطريق إلى حالته وفق معايير الجهة المختصة"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات، مع شهادات عدم ممانعة من هيئة كهرباء ومياه دبي واتصالات ودو وإمباور وغيرها"],
+			["الاستخدامات", "الأعمال داخل حرم الطريق وعبور المرافق وتنفيذ المداخل والمخارج والحفر قرب خدمات حيّة"],
+			["المخرجات", "سجلات الحفر الاستكشافي وتقرير مواقع الخدمات وتفاصيل الحماية وشهادات عدم الممانعة ووثائق إعادة الحالة"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "هل تمسحون بحثاً عن الخدمات قبل الحفر؟",
+				a: "دائماً، ثم نثبت نتيجة المسح بحفر استكشافي. فمخططات السجلات في ممر طريق قائم نقطة بداية لا دليلاً — إذ كثيراً ما يختلف العمق أو الاستقامة المدوّنان عمّا هو في الأرض."
+			},
+			{
+				q: "من يستخرج شهادات عدم الممانعة من مالكي المرافق؟",
+				a: "نحن. تنسيق شهادات عدم الممانعة مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور وهيئة الطرق والمواصلات جزء من الحزمة، إلى جانب المخططات وبيانات طرق العمل التي يطلبها كلٌّ منهم."
+			},
+			{
+				q: "ماذا يحدث إذا وجدتم خدمة غير مدوّنة في المخططات؟",
+				a: "يتوقف العمل في تلك المنطقة، وتُكشف الخدمة وتُحدَّد هويتها، ويُخطَر مالكها، ويُتَّفق على الحماية أو التحويل قبل استئناف الحفر. ويُوثَّق ذلك ويُبلَّغ عنه لا أن يُتجاوَز بهدوء."
+			}
+		]
+	},
+	"row-permits": {
+		h1: "تصاريح حق الطريق في دبي",
+		lead: "طلبات تصاريح حق الطريق للأعمال داخل حرم الطرق والأراضي العامة — المخططات وشهادات عدم الممانعة والالتزام حتى الإنجاز.",
+		intro: "تصريح حق الطريق هو ما يجعل العمل داخل حرم الطريق أو على أرض عامة عملاً مشروعاً. وهو كذلك البند الأكثر احتمالاً لأن يظهر في البرنامج الزمني كسطر واحد بلا مدة، حتى يكتشف أحدهم يوماً أن الأعمال لا تستطيع البدء.",
+		body: ["نُعِدّ الطلب كاملاً: مخططات المسقط والقطاعات، وبيانات طرق العمل، وترتيبات المرور، وشهادات عدم الممانعة التي تشترطها الجهة، والمستندات المساندة التي تمنع إعادة الطلب. ويردّ على الملاحظات الفريق نفسه الذي أعدّ الحزمة، وهو عادةً الفارق بين دورة إعادة تقديم بأيام وأخرى بأسابيع.", "والتصريح نصف العمل فحسب. فالاشتراطات المرفقة به — ساعات العمل وإجراءات الحماية ومعايير إعادة الحالة ومتطلبات الإخطار — يجب الالتزام بها ليبقى التصريح سارياً حتى الإنجاز، ونحن ندير ذلك في الموقع كما نديره على الورق."],
+		scope: [
+			"تقييم التصاريح وشهادات عدم الممانعة التي يتطلبها نطاق العمل فعلاً",
+			"مخططات المسقط والقطاعات وترتيبات المرور للتقديم",
+			"بيانات طرق العمل والمستندات المساندة",
+			"جمع شهادات عدم الممانعة من مالكي المرافق والجهات المعنية",
+			"التقديم والرد على الملاحظات والمتابعة حتى صدور التصريح",
+			"الالتزام باشتراطات التصريح أثناء التنفيذ",
+			"إعادة الحالة وفق معايير الجهة المختصة وإغلاق التصريح"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات وبلدية دبي، مع شهادات عدم ممانعة من مالكي المرافق والجهات المعنية"],
+			["الاستخدامات", "الأعمال داخل حرم الطرق وعبور ونقل المرافق وحماية الخدمات والمداخل والمخارج والتركيبات المؤقتة"],
+			["المخرجات", "حزمة مخططات مقدَّمة وشهادات عدم ممانعة مجمَّعة وتصريح حق طريق صادر وسجلات التزام وإغلاق"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "كم يستغرق تصريح حق الطريق في دبي؟",
+				a: "يعتمد على الموقع ومدى الأعمال وعدد شهادات عدم الممانعة المطلوبة. والجزء الذي يمكن التحكم فيه هو جودة التقديم — فالحزمة الكاملة والصحيحة تتفادى دورات إعادة التقديم التي تسبّب معظم التأخير."
+			},
+			{
+				q: "هل يمكنكم استخراج تصريح حق طريق إذا كنا سننفّذ الأعمال بأنفسنا؟",
+				a: "نعم. نتولى حزم التصاريح وشهادات عدم الممانعة كخدمة مستقلة، وإن كانت الجهة المختصة ستشترط كذلك في الأعمال داخل حرم الطريق أن يحمل المقاول المنفّذ الاعتماد المطلوب."
+			},
+			{
+				q: "ماذا يحدث إذا لم تُستوفَ اشتراطات التصريح في الموقع؟",
+				a: "يمكن تعليق التصريح وإيقاف الأعمال. لذلك تُدار اشتراطات ساعات العمل والحماية وإعادة الحالة في الموقع كجزء من الخدمة، لا أن تُسجَّل عند التقديم فقط."
+			}
+		]
+	},
+	"utilities-shifting": {
+		h1: "مقاول نقل وتحويل المرافق في دبي",
+		lead: "تحويل ونقل الخدمات المتعارضة مع الأعمال الجديدة — مجاري الكابلات والكابلات والمياه والري — بالتنسيق مع مالكي المرافق.",
+		intro: "نقل المرافق مشكلة تنسيق ترتدي ثوب التنفيذ. فالحفر والمسار الجديد أمران مباشران؛ أما نافذة الفصل وموافقة المالك والتسلسل الذي يمكن به تحريك ثلاث خدمات مختلفة دون أن تفقد أي منها التغذية، فهو ما يحدّد البرنامج الزمني.",
+		body: ["نحدد التعارض، ونتفق على المسار الجديد مع المالك، ونستخرج شهادات عدم الممانعة والتصاريح، وننفّذ التحويل — مسار مجارٍ أو أنابيب جديد وحماية وربط ودعم للتشغيل التجريبي وإلغاء أو إزالة الخط الملغى. وتُحجَز نوافذ الفصل مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور ويُلتزَم بها، لأن نافذة فائتة قد تضيف أسابيع إلى البرنامج.", "وحيث يمكن تفادي التعارض بالتصميم بدل تحريكه، نقول ذلك. فنقل خدمة أغلى دائماً من تعديل منسوب أو استقامة، ويستحق الأمر ساعة مراجعة قبل الالتزام بتحويل قد لا يحتاجه المشروع أصلاً."],
+		scope: [
+			"تحديد التعارضات مقابل التصميم ومواقع الخدمات المؤكدة",
+			"اقتراح المسار الجديد والاتفاق عليه مع مالك المرفق",
+			"طلبات شهادات عدم الممانعة والتصاريح اللازمة للتحويل",
+			"الحفر ومدّ المجاري والفرش والحماية والردم على المسار الجديد",
+			"تنسيق نوافذ الفصل مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور",
+			"الربط ودعم التشغيل التجريبي والاختبار مع المالك",
+			"إلغاء أو إزالة الخط الملغى وإعادة الحالة"
+		],
+		specs: [
+			["الجهة المختصة", "هيئة الطرق والمواصلات وبلدية دبي، مع موافقات مالكي المرافق"],
+			["الاستخدامات", "تعارض الخدمات مع الطرق والمنشآت الجديدة وتطوير قطع الأراضي والمداخل والمخارج وتوسعة الطرق"],
+			["المخرجات", "مسار تحويل معتمد وشهادات عدم ممانعة وتصاريح وتحويل منفَّذ ومُشغَّل وسجلات ما بعد التنفيذ"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "من يعتمد تحويل مرفق؟",
+				a: "مالك المرفق — هيئة كهرباء ومياه دبي أو اتصالات أو دو أو إمباور أو الجهة المعنية — إلى جانب هيئة الطرق والمواصلات أو البلدية للأعمال داخل حرم الطريق. ونحن نتولى مساري الاعتماد معاً."
+			},
+			{
+				q: "كيف تُدار عمليات الفصل؟",
+				a: "تُحجَز نوافذ الفصل مع المالك مسبقاً ويُخطَّط العمل ليقع داخلها، مع وجود الفريق والمعدات والمواد في الموقع قبل فتح النافذة. ففوات نافذة محجوزة مكلف من حيث البرنامج الزمني."
+			},
+			{
+				q: "هل يمكن تفادي التعارض بدل تحويل الخدمة؟",
+				a: "غالباً نعم — فتعديل منسوب أو تغيير بسيط في الاستقامة أرخص بكثير من التحويل. نتحقق من ذلك أولاً ونخبرك متى يكون النقل هو الخيار الوحيد فعلاً."
+			}
+		]
+	},
+	"noc-services": {
+		h1: "خدمات شهادات عدم الممانعة في دبي",
+		lead: "إعداد ومعالجة شهادات عدم الممانعة لدى الجهات ومالكي المرافق الذين يمسّهم المشروع.",
+		intro: "شهادات عدم الممانعة هي المسار الحرج الصامت. فقد يكون المشروع مصمَّماً وممولاً ومجهَّزاً بالكامل ومع ذلك يعجز عن البدء لأن مالك مرفق واحداً لم يعتمد مخططاً قُدِّم ناقصاً قبل شهرين.",
+		body: ["نحدد شهادات عدم الممانعة التي يحتاجها نطاق العمل فعلاً، ونُجهّز حزمة المخططات التي تطلبها كل جهة ومالك، ونقدّم ونردّ على الملاحظات ونتابع الموافقات حتى الإصدار. فلكل جهة متطلباتها — وحزمة هيئة كهرباء ومياه دبي لا تشبه حزمة هيئة الطرق والمواصلات، وإرسال الحزمة الخاطئة هو ما يولّد أول رفض.", "والقيمة الحقيقية في معرفة التسلسل. فبعض الشهادات مشروطة بصدور غيرها أولاً، وتقديمها بترتيب خاطئ يضمن إعادتها. نُشغّلها بالتوازي حيث يمكن وبالتتابع حيث يلزم، ونعطيك صورة واقعية عن برنامج الموافقات لا صورة متفائلة."],
+		scope: [
+			"تقييم شهادات عدم الممانعة والموافقات التي يتطلبها نطاق العمل",
+			"تجهيز حزمة المخططات والمستندات لكل جهة",
+			"التقديم لهيئة الطرق والمواصلات وبلدية دبي وهيئة كهرباء ومياه دبي واتصالات ودو وإمباور",
+			"التقديم لسلطة دبي للتطوير وتراخيص ودبي الجنوب وسلطات المناطق الحرة عند الاقتضاء",
+			"الرد على الملاحظات وإعادة التقديم ومتابعة الموافقات",
+			"ترتيب الموافقات المترابطة لتفادي الرفض غير الضروري",
+			"تسليم مجموعة شهادات عدم الممانعة الصادرة ضمن وثائق المشروع"
+		],
+		specs: [
+			["الجهات", "هيئة الطرق والمواصلات وبلدية دبي وهيئة كهرباء ومياه دبي واتصالات ودو وإمباور وسلطة دبي للتطوير وتراخيص ودبي الجنوب وسلطات المناطق الحرة"],
+			["الاستخدامات", "الأعمال داخل حرم الطرق وعبور وتحويل المرافق والمداخل والمخارج وتطوير قطع الأراضي والتركيبات المؤقتة"],
+			["المخرجات", "حزم مقدَّمة وموافقات متابَعة ومجموعة شهادات صادرة وبرنامج موافقات"],
+			["التغطية", "دبي"]
+		],
+		faqs: [
+			{
+				q: "ما شهادات عدم الممانعة التي سيحتاجها مشروعنا؟",
+				a: "يعتمد ذلك على موقع الأعمال وما تمسّه. أرسل لنا الموقع ونطاق العمل وسنُعِدّ لك قائمة بالجهات ومالكي المرافق المعنيين، مرتَّبة بالتسلسل الذي ينبغي مخاطبتهم به."
+			},
+			{
+				q: "هل يمكنكم استخراج شهادات عدم الممانعة إذا كان مقاول آخر ينفّذ الأعمال؟",
+				a: "نعم. تُقدَّم معالجة شهادات عدم الممانعة والتصاريح كخدمة مستقلة، وإن كانت بعض الموافقات تشترط كذلك أن يحمل المقاول المنفّذ اعتماد الجهة المعنية."
+			},
+			{
+				q: "لماذا تُرفض طلبات شهادات عدم الممانعة؟",
+				a: "عادةً بسبب حزمة ناقصة، أو مخطط بصيغة لا تناسب تلك الجهة، أو تقديم تمّ قبل صدور موافقة يعتمد عليها. والثلاثة قابلة للتفادي، وتفاديها هو جوهر هذه الخدمة."
+			}
+		]
+	}
+};
+//#endregion
+//#region src/data/services.ar.js
+var emiratesAr = {
+	dubai: {
+		name: "دبي",
+		authority: "هيئة الطرق والمواصلات وبلدية دبي",
+		context: "تطبّق دبي أدقّ منظومة تصاريح في الدولة. ونحن مقاول معتمد لدى هيئة الطرق والمواصلات، نعمل يومياً وفق اشتراطات الهيئة وبلدية دبي وسلطة دبي للتطوير وتراخيص ودبي الجنوب — أي أن الموافقات وشهادات عدم الممانعة والتحويلات المرورية تُنجَز داخل الشركة لا عبر مقاول من الباطن.",
+		areas: "الخليج التجاري والقوز وجبل علي ودبي الجنوب ومجمع دبي للاستثمار وند الشبا والبرشاء وسائر أنحاء الإمارة"
+	},
+	"abu-dhabi": {
+		name: "أبوظبي",
+		authority: "دائرة البلديات والنقل",
+		context: "تُنفَّذ مشاريع أبوظبي وفق مواصفات دائرة البلديات والنقل وبلدية مدينة أبوظبي، ولكلٍّ منظومته في اعتماد المواد والاختبارات. وتتحرك فرقنا من دبي ومعها المعدات والمشغّلون ووثائق ضبط الجودة مُهيَّأة لمعايير أبوظبي منذ اليوم الأول.",
+		areas: "مصفح ومدينة خليفة الصناعية (كيزاد) وطريق العين وجزيرة ياس والريم والمنطقة الغربية"
+	},
+	sharjah: {
+		name: "الشارقة",
+		authority: "هيئة الطرق والمواصلات في الشارقة وبلدية الشارقة",
+		context: "تُنفَّذ أعمال الشارقة باعتمادات هيئة الطرق والمواصلات وبلدية الشارقة. وتحتاج المناطق الصناعية والأحياء السكنية الجديدة هنا إلى حزم أعمال ترابية وطرق سريعة التنفيذ وموثّقة جيداً، مع ضبط للغبار والنقل يفي بمتطلبات التفتيش البلدي.",
+		areas: "المناطق الصناعية من 1 إلى 18 والسجعة ومويلح والزبير والمدينة الجامعية وكلباء"
+	},
+	ajman: {
+		name: "عجمان",
+		authority: "دائرة البلدية والتخطيط في عجمان",
+		context: "تجمع عجمان بين تطوير سكني سريع الحركة ومناطق صناعية راسخة. وننفذ فيها حزم أعمال ترابية وطرق مضبوطة التسلسل باعتمادات دائرة البلدية والتخطيط، مصمَّمة لقطع الأراضي محدودة المساحة والوصول.",
+		areas: "الجرف الصناعية ومنطقة عجمان الصناعية والزوراء ومصفوت والمنامة"
+	},
+	"ras-al-khaimah": {
+		name: "رأس الخيمة",
+		authority: "بلدية رأس الخيمة ودائرة الأشغال العامة",
+		context: "أرض رأس الخيمة صخرية بقدر ما هي رملية. وتتعامل كسّاراتنا الهيدروليكية ومعداتنا ذات الأذرع الطويلة ومشغّلونا ذوو الخبرة المحجرية مع الأعمال الجبلية والطبقات الصلبة التي تتعثّر عندها أساطيل الحفر الاعتيادية، وذلك باعتمادات بلدية رأس الخيمة.",
+		areas: "الغيل والحمراء والمناطق الصناعية في رأس الخيمة ودقداقة وخزام ومحور الجزيرة"
+	},
+	fujairah: {
+		name: "الفجيرة",
+		authority: "بلدية الفجيرة",
+		context: "ننفّذ حزم الطرق والأسفلت على الساحل الشرقي منذ عام 2021، ومنها أعمال لشركة الفجيرة لصناعة الإسمنت في دبا. والتضاريس الجبلية وحركة الميناء ومسافات النقل الطويلة تُدرَج في البرنامج الزمني مسبقاً بدل اكتشافها في الموقع.",
+		areas: "دبا ومسافي وميناء الفجيرة والمنطقة الحرة وقدفع ومحور طريق كلباء"
+	},
+	"umm-al-quwain": {
+		name: "أم القيوين",
+		authority: "بلدية أم القيوين",
+		context: "مشاريع أم القيوين في الغالب أراضٍ بكر: قطع خام تحتاج إلى تنظيف وردم وتسوية قبل أن يُرفَع فيها أي منسوب. ونجلب قطار المعدات كاملاً في تعبئة واحدة حتى لا تدفع المواقع الصغيرة والمتوسطة ثمن تعبئات متكررة.",
+		areas: "منطقة أم القيوين الصناعية والسلامة وفلج المعلا ومحور شارع الإمارات"
+	}
+};
+var categoriesAr = {
+	"earth-works": {
+		name: "الأعمال الترابية",
+		tagline: "تحريك التربة وتشكيلها ودمكها وفق المواصفات.",
+		intro: "كل ما يسبق إنشاء مبنى أو طريق: القطع والردم والتسوية والدمك لتحويل الأرض الخام إلى منصة جاهزة للبناء ومُختبَرة. ونحن نملك المعدات — حفارات وجرافات ولوادر ومسوّيات ومداحل وكسّارات صخور — فيبقى البرنامج الزمني محكوماً بالعمل لا بتوفّر التأجير.",
+		services: {
+			excavation: {
+				name: "الحفر",
+				keyword: "مقاول حفريات",
+				text: "حفر كلي وتفصيلي للبدرومات والأساسات والخدمات وممرات البنية التحتية — من الحفر المفتوح في الرمل إلى الطبقات الصلبة التي تُكسَر بالكسّارات الهيدروليكية. وتُخطَّط الميول والمدرّجات وفق التقرير الجيوتقني، ويُنقَل الناتج ويُطرَح بموجب تصريح."
+			},
+			"back-filling": {
+				name: "أعمال الردم",
+				keyword: "مقاول ردم",
+				text: "ردم إنشائي وردم حول الخدمات يُوضَع على طبقات مضبوطة بمواد معتمدة، مع الترطيب والدمك حتى الكثافة المطلوبة. ومحيط الخنادق والبدرومات هو المصدر الكلاسيكي للهبوط لاحقاً، لذلك نختبر كل طبقة بدل الردم حتى الأعلى وانتظار الأفضل."
+			},
+			"cut-and-fill": {
+				name: "القطع والردم",
+				keyword: "مقاول قطع وردم",
+				text: "عمليات قطع وردم متوازنة تصل بالموقع إلى المناسيب التصميمية مع إبقاء المواد في الموقع حيثما كانت صالحة. تُنفَّذ بضبط مساحي وتوجيه آلي، فتنخفض تكاليف النقل والاستيراد والطرح دون فقدان المقطع التصميمي."
+			},
+			leveling: {
+				name: "التسوية والتمهيد",
+				keyword: "مقاول تسوية أراضي",
+				text: "تمهيد وتسوية دقيقة حتى المناسيب والميول التصميمية، سواء كان المطلوب منسوب تأسيس لطريق أو منصة بلاطة أو ساحة أو منطقة تخزين. وتحافظ المسوّيات وشفرات التوجيه بالأقمار الاصطناعية على السماحية عبر مساحات واسعة."
+			},
+			compaction: {
+				name: "الدمك",
+				keyword: "مقاول أعمال دمك",
+				text: "دمك طبقة بطبقة بالمدحلة المناسبة لنوع المادة — هزّازة أسطوانية ملساء أو ذات أقدام أو صفيحة في الأماكن الضيقة — مدعوماً باختبارات الكثافة الحقلية وشهادات دمك تفي باعتماد الاستشاري والجهة المختصة."
+			}
+		}
+	},
+	"road-works": {
+		name: "أعمال الطرق",
+		tagline: "طرق الوصول والأسفلت وكل ما يحمل الحركة المرورية.",
+		intro: "حزم طرق متكاملة من منسوب التأسيس حتى الطبقة السطحية: طبقة ما تحت الأساس وطبقة الأساس، وأسفلت الرابطة والطبقة السطحية، والإنترلوك وأحجار الأرصفة والمواقف والتخطيط الأرضي. وبصفتنا مقاول طرق معتمداً لدى هيئة الطرق والمواصلات، ننفّذ وفق مواصفات الجهة المختصة مع توثيق اعتمادات المواد والاختبارات أولاً بأول.",
+		services: {
+			"access-roads": {
+				name: "طرق الوصول",
+				keyword: "مقاول طرق وصول",
+				text: "طرق وصول مؤقتة ودائمة إلى قطع الأراضي والمواقع والمصانع والمنشآت البعيدة — منسوب تأسيس وطبقة ما تحت الأساس وطبقة أساس وطبقة سطحية، مصمَّمة للأحمال التي ستستخدمها فعلاً. تُبنى مبكراً حتى لا تتوقف التوريدات الثقيلة عند حدود الموقع."
+			},
+			"road-base-laying": {
+				name: "فرش طبقة الأساس",
+				keyword: "مقاول فرش طبقة أساس",
+				text: "توريد وفرش وترطيب ودمك طبقة ما تحت الأساس وطبقة الأساس بالسماكة والكثافة المحددتين. وتُرصد المناسيب مساحياً وتُختبَر الطبقات قبل تغطيتها بأي شيء — فهي الطبقة التي تقرر عمر الطريق."
+			},
+			"asphalt-works": {
+				name: "أعمال الأسفلت",
+				keyword: "مقاول أسفلت",
+				text: "فرش أسفلت طبقة الرابطة والطبقة السطحية بالفرّادة وفق السماكة ودرجة الحرارة وتفصيل الوصلات المحددة، بخلطات معتمدة من محطات مرخّصة. ويشمل طبقة التلصيق وطبقة التأسيس وكشط الأسطح القائمة والدحل حتى الكثافة المطلوبة."
+			},
+			"road-maintenance": {
+				name: "صيانة الطرق",
+				keyword: "مقاول صيانة طرق",
+				text: "صيانة مُبرمَجة وطارئة للطرق الداخلية والمناطق الصناعية وشبكات المجمعات: إعادة الطبقة السطحية وسدّ الشقوق وإصلاح الحواف وتنظيف التصريف وإعادة الحالة — مُجدوَلة لإبقاء الشبكة مفتوحة أثناء العمل."
+			},
+			"asphalt-patch-works": {
+				name: "أعمال ترقيع الأسفلت",
+				keyword: "مقاول ترقيع أسفلت",
+				text: "قصّ بالمنشار وتكسير وإعادة تنفيذ ودمك — ترقيع يُنفَّذ بأصوله حتى لا تفشل الوصلة في الموسم الأول. مثالي بعد عبور الخدمات أو إعادة حالة الخنادق أو إصلاح الحفر والهبوط في المواقف والطرق الداخلية."
+			},
+			parkings: {
+				name: "مواقف السيارات",
+				keyword: "مقاول إنشاء مواقف سيارات",
+				text: "مواقف متكاملة من التربة الطبيعية حتى التخطيط الأرضي: طبقة أساس وطبقة سطحية أسفلتية أو إنترلوك، وأحجار أرصفة، وميول تصريف، وصدّامات، وتخطيط المواقف ولوحاتها — وفق معايير التخطيط المعتمدة وجاهزة للاستخدام عند التسليم."
+			},
+			"heavy-duty-interlock-paving": {
+				name: "تبليط الإنترلوك للأحمال الثقيلة",
+				keyword: "مقاول تبليط إنترلوك",
+				text: "إنترلوك وبلوك للأحمال الثقيلة للساحات ومناطق الحاويات وطرق الخدمة والأرضيات التي تعبرها الشاحنات المحمّلة والرافعات الشوكية. رمل فرش صحيح وحصر حواف وسماكة بلوك مناسبة — وهو الفرق بين ساحة تصمد وأخرى تتخدّد."
+			},
+			kerbstones: {
+				name: "أحجار الأرصفة (الكيربستون)",
+				keyword: "مقاول تركيب أحجار أرصفة",
+				text: "توريد وتركيب أحجار الأرصفة والمجاري على استقامة ومنسوب فوق قاعدة وكتف خرساني — أحجار الطرق والمواقف والقطاعات المنحنية والأحجار المنخفضة عند المعابر والمداخل، منفَّذة وفق القطاع المعتمد لدى الجهة المختصة."
+			},
+			"road-markings": {
+				name: "التخطيط الأرضي للطرق",
+				keyword: "مقاول دهان وتخطيط طرق",
+				text: "تخطيط أرضي بالثيرموبلاستيك والدهان البارد: خطوط المسارات والتظليل والأسهم والمعابر ومواقف السيارات وترقيمها والمطبّات الصوتية — مطبَّقة وفق معايير الجهة المختصة مع حبيبات عاكسة حيثما اشتُرطت."
+			}
+		}
+	},
+	"traffic-management": {
+		name: "إدارة المرور",
+		tagline: "التصاريح والتحويلات والعمل الآمن داخل الحركة المرورية.",
+		intro: "العمل داخل ممر مروري حيّ مسألة تصاريح بقدر ما هي مسألة تنفيذ. نُعِدّ مخططات التحويلات المرورية، ونستخرج تصاريح هيئة الطرق والمواصلات، وننصب منظومة إدارة مرور مطابقة ونصونها، لتمضي أعمالك دون إغلاق الشبكة — ودون أن تستدعي إشعار إيقاف عمل.",
+		services: {
+			"lane-closure-permits": {
+				name: "تصاريح إغلاق المسارات",
+				keyword: "تصريح إغلاق مسار",
+				text: "إعداد الطلب والمخططات واستصدار الموافقة لإغلاق مسار واحد أو عدة مسارات على طرق هيئة الطرق والمواصلات، بما يشمل نوافذ العمل الليلي وأطوال الانحراف وجداول اللوحات وإجراءات السلامة التي تشترطها الموافقة. نتولى الأمر من التقديم حتى صدور التصريح."
+			},
+			"road-closure-permits": {
+				name: "تصاريح إغلاق الطرق",
+				keyword: "تصريح إغلاق طريق",
+				text: "إغلاق كامل للطرق والمسارات مع مسارات تحويل معتمدة: تبرير الأثر المروري ومخططات التحويل والبرامج المرحلية والتنسيق مع هيئة الطرق والمواصلات والشرطة والجهات المتأثرة قبل الإغلاق وأثناءه."
+			},
+			"traffic-management": {
+				name: "خدمات إدارة المرور",
+				keyword: "مقاول إدارة مرور",
+				text: "توريد وتركيب وصيانة وإزالة منظومة إدارة المرور في الموقع: مخاريط وحواجز وعواكس ولوحات تحذيرية وإرشادية ولوحات أسهم ضوئية ووحدات تخفيف الصدم المركّبة على الشاحنات (TMA) ومنظّمو مرور مدرَّبون، مع تفتيش وصيانة طوال مدة الأعمال."
+			}
+		}
+	},
+	utilities: {
+		name: "أعمال المرافق",
+		tagline: "المداخل والمخارج وحماية الخدمات والموافقات التي تسبقها.",
+		intro: "الأعمال التي تربط قطعة الأرض بالشبكة وتحافظ على سلامة الخدمات القائمة أثناء البناء. نحن معتمدون لدى هيئة الطرق والمواصلات لأعمال المداخل والمخارج، ونتولّى سلسلة التصاريح — حق الطريق وشهادات عدم الممانعة وحماية الخدمات ونقل المرافق — حتى لا تتحوّل الموافقات إلى المسار الحرج في برنامجك.",
+		services: {
+			"rta-approved-entry-exit-works": {
+				name: "أعمال المداخل والمخارج المعتمدة",
+				keyword: "مقاول مداخل ومخارج معتمد من هيئة الطرق والمواصلات",
+				text: "تنفيذ مداخل ومخارج قطع الأراضي على طرق هيئة الطرق والمواصلات وفق التصميم المعتمد: أحجار منخفضة وأرضية مدخل ووصلات انتقالية واستمرارية للتصريف وتخطيط ولوحات — ينفّذها مقاول معتمد لدى الهيئة، فيُقبَل العمل ويصبح المدخل قابلاً للاستخدام نظامياً."
+			},
+			"rta-service-protection": {
+				name: "حماية الخدمات",
+				keyword: "أعمال حماية الخدمات",
+				text: "حماية المرافق القائمة داخل حرم الطريق أثناء التنفيذ: حفر استكشافي ومسح للخدمات، وحماية خرسانية أو بأكمام، وبلاطات حماية، ودعامات للخدمات المكشوفة، وإعادة الحالة — وفق متطلبات هيئة الطرق والمواصلات ومالكي المرافق."
+			},
+			"row-permits": {
+				name: "تصاريح حق الطريق",
+				keyword: "تصريح حق الطريق في دبي",
+				text: "طلبات تصاريح حق الطريق للأعمال داخل حرم الطرق والأراضي العامة: المخططات وبيانات طرق العمل وشهادات عدم الممانعة من الجهات المعنية والمتابعة حتى الإصدار، إضافة إلى الالتزام باشتراطات التصريح أثناء التنفيذ حتى الإنجاز."
+			},
+			"utilities-shifting": {
+				name: "نقل وتحويل المرافق",
+				keyword: "مقاول نقل وتحويل خدمات",
+				text: "تحويل ونقل الخدمات المتعارضة مع الأعمال الجديدة — مجاري الكابلات والكابلات وخطوط المياه والري — بالتنسيق مع هيئة كهرباء ومياه دبي واتصالات ودو وإمباور والجهة المختصة، بما يشمل نوافذ الفصل والحماية وإعادة الحالة."
+			},
+			"noc-services": {
+				name: "خدمات شهادات عدم الممانعة",
+				keyword: "شهادة عدم ممانعة في دبي",
+				text: "إعداد ومعالجة شهادات عدم الممانعة لدى الجهات ومالكي المرافق الذين يمسّهم المشروع. نُجهّز حزمة المخططات ونقدّمها ونردّ على الملاحظات ونتابع الموافقات حتى الإصدار ليبدأ التنفيذ في موعده."
+			}
+		}
+	}
+};
+//#endregion
 //#region src/data/services.js
-var emirates = [
+var EMIRATES = [
 	{
 		slug: "dubai",
 		name: "Dubai",
@@ -1124,7 +2283,7 @@ var emirates = [
 		areas: "UAQ Industrial Area, Al Salamah, Falaj Al Mualla and the Emirates Road corridor"
 	}
 ];
-var serviceCategories = [
+var CATEGORIES = [
 	{
 		slug: "earth-works",
 		name: "Earth Works",
@@ -1301,28 +2460,77 @@ var serviceCategories = [
 			}
 		]
 	}
-].map((c) => ({
-	...c,
-	services: c.services.map((s) => ({
-		...s,
-		...serviceContent[s.slug] || {}
-	}))
-}));
-var categoryBySlug = Object.fromEntries(serviceCategories.map((c) => [c.slug, c]));
-var emirateBySlug = Object.fromEntries(emirates.map((e) => [e.slug, e]));
-var allServices = serviceCategories.flatMap((c) => c.services.map((s) => ({
-	...s,
-	category: c,
-	path: `/services/${c.slug}/${s.slug}`
-})));
-Object.fromEntries(allServices.map((s) => [s.slug, s]));
-function emiratesFor(category) {
-	return category.coverage === "all" ? emirates : emirates.filter((e) => category.coverage.includes(e.slug));
+];
+var OVERLAYS = { ar: {
+	emirates: emiratesAr,
+	categories: categoriesAr,
+	content: serviceContentAr
+} };
+function buildEmirates(locale) {
+	const overlay = OVERLAYS[locale]?.emirates;
+	return EMIRATES.map((e) => ({
+		...e,
+		...overlay?.[e.slug] || {}
+	}));
 }
-function resolveServiceSegment(category, slug) {
-	if (emirateBySlug[slug] && emiratesFor(category).some((e) => e.slug === slug)) return {
+function buildCategories(locale) {
+	const overlay = OVERLAYS[locale];
+	return CATEGORIES.map((c) => {
+		const co = overlay?.categories?.[c.slug];
+		return {
+			...c,
+			...co ? {
+				name: co.name,
+				tagline: co.tagline,
+				intro: co.intro
+			} : {},
+			services: c.services.map((s) => ({
+				...s,
+				...serviceContent[s.slug] || {},
+				...co?.services?.[s.slug] || {},
+				...overlay?.content?.[s.slug] || {}
+			}))
+		};
+	});
+}
+function buildTaxonomy(locale) {
+	const emirates = buildEmirates(locale);
+	const categories = buildCategories(locale);
+	const allServices = categories.flatMap((c) => c.services.map((s) => ({
+		...s,
+		category: c,
+		path: `/services/${c.slug}/${s.slug}`
+	})));
+	return {
+		locale,
+		emirates,
+		categories,
+		emirateBySlug: Object.fromEntries(emirates.map((e) => [e.slug, e])),
+		categoryBySlug: Object.fromEntries(categories.map((c) => [c.slug, c])),
+		allServices,
+		serviceBySlug: Object.fromEntries(allServices.map((s) => [s.slug, s]))
+	};
+}
+var taxonomies = Object.fromEntries(LOCALES.map((l) => [l, buildTaxonomy(l)]));
+function taxonomyFor(locale) {
+	return taxonomies[locale] || taxonomies["en"];
+}
+var base = taxonomies["en"];
+base.emirates;
+var serviceCategories = base.categories;
+base.emirateBySlug;
+base.categoryBySlug;
+base.allServices;
+base.serviceBySlug;
+function emiratesFor(category, locale = "en") {
+	const list = taxonomyFor(locale).emirates;
+	return category.coverage === "all" ? list : list.filter((e) => category.coverage.includes(e.slug));
+}
+function resolveServiceSegment(category, slug, locale = "en") {
+	const tax = taxonomyFor(locale);
+	if (tax.emirateBySlug[slug] && emiratesFor(category, locale).some((e) => e.slug === slug)) return {
 		kind: "emirate",
-		emirate: emirateBySlug[slug]
+		emirate: tax.emirateBySlug[slug]
 	};
 	const service = category.services.find((s) => s.slug === slug);
 	return service ? {
@@ -1340,27 +2548,758 @@ function allServiceRoutes() {
 	return routes;
 }
 //#endregion
+//#region src/data/content.ar.js
+var companyAr = {
+	name: "إيرث موفرز إنترناشيونال",
+	legalName: "إيرث موفرز إنترناشيونال للمقاولات الرئيسية ذ.م.م",
+	tagline: "أعمال ترابية وإنشاء طرق — دبي، الإمارات",
+	address: [
+		"برج كابيتال الذهبي",
+		"مكتب 706، الطابق السابع",
+		"الخليج التجاري، دبي، الإمارات"
+	]
+};
+var heroSlidesAr = [
+	{
+		eyebrow: "إيرث موفرز إنترناشيونال — دبي، الإمارات",
+		titlePre: "مقاول الطرق ",
+		titleGold: "الأول المعتمد",
+		titlePost: " من هيئة الطرق والمواصلات في دبي",
+		text: "ننفّذ أعمال إنشاء الطرق بجودة عالية وموثوقية تامة وبتقنيات حديثة — شريكك الموثوق في الطرق السريعة وطرق الوصول ومشاريع البنية التحتية."
+	},
+	{
+		eyebrow: "نبني الأرض التي تنهض منها الإمارات",
+		titlePre: "أعمال ترابية وحفر و",
+		titleGold: "إنشاءات ثقيلة",
+		titlePost: ".",
+		text: "مشاريع بنية تحتية وتجارية وصناعية في مختلف أنحاء الإمارات — تأسست في مونتريال عام 1990، وفي دبي منذ 2005."
+	},
+	{
+		eyebrow: "أعمال أسفلت وطرق معتمدة من هيئة الطرق والمواصلات",
+		titlePre: "أسفلت يُفرَش ضمن ",
+		titleGold: "سماحيات دقيقة",
+		titlePost: ".",
+		text: "من طبقة ما تحت الأساس حتى الطبقة السطحية — مدموك ومُختبَر ومُسلَّم جاهزاً للحركة."
+	}
+];
+var certificationsAr = [
+	{
+		title: "معتمد من الهيئة",
+		text: "مقاول طرق معتمد لدى هيئة الطرق والمواصلات"
+	},
+	{
+		title: "بلدية دبي",
+		text: "متوافق مع معايير البلدية ومنظومة تصاريحها"
+	},
+	{
+		title: "منذ عام 1990",
+		text: "تأسست في مونتريال، وفي دبي منذ 2005"
+	},
+	{
+		title: "السلامة أولاً",
+		text: "بيانات طرق العمل والتصاريح في كل مرحلة"
+	}
+];
+var hseAr = [
+	{
+		title: "الصحة والسلامة",
+		text: "كل مهمة مخطَّطة عبر بيانات طرق العمل وتصاريح العمل ولقاءات السلامة اليومية — ليعود كل فرد إلى بيته سالماً، كل يوم."
+	},
+	{
+		title: "الجودة",
+		text: "اختبارات دمك ومراجعة مناسيب وشهادات تسليم في كل حزمة. أرض يمكنك البناء عليها، وموثّقة."
+	},
+	{
+		title: "البيئة",
+		text: "كبح الغبار والتخلص المنضبط وإعادة تدوير المواد حيثما سمحت الأرض — نبني دون أن نترك أثراً لا ينبغي تركه."
+	}
+];
+var newsAr = [
+	{
+		title: "18 مشروع طرق كبرى لهيئة الطرق والمواصلات تخفّف ازدحام دبي",
+		tag: "رؤية قطاعية"
+	},
+	{
+		title: "مراحل إنشاء الطرق والمعدات التي تحتاجها",
+		tag: "من مدونتنا"
+	},
+	{
+		title: "تأجير وحدات TMA في دبي وأبوظبي — أعمال طرق أكثر أماناً",
+		tag: "خدمات"
+	}
+];
+var statsAr = [
+	{
+		label: "عاماً منذ التأسيس",
+		note: "مونتريال، 1990"
+	},
+	{
+		label: "عاماً في الإمارات",
+		note: "دبي، منذ 2005"
+	},
+	{
+		label: "تخصصاً في الخدمات",
+		note: "من الأعمال الترابية حتى الأسفلت"
+	},
+	{
+		label: "جاهزية الأسطول",
+		note: "في مختلف الإمارات"
+	}
+];
+var clientsAr = [
+	"نخيل ش.م.ع",
+	"بلدية دبي",
+	"شركة الفجيرة لصناعة الإسمنت",
+	"مقاول معتمد من هيئة الطرق والمواصلات",
+	"بنية تحتية · تجاري · صناعي"
+];
+var projectsAr = [
+	{
+		client: "شركة الفجيرة لصناعة الإسمنت",
+		location: "دبا، الفجيرة",
+		sector: "طرق وأسفلت",
+		scope: "إزالة الأسفلت القديم والتسوية وطبقة الأساس وطبقة ما تحت الأساس والدمك وفرش أسفلت جديد."
+	},
+	{
+		client: "بلدية دبي",
+		location: "دبي",
+		sector: "لوجستيات متخصصة",
+		scope: "نقل حيوانات من مطار دبي إلى السفاري — مخطَّط ومُصرَّح ومنفَّذ دون أي حادث."
+	},
+	{
+		client: "نخيل ش.م.ع",
+		location: "دبي",
+		sector: "أعمال بحرية",
+		scope: "تسوية رمال الشاطئ ووضع الصخور ودمك المنطقة."
+	}
+];
+var sectorsAr = [
+	{
+		title: "البنية التحتية",
+		text: "طرق وطرق سريعة وممرات مرافق للجهات الحكومية."
+	},
+	{
+		title: "التجاري",
+		text: "تجهيز المواقع والأعمال التمكينية للمشاريع التجارية."
+	},
+	{
+		title: "الصناعي",
+		text: "أعمال ترابية ثقيلة للمصانع ومعامل الإسمنت والمنشآت اللوجستية."
+	},
+	{
+		title: "النفط والغاز",
+		text: "أعمال خنادق وخطوط أنابيب تُنفَّذ وفق معايير القطاع."
+	},
+	{
+		title: "البحري والساحلي",
+		text: "تشكيل الشواطئ ووضع الصخور وأعمال الحماية الساحلية."
+	},
+	{
+		title: "السكني",
+		text: "تنظيف وتمهيد الأراضي للمجمعات السكنية المخطَّطة."
+	}
+];
+var processAr = [
+	{
+		title: "المعاينة والتقييم",
+		text: "نعاين الأرض ونراجع المخططات ونرصد المناسيب، ونُسعّر النطاق الحقيقي لا تقديراً له."
+	},
+	{
+		title: "التخطيط والتعبئة",
+		text: "بيانات طرق العمل والتصاريح والالتزام باشتراطات الهيئة جاهزة، والمعدات المناسبة في الموقع."
+	},
+	{
+		title: "التنفيذ",
+		text: "مشغّلون ذوو خبرة ينقلون التربة على استقامة ومنسوب، مع إشراف وضبط جودة في كل طبقة."
+	},
+	{
+		title: "الدمك والتسليم",
+		text: "اختبارات وشهادات دمك وتسليم نظيف — أرض يستطيع مشروعك البناء عليها."
+	}
+];
+var valuesAr = [
+	{
+		title: "السلامة أولاً ودائماً",
+		text: "كل بيان طريقة عمل وكل تصريح وكل مرحلة — مخطَّطة ليعود الناس إلى بيوتهم سالمين."
+	},
+	{
+		title: "الامتثال مبني في العمل",
+		text: "معتمدون لدى هيئة الطرق والمواصلات ومتوافقون مع معايير البلدية، فلا تعطّل الموافقات برنامجك."
+	},
+	{
+		title: "عمق الأسطول",
+		text: "امتلاك أحد أكبر أساطيل الحفر الثقيل في دبي يعني ألا تنتظر معدة."
+	},
+	{
+		title: "تعامل مباشر",
+		text: "نطاق واضح وتسعير صادق وتواصل يمكنك التخطيط على أساسه."
+	}
+];
+var fleetAr = [
+	"حفارات",
+	"جرافات",
+	"لوادر ذات إطارات",
+	"حفارات خوازيق",
+	"كسّارات صخور",
+	"مسوّيات",
+	"مداحل دمك",
+	"رافعات",
+	"قلابات ومقطورات",
+	"وحدات TMA"
+];
+var timelineAr = [
+	{
+		title: "التأسيس في مونتريال، كندا",
+		text: "انطلقت إيرث موفرز إنترناشيونال كمقاول أعمال ترابية ومعدات ثقيلة في مونتريال."
+	},
+	{
+		title: "التوسع إلى دبي، الإمارات",
+		text: "أسّست الشركة عملياتها في دبي مع تسارع الإمارة نحو سوق إنشاءات عالمي."
+	},
+	{
+		title: "مشاريع فارقة",
+		text: "مشاريع لنخيل ش.م.ع وبلدية دبي وشركة الفجيرة لصناعة الإسمنت رسّخت سمعة الشركة عبر القطاعات."
+	},
+	{
+		title: "اليوم",
+		text: "مقاول طرق وأعمال ترابية موثوق ومعتمد، بأحد أكبر أساطيل الحفر الثقيل في دبي."
+	}
+];
+var approvalsAr = [
+	"هيئة الطرق والمواصلات",
+	"FNRC",
+	"بلدية دبي",
+	"طاقة",
+	"بلدية الفجيرة",
+	"طرق ومواصلات الشارقة",
+	"بارسونز",
+	"سلطة دبي للتطوير",
+	"دبي الجنوب",
+	"موانئ دبي"
+];
+//#endregion
+//#region src/data/content.js
+var company = {
+	name: "Earth Movers International",
+	legalName: "Earth Movers International Prime Contracting L.L.C",
+	short: "EMI",
+	tagline: "Earthworks & Road Construction — Dubai, UAE",
+	phone: "+971 55 172 7024",
+	phoneHref: "tel:+971551727024",
+	email: "Earthmoversinfo@gmail.com",
+	address: [
+		"Capital Golden Tower",
+		"Office 706, 7th Floor",
+		"Business Bay, Dubai, UAE"
+	],
+	mapQuery: "Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai",
+	mapsLink: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai"),
+	coordinates: "25.1857° N, 55.2766° E",
+	founded: 1990,
+	inUAE: 2005,
+	social: {
+		facebook: "https://www.facebook.com/earthmoversint/",
+		linkedin: "https://www.linkedin.com/company/earth-movers-international"
+	}
+};
+var images = {
+	hero: "/images/hero.jpg",
+	fleet: "/images/fleet.jpg",
+	about: "/images/about.jpg",
+	projects: [
+		"/images/project-fujairah.jpg",
+		"/images/project-municipality.jpg",
+		"/images/project-nakheel.jpg"
+	],
+	banners: {
+		about: "/images/banner-about.jpg",
+		services: "/images/banner-services.jpg",
+		projects: "/images/banner-projects.jpg",
+		contact: "/images/banner-contact.jpg"
+	}
+};
+var heroSlides = [
+	{
+		img: "/images/hero-slide-1.jpg",
+		eyebrow: "Earth Movers International — Dubai, UAE",
+		titlePre: "No.1 RTA-Approved ",
+		titleGold: "Road Contractor",
+		titlePost: " in Dubai",
+		text: "We deliver reliable, high-quality road construction with advanced technology — your trusted partner for highways, access roads and infrastructure projects."
+	},
+	{
+		img: "/images/hero-slide-2.jpg",
+		eyebrow: "Building the ground the UAE rises from",
+		titlePre: "Earthworks, excavation and ",
+		titleGold: "heavy construction",
+		titlePost: ".",
+		text: "Infrastructure, commercial and industrial projects across the Emirates — founded in Montreal in 1990, in Dubai since 2005."
+	},
+	{
+		img: "/images/hero-slide-3.jpg",
+		eyebrow: "RTA-approved asphalt & road works",
+		titlePre: "Asphalt laid to ",
+		titleGold: "tight tolerances",
+		titlePost: ".",
+		text: "From sub-base to wearing course — compacted, tested and handed over ready for traffic."
+	}
+];
+var certifications = [
+	{
+		title: "RTA Approved",
+		text: "Roads & Transport Authority approved road contractor"
+	},
+	{
+		title: "Dubai Municipality",
+		text: "Aligned with municipality standards and permits"
+	},
+	{
+		title: "Since 1990",
+		text: "Founded in Montreal, in Dubai since 2005"
+	},
+	{
+		title: "HSE First",
+		text: "Method statements and permits on every lift"
+	}
+];
+var hse = [
+	{
+		title: "Health & Safety",
+		text: "Every task is planned through method statements, permits to work and daily toolbox talks — so every person goes home safe, every day."
+	},
+	{
+		title: "Quality",
+		text: "Compaction tests, level checks and handover certificates on every package. Ground you can build on, documented."
+	},
+	{
+		title: "Environment",
+		text: "Dust suppression, controlled disposal and material recycling wherever the ground allows — building without leaving a mark we shouldn’t."
+	}
+];
+var news = [
+	{
+		title: "18 Major RTA Road Projects That Will Slash Dubai Traffic",
+		tag: "Industry Insight",
+		href: "https://earthmoversint.com/rta-road-projects-dubai-traffic/"
+	},
+	{
+		title: "Road Construction Process & Equipment Needs",
+		tag: "From Our Blog",
+		href: "https://earthmoversint.com/road-construction-process-equipment-needs/"
+	},
+	{
+		title: "TMA Rental in Dubai & Abu Dhabi — Safer Road Works",
+		tag: "Services",
+		href: "https://tmarentalabudhabi.earthmoversint.com/"
+	}
+];
+var stats = [
+	{
+		value: 35,
+		suffix: "+",
+		label: "Years since founding",
+		note: "Montreal, 1990"
+	},
+	{
+		value: 20,
+		suffix: "+",
+		label: "Years in the UAE",
+		note: "Dubai, since 2005"
+	},
+	{
+		value: 17,
+		suffix: "",
+		label: "Service disciplines",
+		note: "Earthworks to asphalt"
+	},
+	{
+		value: 24,
+		suffix: "/7",
+		label: "Fleet availability",
+		note: "Across the Emirates"
+	}
+];
+var approvals = [
+	"RTA",
+	"FNRC",
+	"Dubai Municipality",
+	"TAQA",
+	"Fujairah Municipality",
+	"Sharjah RTA",
+	"Parsons",
+	"DDA",
+	"Dubai South",
+	"Dubai Ports"
+];
+var clients = [
+	"Nakheel PJSC",
+	"Dubai Municipality",
+	"Fujairah Cement Industry",
+	"RTA-Approved Contractor",
+	"Infrastructure · Commercial · Industrial"
+];
+var featuredServices = [
+	{
+		id: "excavation",
+		title: "Excavation",
+		icon: "excavator",
+		img: "/images/library/operator-backhoe.jpg",
+		blurb: "Bulk excavation, basements and deep digs, powered by one of the largest heavy-excavation fleets in Dubai."
+	},
+	{
+		id: "road-construction",
+		title: "Road Construction",
+		icon: "road",
+		img: "/images/project-fujairah.jpg",
+		blurb: "RTA-approved road contracting — road base, sub-base, compaction and finishing for roads across the UAE."
+	},
+	{
+		id: "cut-and-fill",
+		title: "Cut & Fill",
+		icon: "grade",
+		img: "/images/fleet.jpg",
+		blurb: "Precision grading and levelling to design elevations, balancing cut and fill for efficient earthworks."
+	},
+	{
+		id: "site-preparation",
+		title: "Site Preparation",
+		icon: "site",
+		img: "/images/about.jpg",
+		blurb: "Land clearing, demolition and ground stabilisation that hands over a clean, build-ready site."
+	},
+	{
+		id: "asphalt",
+		title: "Asphalt Works",
+		icon: "asphalt",
+		img: "/images/library/golden-hour-site.jpg",
+		blurb: "Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances."
+	},
+	{
+		id: "equipment-rental",
+		title: "Equipment Rental",
+		icon: "crane",
+		img: "/images/library/tower-cranes.jpg",
+		blurb: "Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready."
+	}
+];
+var serviceGroups = [
+	{
+		id: "earthworks",
+		number: "01",
+		title: "Earthworks & Ground Engineering",
+		intro: "The full early-stage scope that turns raw land into a build-ready platform — measured, moved and compacted to specification.",
+		services: [
+			{
+				title: "Excavation",
+				text: "Bulk excavation, basement digs and confined works delivered with excavators, rock breakers and specialised machinery from one of the largest fleets in Dubai."
+			},
+			{
+				title: "Cut & Fill",
+				text: "Balanced cut-and-fill operations that grade sites to design elevations while minimising haulage and material waste."
+			},
+			{
+				title: "Earth Works",
+				text: "End-to-end earthworks — excavation, grading, levelling and compaction — for infrastructure, commercial and industrial projects."
+			},
+			{
+				title: "Site Preparation",
+				text: "Clearing, grubbing, demolition and ground stabilisation that hands over a clean, compacted, build-ready site."
+			},
+			{
+				title: "Land Clearing",
+				text: "Clearing programmes for residential, commercial and infrastructure developments across Dubai and the wider UAE."
+			},
+			{
+				title: "Mountain & Rock Removal",
+				text: "Heavy rock breaking and mountain removal using hydraulic breakers and high-reach machines — no compromise on safety."
+			},
+			{
+				title: "Trenching",
+				text: "Utility, pipeline and drainage trenching cut to line and level, with shoring and backfill to specification."
+			},
+			{
+				title: "Piling",
+				text: "Piling rigs and foundation works that put reliable ground under heavy structures."
+			}
+		]
+	},
+	{
+		id: "roads",
+		number: "02",
+		title: "Roads & Infrastructure",
+		intro: "As a trusted RTA-approved contractor, we build and maintain the roads Dubai runs on — from sub-base to final surface.",
+		services: [
+			{
+				title: "Road Construction",
+				text: "RTA-approved road contracting: formation, road base, sub-base, compaction and finishing for internal roads, highways and industrial access."
+			},
+			{
+				title: "Asphalt Works",
+				text: "Removal of old asphalt, milling, and new asphalt laying with certified mixes, laid to tight tolerances."
+			},
+			{
+				title: "Highway Construction",
+				text: "Highway contracting for the RTA and private clients — large-scale earthworks, pavement structure and road furniture."
+			},
+			{
+				title: "Road Maintenance",
+				text: "Ongoing road maintenance and rehabilitation works that keep networks safe, compliant and open to traffic."
+			},
+			{
+				title: "Concrete Repair & Maintenance",
+				text: "Structural concrete repair, surface reinstatement and preventive maintenance for roads and hardstandings."
+			},
+			{
+				title: "Pipeline Maintenance",
+				text: "Excavation, protection and reinstatement works around live pipeline corridors, executed to oil-and-gas standards."
+			}
+		]
+	},
+	{
+		id: "supply",
+		number: "03",
+		title: "Supply, Logistics & Marine",
+		intro: "Material, machines and logistics — the supporting muscle that keeps programmes moving on schedule.",
+		services: [
+			{
+				title: "Construction Material Supply",
+				text: "Aggregates, road base, sub-base and fill material supplied and delivered against programme."
+			},
+			{
+				title: "Material Shifting & Haulage",
+				text: "Bulk material shifting and transport with a dedicated tipper and trailer fleet, managed loads and disposal."
+			},
+			{
+				title: "Heavy Equipment Rental",
+				text: "Excavators, bulldozers, loaders, cranes and TMA (truck-mounted attenuator) units — operated or bare, short or long term."
+			},
+			{
+				title: "Marine & Coastal Works",
+				text: "Beach levelling, boulder placement and coastal protection works, delivered for clients such as Nakheel PJSC."
+			},
+			{
+				title: "Recycling & Demolition",
+				text: "Controlled demolition with segregation and recycling of construction material wherever the ground allows."
+			}
+		]
+	}
+];
+var projects = [
+	{
+		client: "Fujairah Cement Industry",
+		location: "Dibba, Fujairah",
+		year: "2021",
+		value: "AED 1.8M",
+		sector: "Roads & Asphalt",
+		scope: "Removal of old asphalt, levelling, road base and sub-base, compaction, and new asphalt laying."
+	},
+	{
+		client: "Dubai Municipality",
+		location: "Dubai",
+		year: "2017",
+		value: "AED 0.3M",
+		sector: "Specialised Logistics",
+		scope: "Relocation of animals from Dubai Airport to the Safari — planned, permitted and executed without incident."
+	},
+	{
+		client: "Nakheel PJSC",
+		location: "Dubai",
+		year: "2015",
+		value: "AED 0.7M",
+		sector: "Marine Works",
+		scope: "Levelling of beach sand, placement of boulders, and compaction of the area."
+	}
+];
+var sectors = [
+	{
+		title: "Infrastructure",
+		text: "Roads, highways and utility corridors for public authorities."
+	},
+	{
+		title: "Commercial",
+		text: "Site preparation and enabling works for commercial developments."
+	},
+	{
+		title: "Industrial",
+		text: "Heavy earthworks for plants, cement works and logistics facilities."
+	},
+	{
+		title: "Oil & Gas",
+		text: "Trenching and pipeline works executed to sector standards."
+	},
+	{
+		title: "Marine & Coastal",
+		text: "Beach profiling, boulder placement and coastal protection."
+	},
+	{
+		title: "Residential",
+		text: "Land clearing and grading for master-planned communities."
+	}
+];
+var process = [
+	{
+		step: "01",
+		title: "Survey & Assess",
+		text: "We walk the ground, review drawings and survey levels, and price the real scope — not an estimate of it."
+	},
+	{
+		step: "02",
+		title: "Plan & Mobilise",
+		text: "Method statements, permits and RTA compliance in place, the right machines mobilised to site."
+	},
+	{
+		step: "03",
+		title: "Execute",
+		text: "Experienced operators move the earth to line and level, with supervision and QA at every lift."
+	},
+	{
+		step: "04",
+		title: "Compact & Hand Over",
+		text: "Testing, compaction certificates and a clean handover — ground your project can build on."
+	}
+];
+var values = [
+	{
+		title: "Safety, first and always",
+		text: "Every method statement, every permit, every lift — planned so that people go home safe."
+	},
+	{
+		title: "Compliance built in",
+		text: "RTA-approved and aligned with municipality standards, so approvals never stall your programme."
+	},
+	{
+		title: "Fleet depth",
+		text: "One of the largest heavy-excavation fleets in Dubai means no waiting on machines."
+	},
+	{
+		title: "Straight dealing",
+		text: "Clear scope, honest pricing and communication you can plan around."
+	}
+];
+var fleet = [
+	"Excavators",
+	"Bulldozers",
+	"Wheel Loaders",
+	"Piling Rigs",
+	"Rock Breakers",
+	"Graders",
+	"Compactors",
+	"Cranes",
+	"Tippers & Trailers",
+	"TMA Units"
+];
+var timeline = [
+	{
+		year: "1990",
+		title: "Founded in Montreal, Canada",
+		text: "Earth Movers International begins as an earthworks and heavy-equipment contractor in Montreal."
+	},
+	{
+		year: "2005",
+		title: "Expansion to Dubai, UAE",
+		text: "EMI establishes its Dubai operation as the emirate accelerates into a global construction market."
+	},
+	{
+		year: "2015–2021",
+		title: "Landmark deliveries",
+		text: "Projects for Nakheel PJSC, Dubai Municipality and Fujairah Cement Industry cement EMI’s reputation across sectors."
+	},
+	{
+		year: "Today",
+		title: "RTA-approved, fleet-strong",
+		text: "A trusted road and earthworks contractor with one of the largest heavy-excavation fleets in Dubai."
+	}
+];
+var zip = (base, overlay) => overlay ? base.map((item, i) => ({
+	...item,
+	...overlay[i] || {}
+})) : base;
+var EN = {
+	company,
+	heroSlides,
+	certifications,
+	hse,
+	news,
+	stats,
+	clients,
+	projects,
+	sectors,
+	process,
+	values,
+	fleet,
+	timeline,
+	approvals,
+	images,
+	featuredServices,
+	serviceGroups
+};
+var BY_LOCALE = {
+	en: EN,
+	ar: {
+		...EN,
+		company: {
+			...company,
+			...companyAr
+		},
+		heroSlides: zip(heroSlides, heroSlidesAr),
+		certifications: zip(certifications, certificationsAr),
+		hse: zip(hse, hseAr),
+		news: zip(news, newsAr),
+		stats: zip(stats, statsAr),
+		clients: clientsAr,
+		projects: zip(projects, projectsAr),
+		sectors: zip(sectors, sectorsAr),
+		process: zip(process, processAr),
+		values: zip(values, valuesAr),
+		fleet: fleetAr,
+		timeline: zip(timeline, timelineAr),
+		approvals: approvalsAr
+	}
+};
+function contentFor(locale) {
+	return BY_LOCALE[locale] || BY_LOCALE["en"];
+}
+//#endregion
+//#region src/i18n/useLocale.js
+function useLocale() {
+	const { pathname } = useLocation();
+	const { locale, base } = splitLocale(pathname);
+	const meta = LOCALE_META[locale] || LOCALE_META.en;
+	return {
+		locale,
+		dir: meta.dir,
+		isRtl: meta.dir === "rtl",
+		meta,
+		base,
+		t: translator(locale),
+		tax: taxonomyFor(locale),
+		content: contentFor(locale),
+		href: (path) => localeHref(path, locale),
+		alternates: alternatesFor(base)
+	};
+}
+//#endregion
 //#region src/components/Nav.jsx
-var links = [
+var LINKS = [
 	{
-		to: "/",
-		label: "Home"
+		path: "/",
+		key: "nav.home"
 	},
 	{
-		to: "/about",
-		label: "About Us"
+		path: "/about",
+		key: "nav.about"
 	},
 	{
-		to: "/services",
-		label: "Services"
+		path: "/services",
+		key: "nav.services"
 	},
 	{
-		to: "/projects",
-		label: "Projects"
+		path: "/projects",
+		key: "nav.projects"
 	},
 	{
-		to: "/contact",
-		label: "Contact"
+		path: "/contact",
+		key: "nav.contact"
 	}
 ];
 function Nav() {
@@ -1368,6 +3307,8 @@ function Nav() {
 	const [hovered, setHovered] = useState(false);
 	const [open, setOpen] = useState(false);
 	const location = useLocation();
+	const { t, tax, content, href, locale } = useLocale();
+	const { company } = content;
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 24);
 		onScroll();
@@ -1384,15 +3325,17 @@ function Nav() {
 			document.body.style.overflow = "";
 		};
 	}, [open]);
-	const path = location.pathname.replace(/\/+$/, "") || "/";
+	const { base } = splitLocale(location.pathname);
 	const known = [
 		"/",
 		"/about",
 		"/services",
 		"/projects",
 		"/contact"
-	].includes(path) || /^\/services\/[a-z-]+(\/[a-z-]+)?$/.test(path);
+	].includes(base) || /^\/services\/[a-z-]+(\/[a-z-]+)?$/.test(base);
 	const solid = scrolled || hovered || open || !known;
+	const other = LOCALES.find((l) => l !== locale);
+	const otherHref = localeHref(base, other);
 	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx("header", {
 		className: `nav ${solid ? "solid" : "overlay"}`,
 		onMouseEnter: () => setHovered(true),
@@ -1401,46 +3344,57 @@ function Nav() {
 			className: "wrap nav-inner",
 			children: [
 				/* @__PURE__ */ jsx(Link, {
-					to: "/",
+					to: href("/"),
 					className: "brand",
-					"aria-label": "Earth Movers International — home",
+					"aria-label": t("nav.homeAria"),
 					children: /* @__PURE__ */ jsx(Logo, { variant: solid ? "dark" : "light" })
 				}),
 				/* @__PURE__ */ jsxs("nav", {
 					className: "nav-links",
-					"aria-label": "Primary",
-					children: [links.map((l) => l.to === "/services" ? /* @__PURE__ */ jsxs("div", {
-						className: "nav-item",
-						children: [/* @__PURE__ */ jsx(NavLink, {
-							to: l.to,
+					"aria-label": t("nav.primary"),
+					children: [
+						LINKS.map((l) => l.path === "/services" ? /* @__PURE__ */ jsxs("div", {
+							className: "nav-item",
+							children: [/* @__PURE__ */ jsx(NavLink, {
+								to: href(l.path),
+								className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
+								children: t(l.key)
+							}), /* @__PURE__ */ jsx("div", {
+								className: "nav-menu",
+								children: tax.categories.map((c) => /* @__PURE__ */ jsxs(Link, {
+									to: href(`/services/${c.slug}`),
+									children: [/* @__PURE__ */ jsx("strong", { children: c.name }), /* @__PURE__ */ jsxs("span", { children: [
+										c.services.slice(0, 3).map((x) => x.name).join(" · "),
+										" —",
+										" ",
+										c.coverage === "all" ? t("cov.all") : t("cov.dubai")
+									] })]
+								}, c.slug))
+							})]
+						}, l.path) : /* @__PURE__ */ jsx(NavLink, {
+							to: href(l.path),
+							end: l.path === "/",
 							className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
-							children: l.label
-						}), /* @__PURE__ */ jsx("div", {
-							className: "nav-menu",
-							children: serviceCategories.map((c) => /* @__PURE__ */ jsxs(Link, {
-								to: `/services/${c.slug}`,
-								children: [/* @__PURE__ */ jsx("strong", { children: c.name }), /* @__PURE__ */ jsxs("span", { children: [
-									c.services.slice(0, 3).map((x) => x.name).join(" · "),
-									" —",
-									" ",
-									c.coverage === "all" ? "all 7 emirates" : "Dubai"
-								] })]
-							}, c.slug))
-						})]
-					}, l.to) : /* @__PURE__ */ jsx(NavLink, {
-						to: l.to,
-						end: l.to === "/",
-						className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
-						children: l.label
-					}, l.to)), /* @__PURE__ */ jsx(Link, {
-						to: "/contact",
-						className: "btn btn-solid nav-cta",
-						children: "Get a Quote"
-					})]
+							children: t(l.key)
+						}, l.path)),
+						/* @__PURE__ */ jsx(Link, {
+							to: otherHref,
+							className: "nav-lang",
+							lang: other,
+							hrefLang: other,
+							"aria-label": t("nav.language"),
+							children: t("nav.switchTo")
+						}),
+						/* @__PURE__ */ jsx(Link, {
+							to: href("/contact"),
+							className: "btn btn-solid nav-cta",
+							children: t("nav.quote")
+						})
+					]
 				}),
 				/* @__PURE__ */ jsxs("button", {
 					className: `nav-burger${open ? " open" : ""}`,
-					"aria-label": open ? "Close menu" : "Open menu",
+					"aria-label": open ? t("nav.closeMenu") : t("nav.openMenu"),
 					"aria-expanded": open,
 					onClick: () => setOpen(!open),
 					children: [
@@ -1453,26 +3407,38 @@ function Nav() {
 		})
 	}), /* @__PURE__ */ jsxs("div", {
 		className: `mobile-menu${open ? " open" : ""}`,
-		children: [links.map((l) => /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx(Link, {
-			to: l.to,
+		children: [LINKS.map((l) => /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx(Link, {
+			to: href(l.path),
 			onClick: () => setOpen(false),
-			children: l.label
-		}), l.to === "/services" && /* @__PURE__ */ jsx("div", {
+			children: t(l.key)
+		}), l.path === "/services" && /* @__PURE__ */ jsx("div", {
 			className: "sub-links",
-			children: serviceCategories.map((c) => /* @__PURE__ */ jsx(Link, {
-				to: `/services/${c.slug}`,
+			children: tax.categories.map((c) => /* @__PURE__ */ jsx(Link, {
+				to: href(`/services/${c.slug}`),
 				onClick: () => setOpen(false),
 				children: c.name
 			}, c.slug))
-		})] }, l.to)), /* @__PURE__ */ jsxs("div", {
+		})] }, l.path)), /* @__PURE__ */ jsxs("div", {
 			className: "mobile-menu-contact",
-			children: [/* @__PURE__ */ jsx("a", {
-				href: company.phoneHref,
-				children: company.phone
-			}), /* @__PURE__ */ jsx("a", {
-				href: `mailto:${company.email}`,
-				children: company.email
-			})]
+			children: [
+				/* @__PURE__ */ jsx("a", {
+					href: company.phoneHref,
+					dir: "ltr",
+					children: company.phone
+				}),
+				/* @__PURE__ */ jsx("a", {
+					href: `mailto:${company.email}`,
+					dir: "ltr",
+					children: company.email
+				}),
+				/* @__PURE__ */ jsx(Link, {
+					to: otherHref,
+					lang: other,
+					hrefLang: other,
+					onClick: () => setOpen(false),
+					children: t("nav.switchTo")
+				})
+			]
 		})]
 	})] });
 }
@@ -1480,6 +3446,8 @@ function Nav() {
 //#region src/components/Footer.jsx
 function Footer() {
 	const year = (/* @__PURE__ */ new Date()).getFullYear();
+	const { t, tax, content, href } = useLocale();
+	const { company } = content;
 	return /* @__PURE__ */ jsx("footer", {
 		className: "footer",
 		children: /* @__PURE__ */ jsxs("div", {
@@ -1491,32 +3459,29 @@ function Footer() {
 						className: "footer-brand",
 						children: [
 							/* @__PURE__ */ jsx(Link, {
-								to: "/",
+								to: href("/"),
 								className: "brand",
-								"aria-label": "Earth Movers International — home",
+								"aria-label": t("nav.homeAria"),
 								children: /* @__PURE__ */ jsx(Logo, { variant: "light" })
 							}),
-							/* @__PURE__ */ jsxs("p", { children: [
-								"Founded in Montreal in ",
-								company.founded,
-								", in Dubai since ",
-								company.inUAE,
-								". An RTA-approved earthworks and road construction contractor serving infrastructure, commercial and industrial projects across the UAE."
-							] }),
+							/* @__PURE__ */ jsx("p", { children: t("foot.blurb", {
+								founded: company.founded,
+								inUAE: company.inUAE
+							}) }),
 							/* @__PURE__ */ jsxs("div", {
 								className: "footer-certs",
 								children: [
 									/* @__PURE__ */ jsx("span", {
 										className: "footer-cert",
-										children: "RTA Approved"
+										children: t("foot.certRta")
 									}),
 									/* @__PURE__ */ jsx("span", {
 										className: "footer-cert",
-										children: "Dubai Municipality"
+										children: t("foot.certDm")
 									}),
 									/* @__PURE__ */ jsx("span", {
 										className: "footer-cert",
-										children: "Since 1990"
+										children: t("foot.certSince")
 									})
 								]
 							})
@@ -1525,49 +3490,51 @@ function Footer() {
 					/* @__PURE__ */ jsxs("div", {
 						className: "footer-col",
 						children: [
-							/* @__PURE__ */ jsx("h4", { children: "Company" }),
+							/* @__PURE__ */ jsx("h4", { children: t("foot.company") }),
 							/* @__PURE__ */ jsx(Link, {
-								to: "/about",
-								children: "About"
+								to: href("/about"),
+								children: t("nav.about")
 							}),
 							/* @__PURE__ */ jsx(Link, {
-								to: "/services",
-								children: "Services"
+								to: href("/services"),
+								children: t("nav.services")
 							}),
 							/* @__PURE__ */ jsx(Link, {
-								to: "/projects",
-								children: "Projects"
+								to: href("/projects"),
+								children: t("nav.projects")
 							}),
 							/* @__PURE__ */ jsx(Link, {
-								to: "/contact",
-								children: "Contact"
+								to: href("/contact"),
+								children: t("nav.contact")
 							})
 						]
 					}),
 					/* @__PURE__ */ jsxs("div", {
 						className: "footer-col",
-						children: [/* @__PURE__ */ jsx("h4", { children: "Services" }), serviceCategories.map((c) => /* @__PURE__ */ jsx(Link, {
-							to: `/services/${c.slug}`,
+						children: [/* @__PURE__ */ jsx("h4", { children: t("lbl.services") }), tax.categories.map((c) => /* @__PURE__ */ jsx(Link, {
+							to: href(`/services/${c.slug}`),
 							children: c.name
 						}, c.slug))]
 					}),
 					/* @__PURE__ */ jsxs("div", {
 						className: "footer-col",
-						children: [/* @__PURE__ */ jsx("h4", { children: "Areas We Serve" }), emirates.map((e) => /* @__PURE__ */ jsx(Link, {
-							to: `/services/road-works/${e.slug}`,
+						children: [/* @__PURE__ */ jsx("h4", { children: t("foot.areas") }), tax.emirates.map((e) => /* @__PURE__ */ jsx(Link, {
+							to: href(`/services/road-works/${e.slug}`),
 							children: e.name
 						}, e.slug))]
 					}),
 					/* @__PURE__ */ jsxs("div", {
 						className: "footer-col",
 						children: [
-							/* @__PURE__ */ jsx("h4", { children: "Contact" }),
+							/* @__PURE__ */ jsx("h4", { children: t("foot.contact") }),
 							/* @__PURE__ */ jsx("a", {
 								href: company.phoneHref,
+								dir: "ltr",
 								children: company.phone
 							}),
 							/* @__PURE__ */ jsx("a", {
 								href: `mailto:${company.email}`,
+								dir: "ltr",
 								children: company.email
 							}),
 							company.address.map((line) => /* @__PURE__ */ jsx("span", { children: line }, line)),
@@ -1576,16 +3543,16 @@ function Footer() {
 								href: company.mapsLink,
 								target: "_blank",
 								rel: "noreferrer",
-								"aria-label": `${company.legalName} — open in Google Maps`,
+								"aria-label": `${company.legalName} — ${t("foot.directions")}`,
 								children: [/* @__PURE__ */ jsx("iframe", {
-									title: `${company.legalName} — location`,
+									title: `${company.legalName} — ${t("foot.contact")}`,
 									src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
 									loading: "lazy",
 									referrerPolicy: "no-referrer-when-downgrade",
 									tabIndex: -1
 								}), /* @__PURE__ */ jsx("span", {
 									className: "footer-map-cta",
-									children: "Get directions"
+									children: t("foot.directions")
 								})]
 							}),
 							/* @__PURE__ */ jsxs("span", {
@@ -1616,8 +3583,16 @@ function Footer() {
 					year,
 					" ",
 					company.legalName,
-					". All rights reserved."
-				] }), /* @__PURE__ */ jsxs("span", { children: [company.coordinates, " — Dubai, UAE"] })]
+					". ",
+					t("foot.rights")
+				] }), /* @__PURE__ */ jsxs("span", {
+					dir: "ltr",
+					children: [
+						company.coordinates,
+						" — ",
+						t("foot.place")
+					]
+				})]
 			})]
 		})
 	});
@@ -1687,6 +3662,8 @@ function Counter({ value, duration = 1400 }) {
 //#endregion
 //#region src/components/Marquee.jsx
 function Marquee({ label }) {
+	const { content } = useLocale();
+	const { clients } = content;
 	const track = /* @__PURE__ */ jsx("div", {
 		className: "marquee-track",
 		"aria-hidden": "true",
@@ -1709,7 +3686,9 @@ function Marquee({ label }) {
 }
 //#endregion
 //#region src/components/CTA.jsx
-function CTA({ title = "Let’s break ground.", text }) {
+function CTA({ title, text }) {
+	const { t, content, href } = useLocale();
+	const { company } = content;
 	return /* @__PURE__ */ jsx("section", {
 		className: "cta-panel",
 		children: /* @__PURE__ */ jsxs("div", {
@@ -1717,7 +3696,7 @@ function CTA({ title = "Let’s break ground.", text }) {
 			children: [
 				/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 					className: "eyebrow",
-					children: "Start a project"
+					children: t("cta.start")
 				}) }),
 				/* @__PURE__ */ jsx(Reveal, {
 					delay: 80,
@@ -1738,12 +3717,17 @@ function CTA({ title = "Let’s break ground.", text }) {
 					children: /* @__PURE__ */ jsxs("div", {
 						className: "hero-actions",
 						children: [/* @__PURE__ */ jsxs(Link, {
-							to: "/contact",
+							to: href("/contact"),
 							className: "btn btn-ink",
-							children: ["Request a quote ", /* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })]
+							children: [
+								t("cta.quote"),
+								" ",
+								/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
+							]
 						}), /* @__PURE__ */ jsx("a", {
 							href: company.phoneHref,
 							className: "btn btn-ghost",
+							dir: "ltr",
 							children: company.phone
 						})]
 					})
@@ -1754,8 +3738,9 @@ function CTA({ title = "Let’s break ground.", text }) {
 						className: "cta-contact-row",
 						children: [/* @__PURE__ */ jsx("a", {
 							href: `mailto:${company.email}`,
+							dir: "ltr",
 							children: company.email
-						}), /* @__PURE__ */ jsx("span", { children: company.address.join(", ") })]
+						}), /* @__PURE__ */ jsx("span", { children: company.address.join("، ") })]
 					})
 				})
 			]
@@ -1946,14 +3931,16 @@ function FleetScene() {
 //#region src/pages/Home.jsx
 function HeroSlider() {
 	const [active, setActive] = useState(0);
+	const { t, content, href } = useLocale();
+	const { heroSlides } = content;
 	useEffect(() => {
 		const id = setInterval(() => setActive((a) => (a + 1) % heroSlides.length), 6e3);
 		return () => clearInterval(id);
-	}, []);
+	}, [heroSlides.length]);
 	const slide = heroSlides[active];
 	return /* @__PURE__ */ jsxs("section", {
 		className: "hero",
-		"aria-label": "Earth Movers International highlights",
+		"aria-label": t("home.heroAria"),
 		children: [
 			heroSlides.map((s, i) => /* @__PURE__ */ jsx("div", {
 				className: `hero-slide${i === active ? " active" : ""}`,
@@ -1991,14 +3978,18 @@ function HeroSlider() {
 						children: /* @__PURE__ */ jsxs("div", {
 							className: "hero-actions",
 							children: [/* @__PURE__ */ jsx(Link, {
-								to: "/contact",
+								to: href("/contact"),
 								className: "btn btn-solid",
-								children: "Request a quote"
+								children: t("cta.quote")
 							}), /* @__PURE__ */ jsxs(Link, {
-								to: "/projects",
+								to: href("/projects"),
 								className: "text-link",
 								style: { color: "#fff" },
-								children: ["Explore our projects ", /* @__PURE__ */ jsx(Arrow, {})]
+								children: [
+									t("home.exploreProjects"),
+									" ",
+									/* @__PURE__ */ jsx(Arrow, {})
+								]
 							})]
 						})
 					})
@@ -2007,10 +3998,10 @@ function HeroSlider() {
 			/* @__PURE__ */ jsx("div", {
 				className: "hero-dots",
 				role: "tablist",
-				"aria-label": "Hero slides",
+				"aria-label": t("home.slidesAria"),
 				children: heroSlides.map((s, i) => /* @__PURE__ */ jsx("button", {
 					className: `hero-dot${i === active ? " active" : ""}`,
-					"aria-label": `Slide ${i + 1}`,
+					"aria-label": t("home.slideN", { n: i + 1 }),
 					onClick: () => setActive(i)
 				}, s.img))
 			})
@@ -2018,6 +4009,8 @@ function HeroSlider() {
 	});
 }
 function Home() {
+	const { t, tax, content, href } = useLocale();
+	const { stats, projects, fleet, certifications, images } = content;
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(HeroSlider, {}),
 		/* @__PURE__ */ jsx("div", {
@@ -2046,7 +4039,7 @@ function Home() {
 					}, s.label))
 				}), /* @__PURE__ */ jsxs("div", {
 					className: "cert-row",
-					children: [/* @__PURE__ */ jsx("span", { children: "Certifications & registrations" }), certifications.map((c) => /* @__PURE__ */ jsx("strong", { children: c.title }, c.title))]
+					children: [/* @__PURE__ */ jsx("span", { children: t("home.certRow") }), certifications.map((c) => /* @__PURE__ */ jsx("strong", { children: c.title }, c.title))]
 				})]
 			})
 		}),
@@ -2060,20 +4053,24 @@ function Home() {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Our Work"
+							children: t("home.workEyebrow")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "The projects that tell our story."
+								children: t("home.workTitle")
 							})
 						})]
 					}), /* @__PURE__ */ jsx(Reveal, {
 						delay: 160,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: "/projects",
+							to: href("/projects"),
 							className: "text-link",
-							children: ["All projects ", /* @__PURE__ */ jsx(Arrow, {})]
+							children: [
+								t("home.allProjects"),
+								" ",
+								/* @__PURE__ */ jsx(Arrow, {})
+							]
 						})
 					})]
 				}), /* @__PURE__ */ jsx("div", {
@@ -2120,10 +4117,10 @@ function Home() {
 					className: "statement",
 					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 						className: "eyebrow",
-						children: "Our Promise"
+						children: t("home.promiseEyebrow")
 					}) }), /* @__PURE__ */ jsx(Reveal, {
 						delay: 90,
-						children: /* @__PURE__ */ jsxs("h2", { children: ["We move the earth, we build the roads, and we earn the trust of every client we serve — ", /* @__PURE__ */ jsx("em", { children: "every single day." })] })
+						children: /* @__PURE__ */ jsxs("h2", { children: [t("home.promise"), /* @__PURE__ */ jsx("em", { children: t("home.promiseEm") })] })
 					})]
 				})
 			})
@@ -2139,30 +4136,30 @@ function Home() {
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "What We Do"
+								children: t("home.whatEyebrow")
 							}) }),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-lg",
-									children: "Four disciplines. One accountable partner."
+									children: t("home.whatTitle")
 								})
 							}),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsx("p", {
 									className: "lead",
-									children: "Earth works, road works, traffic management and utilities — delivered with our own fleet, our own operators and RTA-approved processes."
+									children: t("home.whatLead")
 								})
 							})
 						]
 					})
 				}), /* @__PURE__ */ jsx("div", {
 					className: "cat-grid",
-					children: serviceCategories.map((c, i) => /* @__PURE__ */ jsx(Reveal, {
+					children: tax.categories.map((c, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 70,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${c.slug}`,
+							to: href(`/services/${c.slug}`),
 							className: "cat-tile",
 							children: [
 								/* @__PURE__ */ jsx("div", {
@@ -2177,17 +4174,21 @@ function Home() {
 									className: "cat-tile-list",
 									children: [c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug)), c.services.some((s) => s.hideOnHome) && /* @__PURE__ */ jsx("li", {
 										className: "cat-tile-more",
-										children: `plus ${c.services.filter((s) => s.hideOnHome).length} services`
+										children: t("home.plusServices", { n: c.services.filter((s) => s.hideOnHome).length })
 									})]
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "cat-tile-foot",
 									children: [/* @__PURE__ */ jsx("span", {
 										className: "cat-tile-where",
-										children: c.coverage === "all" ? "Available in all 7 emirates" : "Available in Dubai"
+										children: c.coverage === "all" ? t("cov.availableAll") : t("cov.availableDubai")
 									}), /* @__PURE__ */ jsxs("span", {
 										className: "text-link",
-										children: ["Explore ", /* @__PURE__ */ jsx(Arrow, {})]
+										children: [
+											t("cta.explore"),
+											" ",
+											/* @__PURE__ */ jsx(Arrow, {})
+										]
 									})]
 								})
 							]
@@ -2205,20 +4206,20 @@ function Home() {
 					children: [
 						/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "The Fleet"
+							children: t("home.fleetEyebrow")
 						}) }),
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "One of the largest heavy-excavation fleets in Dubai."
+								children: t("home.fleetTitle")
 							})
 						}),
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 160,
 							children: /* @__PURE__ */ jsx("p", {
 								className: "lead",
-								children: "Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine."
+								children: t("home.fleetLead")
 							})
 						}),
 						/* @__PURE__ */ jsx(Reveal, {
@@ -2234,9 +4235,9 @@ function Home() {
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 280,
 							children: /* @__PURE__ */ jsx(Link, {
-								to: "/contact",
+								to: href("/contact"),
 								className: "btn btn-solid",
-								children: "Rent equipment"
+								children: t("home.rentEquipment")
 							})
 						})
 					]
@@ -2245,17 +4246,20 @@ function Home() {
 					className: "fleet-art",
 					children: [/* @__PURE__ */ jsx(Photo, {
 						src: images.fleet,
-						alt: "Wheel loader working sand stockpiles",
+						alt: t("home.fleetAlt"),
 						fallback: /* @__PURE__ */ jsx(FleetScene, {})
 					}), /* @__PURE__ */ jsxs("div", {
 						className: "fleet-art-caption",
-						children: [/* @__PURE__ */ jsx("span", { children: "Fleet operations — Dubai" }), /* @__PURE__ */ jsx("span", { children: "Operated · 24/7" })]
+						children: [/* @__PURE__ */ jsx("span", { children: t("home.fleetCaption") }), /* @__PURE__ */ jsx("span", { children: t("home.fleetOperated") })]
 					})]
 				})]
 			})
 		}),
-		/* @__PURE__ */ jsx(Marquee, { label: "Trusted across the UAE" }),
-		/* @__PURE__ */ jsx(CTA, { text: "Tell us about your site and scope — we’ll walk the ground with you and price the real work." })
+		/* @__PURE__ */ jsx(Marquee, { label: t("home.marquee") }),
+		/* @__PURE__ */ jsx(CTA, {
+			title: t("about.ctaTitle"),
+			text: t("home.ctaText")
+		})
 	] });
 }
 //#endregion
@@ -2295,11 +4299,16 @@ function PageBanner({ eyebrow, title, text, img }) {
 //#endregion
 //#region src/pages/About.jsx
 function About() {
+	const { t, content, href } = useLocale();
+	const { company, stats, timeline, values, certifications, images } = content;
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
-			eyebrow: "About Us",
-			title: "Three decades of moving ground.",
-			text: `From Montreal in ${company.founded} to Dubai since ${company.inUAE} — a contractor built around heavy machines, experienced hands and ground that gets handed over right.`,
+			eyebrow: t("about.eyebrow"),
+			title: t("about.title"),
+			text: t("about.lead", {
+				founded: company.founded,
+				inUAE: company.inUAE
+			}),
 			img: images.banners.about
 		}),
 		/* @__PURE__ */ jsx("div", {
@@ -2328,7 +4337,7 @@ function About() {
 					}, s.label))
 				}), /* @__PURE__ */ jsxs("div", {
 					className: "cert-row",
-					children: [/* @__PURE__ */ jsx("span", { children: "Certifications & registrations" }), certifications.map((c) => /* @__PURE__ */ jsx("strong", { children: c.title }, c.title))]
+					children: [/* @__PURE__ */ jsx("span", { children: t("home.certRow") }), certifications.map((c) => /* @__PURE__ */ jsx("strong", { children: c.title }, c.title))]
 				})]
 			})
 		}),
@@ -2340,12 +4349,12 @@ function About() {
 					className: "split-sticky",
 					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 						className: "eyebrow",
-						children: "The story"
+						children: t("about.storyEyebrow")
 					}) }), /* @__PURE__ */ jsx(Reveal, {
 						delay: 80,
 						children: /* @__PURE__ */ jsx("h2", {
 							className: "display-lg",
-							children: "Who we are"
+							children: t("about.storyTitle")
 						})
 					})]
 				}), /* @__PURE__ */ jsxs("div", {
@@ -2354,15 +4363,15 @@ function About() {
 						/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("p", {
 							className: "lead",
 							style: { color: "var(--ink)" },
-							children: "Earth Movers International is a dynamic and preferred solution provider in the fields of civil and heavy construction, engineering, oil & gas, recycling and demolition."
+							children: t("about.story1")
 						}) }),
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 90,
-							children: /* @__PURE__ */ jsx("p", { children: "Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, heavy equipment, material supply, transportation and logistics. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor." })
+							children: /* @__PURE__ */ jsx("p", { children: t("about.story2") })
 						}),
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 160,
-							children: /* @__PURE__ */ jsx("p", { children: "We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, piling rigs, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver." })
+							children: /* @__PURE__ */ jsx("p", { children: t("about.story3") })
 						}),
 						/* @__PURE__ */ jsx(Reveal, {
 							delay: 200,
@@ -2386,12 +4395,12 @@ function About() {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Milestones"
+							children: t("about.milestones")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "The road so far."
+								children: t("about.milestonesTitle")
 							})
 						})]
 					})
@@ -2416,22 +4425,22 @@ function About() {
 					className: "split-sticky",
 					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 						className: "eyebrow",
-						children: "Direction"
+						children: t("about.directionEyebrow")
 					}) }), /* @__PURE__ */ jsx(Reveal, {
 						delay: 80,
 						children: /* @__PURE__ */ jsx("h2", {
 							className: "display-lg",
-							children: "Mission & vision"
+							children: t("about.directionTitle")
 						})
 					})]
 				}), /* @__PURE__ */ jsxs("div", {
 					className: "split-body",
 					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("p", {
 						className: "lead",
-						children: "Our vision is to make Earth Movers International a global brand in the field of earth works, heavy construction equipment and services."
+						children: t("about.vision")
 					}) }), /* @__PURE__ */ jsx(Reveal, {
 						delay: 90,
-						children: /* @__PURE__ */ jsx("p", { children: "Our mission is simpler still: deliver practical, build-ready ground — safely, on programme and to specification — so every client can build with confidence on what we hand over." })
+						children: /* @__PURE__ */ jsx("p", { children: t("about.mission") })
 					})]
 				})]
 			})
@@ -2446,20 +4455,24 @@ function About() {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Values"
+							children: t("about.valuesEyebrow")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "Ground rules."
+								children: t("about.valuesTitle")
 							})
 						})]
 					}), /* @__PURE__ */ jsx(Reveal, {
 						delay: 160,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: "/services",
+							to: href("/services"),
 							className: "btn btn-ghost",
-							children: ["See our services ", /* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })]
+							children: [
+								t("about.seeServices"),
+								" ",
+								/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
+							]
 						})
 					})]
 				}), /* @__PURE__ */ jsx("div", {
@@ -2473,24 +4486,26 @@ function About() {
 			})
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: "Build on solid ground.",
-			text: "Talk to the team that has been moving the earth since 1990."
+			title: t("about.ctaTitle"),
+			text: t("about.ctaText")
 		})
 	] });
 }
 //#endregion
 //#region src/pages/Services.jsx
 function Services() {
+	const { t, locale, tax, content, href } = useLocale();
+	const { images } = content;
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
-			eyebrow: "Services",
-			title: "Earth works, road works, traffic management and utilities.",
-			text: "Four disciplines, one accountable contractor — delivered with our own fleet, our own operators and RTA-approved processes across the UAE.",
+			eyebrow: t("lbl.services"),
+			title: t("home.whatTitle"),
+			text: t("home.whatLead"),
 			img: images.banners.services
 		}),
-		serviceCategories.map((category, gi) => {
-			const locations = emiratesFor(category);
-			const where = category.coverage === "all" ? "all seven emirates" : "Dubai";
+		tax.categories.map((category, gi) => {
+			const locations = emiratesFor(category, locale);
+			const where = category.coverage === "all" ? t("cov.allLong") : t("cov.dubai");
 			return /* @__PURE__ */ jsx("section", {
 				id: category.slug,
 				className: `section${gi % 2 === 1 ? " section-paper hairline-top" : ""}`,
@@ -2523,7 +4538,7 @@ function Services() {
 						}), /* @__PURE__ */ jsx(Reveal, {
 							delay: 180,
 							children: /* @__PURE__ */ jsxs(Link, {
-								to: `/services/${category.slug}`,
+								to: href(`/services/${category.slug}`),
 								className: "btn btn-ghost",
 								children: [
 									category.name,
@@ -2543,24 +4558,24 @@ function Services() {
 						}), /* @__PURE__ */ jsxs("div", { children: [
 							/* @__PURE__ */ jsx("h3", {
 								className: "block-label",
-								children: "Services"
+								children: t("lbl.services")
 							}),
 							/* @__PURE__ */ jsx("ul", {
 								className: "tag-list tag-list-links",
 								children: category.services.map((s) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(Link, {
-									to: `/services/${category.slug}/${s.slug}`,
+									to: href(`/services/${category.slug}/${s.slug}`),
 									children: s.name
 								}) }, s.slug))
 							}),
-							/* @__PURE__ */ jsxs("h3", {
+							/* @__PURE__ */ jsx("h3", {
 								className: "block-label",
 								style: { marginTop: "2rem" },
-								children: ["Available in ", where]
+								children: t("cov.availableIn", { where })
 							}),
 							/* @__PURE__ */ jsx("div", {
 								className: "loc-links",
 								children: locations.map((e) => /* @__PURE__ */ jsx(Link, {
-									to: `/services/${category.slug}/${e.slug}`,
+									to: href(`/services/${category.slug}/${e.slug}`),
 									children: e.name
 								}, e.slug))
 							})
@@ -2570,14 +4585,15 @@ function Services() {
 			}, category.slug);
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: "Scope in hand? Send it over.",
-			text: "Share your drawings or bill of quantities and we’ll come back with a clear, realistic price."
+			title: t("about.ctaTitle"),
+			text: t("svc.ctaText")
 		})
 	] });
 }
 //#endregion
 //#region src/components/Breadcrumbs.jsx
 function Breadcrumbs({ items }) {
+	const { href } = useLocale();
 	return /* @__PURE__ */ jsx("nav", {
 		className: "crumbs",
 		"aria-label": "Breadcrumb",
@@ -2589,7 +4605,7 @@ function Breadcrumbs({ items }) {
 			"aria-current": "page",
 			children: it.name
 		}) : /* @__PURE__ */ jsx(Link, {
-			to: it.path,
+			to: href(it.path),
 			children: it.name
 		})] }, it.path))
 	});
@@ -2597,6 +4613,7 @@ function Breadcrumbs({ items }) {
 //#endregion
 //#region src/pages/NotFound.jsx
 function NotFound() {
+	const { t, href } = useLocale();
 	return /* @__PURE__ */ jsx("main", { children: /* @__PURE__ */ jsxs("section", {
 		className: "wrap section",
 		style: {
@@ -2614,16 +4631,20 @@ function NotFound() {
 			}),
 			/* @__PURE__ */ jsx("h1", {
 				className: "display-xl",
-				children: "This ground hasn’t been broken yet."
+				children: t("nf.title")
 			}),
 			/* @__PURE__ */ jsx("p", {
 				className: "lead",
-				children: "The page you’re looking for doesn’t exist — but the rest of the site does."
+				children: t("nf.text")
 			}),
 			/* @__PURE__ */ jsxs(Link, {
-				to: "/",
+				to: href("/"),
 				className: "btn btn-ink",
-				children: ["Back to home ", /* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })]
+				children: [
+					t("nf.back"),
+					" ",
+					/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
+				]
 			})
 		]
 	}) });
@@ -2632,15 +4653,20 @@ function NotFound() {
 //#region src/pages/ServiceCategory.jsx
 function ServiceCategory() {
 	const { category: slug } = useParams();
-	const category = categoryBySlug[slug];
+	const { t, locale, tax, href } = useLocale();
+	const category = tax.categoryBySlug[slug];
 	if (!category) return /* @__PURE__ */ jsx(NotFound, {});
-	const locations = emiratesFor(category);
-	const others = serviceCategories.filter((c) => c.slug !== category.slug);
-	const where = category.coverage === "all" ? "the UAE" : "Dubai";
+	const locations = emiratesFor(category, locale);
+	const others = tax.categories.filter((c) => c.slug !== category.slug);
+	const where = category.coverage === "all" ? t("cov.whereAll") : t("cov.dubai");
+	const lower = (s) => locale === "ar" ? s : s.toLowerCase();
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
-			eyebrow: "Services",
-			title: `${category.name} Contractor in ${where}`,
+			eyebrow: t("lbl.services"),
+			title: t("seo.categoryH1", {
+				category: category.name,
+				where
+			}),
 			text: category.tagline,
 			img: category.img
 		}),
@@ -2651,11 +4677,11 @@ function ServiceCategory() {
 				children: [
 					/* @__PURE__ */ jsx(Breadcrumbs, { items: [
 						{
-							name: "Home",
+							name: t("crumb.home"),
 							path: "/"
 						},
 						{
-							name: "Services",
+							name: t("crumb.services"),
 							path: "/services"
 						},
 						{
@@ -2670,7 +4696,7 @@ function ServiceCategory() {
 							className: "kicker",
 							children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Overview"
+								children: t("lbl.overview")
 							}) }), /* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
@@ -2681,22 +4707,22 @@ function ServiceCategory() {
 						}), /* @__PURE__ */ jsx(Reveal, {
 							delay: 140,
 							children: /* @__PURE__ */ jsx(Link, {
-								to: "/contact",
+								to: href("/contact"),
 								className: "btn btn-solid",
-								children: "Request a proposal"
+								children: t("cta.proposal")
 							})
 						})]
 					}),
 					/* @__PURE__ */ jsx("h3", {
 						className: "block-label",
-						children: "What’s included"
+						children: t("lbl.included")
 					}),
 					/* @__PURE__ */ jsx("div", {
 						className: "check-grid",
 						children: category.services.map((s, i) => /* @__PURE__ */ jsx(Reveal, {
 							delay: i % 2 * 60,
 							children: /* @__PURE__ */ jsxs(Link, {
-								to: `/services/${category.slug}/${s.slug}`,
+								to: href(`/services/${category.slug}/${s.slug}`),
 								className: "check-item check-item-link",
 								children: [/* @__PURE__ */ jsx(CheckCircle, { className: "check-ico" }), /* @__PURE__ */ jsxs("div", { children: [
 									/* @__PURE__ */ jsx("h3", { children: s.name }),
@@ -2704,7 +4730,7 @@ function ServiceCategory() {
 									/* @__PURE__ */ jsxs("span", {
 										className: "text-link",
 										children: [
-											`${s.name} in detail`,
+											t("svc.detailLink", { name: s.name }),
 											" ",
 											/* @__PURE__ */ jsx(Arrow, {})
 										]
@@ -2727,20 +4753,23 @@ function ServiceCategory() {
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Where we work"
+								children: t("lbl.whereWeWork")
 							}) }),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-lg",
-									children: `${category.name} across ${where}.`
+									children: t("svc.acrossWhere", {
+										name: category.name,
+										where
+									})
 								})
 							}),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsx("p", {
 									className: "lead",
-									children: "Choose your emirate for local coverage, approving authority and the areas we operate in."
+									children: t("svc.chooseEmirateCategory")
 								})
 							})
 						]
@@ -2750,12 +4779,15 @@ function ServiceCategory() {
 					children: locations.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}/${e.slug}`,
+							to: href(`/services/${category.slug}/${e.slug}`),
 							className: "loc-card",
 							children: [
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-name",
-									children: `${category.name} in ${e.name}`
+									children: t("loc.inEmirate", {
+										name: category.name,
+										emirate: e.name
+									})
 								}),
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-meta",
@@ -2763,7 +4795,11 @@ function ServiceCategory() {
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "text-link",
-									children: ["View ", /* @__PURE__ */ jsx(Arrow, {})]
+									children: [
+										t("cta.view"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, {})
+									]
 								})
 							]
 						})
@@ -2781,12 +4817,12 @@ function ServiceCategory() {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Explore more"
+							children: t("lbl.exploreMore")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "Other services"
+								children: t("lbl.otherServices")
 							})
 						})]
 					})
@@ -2795,7 +4831,7 @@ function ServiceCategory() {
 					children: others.map((c, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 3 * 70,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${c.slug}`,
+							to: href(`/services/${c.slug}`),
 							className: "svc-tile",
 							children: [
 								/* @__PURE__ */ jsx("div", {
@@ -2809,7 +4845,11 @@ function ServiceCategory() {
 								/* @__PURE__ */ jsx("p", { children: c.tagline }),
 								/* @__PURE__ */ jsxs("span", {
 									className: "text-link",
-									children: ["Explore ", /* @__PURE__ */ jsx(Arrow, {})]
+									children: [
+										t("cta.explore"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, {})
+									]
 								})
 							]
 						})
@@ -2818,16 +4858,18 @@ function ServiceCategory() {
 			})
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: `Need ${category.name.toLowerCase()} priced?`,
-			text: "Send your drawings or bill of quantities and we’ll come back with a clear, realistic price."
+			title: t("svc.needPriced", { name: lower(category.name) }),
+			text: t("svc.ctaText")
 		})
 	] });
 }
 //#endregion
 //#region src/pages/ServiceDetail.jsx
 function ServiceDetail({ category, service }) {
-	const locations = emiratesFor(category);
-	const where = category.coverage === "all" ? "the UAE" : "Dubai";
+	const { t, locale, content, href } = useLocale();
+	const { company } = content;
+	const locations = emiratesFor(category, locale);
+	const where = category.coverage === "all" ? t("cov.whereAll") : t("cov.dubai");
 	const siblings = category.services.filter((s) => s.slug !== service.slug);
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
@@ -2842,11 +4884,11 @@ function ServiceDetail({ category, service }) {
 				className: "wrap",
 				children: [/* @__PURE__ */ jsx(Breadcrumbs, { items: [
 					{
-						name: "Home",
+						name: t("crumb.home"),
 						path: "/"
 					},
 					{
-						name: "Services",
+						name: t("crumb.services"),
 						path: "/services"
 					},
 					{
@@ -2865,21 +4907,24 @@ function ServiceDetail({ category, service }) {
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Overview"
+								children: t("lbl.overview")
 							}) }),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-md",
-									children: `${service.name} in ${where}, delivered with our own fleet.`
+									children: t("svc.withOwnFleet", {
+										name: service.name,
+										where
+									})
 								})
 							}),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsx(Link, {
-									to: "/contact",
+									to: href("/contact"),
 									className: "btn btn-solid",
-									children: "Request a quote"
+									children: t("cta.quote")
 								})
 							})
 						]
@@ -2908,12 +4953,12 @@ function ServiceDetail({ category, service }) {
 							className: "kicker",
 							children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Scope"
+								children: t("lbl.scope")
 							}) }), /* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-lg",
-									children: `What our ${service.name.toLowerCase()} package covers.`
+									children: t("svc.covers", { name: locale === "ar" ? service.name : service.name.toLowerCase() })
 								})
 							})]
 						})
@@ -2929,7 +4974,7 @@ function ServiceDetail({ category, service }) {
 					/* @__PURE__ */ jsx("h3", {
 						className: "block-label",
 						style: { marginTop: "3rem" },
-						children: "At a glance"
+						children: t("lbl.glance")
 					}),
 					/* @__PURE__ */ jsx("dl", {
 						className: "spec-table",
@@ -2952,20 +4997,26 @@ function ServiceDetail({ category, service }) {
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Where we work"
+								children: t("lbl.whereWeWork")
 							}) }),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-lg",
-									children: `${service.name} across ${where}.`
+									children: t("svc.acrossWhere", {
+										name: service.name,
+										where
+									})
 								})
 							}),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsx("p", {
 									className: "lead",
-									children: `We deliver ${service.name.toLowerCase()} as part of our ${category.name.toLowerCase()} package. Choose your emirate for local coverage and the approving authority.`
+									children: t("svc.chooseEmirate", {
+										name: locale === "ar" ? service.name : service.name.toLowerCase(),
+										category: locale === "ar" ? category.name : category.name.toLowerCase()
+									})
 								})
 							})
 						]
@@ -2975,12 +5026,15 @@ function ServiceDetail({ category, service }) {
 					children: locations.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}/${e.slug}`,
+							to: href(`/services/${category.slug}/${e.slug}`),
 							className: "loc-card",
 							children: [
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-name",
-									children: `${service.name} in ${e.name}`
+									children: t("loc.inEmirate", {
+										name: service.name,
+										emirate: e.name
+									})
 								}),
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-meta",
@@ -2988,7 +5042,11 @@ function ServiceDetail({ category, service }) {
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "text-link",
-									children: ["View ", /* @__PURE__ */ jsx(Arrow, {})]
+									children: [
+										t("cta.view"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, {})
+									]
 								})
 							]
 						})
@@ -3006,12 +5064,12 @@ function ServiceDetail({ category, service }) {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Common questions"
+							children: t("lbl.faq")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: `${service.name} — FAQs`
+								children: t("svc.faqHeading", { name: service.name })
 							})
 						})]
 					})
@@ -3024,21 +5082,14 @@ function ServiceDetail({ category, service }) {
 					}, f.q)), /* @__PURE__ */ jsxs(Reveal, {
 						delay: service.faqs.length * 60,
 						className: "faq-item",
-						children: [/* @__PURE__ */ jsx("h3", { children: `How do I get a price for ${service.name.toLowerCase()}?` }), /* @__PURE__ */ jsxs("p", { children: [
-							"Send drawings, a bill of quantities or a description of the scope to",
-							" ",
-							/* @__PURE__ */ jsx("a", {
-								href: `mailto:${company.email}`,
-								children: company.email
-							}),
-							", or call",
-							" ",
-							/* @__PURE__ */ jsx("a", {
-								href: company.phoneHref,
-								children: company.phone
-							}),
-							". Where it helps, we walk the ground with you before pricing."
-						] })]
+						children: [/* @__PURE__ */ jsx("h3", { children: t("svc.priceQ", { name: locale === "ar" ? service.name : service.name.toLowerCase() }) }), /* @__PURE__ */ jsx("p", { children: t("svc.priceA", {
+							email: company.email,
+							phone: company.phone
+						}).split(company.email).flatMap((part, i, all) => i < all.length - 1 ? [part, /* @__PURE__ */ jsx("a", {
+							href: `mailto:${company.email}`,
+							dir: "ltr",
+							children: company.email
+						}, "e")] : [part]) })]
 					})]
 				})]
 			})
@@ -3053,22 +5104,21 @@ function ServiceDetail({ category, service }) {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Related services"
+							children: t("lbl.related")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: `Other ${category.name.toLowerCase()} services`
+								children: t("svc.otherIn", { category: locale === "ar" ? category.name : category.name.toLowerCase() })
 							})
 						})]
 					}), /* @__PURE__ */ jsx(Reveal, {
 						delay: 140,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}`,
+							to: href(`/services/${category.slug}`),
 							className: "text-link",
 							children: [
-								"All ",
-								category.name.toLowerCase(),
+								t("svc.allOf", { category: locale === "ar" ? category.name : category.name.toLowerCase() }),
 								" ",
 								/* @__PURE__ */ jsx(Arrow, {})
 							]
@@ -3079,7 +5129,7 @@ function ServiceDetail({ category, service }) {
 					children: siblings.map((s, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}/${s.slug}`,
+							to: href(`/services/${category.slug}/${s.slug}`),
 							className: "loc-card",
 							children: [
 								/* @__PURE__ */ jsx("span", {
@@ -3092,7 +5142,11 @@ function ServiceDetail({ category, service }) {
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "text-link",
-									children: ["View ", /* @__PURE__ */ jsx(Arrow, {})]
+									children: [
+										t("cta.view"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, {})
+									]
 								})
 							]
 						})
@@ -3101,20 +5155,26 @@ function ServiceDetail({ category, service }) {
 			})
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: `Need ${service.name.toLowerCase()} priced?`,
-			text: "Send your drawings or bill of quantities and we’ll come back with a clear, realistic price."
+			title: t("svc.needPriced", { name: locale === "ar" ? service.name : service.name.toLowerCase() }),
+			text: t("svc.ctaText")
 		})
 	] });
 }
 //#endregion
 //#region src/pages/ServiceLocation.jsx
 function ServiceLocation({ category, emirate }) {
-	const siblings = emiratesFor(category).filter((e) => e.slug !== emirate.slug);
+	const { t, locale, content, href } = useLocale();
+	const { company } = content;
+	const siblings = emiratesFor(category, locale).filter((e) => e.slug !== emirate.slug);
+	const lower = (s) => locale === "ar" ? s : s.toLowerCase();
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
 			eyebrow: `${category.name} — ${emirate.name}`,
-			title: `${category.name} Contractor in ${emirate.name}`,
-			text: `${category.tagline} Delivered to ${emirate.authority} standards.`,
+			title: t("seo.categoryH1", {
+				category: category.name,
+				where: emirate.name
+			}),
+			text: category.tagline,
 			img: category.img
 		}),
 		/* @__PURE__ */ jsx("section", {
@@ -3123,11 +5183,11 @@ function ServiceLocation({ category, emirate }) {
 				className: "wrap",
 				children: [/* @__PURE__ */ jsx(Breadcrumbs, { items: [
 					{
-						name: "Home",
+						name: t("crumb.home"),
 						path: "/"
 					},
 					{
-						name: "Services",
+						name: t("crumb.services"),
 						path: "/services"
 					},
 					{
@@ -3146,21 +5206,24 @@ function ServiceLocation({ category, emirate }) {
 						children: [
 							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 								className: "eyebrow",
-								children: "Local coverage"
+								children: t("lbl.localCoverage")
 							}) }),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 80,
 								children: /* @__PURE__ */ jsx("h2", {
 									className: "display-md",
-									children: `${category.name} in ${emirate.name}, delivered with our own fleet.`
+									children: t("loc.deliveredIn", {
+										category: category.name,
+										emirate: emirate.name
+									})
 								})
 							}),
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsx(Link, {
-									to: "/contact",
+									to: href("/contact"),
 									className: "btn btn-solid",
-									children: "Request a quote"
+									children: t("cta.quote")
 								})
 							})
 						]
@@ -3179,14 +5242,11 @@ function ServiceLocation({ category, emirate }) {
 							/* @__PURE__ */ jsx(Reveal, {
 								delay: 140,
 								children: /* @__PURE__ */ jsxs("p", { children: [
-									/* @__PURE__ */ jsxs("strong", { children: [
-										"Areas we cover in ",
-										emirate.name,
-										":"
-									] }),
+									/* @__PURE__ */ jsx("strong", { children: t("loc.areasWeCover", { emirate: emirate.name }) }),
 									" ",
 									emirate.areas,
-									". Whether the scope is a single plot or a multi-phase infrastructure package, the same plant, operators and supervision deliver it."
+									". ",
+									t("loc.areasTail")
 								] })
 							})
 						]
@@ -3202,18 +5262,14 @@ function ServiceLocation({ category, emirate }) {
 					className: "section-head",
 					children: /* @__PURE__ */ jsxs("div", {
 						className: "kicker",
-						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("span", {
+						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: [
-								"Our ",
-								category.name.toLowerCase(),
-								" services"
-							]
+							children: t("loc.ourServices", { category: lower(category.name) })
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: `What we deliver in ${emirate.name}.`
+								children: t("loc.whatWeDeliver", { emirate: emirate.name })
 							})
 						})]
 					})
@@ -3223,13 +5279,16 @@ function ServiceLocation({ category, emirate }) {
 						delay: i % 3 * 60,
 						className: "loc-service",
 						children: [/* @__PURE__ */ jsx(CheckCircle, { className: "check-ico" }), /* @__PURE__ */ jsxs("div", { children: [
-							/* @__PURE__ */ jsx("h3", { children: `${s.name} in ${emirate.name}` }),
+							/* @__PURE__ */ jsx("h3", { children: t("loc.inEmirate", {
+								name: s.name,
+								emirate: emirate.name
+							}) }),
 							/* @__PURE__ */ jsx("p", { children: s.text }),
 							/* @__PURE__ */ jsxs(Link, {
-								to: `/services/${category.slug}/${s.slug}`,
+								to: href(`/services/${category.slug}/${s.slug}`),
 								className: "text-link",
 								children: [
-									`More on ${s.name.toLowerCase()}`,
+									t("svc.moreOn", { name: lower(s.name) }),
 									" ",
 									/* @__PURE__ */ jsx(Arrow, {})
 								]
@@ -3249,12 +5308,15 @@ function ServiceLocation({ category, emirate }) {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Common questions"
+							children: t("lbl.faq")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: `${category.name} in ${emirate.name} — FAQs`
+								children: t("svc.faqHeading", { name: t("loc.inEmirate", {
+									name: category.name,
+									emirate: emirate.name
+								}) })
 							})
 						})]
 					})
@@ -3263,52 +5325,40 @@ function ServiceLocation({ category, emirate }) {
 					children: [
 						/* @__PURE__ */ jsxs(Reveal, {
 							className: "faq-item",
-							children: [/* @__PURE__ */ jsx("h3", { children: `Do you carry out ${category.name.toLowerCase()} in ${emirate.name}?` }), /* @__PURE__ */ jsxs("p", { children: [
-								"Yes. We deliver ",
-								category.name.toLowerCase(),
-								" across ",
-								emirate.name,
-								", including",
-								" ",
-								emirate.areas,
-								", working to ",
-								emirate.authority,
-								" standards with our own excavators, dozers, graders and rollers."
-							] })]
+							children: [/* @__PURE__ */ jsx("h3", { children: t("loc.q1", {
+								category: lower(category.name),
+								emirate: emirate.name
+							}) }), /* @__PURE__ */ jsx("p", { children: t("loc.a1", {
+								category: lower(category.name),
+								emirate: emirate.name,
+								areas: emirate.areas,
+								authority: emirate.authority
+							}) })]
 						}),
 						/* @__PURE__ */ jsxs(Reveal, {
 							delay: 60,
 							className: "faq-item",
-							children: [/* @__PURE__ */ jsx("h3", { children: `Are you an approved contractor for works in ${emirate.name}?` }), /* @__PURE__ */ jsxs("p", { children: [
-								"We are an RTA-approved contractor and work to the requirements of",
-								" ",
-								emirate.authority,
-								". Method statements, permits and material approvals are prepared and submitted by our own team."
-							] })]
+							children: [/* @__PURE__ */ jsx("h3", { children: t("loc.q2", { emirate: emirate.name }) }), /* @__PURE__ */ jsx("p", { children: t("loc.a2", { authority: emirate.authority }) })]
 						}),
 						/* @__PURE__ */ jsxs(Reveal, {
 							delay: 120,
 							className: "faq-item",
-							children: [/* @__PURE__ */ jsx("h3", { children: `How do I get a price for ${category.services[0].name.toLowerCase()} in ${emirate.name}?` }), /* @__PURE__ */ jsxs("p", { children: [
-								"Send drawings, a bill of quantities or a description of the scope to",
-								" ",
-								/* @__PURE__ */ jsx("a", {
-									href: `mailto:${company.email}`,
-									children: company.email
-								}),
-								", or call",
-								" ",
-								/* @__PURE__ */ jsx("a", {
-									href: company.phoneHref,
-									children: company.phone
-								}),
-								". Where it helps, we walk the ground with you before pricing."
-							] })]
+							children: [/* @__PURE__ */ jsx("h3", { children: t("loc.q3", {
+								service: lower(category.services[0].name),
+								emirate: emirate.name
+							}) }), /* @__PURE__ */ jsx("p", { children: t("svc.priceA", {
+								email: company.email,
+								phone: company.phone
+							}).split(company.email).flatMap((part, i, all) => i < all.length - 1 ? [part, /* @__PURE__ */ jsx("a", {
+								href: `mailto:${company.email}`,
+								dir: "ltr",
+								children: company.email
+							}, "e")] : [part]) })]
 						}),
 						/* @__PURE__ */ jsxs(Reveal, {
 							delay: 180,
 							className: "faq-item",
-							children: [/* @__PURE__ */ jsx("h3", { children: `How quickly can you mobilise to ${emirate.name}?` }), /* @__PURE__ */ jsx("p", { children: "Because the fleet is owned rather than hired, mobilisation is a scheduling question rather than an availability one — typically within days of approval for standard packages." })]
+							children: [/* @__PURE__ */ jsx("h3", { children: t("loc.q4", { emirate: emirate.name }) }), /* @__PURE__ */ jsx("p", { children: t("loc.a4") })]
 						})
 					]
 				})]
@@ -3324,22 +5374,21 @@ function ServiceLocation({ category, emirate }) {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Other emirates"
+							children: t("lbl.otherEmirates")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: `${category.name} elsewhere in the UAE`
+								children: t("loc.elsewhere", { category: category.name })
 							})
 						})]
 					}), /* @__PURE__ */ jsx(Reveal, {
 						delay: 140,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}`,
+							to: href(`/services/${category.slug}`),
 							className: "text-link",
 							children: [
-								"All ",
-								category.name.toLowerCase(),
+								t("svc.allOf", { category: lower(category.name) }),
 								" ",
 								/* @__PURE__ */ jsx(Arrow, {})
 							]
@@ -3350,12 +5399,15 @@ function ServiceLocation({ category, emirate }) {
 					children: siblings.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsxs(Link, {
-							to: `/services/${category.slug}/${e.slug}`,
+							to: href(`/services/${category.slug}/${e.slug}`),
 							className: "loc-card",
 							children: [
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-name",
-									children: `${category.name} in ${e.name}`
+									children: t("loc.inEmirate", {
+										name: category.name,
+										emirate: e.name
+									})
 								}),
 								/* @__PURE__ */ jsx("span", {
 									className: "loc-card-meta",
@@ -3363,7 +5415,11 @@ function ServiceLocation({ category, emirate }) {
 								}),
 								/* @__PURE__ */ jsxs("span", {
 									className: "text-link",
-									children: ["View ", /* @__PURE__ */ jsx(Arrow, {})]
+									children: [
+										t("cta.view"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, {})
+									]
 								})
 							]
 						})
@@ -3372,8 +5428,11 @@ function ServiceLocation({ category, emirate }) {
 			})
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: `${category.name} in ${emirate.name}?`,
-			text: `Tell us about the site and scope — we’ll price the real work and mobilise from Dubai.`
+			title: t("loc.ctaTitle", {
+				category: category.name,
+				emirate: emirate.name
+			}),
+			text: t("loc.ctaText")
 		})
 	] });
 }
@@ -3381,9 +5440,10 @@ function ServiceLocation({ category, emirate }) {
 //#region src/pages/ServiceSegment.jsx
 function ServiceSegment() {
 	const { category: cSlug, segment } = useParams();
-	const category = categoryBySlug[cSlug];
+	const { locale, tax } = useLocale();
+	const category = tax.categoryBySlug[cSlug];
 	if (!category) return /* @__PURE__ */ jsx(NotFound, {});
-	const match = resolveServiceSegment(category, segment);
+	const match = resolveServiceSegment(category, segment, locale);
 	if (match.kind === "service") return /* @__PURE__ */ jsx(ServiceDetail, {
 		category,
 		service: match.service
@@ -3475,14 +5535,17 @@ function Gallery({ eyebrow = "From our sites", title = "The work, in pictures.",
 //#endregion
 //#region src/pages/Projects.jsx
 function Projects() {
-	const filters = ["All", ...new Set(projects.map((p) => p.sector))];
-	const [filter, setFilter] = useState("All");
-	const shown = projects.filter((p) => filter === "All" || p.sector === filter);
+	const { t, content } = useLocale();
+	const { projects, sectors, images } = content;
+	const ALL = t("proj.all");
+	const filters = [ALL, ...new Set(projects.map((p) => p.sector))];
+	const [filter, setFilter] = useState(ALL);
+	const shown = projects.filter((p) => filter === ALL || p.sector === filter);
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(PageBanner, {
-			eyebrow: "Projects",
-			title: "Selected work across the UAE.",
-			text: "From public authorities to private clients — a track record built on safety, quality and client satisfaction.",
+			eyebrow: t("proj.eyebrow"),
+			title: t("proj.title"),
+			text: t("proj.lead"),
 			img: images.banners.projects
 		}),
 		/* @__PURE__ */ jsx("section", {
@@ -3524,9 +5587,20 @@ function Projects() {
 								/* @__PURE__ */ jsxs("div", {
 									className: "proj-card-facts",
 									children: [
-										/* @__PURE__ */ jsxs("span", { children: ["Year ", /* @__PURE__ */ jsx("strong", { children: p.year })] }),
-										/* @__PURE__ */ jsxs("span", { children: ["Value ", /* @__PURE__ */ jsx("strong", { children: p.value })] }),
-										/* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("strong", { children: "Delivered" }) })
+										/* @__PURE__ */ jsxs("span", { children: [
+											t("proj.year"),
+											" ",
+											/* @__PURE__ */ jsx("strong", { children: p.year })
+										] }),
+										/* @__PURE__ */ jsxs("span", { children: [
+											t("proj.value"),
+											" ",
+											/* @__PURE__ */ jsx("strong", {
+												dir: "ltr",
+												children: p.value
+											})
+										] }),
+										/* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("strong", { children: t("proj.delivered") }) })
 									]
 								})
 							]
@@ -3545,12 +5619,12 @@ function Projects() {
 						className: "kicker",
 						children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
 							className: "eyebrow",
-							children: "Where We Work"
+							children: t("proj.whereEyebrow")
 						}) }), /* @__PURE__ */ jsx(Reveal, {
 							delay: 80,
 							children: /* @__PURE__ */ jsx("h2", {
 								className: "display-lg",
-								children: "Sectors we serve."
+								children: t("proj.whereTitle")
 							})
 						})]
 					})
@@ -3565,27 +5639,17 @@ function Projects() {
 			})
 		}),
 		/* @__PURE__ */ jsx(Gallery, {
-			eyebrow: "Site Gallery",
-			title: "The places behind our work."
+			eyebrow: t("proj.galleryEyebrow"),
+			title: t("proj.galleryTitle")
 		}),
 		/* @__PURE__ */ jsx(CTA, {
-			title: "Your project, next on this page.",
-			text: "From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery."
+			title: t("proj.ctaTitle"),
+			text: t("proj.ctaText")
 		})
 	] });
 }
 //#endregion
 //#region src/pages/Contact.jsx
-var SERVICE_OPTIONS = [
-	"Excavation",
-	"Road Construction",
-	"Asphalt Works",
-	"Cut & Fill",
-	"Site Preparation",
-	"Trenching & Piling",
-	"Material Supply",
-	"Equipment Rental"
-];
 function Contact() {
 	const [form, setForm] = useState({
 		name: "",
@@ -3594,6 +5658,9 @@ function Contact() {
 		message: ""
 	});
 	const [services, setServices] = useState([]);
+	const { t, locale, tax, content } = useLocale();
+	const { company, images } = content;
+	const serviceOptions = tax.categories.flatMap((c) => c.services.filter((s) => !s.hideOnHome).map((s) => s.name));
 	const set = (key) => (e) => setForm({
 		...form,
 		[key]: e.target.value
@@ -3601,15 +5668,18 @@ function Contact() {
 	const toggleService = (s) => setServices((cur) => cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]);
 	const submit = (e) => {
 		e.preventDefault();
-		const picked = services.join(", ") || "General";
-		const subject = encodeURIComponent(`Enquiry: ${picked} — ${form.name}`);
+		const picked = services.join(locale === "ar" ? "، " : ", ") || t("ct.general");
+		const subject = encodeURIComponent(t("ct.subject", {
+			picked,
+			name: form.name
+		}));
 		const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nServices: ${picked}\n\n${form.message}`);
 		window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
 	};
 	return /* @__PURE__ */ jsxs("main", { children: [/* @__PURE__ */ jsx(PageBanner, {
-		eyebrow: "Contact",
-		title: "Let’s walk your site.",
-		text: "Call, write or drop by — tell us about your scope and we’ll come back with a clear plan and an honest price.",
+		eyebrow: t("ct.eyebrow"),
+		title: t("ct.title"),
+		text: t("ct.lead"),
 		img: images.banners.contact
 	}), /* @__PURE__ */ jsxs("section", {
 		className: "section",
@@ -3622,9 +5692,10 @@ function Contact() {
 						className: "contact-item",
 						children: [/* @__PURE__ */ jsx("span", {
 							className: "label",
-							children: "Phone"
+							children: t("ct.phone")
 						}), /* @__PURE__ */ jsx("a", {
 							href: company.phoneHref,
+							dir: "ltr",
 							children: company.phone
 						})]
 					}),
@@ -3633,9 +5704,10 @@ function Contact() {
 						className: "contact-item",
 						children: [/* @__PURE__ */ jsx("span", {
 							className: "label",
-							children: "Email"
+							children: t("ct.email")
 						}), /* @__PURE__ */ jsx("a", {
 							href: `mailto:${company.email}`,
+							dir: "ltr",
 							children: company.email
 						})]
 					}),
@@ -3644,7 +5716,7 @@ function Contact() {
 						className: "contact-item",
 						children: [/* @__PURE__ */ jsx("span", {
 							className: "label",
-							children: "Office"
+							children: t("ct.office")
 						}), /* @__PURE__ */ jsx("address", { children: company.address.map((line) => /* @__PURE__ */ jsxs("span", { children: [line, /* @__PURE__ */ jsx("br", {})] }, line)) })]
 					}),
 					/* @__PURE__ */ jsxs(Reveal, {
@@ -3652,11 +5724,11 @@ function Contact() {
 						className: "contact-item",
 						children: [/* @__PURE__ */ jsx("span", {
 							className: "label",
-							children: "Hours"
+							children: t("ct.hours")
 						}), /* @__PURE__ */ jsxs("address", { children: [
-							"Monday – Saturday, 8:00 – 18:00",
+							t("ct.hoursValue"),
 							/* @__PURE__ */ jsx("br", {}),
-							"Site operations: 24/7"
+							t("ct.hoursSite")
 						] })]
 					})
 				]
@@ -3672,24 +5744,25 @@ function Contact() {
 								className: "field",
 								children: [/* @__PURE__ */ jsx("label", {
 									htmlFor: "cf-name",
-									children: "Name"
+									children: t("ct.name")
 								}), /* @__PURE__ */ jsx("input", {
 									id: "cf-name",
 									required: true,
 									value: form.name,
 									onChange: set("name"),
-									placeholder: "Your name"
+									placeholder: t("ct.namePlaceholder")
 								})]
 							}), /* @__PURE__ */ jsxs("div", {
 								className: "field",
 								children: [/* @__PURE__ */ jsx("label", {
 									htmlFor: "cf-phone",
-									children: "Phone"
+									children: t("ct.phone")
 								}), /* @__PURE__ */ jsx("input", {
 									id: "cf-phone",
 									value: form.phone,
 									onChange: set("phone"),
-									placeholder: "+971 …"
+									placeholder: t("ct.phonePlaceholder"),
+									dir: "ltr"
 								})]
 							})]
 						}),
@@ -3697,21 +5770,22 @@ function Contact() {
 							className: "field",
 							children: [/* @__PURE__ */ jsx("label", {
 								htmlFor: "cf-email",
-								children: "Email"
+								children: t("ct.email")
 							}), /* @__PURE__ */ jsx("input", {
 								id: "cf-email",
 								type: "email",
 								required: true,
 								value: form.email,
 								onChange: set("email"),
-								placeholder: "you@company.com"
+								placeholder: t("ct.emailPlaceholder"),
+								dir: "ltr"
 							})]
 						}),
 						/* @__PURE__ */ jsxs("div", {
 							className: "field",
-							children: [/* @__PURE__ */ jsx("label", { children: "Services of interest" }), /* @__PURE__ */ jsx("div", {
+							children: [/* @__PURE__ */ jsx("label", { children: t("ct.interest") }), /* @__PURE__ */ jsx("div", {
 								className: "chip-checks",
-								children: SERVICE_OPTIONS.map((s) => /* @__PURE__ */ jsxs("label", {
+								children: serviceOptions.map((s) => /* @__PURE__ */ jsxs("label", {
 									className: "chip-check",
 									children: [/* @__PURE__ */ jsx("input", {
 										type: "checkbox",
@@ -3725,27 +5799,27 @@ function Contact() {
 							className: "field",
 							children: [/* @__PURE__ */ jsx("label", {
 								htmlFor: "cf-message",
-								children: "Project details"
+								children: t("ct.details")
 							}), /* @__PURE__ */ jsx("textarea", {
 								id: "cf-message",
 								required: true,
 								value: form.message,
 								onChange: set("message"),
-								placeholder: "Location, scope, timeline — whatever you have so far."
+								placeholder: t("ct.detailsPlaceholder")
 							})]
 						}),
 						/* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("button", {
 							type: "submit",
 							className: "btn btn-solid",
-							children: ["Send enquiry ", /* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })]
-						}) }),
-						/* @__PURE__ */ jsxs("p", {
-							className: "form-note",
 							children: [
-								"Submitting opens your email app with the enquiry addressed to ",
-								company.email,
-								"."
+								t("ct.send"),
+								" ",
+								/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
 							]
+						}) }),
+						/* @__PURE__ */ jsx("p", {
+							className: "form-note",
+							children: t("ct.note", { email: company.email })
 						})
 					]
 				})
@@ -3767,67 +5841,114 @@ function Contact() {
 //#endregion
 //#region src/seo.js
 var SITE = "https://www.earthmoversint.com";
-var BRAND = "Earth Movers International";
-var page = (title, description, path, extra = {}) => ({
+var page = (locale, base, title, description, extra = {}) => ({
+	locale,
+	dir: LOCALE_META[locale].dir,
+	htmlLang: LOCALE_META[locale].htmlLang,
 	title,
 	description,
-	canonical: `${SITE}${path === "/" ? "/" : path}`,
-	path,
+	path: localeHref(base, locale),
+	canonical: `${SITE}${localeHref(base, locale) === "/" ? "/" : localeHref(base, locale)}`,
+	alternates: alternatesFor(base).map((a) => ({
+		hreflang: LOCALE_META[a.locale].hreflang,
+		href: `${SITE}${a.path === "/" ? "/" : a.path}`
+	})),
+	xDefault: `${SITE}${localeHref(base, "en") === "/" ? "/" : localeHref(base, "en")}`,
 	...extra
 });
-var organisation = {
-	"@type": "GeneralContractor",
-	"@id": `${SITE}/#organization`,
-	name: BRAND,
-	url: SITE,
-	telephone: company.phone,
-	email: company.email,
-	foundingDate: "1990",
-	address: {
-		"@type": "PostalAddress",
-		streetAddress: "Capital Golden Tower, Office 706, 7th Floor",
-		addressLocality: "Business Bay, Dubai",
-		addressCountry: "AE"
-	},
-	areaServed: [
-		"Dubai",
-		"Abu Dhabi",
-		"Sharjah",
-		"Ajman",
-		"Ras Al Khaimah",
-		"Fujairah",
-		"Umm Al Quwain"
-	]
-};
-function breadcrumbs(items) {
+function organisationFor(locale) {
+	const { company } = contentFor(locale);
+	const t = translator(locale);
+	return {
+		"@type": "GeneralContractor",
+		"@id": `${SITE}/#organization`,
+		name: t("seo.brand"),
+		alternateName: "Earth Movers International",
+		url: SITE,
+		telephone: company.phone,
+		email: company.email,
+		foundingDate: "1990",
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: company.address.slice(0, 2).join(", "),
+			addressLocality: company.address[2],
+			addressCountry: "AE"
+		},
+		areaServed: taxonomyFor(locale).emirates.map((e) => e.name)
+	};
+}
+function breadcrumbs(locale, items) {
 	return {
 		"@type": "BreadcrumbList",
 		itemListElement: items.map((it, i) => ({
 			"@type": "ListItem",
 			position: i + 1,
 			name: it.name,
-			item: `${SITE}${it.path}`
+			item: `${SITE}${localeHref(it.path, locale)}`
 		}))
 	};
 }
-var STATIC = {
-	"/": page(`RTA-Approved Road & Earthworks Contractor in Dubai | ${BRAND}`, "Earth Movers International is an RTA-approved road and earthworks contractor in Dubai, UAE. Excavation, road construction, asphalt works, traffic management and utilities across all seven emirates since 1990.", "/"),
-	"/about": page(`About Us — Earthworks & Road Contractor Since 1990 | ${BRAND}`, "Founded in Montreal in 1990 and established in Dubai since 2005, Earth Movers International delivers earthworks, road construction and heavy equipment services across the UAE.", "/about"),
-	"/projects": page(`Projects — Road & Earthworks Case Studies in the UAE | ${BRAND}`, "Selected road, earthworks and marine projects delivered for Fujairah Cement Industry, Dubai Municipality and Nakheel PJSC across the UAE.", "/projects"),
-	"/contact": page(`Contact — Request a Quote | ${BRAND}, Dubai`, `Contact Earth Movers International in Business Bay, Dubai. Call ${company.phone} or send your scope and drawings for a priced proposal.`, "/contact")
-};
-function categorySeo(category) {
-	const list = emiratesFor(category);
-	const where = category.coverage === "all" ? "the UAE" : "Dubai";
-	const names = category.services.map((s) => s.name).join(", ");
-	return page(`${category.name} Contractor in ${where} — ${category.services[0].name} & More | ${BRAND}`, `${category.name} services across ${where}: ${names.toLowerCase()}. RTA-approved contractor with its own fleet, operating in ${list.map((e) => e.name).join(", ")}.`, `/services/${category.slug}`, { jsonLd: [
-		breadcrumbs([
+function staticSeo(locale, base) {
+	const t = translator(locale);
+	const { company } = contentFor(locale);
+	const brand = t("seo.brand");
+	const map = {
+		"/": ["seo.homeTitle", "seo.homeDesc"],
+		"/about": ["seo.aboutTitle", "seo.aboutDesc"],
+		"/projects": ["seo.projectsTitle", "seo.projectsDesc"],
+		"/contact": ["seo.contactTitle", "seo.contactDesc"]
+	};
+	if (!map[base]) return null;
+	const [titleKey, descKey] = map[base];
+	return page(locale, base, t(titleKey, { brand }), t(descKey, {
+		brand,
+		phone: company.phone
+	}), { jsonLd: [organisationFor(locale)] });
+}
+function servicesIndexSeo(locale) {
+	const t = translator(locale);
+	const tax = taxonomyFor(locale);
+	return page(locale, "/services", t("seo.servicesTitle", { brand: t("seo.brand") }), t("seo.servicesDesc"), { jsonLd: [breadcrumbs(locale, [{
+		name: t("crumb.home"),
+		path: "/"
+	}, {
+		name: t("crumb.services"),
+		path: "/services"
+	}]), {
+		"@type": "ItemList",
+		itemListElement: tax.categories.map((c, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			name: c.name,
+			url: `${SITE}${localeHref(`/services/${c.slug}`, locale)}`
+		}))
+	}] });
+}
+function categorySeo(locale, category) {
+	const t = translator(locale);
+	const brand = t("seo.brand");
+	const list = emiratesFor(category, locale);
+	const where = category.coverage === "all" ? t("cov.whereAll") : t("cov.dubai");
+	const sep = locale === "ar" ? "، " : ", ";
+	const names = category.services.map((s) => s.name).join(sep);
+	return page(locale, `/services/${category.slug}`, t("seo.categoryTitle", {
+		category: category.name,
+		where,
+		first: category.services[0].name,
+		brand
+	}), t("seo.categoryDesc", {
+		category: category.name,
+		where,
+		list: locale === "ar" ? names : names.toLowerCase(),
+		emirates: list.map((e) => e.name).join(sep)
+	}), { jsonLd: [
+		breadcrumbs(locale, [
 			{
-				name: "Home",
+				name: t("crumb.home"),
 				path: "/"
 			},
 			{
-				name: "Services",
+				name: t("crumb.services"),
 				path: "/services"
 			},
 			{
@@ -3837,50 +5958,60 @@ function categorySeo(category) {
 		]),
 		{
 			"@type": "Service",
-			name: `${category.name} — ${BRAND}`,
+			name: `${category.name} — ${brand}`,
 			serviceType: category.name,
-			provider: organisation,
+			provider: organisationFor(locale),
 			areaServed: list.map((e) => ({
 				"@type": "AdministrativeArea",
 				name: e.name
 			})),
 			hasOfferCatalog: {
 				"@type": "OfferCatalog",
-				name: `${category.name} services`,
+				name: category.name,
 				itemListElement: category.services.map((s) => ({
 					"@type": "Offer",
 					itemOffered: {
 						"@type": "Service",
 						name: s.name,
 						description: s.text,
-						url: `${SITE}/services/${category.slug}/${s.slug}`
+						url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`
 					}
 				}))
 			}
 		},
 		{
 			"@type": "ItemList",
-			name: `${category.name} services`,
+			name: category.name,
 			itemListElement: category.services.map((s, i) => ({
 				"@type": "ListItem",
 				position: i + 1,
 				name: s.name,
-				url: `${SITE}/services/${category.slug}/${s.slug}`
+				url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`
 			}))
 		}
 	] });
 }
-function serviceSeo(category, service) {
-	const list = emiratesFor(category);
-	category.coverage;
-	return page(`${service.h1} | ${BRAND}`, `${service.lead} ${BRAND} is an RTA-approved contractor delivering ${service.name.toLowerCase()} across ${list.map((e) => e.name).join(", ")}.`.slice(0, 300), `/services/${category.slug}/${service.slug}`, { jsonLd: [
-		breadcrumbs([
+function serviceSeo(locale, category, service) {
+	const t = translator(locale);
+	const brand = t("seo.brand");
+	const list = emiratesFor(category, locale);
+	const sep = locale === "ar" ? "، " : ", ";
+	return page(locale, `/services/${category.slug}/${service.slug}`, t("seo.serviceTitle", {
+		h1: service.h1,
+		brand
+	}), t("seo.serviceDesc", {
+		lead: service.lead,
+		brand,
+		service: locale === "ar" ? service.name : service.name.toLowerCase(),
+		emirates: list.map((e) => e.name).join(sep)
+	}).slice(0, 320), { jsonLd: [
+		breadcrumbs(locale, [
 			{
-				name: "Home",
+				name: t("crumb.home"),
 				path: "/"
 			},
 			{
-				name: "Services",
+				name: t("crumb.services"),
 				path: "/services"
 			},
 			{
@@ -3897,7 +6028,7 @@ function serviceSeo(category, service) {
 			name: service.h1,
 			serviceType: service.name,
 			description: service.intro,
-			provider: organisation,
+			provider: organisationFor(locale),
 			areaServed: list.map((e) => ({
 				"@type": "AdministrativeArea",
 				name: e.name
@@ -3905,11 +6036,11 @@ function serviceSeo(category, service) {
 			isPartOf: {
 				"@type": "Service",
 				name: category.name,
-				url: `${SITE}/services/${category.slug}`
+				url: `${SITE}${localeHref(`/services/${category.slug}`, locale)}`
 			},
 			hasOfferCatalog: {
 				"@type": "OfferCatalog",
-				name: `${service.name} — what is included`,
+				name: service.name,
 				itemListElement: service.scope.map((item) => ({
 					"@type": "Offer",
 					itemOffered: {
@@ -3932,16 +6063,31 @@ function serviceSeo(category, service) {
 		}
 	] });
 }
-function locationSeo(category, emirate) {
-	const lead = category.services.slice(0, 3).map((s) => s.name).join(", ");
-	return page(`${category.name} Contractor in ${emirate.name} — ${lead} | ${BRAND}`, `${category.name} in ${emirate.name}: ${category.services.map((s) => s.name.toLowerCase()).join(", ")}. Approved contractor working to ${emirate.authority} standards, with our own plant and operators.`, `/services/${category.slug}/${emirate.slug}`, { jsonLd: [
-		breadcrumbs([
+function locationSeo(locale, category, emirate) {
+	const t = translator(locale);
+	const brand = t("seo.brand");
+	const sep = locale === "ar" ? "، " : ", ";
+	const lead = category.services.slice(0, 3).map((s) => s.name).join(sep);
+	const names = category.services.map((s) => s.name).join(sep);
+	const { company } = contentFor(locale);
+	return page(locale, `/services/${category.slug}/${emirate.slug}`, t("seo.locationTitle", {
+		category: category.name,
+		emirate: emirate.name,
+		lead,
+		brand
+	}), t("seo.locationDesc", {
+		category: category.name,
+		emirate: emirate.name,
+		list: locale === "ar" ? names : names.toLowerCase(),
+		authority: emirate.authority
+	}), { jsonLd: [
+		breadcrumbs(locale, [
 			{
-				name: "Home",
+				name: t("crumb.home"),
 				path: "/"
 			},
 			{
-				name: "Services",
+				name: t("crumb.services"),
 				path: "/services"
 			},
 			{
@@ -3955,22 +6101,32 @@ function locationSeo(category, emirate) {
 		]),
 		{
 			"@type": "Service",
-			name: `${category.name} in ${emirate.name}`,
+			name: t("loc.inEmirate", {
+				name: category.name,
+				emirate: emirate.name
+			}),
 			serviceType: category.name,
-			provider: organisation,
+			provider: organisationFor(locale),
 			areaServed: {
 				"@type": "AdministrativeArea",
 				name: emirate.name
 			},
 			hasOfferCatalog: {
 				"@type": "OfferCatalog",
-				name: `${category.name} in ${emirate.name}`,
+				name: t("loc.inEmirate", {
+					name: category.name,
+					emirate: emirate.name
+				}),
 				itemListElement: category.services.map((s) => ({
 					"@type": "Offer",
 					itemOffered: {
 						"@type": "Service",
-						name: `${s.name} in ${emirate.name}`,
-						description: s.text
+						name: t("loc.inEmirate", {
+							name: s.name,
+							emirate: emirate.name
+						}),
+						description: s.text,
+						url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`
 					}
 				}))
 			}
@@ -3979,74 +6135,74 @@ function locationSeo(category, emirate) {
 			"@type": "FAQPage",
 			mainEntity: [{
 				"@type": "Question",
-				name: `Do you carry out ${category.name.toLowerCase()} in ${emirate.name}?`,
+				name: t("loc.q1", {
+					category: category.name,
+					emirate: emirate.name
+				}),
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: `Yes. ${BRAND} delivers ${category.name.toLowerCase()} across ${emirate.name}, including ${emirate.areas}, working to ${emirate.authority} standards with our own excavators, dozers, graders and rollers.`
+					text: t("loc.a1", {
+						category: category.name,
+						emirate: emirate.name,
+						areas: emirate.areas,
+						authority: emirate.authority
+					})
 				}
 			}, {
 				"@type": "Question",
-				name: `How do I get a quote for ${category.services[0].name.toLowerCase()} in ${emirate.name}?`,
+				name: t("loc.q3", {
+					service: category.services[0].name,
+					emirate: emirate.name
+				}),
 				acceptedAnswer: {
 					"@type": "Answer",
-					text: `Send your drawings, bill of quantities or a description of the scope to ${company.email}, or call ${company.phone}. We walk the ground where needed and return a priced proposal.`
+					text: t("svc.priceA", {
+						email: company.email,
+						phone: company.phone
+					})
 				}
 			}]
 		}
 	] });
 }
 function seoFor(pathname) {
-	const path = pathname.replace(/\/+$/, "") || "/";
-	if (STATIC[path]) return {
-		...STATIC[path],
-		jsonLd: [organisation]
-	};
-	if (path === "/services") return page(`Services — Earth Works, Road Works, Traffic Management & Utilities | ${BRAND}`, "Earthworks, road works, traffic management and utilities across the UAE. Excavation, asphalt, access roads, RTA permits, entry-exit works and service protection from an RTA-approved contractor.", "/services", { jsonLd: [breadcrumbs([{
-		name: "Home",
-		path: "/"
-	}, {
-		name: "Services",
-		path: "/services"
-	}]), {
-		"@type": "ItemList",
-		itemListElement: serviceCategories.map((c, i) => ({
-			"@type": "ListItem",
-			position: i + 1,
-			name: c.name,
-			url: `${SITE}/services/${c.slug}`
-		}))
-	}] });
-	const m = path.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/);
+	const { locale, base } = splitLocale(pathname);
+	const t = translator(locale);
+	const stat = staticSeo(locale, base);
+	if (stat) return stat;
+	if (base === "/services") return servicesIndexSeo(locale);
+	const m = base.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/);
 	if (m) {
-		const category = categoryBySlug[m[1]];
-		if (category && !m[2]) return categorySeo(category);
+		const category = taxonomyFor(locale).categoryBySlug[m[1]];
+		if (category && !m[2]) return categorySeo(locale, category);
 		if (category) {
-			const found = resolveServiceSegment(category, m[2]);
-			if (found.kind === "service") return serviceSeo(category, found.service);
-			if (found.kind === "emirate") return locationSeo(category, found.emirate);
+			const found = resolveServiceSegment(category, m[2], locale);
+			if (found.kind === "service") return serviceSeo(locale, category, found.service);
+			if (found.kind === "emirate") return locationSeo(locale, category, found.emirate);
 		}
 	}
-	return page(`Page Not Found | ${BRAND}`, "The page you are looking for does not exist.", path, { noindex: true });
+	return page(locale, base, t("seo.notFoundTitle", { brand: t("seo.brand") }), t("seo.notFoundDesc"), { noindex: true });
 }
 function headTagsFor(pathname) {
 	const s = seoFor(pathname);
-	const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+	const esc = (x) => String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	const graph = {
 		"@context": "https://schema.org",
-		"@graph": (s.jsonLd || [organisation]).map((n) => ({ ...n }))
+		"@graph": (s.jsonLd || [organisationFor(s.locale)]).map((n) => ({ ...n }))
 	};
 	return [
 		`<title>${esc(s.title)}</title>`,
 		`<meta name="description" content="${esc(s.description)}">`,
 		s.noindex ? "<meta name=\"robots\" content=\"noindex,follow\">" : "<meta name=\"robots\" content=\"index,follow,max-image-preview:large\">",
 		`<link rel="canonical" href="${esc(s.canonical)}">`,
+		...s.noindex ? [] : [...s.alternates.map((a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">`), `<link rel="alternate" hreflang="x-default" href="${esc(s.xDefault)}">`],
 		`<meta property="og:type" content="website">`,
-		`<meta property="og:site_name" content="${BRAND}">`,
+		`<meta property="og:site_name" content="${esc(translator(s.locale)("seo.brand"))}">`,
 		`<meta property="og:title" content="${esc(s.title)}">`,
 		`<meta property="og:description" content="${esc(s.description)}">`,
 		`<meta property="og:url" content="${esc(s.canonical)}">`,
 		`<meta property="og:image" content="${SITE}/images/hero-slide-1.jpg">`,
-		`<meta property="og:locale" content="en_AE">`,
+		`<meta property="og:locale" content="${s.locale === "ar" ? "ar_AE" : "en_AE"}">`,
 		`<meta name="twitter:card" content="summary_large_image">`,
 		`<meta name="geo.region" content="AE-DU">`,
 		`<script type="application/ld+json">${JSON.stringify(graph)}<\/script>`
@@ -4059,6 +6215,8 @@ function useSeo() {
 	useEffect(() => {
 		const s = seoFor(pathname);
 		document.title = s.title;
+		document.documentElement.lang = s.htmlLang;
+		document.documentElement.dir = s.dir;
 		const set = (selector, tag, attrs) => {
 			let el = document.head.querySelector(selector);
 			if (!el) {
@@ -4087,52 +6245,76 @@ function useSeo() {
 			property: "og:url",
 			content: s.canonical
 		});
+		set("meta[property=\"og:locale\"]", "meta", {
+			property: "og:locale",
+			content: s.locale === "ar" ? "ar_AE" : "en_AE"
+		});
 		set("meta[name=\"robots\"]", "meta", {
 			name: "robots",
 			content: s.noindex ? "noindex,follow" : "index,follow,max-image-preview:large"
 		});
+		document.head.querySelectorAll("link[rel=\"alternate\"][hreflang]").forEach((el) => el.remove());
+		if (!s.noindex) for (const a of [...s.alternates, {
+			hreflang: "x-default",
+			href: s.xDefault
+		}]) {
+			const el = document.createElement("link");
+			el.setAttribute("rel", "alternate");
+			el.setAttribute("hreflang", a.hreflang);
+			el.setAttribute("href", a.href);
+			document.head.appendChild(el);
+		}
 	}, [pathname]);
 }
 //#endregion
 //#region src/App.jsx
+var PAGES = [
+	{
+		path: "",
+		element: /* @__PURE__ */ jsx(Home, {})
+	},
+	{
+		path: "about",
+		element: /* @__PURE__ */ jsx(About, {})
+	},
+	{
+		path: "services",
+		element: /* @__PURE__ */ jsx(Services, {})
+	},
+	{
+		path: "services/:category",
+		element: /* @__PURE__ */ jsx(ServiceCategory, {})
+	},
+	{
+		path: "services/:category/:segment",
+		element: /* @__PURE__ */ jsx(ServiceSegment, {})
+	},
+	{
+		path: "projects",
+		element: /* @__PURE__ */ jsx(Projects, {})
+	},
+	{
+		path: "contact",
+		element: /* @__PURE__ */ jsx(Contact, {})
+	}
+];
 function AppRoutes() {
 	useSeo();
 	return /* @__PURE__ */ jsxs(Fragment, { children: [
 		/* @__PURE__ */ jsx(Nav, {}),
-		/* @__PURE__ */ jsxs(Routes, { children: [
-			/* @__PURE__ */ jsx(Route, {
-				path: "/",
-				element: /* @__PURE__ */ jsx(Home, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/about",
-				element: /* @__PURE__ */ jsx(About, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/services",
-				element: /* @__PURE__ */ jsx(Services, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/services/:category",
-				element: /* @__PURE__ */ jsx(ServiceCategory, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/services/:category/:segment",
-				element: /* @__PURE__ */ jsx(ServiceSegment, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/projects",
-				element: /* @__PURE__ */ jsx(Projects, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "/contact",
-				element: /* @__PURE__ */ jsx(Contact, {})
-			}),
-			/* @__PURE__ */ jsx(Route, {
-				path: "*",
-				element: /* @__PURE__ */ jsx(NotFound, {})
-			})
-		] }),
+		/* @__PURE__ */ jsxs(Routes, { children: [LOCALES.flatMap((locale) => {
+			const prefix = locale === "en" ? "" : `/${locale}`;
+			return PAGES.map((p) => {
+				const path = `${prefix}/${p.path}`.replace(/\/+$/, "") || "/";
+				return /* @__PURE__ */ jsx(Route, {
+					path,
+					element: p.element
+				}, path);
+			});
+		}), /* @__PURE__ */ jsx(Route, {
+			path: "*",
+			element: /* @__PURE__ */ jsx(NotFound, {})
+		})] }),
 		/* @__PURE__ */ jsx(Footer, {})
 	] });
 }
@@ -4144,12 +6326,13 @@ function render(url) {
 		children: /* @__PURE__ */ jsx(AppRoutes, {})
 	}));
 }
-var routes = [
+var BASE_ROUTES = [
 	"/",
 	"/about",
 	"/projects",
 	"/contact",
 	...allServiceRoutes()
 ];
+var routes = LOCALES.flatMap((locale) => BASE_ROUTES.map((base) => localeHref(base, locale)));
 //#endregion
-export { SITE, headTagsFor, render, routes };
+export { BASE_ROUTES, LOCALES, SITE, headTagsFor, localeHref, render, routes, seoFor };

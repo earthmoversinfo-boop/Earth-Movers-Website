@@ -4,22 +4,25 @@ import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import { Arrow } from '../components/Icons.jsx'
-import { serviceCategories, emiratesFor } from '../data/services.js'
-import { images } from '../data/content.js'
+import useLocale from '../i18n/useLocale.js'
+import { emiratesFor } from '../data/services.js'
 
 export default function Services() {
+  const { t, locale, tax, content, href } = useLocale()
+  const { images } = content
+
   return (
     <main>
       <PageBanner
-        eyebrow="Services"
-        title="Earth works, road works, traffic management and utilities."
-        text="Four disciplines, one accountable contractor — delivered with our own fleet, our own operators and RTA-approved processes across the UAE."
+        eyebrow={t('lbl.services')}
+        title={t('home.whatTitle')}
+        text={t('home.whatLead')}
         img={images.banners.services}
       />
 
-      {serviceCategories.map((category, gi) => {
-        const locations = emiratesFor(category)
-        const where = category.coverage === 'all' ? 'all seven emirates' : 'Dubai'
+      {tax.categories.map((category, gi) => {
+        const locations = emiratesFor(category, locale)
+        const where = category.coverage === 'all' ? t('cov.allLong') : t('cov.dubai')
         return (
           <section
             key={category.slug}
@@ -34,7 +37,7 @@ export default function Services() {
                   <Reveal delay={140}><p className="lead">{category.intro}</p></Reveal>
                 </div>
                 <Reveal delay={180}>
-                  <Link to={`/services/${category.slug}`} className="btn btn-ghost">
+                  <Link to={href(`/services/${category.slug}`)} className="btn btn-ghost">
                     {category.name} <Arrow className="btn-arrow" />
                   </Link>
                 </Reveal>
@@ -45,21 +48,21 @@ export default function Services() {
                   <Photo src={category.img} alt={category.name} />
                 </div>
                 <div>
-                  <h3 className="block-label">Services</h3>
+                  <h3 className="block-label">{t('lbl.services')}</h3>
                   <ul className="tag-list tag-list-links">
                     {category.services.map((s) => (
                       <li key={s.slug}>
-                        <Link to={`/services/${category.slug}/${s.slug}`}>{s.name}</Link>
+                        <Link to={href(`/services/${category.slug}/${s.slug}`)}>{s.name}</Link>
                       </li>
                     ))}
                   </ul>
 
                   <h3 className="block-label" style={{ marginTop: '2rem' }}>
-                    Available in {where}
+                    {t('cov.availableIn', { where })}
                   </h3>
                   <div className="loc-links">
                     {locations.map((e) => (
-                      <Link key={e.slug} to={`/services/${category.slug}/${e.slug}`}>
+                      <Link key={e.slug} to={href(`/services/${category.slug}/${e.slug}`)}>
                         {e.name}
                       </Link>
                     ))}
@@ -71,10 +74,7 @@ export default function Services() {
         )
       })}
 
-      <CTA
-        title="Scope in hand? Send it over."
-        text="Share your drawings or bill of quantities and we’ll come back with a clear, realistic price."
-      />
+      <CTA title={t('about.ctaTitle')} text={t('svc.ctaText')} />
     </main>
   )
 }

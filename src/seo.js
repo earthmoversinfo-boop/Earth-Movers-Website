@@ -2,123 +2,170 @@
 // Single source of truth for page metadata. Used by the client (to update the
 // document head on navigation) and by the prerender script (to bake real tags
 // into each static HTML file, which is what search engines actually read).
+//
+// Every page exists in English at the root and in Arabic under /ar with the
+// same slug, so each one declares the other as an hreflang alternate and the
+// English URL as x-default.
 // ---------------------------------------------------------------------------
 
-import { company } from './data/content.js'
-import {
-  serviceCategories,
-  categoryBySlug,
-  emirateBySlug,
-  emiratesFor,
-  resolveServiceSegment,
-} from './data/services.js'
+import { contentFor } from './data/content.js'
+import { emiratesFor, resolveServiceSegment, taxonomyFor } from './data/services.js'
+import { alternatesFor, DEFAULT_LOCALE, LOCALE_META, localeHref, splitLocale } from './i18n/locale.js'
+import { translator } from './i18n/ui.js'
 
 export const SITE = 'https://www.earthmoversint.com'
-const BRAND = 'Earth Movers International'
 
-const page = (title, description, path, extra = {}) => ({
+const page = (locale, base, title, description, extra = {}) => ({
+  locale,
+  dir: LOCALE_META[locale].dir,
+  htmlLang: LOCALE_META[locale].htmlLang,
   title,
   description,
-  canonical: `${SITE}${path === '/' ? '/' : path}`,
-  path,
+  path: localeHref(base, locale),
+  canonical: `${SITE}${localeHref(base, locale) === '/' ? '/' : localeHref(base, locale)}`,
+  alternates: alternatesFor(base).map((a) => ({
+    hreflang: LOCALE_META[a.locale].hreflang,
+    href: `${SITE}${a.path === '/' ? '/' : a.path}`,
+  })),
+  xDefault: `${SITE}${localeHref(base, DEFAULT_LOCALE) === '/' ? '/' : localeHref(base, DEFAULT_LOCALE)}`,
   ...extra,
 })
 
-const organisation = {
-  '@type': 'GeneralContractor',
-  '@id': `${SITE}/#organization`,
-  name: BRAND,
-  url: SITE,
-  telephone: company.phone,
-  email: company.email,
-  foundingDate: '1990',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Capital Golden Tower, Office 706, 7th Floor',
-    addressLocality: 'Business Bay, Dubai',
-    addressCountry: 'AE',
-  },
-  areaServed: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Ras Al Khaimah', 'Fujairah', 'Umm Al Quwain'],
+function organisationFor(locale) {
+  const { company } = contentFor(locale)
+  const t = translator(locale)
+  return {
+    '@type': 'GeneralContractor',
+    '@id': `${SITE}/#organization`,
+    name: t('seo.brand'),
+    alternateName: 'Earth Movers International',
+    url: SITE,
+    telephone: company.phone,
+    email: company.email,
+    foundingDate: '1990',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.slice(0, 2).join(', '),
+      addressLocality: company.address[2],
+      addressCountry: 'AE',
+    },
+    areaServed: taxonomyFor(locale).emirates.map((e) => e.name),
+  }
 }
 
-function breadcrumbs(items) {
+function breadcrumbs(locale, items) {
   return {
     '@type': 'BreadcrumbList',
     itemListElement: items.map((it, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: it.name,
-      item: `${SITE}${it.path}`,
+      item: `${SITE}${localeHref(it.path, locale)}`,
     })),
   }
 }
 
-const STATIC = {
-  '/': page(
-    `RTA-Approved Road & Earthworks Contractor in Dubai | ${BRAND}`,
-    'Earth Movers International is an RTA-approved road and earthworks contractor in Dubai, UAE. Excavation, road construction, asphalt works, traffic management and utilities across all seven emirates since 1990.',
-    '/'
-  ),
-  '/about': page(
-    `About Us — Earthworks & Road Contractor Since 1990 | ${BRAND}`,
-    'Founded in Montreal in 1990 and established in Dubai since 2005, Earth Movers International delivers earthworks, road construction and heavy equipment services across the UAE.',
-    '/about'
-  ),
-  '/projects': page(
-    `Projects — Road & Earthworks Case Studies in the UAE | ${BRAND}`,
-    'Selected road, earthworks and marine projects delivered for Fujairah Cement Industry, Dubai Municipality and Nakheel PJSC across the UAE.',
-    '/projects'
-  ),
-  '/contact': page(
-    `Contact — Request a Quote | ${BRAND}, Dubai`,
-    `Contact Earth Movers International in Business Bay, Dubai. Call ${company.phone} or send your scope and drawings for a priced proposal.`,
-    '/contact'
-  ),
+function staticSeo(locale, base) {
+  const t = translator(locale)
+  const { company } = contentFor(locale)
+  const brand = t('seo.brand')
+  const map = {
+    '/': ['seo.homeTitle', 'seo.homeDesc'],
+    '/about': ['seo.aboutTitle', 'seo.aboutDesc'],
+    '/projects': ['seo.projectsTitle', 'seo.projectsDesc'],
+    '/contact': ['seo.contactTitle', 'seo.contactDesc'],
+  }
+  if (!map[base]) return null
+  const [titleKey, descKey] = map[base]
+  return page(
+    locale,
+    base,
+    t(titleKey, { brand }),
+    t(descKey, { brand, phone: company.phone }),
+    { jsonLd: [organisationFor(locale)] }
+  )
 }
 
-function categorySeo(category) {
-  const list = emiratesFor(category)
-  const where = category.coverage === 'all' ? 'the UAE' : 'Dubai'
-  const names = category.services.map((s) => s.name).join(', ')
+function servicesIndexSeo(locale) {
+  const t = translator(locale)
+  const tax = taxonomyFor(locale)
+  const brand = t('seo.brand')
+  return page(locale, '/services', t('seo.servicesTitle', { brand }), t('seo.servicesDesc'), {
+    jsonLd: [
+      breadcrumbs(locale, [
+        { name: t('crumb.home'), path: '/' },
+        { name: t('crumb.services'), path: '/services' },
+      ]),
+      {
+        '@type': 'ItemList',
+        itemListElement: tax.categories.map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          url: `${SITE}${localeHref(`/services/${c.slug}`, locale)}`,
+        })),
+      },
+    ],
+  })
+}
+
+function categorySeo(locale, category) {
+  const t = translator(locale)
+  const brand = t('seo.brand')
+  const list = emiratesFor(category, locale)
+  const where = category.coverage === 'all' ? t('cov.whereAll') : t('cov.dubai')
+  const sep = locale === 'ar' ? '، ' : ', '
+  const names = category.services.map((s) => s.name).join(sep)
   return page(
-    `${category.name} Contractor in ${where} — ${category.services[0].name} & More | ${BRAND}`,
-    `${category.name} services across ${where}: ${names.toLowerCase()}. RTA-approved contractor with its own fleet, operating in ${list.map((e) => e.name).join(', ')}.`,
+    locale,
     `/services/${category.slug}`,
+    t('seo.categoryTitle', {
+      category: category.name,
+      where,
+      first: category.services[0].name,
+      brand,
+    }),
+    t('seo.categoryDesc', {
+      category: category.name,
+      where,
+      list: locale === 'ar' ? names : names.toLowerCase(),
+      emirates: list.map((e) => e.name).join(sep),
+    }),
     {
       jsonLd: [
-        breadcrumbs([
-          { name: 'Home', path: '/' },
-          { name: 'Services', path: '/services' },
+        breadcrumbs(locale, [
+          { name: t('crumb.home'), path: '/' },
+          { name: t('crumb.services'), path: '/services' },
           { name: category.name, path: `/services/${category.slug}` },
         ]),
         {
           '@type': 'Service',
-          name: `${category.name} — ${BRAND}`,
+          name: `${category.name} — ${brand}`,
           serviceType: category.name,
-          provider: organisation,
+          provider: organisationFor(locale),
           areaServed: list.map((e) => ({ '@type': 'AdministrativeArea', name: e.name })),
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: `${category.name} services`,
+            name: category.name,
             itemListElement: category.services.map((s) => ({
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
                 name: s.name,
                 description: s.text,
-                url: `${SITE}/services/${category.slug}/${s.slug}`,
+                url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`,
               },
             })),
           },
         },
         {
           '@type': 'ItemList',
-          name: `${category.name} services`,
+          name: category.name,
           itemListElement: category.services.map((s, i) => ({
             '@type': 'ListItem',
             position: i + 1,
             name: s.name,
-            url: `${SITE}/services/${category.slug}/${s.slug}`,
+            url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`,
           })),
         },
       ],
@@ -126,18 +173,26 @@ function categorySeo(category) {
   )
 }
 
-function serviceSeo(category, service) {
-  const list = emiratesFor(category)
-  const where = category.coverage === 'all' ? 'the UAE' : 'Dubai'
+function serviceSeo(locale, category, service) {
+  const t = translator(locale)
+  const brand = t('seo.brand')
+  const list = emiratesFor(category, locale)
+  const sep = locale === 'ar' ? '، ' : ', '
   return page(
-    `${service.h1} | ${BRAND}`,
-    `${service.lead} ${BRAND} is an RTA-approved contractor delivering ${service.name.toLowerCase()} across ${list.map((e) => e.name).join(', ')}.`.slice(0, 300),
+    locale,
     `/services/${category.slug}/${service.slug}`,
+    t('seo.serviceTitle', { h1: service.h1, brand }),
+    t('seo.serviceDesc', {
+      lead: service.lead,
+      brand,
+      service: locale === 'ar' ? service.name : service.name.toLowerCase(),
+      emirates: list.map((e) => e.name).join(sep),
+    }).slice(0, 320),
     {
       jsonLd: [
-        breadcrumbs([
-          { name: 'Home', path: '/' },
-          { name: 'Services', path: '/services' },
+        breadcrumbs(locale, [
+          { name: t('crumb.home'), path: '/' },
+          { name: t('crumb.services'), path: '/services' },
           { name: category.name, path: `/services/${category.slug}` },
           { name: service.name, path: `/services/${category.slug}/${service.slug}` },
         ]),
@@ -146,16 +201,16 @@ function serviceSeo(category, service) {
           name: service.h1,
           serviceType: service.name,
           description: service.intro,
-          provider: organisation,
+          provider: organisationFor(locale),
           areaServed: list.map((e) => ({ '@type': 'AdministrativeArea', name: e.name })),
           isPartOf: {
             '@type': 'Service',
             name: category.name,
-            url: `${SITE}/services/${category.slug}`,
+            url: `${SITE}${localeHref(`/services/${category.slug}`, locale)}`,
           },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: `${service.name} — what is included`,
+            name: service.name,
             itemListElement: service.scope.map((item) => ({
               '@type': 'Offer',
               itemOffered: { '@type': 'Service', name: item },
@@ -175,35 +230,47 @@ function serviceSeo(category, service) {
   )
 }
 
-function locationSeo(category, emirate) {
-  const lead = category.services.slice(0, 3).map((s) => s.name).join(', ')
+function locationSeo(locale, category, emirate) {
+  const t = translator(locale)
+  const brand = t('seo.brand')
+  const sep = locale === 'ar' ? '، ' : ', '
+  const lead = category.services.slice(0, 3).map((s) => s.name).join(sep)
+  const names = category.services.map((s) => s.name).join(sep)
+  const { company } = contentFor(locale)
   return page(
-    `${category.name} Contractor in ${emirate.name} — ${lead} | ${BRAND}`,
-    `${category.name} in ${emirate.name}: ${category.services.map((s) => s.name.toLowerCase()).join(', ')}. Approved contractor working to ${emirate.authority} standards, with our own plant and operators.`,
+    locale,
     `/services/${category.slug}/${emirate.slug}`,
+    t('seo.locationTitle', { category: category.name, emirate: emirate.name, lead, brand }),
+    t('seo.locationDesc', {
+      category: category.name,
+      emirate: emirate.name,
+      list: locale === 'ar' ? names : names.toLowerCase(),
+      authority: emirate.authority,
+    }),
     {
       jsonLd: [
-        breadcrumbs([
-          { name: 'Home', path: '/' },
-          { name: 'Services', path: '/services' },
+        breadcrumbs(locale, [
+          { name: t('crumb.home'), path: '/' },
+          { name: t('crumb.services'), path: '/services' },
           { name: category.name, path: `/services/${category.slug}` },
           { name: emirate.name, path: `/services/${category.slug}/${emirate.slug}` },
         ]),
         {
           '@type': 'Service',
-          name: `${category.name} in ${emirate.name}`,
+          name: t('loc.inEmirate', { name: category.name, emirate: emirate.name }),
           serviceType: category.name,
-          provider: organisation,
+          provider: organisationFor(locale),
           areaServed: { '@type': 'AdministrativeArea', name: emirate.name },
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
-            name: `${category.name} in ${emirate.name}`,
+            name: t('loc.inEmirate', { name: category.name, emirate: emirate.name }),
             itemListElement: category.services.map((s) => ({
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: `${s.name} in ${emirate.name}`,
+                name: t('loc.inEmirate', { name: s.name, emirate: emirate.name }),
                 description: s.text,
+                url: `${SITE}${localeHref(`/services/${category.slug}/${s.slug}`, locale)}`,
               },
             })),
           },
@@ -213,18 +280,26 @@ function locationSeo(category, emirate) {
           mainEntity: [
             {
               '@type': 'Question',
-              name: `Do you carry out ${category.name.toLowerCase()} in ${emirate.name}?`,
+              name: t('loc.q1', { category: category.name, emirate: emirate.name }),
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: `Yes. ${BRAND} delivers ${category.name.toLowerCase()} across ${emirate.name}, including ${emirate.areas}, working to ${emirate.authority} standards with our own excavators, dozers, graders and rollers.`,
+                text: t('loc.a1', {
+                  category: category.name,
+                  emirate: emirate.name,
+                  areas: emirate.areas,
+                  authority: emirate.authority,
+                }),
               },
             },
             {
               '@type': 'Question',
-              name: `How do I get a quote for ${category.services[0].name.toLowerCase()} in ${emirate.name}?`,
+              name: t('loc.q3', {
+                service: category.services[0].name,
+                emirate: emirate.name,
+              }),
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: `Send your drawings, bill of quantities or a description of the scope to ${company.email}, or call ${company.phone}. We walk the ground where needed and return a priced proposal.`,
+                text: t('svc.priceA', { email: company.email, phone: company.phone }),
               },
             },
           ],
@@ -235,70 +310,63 @@ function locationSeo(category, emirate) {
 }
 
 export function seoFor(pathname) {
-  const path = pathname.replace(/\/+$/, '') || '/'
-  if (STATIC[path]) return { ...STATIC[path], jsonLd: [organisation] }
+  const { locale, base } = splitLocale(pathname)
+  const t = translator(locale)
 
-  if (path === '/services') {
-    return page(
-      `Services — Earth Works, Road Works, Traffic Management & Utilities | ${BRAND}`,
-      'Earthworks, road works, traffic management and utilities across the UAE. Excavation, asphalt, access roads, RTA permits, entry-exit works and service protection from an RTA-approved contractor.',
-      '/services',
-      {
-        jsonLd: [
-          breadcrumbs([
-            { name: 'Home', path: '/' },
-            { name: 'Services', path: '/services' },
-          ]),
-          {
-            '@type': 'ItemList',
-            itemListElement: serviceCategories.map((c, i) => ({
-              '@type': 'ListItem',
-              position: i + 1,
-              name: c.name,
-              url: `${SITE}/services/${c.slug}`,
-            })),
-          },
-        ],
-      }
-    )
-  }
+  const stat = staticSeo(locale, base)
+  if (stat) return stat
+  if (base === '/services') return servicesIndexSeo(locale)
 
-  const m = path.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/)
+  const m = base.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/)
   if (m) {
-    const category = categoryBySlug[m[1]]
-    if (category && !m[2]) return categorySeo(category)
+    const category = taxonomyFor(locale).categoryBySlug[m[1]]
+    if (category && !m[2]) return categorySeo(locale, category)
     if (category) {
-      const found = resolveServiceSegment(category, m[2])
-      if (found.kind === 'service') return serviceSeo(category, found.service)
-      if (found.kind === 'emirate') return locationSeo(category, found.emirate)
+      const found = resolveServiceSegment(category, m[2], locale)
+      if (found.kind === 'service') return serviceSeo(locale, category, found.service)
+      if (found.kind === 'emirate') return locationSeo(locale, category, found.emirate)
     }
   }
 
-  return page(`Page Not Found | ${BRAND}`, 'The page you are looking for does not exist.', path, {
-    noindex: true,
-  })
+  return page(
+    locale,
+    base,
+    t('seo.notFoundTitle', { brand: t('seo.brand') }),
+    t('seo.notFoundDesc'),
+    { noindex: true }
+  )
 }
 
 // Full <head> markup for a route — used by the prerender script.
 export function headTagsFor(pathname) {
   const s = seoFor(pathname)
-  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+  const esc = (x) => String(x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
   const graph = {
     '@context': 'https://schema.org',
-    '@graph': (s.jsonLd || [organisation]).map((n) => ({ ...n })),
+    '@graph': (s.jsonLd || [organisationFor(s.locale)]).map((n) => ({ ...n })),
   }
   return [
     `<title>${esc(s.title)}</title>`,
     `<meta name="description" content="${esc(s.description)}">`,
-    s.noindex ? '<meta name="robots" content="noindex,follow">' : '<meta name="robots" content="index,follow,max-image-preview:large">',
+    s.noindex
+      ? '<meta name="robots" content="noindex,follow">'
+      : '<meta name="robots" content="index,follow,max-image-preview:large">',
     `<link rel="canonical" href="${esc(s.canonical)}">`,
+    ...(s.noindex
+      ? []
+      : [
+          ...s.alternates.map(
+            (a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">`
+          ),
+          `<link rel="alternate" hreflang="x-default" href="${esc(s.xDefault)}">`,
+        ]),
     `<meta property="og:type" content="website">`,
-    `<meta property="og:site_name" content="${BRAND}">`,
+    `<meta property="og:site_name" content="${esc(translator(s.locale)('seo.brand'))}">`,
     `<meta property="og:title" content="${esc(s.title)}">`,
     `<meta property="og:description" content="${esc(s.description)}">`,
     `<meta property="og:url" content="${esc(s.canonical)}">`,
     `<meta property="og:image" content="${SITE}/images/hero-slide-1.jpg">`,
-    `<meta property="og:locale" content="en_AE">`,
+    `<meta property="og:locale" content="${s.locale === 'ar' ? 'ar_AE' : 'en_AE'}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="geo.region" content="AE-DU">`,
     `<script type="application/ld+json">${JSON.stringify(graph)}</script>`,

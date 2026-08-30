@@ -4,13 +4,16 @@ import { seoFor } from '../seo.js'
 
 // Keeps the document head in step with client-side navigation. The prerendered
 // HTML already carries the correct tags on first load; this handles what
-// happens after the visitor starts clicking.
+// happens after the visitor starts clicking — including the language switch,
+// which changes the document's own lang and direction.
 export default function useSeo() {
   const { pathname } = useLocation()
 
   useEffect(() => {
     const s = seoFor(pathname)
     document.title = s.title
+    document.documentElement.lang = s.htmlLang
+    document.documentElement.dir = s.dir
 
     const set = (selector, tag, attrs) => {
       let el = document.head.querySelector(selector)
@@ -26,9 +29,25 @@ export default function useSeo() {
     set('meta[property="og:title"]', 'meta', { property: 'og:title', content: s.title })
     set('meta[property="og:description"]', 'meta', { property: 'og:description', content: s.description })
     set('meta[property="og:url"]', 'meta', { property: 'og:url', content: s.canonical })
+    set('meta[property="og:locale"]', 'meta', {
+      property: 'og:locale',
+      content: s.locale === 'ar' ? 'ar_AE' : 'en_AE',
+    })
     set('meta[name="robots"]', 'meta', {
       name: 'robots',
       content: s.noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large',
     })
+
+    // hreflang set is rebuilt each navigation rather than patched in place
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove())
+    if (!s.noindex) {
+      for (const a of [...s.alternates, { hreflang: 'x-default', href: s.xDefault }]) {
+        const el = document.createElement('link')
+        el.setAttribute('rel', 'alternate')
+        el.setAttribute('hreflang', a.hreflang)
+        el.setAttribute('href', a.href)
+        document.head.appendChild(el)
+      }
+    }
   }, [pathname])
 }

@@ -92,7 +92,7 @@ h1, h2, h3, h4 {
 
 /* ---- layout ---------------------------------------------------------------- */
 
-.wrap { max-width: 76rem; margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+.wrap { max-width: 76rem; margin: 0 auto; padding-inline: var(--pad); }
 
 .section { padding-top: var(--section); padding-bottom: var(--section); }
 .section-paper { background: var(--paper); }
@@ -227,7 +227,7 @@ h1, h2, h3, h4 {
   background: var(--accent);
 }
 
-.nav-cta { margin-left: 0.9rem; padding: 0.8rem 1.3rem; }
+.nav-cta { margin-inline-start: 0.9rem; padding: 0.8rem 1.3rem; }
 
 .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 2.6rem; height: 2.6rem; align-items: center; }
 .nav-burger span { display: block; width: 1.5rem; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
@@ -353,13 +353,13 @@ h1, h2, h3, h4 {
 
 .stat-cell {
   padding: 0 clamp(1rem, 2vw, 2rem) clamp(1.8rem, 3vw, 2.4rem);
-  border-left: 1px solid var(--dark-line);
+  border-inline-start: 1px solid var(--dark-line);
   display: grid;
   gap: 0.25rem;
   align-content: start;
 }
 
-.stat-cell:first-child { border-left: none; padding-left: 0; }
+.stat-cell:first-child { border-inline-start: none; padding-inline-start: 0; }
 
 .stat-value {
   font-family: var(--font-display);
@@ -394,7 +394,7 @@ h1, h2, h3, h4 {
 
 @media (max-width: 900px) {
   .stat-grid { grid-template-columns: 1fr 1fr; row-gap: 1.5rem; }
-  .stat-cell { border-left: none; padding-left: 0; }
+  .stat-cell { border-inline-start: none; padding-inline-start: 0; }
 }
 
 /* ---- our work cards ------------------------------------------------------------ */
@@ -516,7 +516,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   gap: 2.4rem;
-  padding-right: 2.4rem;
+  padding-inline-end: 2.4rem;
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 700;
@@ -1197,7 +1197,7 @@ h1, h2, h3, h4 {
 .cat-tile-list li {
   font-size: 0.86rem;
   color: var(--body-c);
-  padding-left: 0.9rem;
+  padding-inline-start: 0.9rem;
   position: relative;
   line-height: 1.5;
 }
@@ -1205,7 +1205,7 @@ h1, h2, h3, h4 {
 .cat-tile-list li::before {
   content: '';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 0.62em;
   width: 0.3rem;
   height: 0.3rem;
@@ -1298,4 +1298,110 @@ h1, h2, h3, h4 {
 
 @media (max-width: 620px) {
   .spec-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+
+/* ===========================================================================
+   Arabic / right-to-left
+   The layout is built from flex and grid, which mirror themselves under
+   dir="rtl", so this block only has to cover three things: the Arabic type
+   stack, the handful of marks that point somewhere (arrows, the marquee), and
+   the places where Latin fragments sit inside Arabic text.
+   =========================================================================== */
+
+[dir='rtl'] {
+  --font-display: 'Cairo', 'IBM Plex Sans Arabic', 'Barlow', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Cairo', 'Inter', sans-serif;
+}
+
+/* Arabic has no uppercase, and the wide tracking used on Latin eyebrows and
+   labels breaks the joins between letters — so both are switched off. */
+[dir='rtl'] .eyebrow,
+[dir='rtl'] .block-label,
+[dir='rtl'] .btn,
+[dir='rtl'] .text-link,
+[dir='rtl'] .nav-link,
+[dir='rtl'] .chip,
+[dir='rtl'] .pill,
+[dir='rtl'] .tag-list li,
+[dir='rtl'] .tag-list-links a,
+[dir='rtl'] .footer-cert,
+[dir='rtl'] .footer-map-cta,
+[dir='rtl'] .cat-tile-where,
+[dir='rtl'] .spec-row dt,
+[dir='rtl'] .marquee-item,
+[dir='rtl'] .marquee-label,
+[dir='rtl'] .footer-bottom,
+[dir='rtl'] .stat-label,
+[dir='rtl'] .work-card .work-meta,
+[dir='rtl'] .proj-card-sector,
+[dir='rtl'] .cert-row,
+[dir='rtl'] .mobile-menu .sub-links a {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Arabic sits lower in its em box and needs a little more line height than
+   the Latin display sizes allow. */
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] .display-xl,
+[dir='rtl'] .display-lg,
+[dir='rtl'] .display-md { line-height: 1.28; }
+
+[dir='rtl'] p,
+[dir='rtl'] .lead { line-height: 1.85; }
+
+/* Arrows point the way the text runs. */
+[dir='rtl'] .text-link svg,
+[dir='rtl'] .btn-arrow { transform: scaleX(-1); }
+
+[dir='rtl'] .btn:hover .btn-arrow { transform: scaleX(-1) translateX(4px); }
+
+/* The client marquee scrolls with the text. */
+[dir='rtl'] .marquee-track { animation-direction: reverse; }
+
+/* Phone numbers, e-mail addresses and reference codes are Latin runs inside
+   Arabic sentences; isolating them keeps the punctuation on the right end. */
+[dir='rtl'] [dir='ltr'] { unicode-bidi: isolate; }
+
+/* Both hero scrims run from the reading edge inwards, so they follow the text
+   to the right-hand side under RTL instead of darkening the empty side. */
+[dir='rtl'] .hero-slide::after {
+  background:
+    linear-gradient(-84deg, rgba(22, 24, 28, 0.74) 0%, rgba(22, 24, 28, 0.46) 34%, rgba(22, 24, 28, 0.14) 58%, transparent 78%),
+    linear-gradient(to bottom, rgba(22, 24, 28, 0.32), transparent 22%);
+}
+
+[dir='rtl'] .page-hero::after {
+  background:
+    linear-gradient(to left, rgba(24, 26, 30, 0.58), rgba(24, 26, 30, 0.12) 58%, rgba(24, 26, 30, 0)),
+    linear-gradient(to top, rgba(24, 26, 30, 0.84), rgba(24, 26, 30, 0.42) 48%, rgba(24, 26, 30, 0.14));
+}
+
+/* The language switch sits beside the primary links rather than in them. */
+.nav-lang {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-lang:hover { opacity: 1; color: var(--accent-deep); }
+
+.nav.overlay .nav-lang { color: #fff; }
+.nav.overlay .nav-lang:hover { color: var(--accent); }
+
+[dir='rtl'] .nav-lang { letter-spacing: 0.04em; }
+
+.mobile-menu-contact .nav-lang,
+.mobile-menu-contact a[hreflang] {
+  display: inline-block;
+  margin-top: 0.6rem;
 }

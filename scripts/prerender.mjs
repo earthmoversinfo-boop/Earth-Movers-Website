@@ -1,7 +1,8 @@
 // ---------------------------------------------------------------------------
-// Renders every route to a static HTML file carrying its own <title>, meta
-// description, canonical URL and JSON-LD, then writes sitemap.xml, robots.txt
-// and host rewrite rules. Runs as part of `npm run build`.
+// Renders every route in every language to a static HTML file carrying its own
+// <html lang>/<dir>, <title>, meta description, canonical URL, hreflang
+// alternates and JSON-LD, then writes sitemap.xml, robots.txt and host rewrite
+// rules. Runs as part of `npm run build`.
 // ---------------------------------------------------------------------------
 
 import fs from 'node:fs'
@@ -10,7 +11,8 @@ import { pathToFileURL } from 'node:url'
 
 const dist = path.resolve('dist')
 const bundle = pathToFileURL(path.resolve('dist-ssr/entry-server.js')).href
-const { render, routes, headTagsFor, SITE } = await import(bundle)
+const { render, routes, headTagsFor, seoFor, SITE, BASE_ROUTES, LOCALES, localeHref } =
+  await import(bundle)
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 
@@ -24,7 +26,9 @@ for (const route of routes) {
     return ''
   })
 
+  const seo = seoFor(route)
   const html = template
+    .replace(/<html[^>]*>/i, `<html lang="${seo.htmlLang}" dir="${seo.dir}">`)
     .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
     .replace(/<meta name="description"[^>]*>\s*/i, '')
     .replace('</head>', `    ${headTagsFor(route)}\n    ${hints.join('\n    ')}\n  </head>`)
@@ -36,28 +40,39 @@ for (const route of routes) {
 }
 
 const today = new Date().toISOString().slice(0, 10)
-const priorityOf = (r) => {
-  if (r === '/') return '1.0'
-  if (r.split('/').filter(Boolean).length === 3) return '0.8'   // category/emirate
-  if (r.startsWith('/services')) return '0.9'
+const priorityOf = (base) => {
+  if (base === '/') return '1.0'
+  if (base.split('/').filter(Boolean).length === 3) return '0.8' // category/service or /emirate
+  if (base.startsWith('/services')) return '0.9'
   return '0.7'
 }
 
-const urls = routes
-  .map(
-    (r) => `  <url>
-    <loc>${SITE}${r === '/' ? '/' : r}</loc>
+const abs = (p) => `${SITE}${p === '/' ? '/' : p}`
+
+// One <url> per language, each listing every language as an alternate — the
+// form Google asks for on a multilingual site.
+const urls = BASE_ROUTES.flatMap((base) =>
+  LOCALES.map((locale) => {
+    const alternates = LOCALES.map(
+      (l) =>
+        `    <xhtml:link rel="alternate" hreflang="${l === 'ar' ? 'ar-AE' : 'en-AE'}" href="${abs(localeHref(base, l))}"/>`
+    ).join('\n')
+    return `  <url>
+    <loc>${abs(localeHref(base, locale))}</loc>
+${alternates}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(localeHref(base, 'en'))}"/>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>${priorityOf(r)}</priority>
+    <priority>${priorityOf(base)}</priority>
   </url>`
-  )
-  .join('\n')
+  })
+).join('\n')
 
 fs.writeFileSync(
   path.join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
 </urlset>
 `
@@ -87,4 +102,6 @@ fs.writeFileSync(
 `
 )
 
-console.log(`prerendered ${routes.length} routes -> sitemap.xml, robots.txt, _redirects, .htaccess`)
+console.log(
+  `prerendered ${routes.length} routes (${LOCALES.join(', ')}) -> sitemap.xml, robots.txt, _redirects, .htaccess`
+)

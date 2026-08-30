@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Logo } from './Icons.jsx'
-import { company } from '../data/content.js'
-import { serviceCategories, emiratesFor } from '../data/services.js'
+import useLocale from '../i18n/useLocale.js'
+import { LOCALES, localeHref, splitLocale } from '../i18n/locale.js'
 
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About Us' },
-  { to: '/services', label: 'Services' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/contact', label: 'Contact' },
+const LINKS = [
+  { path: '/', key: 'nav.home' },
+  { path: '/about', key: 'nav.about' },
+  { path: '/services', key: 'nav.services' },
+  { path: '/projects', key: 'nav.projects' },
+  { path: '/contact', key: 'nav.contact' },
 ]
 
 export default function Nav() {
@@ -17,6 +17,8 @@ export default function Nav() {
   const [hovered, setHovered] = useState(false)
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { t, tax, content, href, locale } = useLocale()
+  const { company } = content
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -38,13 +40,18 @@ export default function Nav() {
 
   // Every real page opens on a dark banner (hero or page banner), so the header
   // starts transparent there and turns solid on hover/scroll. Unknown routes
-  // (404) have no banner and need the solid header immediately. Trailing
-  // slashes are normalised so this matches however the host serves the URL.
-  const path = location.pathname.replace(/\/+$/, '') || '/'
+  // (404) have no banner and need the solid header immediately. The locale
+  // prefix and any trailing slash are stripped first, so this matches however
+  // the host serves the URL and in whichever language.
+  const { base } = splitLocale(location.pathname)
   const known =
-    ['/', '/about', '/services', '/projects', '/contact'].includes(path) ||
-    /^\/services\/[a-z-]+(\/[a-z-]+)?$/.test(path)
+    ['/', '/about', '/services', '/projects', '/contact'].includes(base) ||
+    /^\/services\/[a-z-]+(\/[a-z-]+)?$/.test(base)
   const solid = scrolled || hovered || open || !known
+
+  // The switcher points at the same page in the other language.
+  const other = LOCALES.find((l) => l !== locale)
+  const otherHref = localeHref(base, other)
 
   return (
     <>
@@ -54,27 +61,27 @@ export default function Nav() {
         onMouseLeave={() => setHovered(false)}
       >
         <div className="wrap nav-inner">
-          <Link to="/" className="brand" aria-label="Earth Movers International — home">
+          <Link to={href('/')} className="brand" aria-label={t('nav.homeAria')}>
             <Logo variant={solid ? 'dark' : 'light'} />
           </Link>
 
-          <nav className="nav-links" aria-label="Primary">
-            {links.map((l) =>
-              l.to === '/services' ? (
-                <div className="nav-item" key={l.to}>
+          <nav className="nav-links" aria-label={t('nav.primary')}>
+            {LINKS.map((l) =>
+              l.path === '/services' ? (
+                <div className="nav-item" key={l.path}>
                   <NavLink
-                    to={l.to}
+                    to={href(l.path)}
                     className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
                   >
-                    {l.label}
+                    {t(l.key)}
                   </NavLink>
                   <div className="nav-menu">
-                    {serviceCategories.map((c) => (
-                      <Link key={c.slug} to={`/services/${c.slug}`}>
+                    {tax.categories.map((c) => (
+                      <Link key={c.slug} to={href(`/services/${c.slug}`)}>
                         <strong>{c.name}</strong>
                         <span>
                           {c.services.slice(0, 3).map((x) => x.name).join(' · ')} —{' '}
-                          {c.coverage === 'all' ? 'all 7 emirates' : 'Dubai'}
+                          {c.coverage === 'all' ? t('cov.all') : t('cov.dubai')}
                         </span>
                       </Link>
                     ))}
@@ -82,21 +89,30 @@ export default function Nav() {
                 </div>
               ) : (
                 <NavLink
-                  key={l.to}
-                  to={l.to}
-                  end={l.to === '/'}
+                  key={l.path}
+                  to={href(l.path)}
+                  end={l.path === '/'}
                   className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
                 >
-                  {l.label}
+                  {t(l.key)}
                 </NavLink>
               )
             )}
-            <Link to="/contact" className="btn btn-solid nav-cta">Get a Quote</Link>
+            <Link
+              to={otherHref}
+              className="nav-lang"
+              lang={other}
+              hrefLang={other}
+              aria-label={t('nav.language')}
+            >
+              {t('nav.switchTo')}
+            </Link>
+            <Link to={href('/contact')} className="btn btn-solid nav-cta">{t('nav.quote')}</Link>
           </nav>
 
           <button
             className={`nav-burger${open ? ' open' : ''}`}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
@@ -106,15 +122,19 @@ export default function Nav() {
       </header>
 
       <div className={`mobile-menu${open ? ' open' : ''}`}>
-        {links.map((l) => (
-          <div key={l.to}>
-            <Link to={l.to} onClick={() => setOpen(false)}>
-              {l.label}
+        {LINKS.map((l) => (
+          <div key={l.path}>
+            <Link to={href(l.path)} onClick={() => setOpen(false)}>
+              {t(l.key)}
             </Link>
-            {l.to === '/services' && (
+            {l.path === '/services' && (
               <div className="sub-links">
-                {serviceCategories.map((c) => (
-                  <Link key={c.slug} to={`/services/${c.slug}`} onClick={() => setOpen(false)}>
+                {tax.categories.map((c) => (
+                  <Link
+                    key={c.slug}
+                    to={href(`/services/${c.slug}`)}
+                    onClick={() => setOpen(false)}
+                  >
                     {c.name}
                   </Link>
                 ))}
@@ -123,8 +143,11 @@ export default function Nav() {
           </div>
         ))}
         <div className="mobile-menu-contact">
-          <a href={company.phoneHref}>{company.phone}</a>
-          <a href={`mailto:${company.email}`}>{company.email}</a>
+          <a href={company.phoneHref} dir="ltr">{company.phone}</a>
+          <a href={`mailto:${company.email}`} dir="ltr">{company.email}</a>
+          <Link to={otherHref} lang={other} hrefLang={other} onClick={() => setOpen(false)}>
+            {t('nav.switchTo')}
+          </Link>
         </div>
       </div>
     </>

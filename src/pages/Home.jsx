@@ -7,24 +7,22 @@ import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { FleetScene } from '../components/Art.jsx'
-import {
-  company, stats, projects, fleet,
-  heroSlides, certifications, images,
-} from '../data/content.js'
-import { serviceCategories, emiratesFor } from '../data/services.js'
+import useLocale from '../i18n/useLocale.js'
 
 function HeroSlider() {
   const [active, setActive] = useState(0)
+  const { t, content, href } = useLocale()
+  const { heroSlides } = content
 
   useEffect(() => {
     const id = setInterval(() => setActive((a) => (a + 1) % heroSlides.length), 6000)
     return () => clearInterval(id)
-  }, [])
+  }, [heroSlides.length])
 
   const slide = heroSlides[active]
 
   return (
-    <section className="hero" aria-label="Earth Movers International highlights">
+    <section className="hero" aria-label={t('home.heroAria')}>
       {heroSlides.map((s, i) => (
         <div key={s.img} className={`hero-slide${i === active ? ' active' : ''}`} aria-hidden={i !== active}>
           <img src={s.img} alt="" loading={i === 0 ? 'eager' : 'lazy'} />
@@ -38,19 +36,19 @@ function HeroSlider() {
         <Reveal delay={170}><p className="lead">{slide.text}</p></Reveal>
         <Reveal delay={250}>
           <div className="hero-actions">
-            <Link to="/contact" className="btn btn-solid">Request a quote</Link>
-            <Link to="/projects" className="text-link" style={{ color: '#fff' }}>
-              Explore our projects <Arrow />
+            <Link to={href('/contact')} className="btn btn-solid">{t('cta.quote')}</Link>
+            <Link to={href('/projects')} className="text-link" style={{ color: '#fff' }}>
+              {t('home.exploreProjects')} <Arrow />
             </Link>
           </div>
         </Reveal>
       </div>
-      <div className="hero-dots" role="tablist" aria-label="Hero slides">
+      <div className="hero-dots" role="tablist" aria-label={t('home.slidesAria')}>
         {heroSlides.map((s, i) => (
           <button
             key={s.img}
             className={`hero-dot${i === active ? ' active' : ''}`}
-            aria-label={`Slide ${i + 1}`}
+            aria-label={t('home.slideN', { n: i + 1 })}
             onClick={() => setActive(i)}
           />
         ))}
@@ -60,6 +58,9 @@ function HeroSlider() {
 }
 
 export default function Home() {
+  const { t, tax, content, href } = useLocale()
+  const { stats, projects, fleet, certifications, images } = content
+
   return (
     <main>
       <HeroSlider />
@@ -80,7 +81,7 @@ export default function Home() {
             ))}
           </div>
           <div className="cert-row">
-            <span>Certifications &amp; registrations</span>
+            <span>{t('home.certRow')}</span>
             {certifications.map((c) => (
               <strong key={c.title}>{c.title}</strong>
             ))}
@@ -93,13 +94,13 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Our Work</span></Reveal>
+              <Reveal><span className="eyebrow">{t('home.workEyebrow')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">The projects that tell our story.</h2>
+                <h2 className="display-lg">{t('home.workTitle')}</h2>
               </Reveal>
             </div>
             <Reveal delay={160}>
-              <Link to="/projects" className="text-link">All projects <Arrow /></Link>
+              <Link to={href('/projects')} className="text-link">{t('home.allProjects')} <Arrow /></Link>
             </Reveal>
           </div>
 
@@ -123,11 +124,10 @@ export default function Home() {
       <section className="section section-paper hairline-top">
         <div className="wrap">
           <div className="statement">
-            <Reveal><span className="eyebrow">Our Promise</span></Reveal>
+            <Reveal><span className="eyebrow">{t('home.promiseEyebrow')}</span></Reveal>
             <Reveal delay={90}>
               <h2>
-                We move the earth, we build the roads, and we earn the trust of
-                every client we serve — <em>every single day.</em>
+                {t('home.promise')}<em>{t('home.promiseEm')}</em>
               </h2>
             </Reveal>
           </div>
@@ -139,23 +139,20 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">What We Do</span></Reveal>
+              <Reveal><span className="eyebrow">{t('home.whatEyebrow')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">Four disciplines. One accountable partner.</h2>
+                <h2 className="display-lg">{t('home.whatTitle')}</h2>
               </Reveal>
               <Reveal delay={140}>
-                <p className="lead">
-                  Earth works, road works, traffic management and utilities — delivered
-                  with our own fleet, our own operators and RTA-approved processes.
-                </p>
+                <p className="lead">{t('home.whatLead')}</p>
               </Reveal>
             </div>
           </div>
 
           <div className="cat-grid">
-            {serviceCategories.map((c, i) => (
+            {tax.categories.map((c, i) => (
               <Reveal key={c.slug} delay={(i % 4) * 70}>
-                <Link to={`/services/${c.slug}`} className="cat-tile">
+                <Link to={href(`/services/${c.slug}`)} className="cat-tile">
                   <div className="svc-tile-media">
                     <Photo src={c.img} alt={c.name} />
                   </div>
@@ -168,17 +165,19 @@ export default function Home() {
                       ))}
                     {c.services.some((s) => s.hideOnHome) && (
                       <li className="cat-tile-more">
-                        {`plus ${c.services.filter((s) => s.hideOnHome).length} services`}
+                        {t('home.plusServices', {
+                          n: c.services.filter((s) => s.hideOnHome).length,
+                        })}
                       </li>
                     )}
                   </ul>
                   <span className="cat-tile-foot">
                     <span className="cat-tile-where">
                       {c.coverage === 'all'
-                        ? 'Available in all 7 emirates'
-                        : 'Available in Dubai'}
+                        ? t('cov.availableAll')
+                        : t('cov.availableDubai')}
                     </span>
-                    <span className="text-link">Explore <Arrow /></span>
+                    <span className="text-link">{t('cta.explore')} <Arrow /></span>
                   </span>
                 </Link>
               </Reveal>
@@ -191,15 +190,12 @@ export default function Home() {
       <section className="on-dark section">
         <div className="wrap fleet-grid">
           <div className="fleet-copy">
-            <Reveal><span className="eyebrow">The Fleet</span></Reveal>
+            <Reveal><span className="eyebrow">{t('home.fleetEyebrow')}</span></Reveal>
             <Reveal delay={80}>
-              <h2 className="display-lg">One of the largest heavy-excavation fleets in Dubai.</h2>
+              <h2 className="display-lg">{t('home.fleetTitle')}</h2>
             </Reveal>
             <Reveal delay={160}>
-              <p className="lead">
-                Excavators, bulldozers, piling rigs and rock breakers — owned, maintained
-                and operated by us. Your programme never waits on a machine.
-              </p>
+              <p className="lead">{t('home.fleetLead')}</p>
             </Reveal>
             <Reveal delay={220}>
               <div className="fleet-chips">
@@ -209,24 +205,24 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal delay={280}>
-              <Link to="/contact" className="btn btn-solid">Rent equipment</Link>
+              <Link to={href('/contact')} className="btn btn-solid">{t('home.rentEquipment')}</Link>
             </Reveal>
           </div>
           <Reveal delay={200} className="fleet-art">
-            <Photo src={images.fleet} alt="Wheel loader working sand stockpiles" fallback={<FleetScene />} />
+            <Photo src={images.fleet} alt={t('home.fleetAlt')} fallback={<FleetScene />} />
             <div className="fleet-art-caption">
-              <span>Fleet operations — Dubai</span>
-              <span>Operated · 24/7</span>
+              <span>{t('home.fleetCaption')}</span>
+              <span>{t('home.fleetOperated')}</span>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ---------------- clients ---------------- */}
-      <Marquee label="Trusted across the UAE" />
+      <Marquee label={t('home.marquee')} />
 
       {/* ---------------- CTA ---------------- */}
-      <CTA text="Tell us about your site and scope — we’ll walk the ground with you and price the real work." />
+      <CTA title={t('about.ctaTitle')} text={t('home.ctaText')} />
     </main>
   )
 }

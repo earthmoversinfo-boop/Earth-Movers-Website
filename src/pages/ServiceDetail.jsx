@@ -4,13 +4,15 @@ import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
+import useLocale from '../i18n/useLocale.js'
 import { emiratesFor } from '../data/services.js'
-import { company } from '../data/content.js'
 
 // One page per individual service, at /services/<category>/<service>.
 export default function ServiceDetail({ category, service }) {
-  const locations = emiratesFor(category)
-  const where = category.coverage === 'all' ? 'the UAE' : 'Dubai'
+  const { t, locale, content, href } = useLocale()
+  const { company } = content
+  const locations = emiratesFor(category, locale)
+  const where = category.coverage === 'all' ? t('cov.whereAll') : t('cov.dubai')
   const siblings = category.services.filter((s) => s.slug !== service.slug)
 
   return (
@@ -26,8 +28,8 @@ export default function ServiceDetail({ category, service }) {
         <div className="wrap">
           <Breadcrumbs
             items={[
-              { name: 'Home', path: '/' },
-              { name: 'Services', path: '/services' },
+              { name: t('crumb.home'), path: '/' },
+              { name: t('crumb.services'), path: '/services' },
               { name: category.name, path: `/services/${category.slug}` },
               { name: service.name, path: `/services/${category.slug}/${service.slug}` },
             ]}
@@ -35,12 +37,12 @@ export default function ServiceDetail({ category, service }) {
 
           <div className="split" style={{ marginTop: '2.5rem' }}>
             <div className="split-sticky">
-              <Reveal><span className="eyebrow">Overview</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.overview')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-md">{`${service.name} in ${where}, delivered with our own fleet.`}</h2>
+                <h2 className="display-md">{t('svc.withOwnFleet', { name: service.name, where })}</h2>
               </Reveal>
               <Reveal delay={140}>
-                <Link to="/contact" className="btn btn-solid">Request a quote</Link>
+                <Link to={href('/contact')} className="btn btn-solid">{t('cta.quote')}</Link>
               </Reveal>
             </div>
             <div className="split-body">
@@ -59,9 +61,13 @@ export default function ServiceDetail({ category, service }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Scope</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.scope')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`What our ${service.name.toLowerCase()} package covers.`}</h2>
+                <h2 className="display-lg">
+                  {t('svc.covers', {
+                    name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+                  })}
+                </h2>
               </Reveal>
             </div>
           </div>
@@ -75,7 +81,7 @@ export default function ServiceDetail({ category, service }) {
             ))}
           </div>
 
-          <h3 className="block-label" style={{ marginTop: '3rem' }}>At a glance</h3>
+          <h3 className="block-label" style={{ marginTop: '3rem' }}>{t('lbl.glance')}</h3>
           <dl className="spec-table">
             {service.specs.map(([label, value]) => (
               <div key={label} className="spec-row">
@@ -91,13 +97,16 @@ export default function ServiceDetail({ category, service }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Where we work</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.whereWeWork')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`${service.name} across ${where}.`}</h2>
+                <h2 className="display-lg">{t('svc.acrossWhere', { name: service.name, where })}</h2>
               </Reveal>
               <Reveal delay={140}>
                 <p className="lead">
-                  {`We deliver ${service.name.toLowerCase()} as part of our ${category.name.toLowerCase()} package. Choose your emirate for local coverage and the approving authority.`}
+                  {t('svc.chooseEmirate', {
+                    name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+                    category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                  })}
                 </p>
               </Reveal>
             </div>
@@ -106,10 +115,12 @@ export default function ServiceDetail({ category, service }) {
           <div className="loc-grid">
             {locations.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <Link to={`/services/${category.slug}/${e.slug}`} className="loc-card">
-                  <span className="loc-card-name">{`${service.name} in ${e.name}`}</span>
+                <Link to={href(`/services/${category.slug}/${e.slug}`)} className="loc-card">
+                  <span className="loc-card-name">
+                    {t('loc.inEmirate', { name: service.name, emirate: e.name })}
+                  </span>
                   <span className="loc-card-meta">{e.authority}</span>
-                  <span className="text-link">View <Arrow /></span>
+                  <span className="text-link">{t('cta.view')} <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
@@ -121,9 +132,9 @@ export default function ServiceDetail({ category, service }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Common questions</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.faq')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`${service.name} — FAQs`}</h2>
+                <h2 className="display-lg">{t('svc.faqHeading', { name: service.name })}</h2>
               </Reveal>
             </div>
           </div>
@@ -135,12 +146,19 @@ export default function ServiceDetail({ category, service }) {
               </Reveal>
             ))}
             <Reveal delay={service.faqs.length * 60} className="faq-item">
-              <h3>{`How do I get a price for ${service.name.toLowerCase()}?`}</h3>
+              <h3>
+                {t('svc.priceQ', {
+                  name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+                })}
+              </h3>
               <p>
-                Send drawings, a bill of quantities or a description of the scope to{' '}
-                <a href={`mailto:${company.email}`}>{company.email}</a>, or call{' '}
-                <a href={company.phoneHref}>{company.phone}</a>. Where it helps, we walk the
-                ground with you before pricing.
+                {t('svc.priceA', { email: company.email, phone: company.phone })
+                  .split(company.email)
+                  .flatMap((part, i, all) =>
+                    i < all.length - 1
+                      ? [part, <a key="e" href={`mailto:${company.email}`} dir="ltr">{company.email}</a>]
+                      : [part]
+                  )}
               </p>
             </Reveal>
           </div>
@@ -151,24 +169,31 @@ export default function ServiceDetail({ category, service }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Related services</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.related')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`Other ${category.name.toLowerCase()} services`}</h2>
+                <h2 className="display-lg">
+                  {t('svc.otherIn', {
+                    category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                  })}
+                </h2>
               </Reveal>
             </div>
             <Reveal delay={140}>
-              <Link to={`/services/${category.slug}`} className="text-link">
-                All {category.name.toLowerCase()} <Arrow />
+              <Link to={href(`/services/${category.slug}`)} className="text-link">
+                {t('svc.allOf', {
+                  category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                })}{' '}
+                <Arrow />
               </Link>
             </Reveal>
           </div>
           <div className="loc-grid">
             {siblings.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 4) * 60}>
-                <Link to={`/services/${category.slug}/${s.slug}`} className="loc-card">
+                <Link to={href(`/services/${category.slug}/${s.slug}`)} className="loc-card">
                   <span className="loc-card-name">{s.name}</span>
                   <span className="loc-card-meta">{s.lead}</span>
-                  <span className="text-link">View <Arrow /></span>
+                  <span className="text-link">{t('cta.view')} <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
@@ -177,8 +202,10 @@ export default function ServiceDetail({ category, service }) {
       </section>
 
       <CTA
-        title={`Need ${service.name.toLowerCase()} priced?`}
-        text="Send your drawings or bill of quantities and we’ll come back with a clear, realistic price."
+        title={t('svc.needPriced', {
+          name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+        })}
+        text={t('svc.ctaText')}
       />
     </main>
   )

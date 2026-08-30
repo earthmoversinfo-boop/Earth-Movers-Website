@@ -4,19 +4,22 @@ import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
+import useLocale from '../i18n/useLocale.js'
 import { emiratesFor } from '../data/services.js'
-import { company } from '../data/content.js'
 
 export default function ServiceLocation({ category, emirate }) {
-  const covered = emiratesFor(category)
+  const { t, locale, content, href } = useLocale()
+  const { company } = content
+  const covered = emiratesFor(category, locale)
   const siblings = covered.filter((e) => e.slug !== emirate.slug)
+  const lower = (s) => (locale === 'ar' ? s : s.toLowerCase())
 
   return (
     <main>
       <PageBanner
         eyebrow={`${category.name} — ${emirate.name}`}
-        title={`${category.name} Contractor in ${emirate.name}`}
-        text={`${category.tagline} Delivered to ${emirate.authority} standards.`}
+        title={t('seo.categoryH1', { category: category.name, where: emirate.name })}
+        text={category.tagline}
         img={category.img}
       />
 
@@ -24,8 +27,8 @@ export default function ServiceLocation({ category, emirate }) {
         <div className="wrap">
           <Breadcrumbs
             items={[
-              { name: 'Home', path: '/' },
-              { name: 'Services', path: '/services' },
+              { name: t('crumb.home'), path: '/' },
+              { name: t('crumb.services'), path: '/services' },
               { name: category.name, path: `/services/${category.slug}` },
               { name: emirate.name, path: `/services/${category.slug}/${emirate.slug}` },
             ]}
@@ -33,12 +36,14 @@ export default function ServiceLocation({ category, emirate }) {
 
           <div className="split" style={{ marginTop: '2.5rem' }}>
             <div className="split-sticky">
-              <Reveal><span className="eyebrow">Local coverage</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.localCoverage')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-md">{`${category.name} in ${emirate.name}, delivered with our own fleet.`}</h2>
+                <h2 className="display-md">
+                  {t('loc.deliveredIn', { category: category.name, emirate: emirate.name })}
+                </h2>
               </Reveal>
               <Reveal delay={140}>
-                <Link to="/contact" className="btn btn-solid">Request a quote</Link>
+                <Link to={href('/contact')} className="btn btn-solid">{t('cta.quote')}</Link>
               </Reveal>
             </div>
             <div className="split-body">
@@ -50,9 +55,8 @@ export default function ServiceLocation({ category, emirate }) {
               </Reveal>
               <Reveal delay={140}>
                 <p>
-                  <strong>Areas we cover in {emirate.name}:</strong> {emirate.areas}. Whether
-                  the scope is a single plot or a multi-phase infrastructure package, the same
-                  plant, operators and supervision deliver it.
+                  <strong>{t('loc.areasWeCover', { emirate: emirate.name })}</strong>{' '}
+                  {emirate.areas}. {t('loc.areasTail')}
                 </p>
               </Reveal>
             </div>
@@ -65,9 +69,11 @@ export default function ServiceLocation({ category, emirate }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Our {category.name.toLowerCase()} services</span></Reveal>
+              <Reveal>
+                <span className="eyebrow">{t('loc.ourServices', { category: lower(category.name) })}</span>
+              </Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`What we deliver in ${emirate.name}.`}</h2>
+                <h2 className="display-lg">{t('loc.whatWeDeliver', { emirate: emirate.name })}</h2>
               </Reveal>
             </div>
           </div>
@@ -77,10 +83,10 @@ export default function ServiceLocation({ category, emirate }) {
               <Reveal key={s.slug} delay={(i % 3) * 60} className="loc-service">
                 <CheckCircle className="check-ico" />
                 <div>
-                  <h3>{`${s.name} in ${emirate.name}`}</h3>
+                  <h3>{t('loc.inEmirate', { name: s.name, emirate: emirate.name })}</h3>
                   <p>{s.text}</p>
-                  <Link to={`/services/${category.slug}/${s.slug}`} className="text-link">
-                    {`More on ${s.name.toLowerCase()}`} <Arrow />
+                  <Link to={href(`/services/${category.slug}/${s.slug}`)} className="text-link">
+                    {t('svc.moreOn', { name: lower(s.name) })} <Arrow />
                   </Link>
                 </div>
               </Reveal>
@@ -93,45 +99,52 @@ export default function ServiceLocation({ category, emirate }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Common questions</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.faq')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`${category.name} in ${emirate.name} — FAQs`}</h2>
+                <h2 className="display-lg">
+                  {t('svc.faqHeading', {
+                    name: t('loc.inEmirate', { name: category.name, emirate: emirate.name }),
+                  })}
+                </h2>
               </Reveal>
             </div>
           </div>
           <div className="faq-list">
             <Reveal className="faq-item">
-              <h3>{`Do you carry out ${category.name.toLowerCase()} in ${emirate.name}?`}</h3>
+              <h3>{t('loc.q1', { category: lower(category.name), emirate: emirate.name })}</h3>
               <p>
-                Yes. We deliver {category.name.toLowerCase()} across {emirate.name}, including{' '}
-                {emirate.areas}, working to {emirate.authority} standards with our own
-                excavators, dozers, graders and rollers.
+                {t('loc.a1', {
+                  category: lower(category.name),
+                  emirate: emirate.name,
+                  areas: emirate.areas,
+                  authority: emirate.authority,
+                })}
               </p>
             </Reveal>
             <Reveal delay={60} className="faq-item">
-              <h3>{`Are you an approved contractor for works in ${emirate.name}?`}</h3>
-              <p>
-                We are an RTA-approved contractor and work to the requirements of{' '}
-                {emirate.authority}. Method statements, permits and material approvals are
-                prepared and submitted by our own team.
-              </p>
+              <h3>{t('loc.q2', { emirate: emirate.name })}</h3>
+              <p>{t('loc.a2', { authority: emirate.authority })}</p>
             </Reveal>
             <Reveal delay={120} className="faq-item">
-              <h3>{`How do I get a price for ${category.services[0].name.toLowerCase()} in ${emirate.name}?`}</h3>
+              <h3>
+                {t('loc.q3', {
+                  service: lower(category.services[0].name),
+                  emirate: emirate.name,
+                })}
+              </h3>
               <p>
-                Send drawings, a bill of quantities or a description of the scope to{' '}
-                <a href={`mailto:${company.email}`}>{company.email}</a>, or call{' '}
-                <a href={company.phoneHref}>{company.phone}</a>. Where it helps, we walk the
-                ground with you before pricing.
+                {t('svc.priceA', { email: company.email, phone: company.phone })
+                  .split(company.email)
+                  .flatMap((part, i, all) =>
+                    i < all.length - 1
+                      ? [part, <a key="e" href={`mailto:${company.email}`} dir="ltr">{company.email}</a>]
+                      : [part]
+                  )}
               </p>
             </Reveal>
             <Reveal delay={180} className="faq-item">
-              <h3>{`How quickly can you mobilise to ${emirate.name}?`}</h3>
-              <p>
-                Because the fleet is owned rather than hired, mobilisation is a scheduling
-                question rather than an availability one — typically within days of approval
-                for standard packages.
-              </p>
+              <h3>{t('loc.q4', { emirate: emirate.name })}</h3>
+              <p>{t('loc.a4')}</p>
             </Reveal>
           </div>
         </div>
@@ -141,24 +154,26 @@ export default function ServiceLocation({ category, emirate }) {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Other emirates</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.otherEmirates')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`${category.name} elsewhere in the UAE`}</h2>
+                <h2 className="display-lg">{t('loc.elsewhere', { category: category.name })}</h2>
               </Reveal>
             </div>
             <Reveal delay={140}>
-              <Link to={`/services/${category.slug}`} className="text-link">
-                All {category.name.toLowerCase()} <Arrow />
+              <Link to={href(`/services/${category.slug}`)} className="text-link">
+                {t('svc.allOf', { category: lower(category.name) })} <Arrow />
               </Link>
             </Reveal>
           </div>
           <div className="loc-grid">
             {siblings.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <Link to={`/services/${category.slug}/${e.slug}`} className="loc-card">
-                  <span className="loc-card-name">{`${category.name} in ${e.name}`}</span>
+                <Link to={href(`/services/${category.slug}/${e.slug}`)} className="loc-card">
+                  <span className="loc-card-name">
+                    {t('loc.inEmirate', { name: category.name, emirate: e.name })}
+                  </span>
                   <span className="loc-card-meta">{e.authority}</span>
-                  <span className="text-link">View <Arrow /></span>
+                  <span className="text-link">{t('cta.view')} <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
@@ -167,8 +182,8 @@ export default function ServiceLocation({ category, emirate }) {
       </section>
 
       <CTA
-        title={`${category.name} in ${emirate.name}?`}
-        text={`Tell us about the site and scope — we’ll price the real work and mobilise from Dubai.`}
+        title={t('loc.ctaTitle', { category: category.name, emirate: emirate.name })}
+        text={t('loc.ctaText')}
       />
     </main>
   )

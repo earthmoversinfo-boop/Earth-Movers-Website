@@ -412,3 +412,59 @@ export const timeline = [
     text: 'A trusted road and earthworks contractor with one of the largest heavy-excavation fleets in Dubai.',
   },
 ]
+
+// ---------------------------------------------------------------------------
+// Locale accessor. The Arabic overlay in content.ar.js carries only the words —
+// images, links, phone numbers, years and figures are shared, so each entry is
+// merged position-by-position onto its English counterpart.
+// ---------------------------------------------------------------------------
+
+import { DEFAULT_LOCALE } from '../i18n/locale.js'
+import * as ar from './content.ar.js'
+
+const zip = (base, overlay) =>
+  overlay ? base.map((item, i) => ({ ...item, ...(overlay[i] || {}) })) : base
+
+const EN = {
+  company,
+  heroSlides,
+  certifications,
+  hse,
+  news,
+  stats,
+  clients,
+  projects,
+  sectors,
+  process,
+  values,
+  fleet,
+  timeline,
+  approvals,
+  images,
+  featuredServices,
+  serviceGroups,
+}
+
+const AR = {
+  ...EN,
+  company: { ...company, ...ar.companyAr },
+  heroSlides: zip(heroSlides, ar.heroSlidesAr),
+  certifications: zip(certifications, ar.certificationsAr),
+  hse: zip(hse, ar.hseAr),
+  news: zip(news, ar.newsAr),
+  stats: zip(stats, ar.statsAr),
+  clients: ar.clientsAr,
+  projects: zip(projects, ar.projectsAr),
+  sectors: zip(sectors, ar.sectorsAr),
+  process: zip(process, ar.processAr),
+  values: zip(values, ar.valuesAr),
+  fleet: ar.fleetAr,
+  timeline: zip(timeline, ar.timelineAr),
+  approvals: ar.approvalsAr,
+}
+
+const BY_LOCALE = { en: EN, ar: AR }
+
+export function contentFor(locale) {
+  return BY_LOCALE[locale] || BY_LOCALE[DEFAULT_LOCALE]
+}

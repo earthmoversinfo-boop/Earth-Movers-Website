@@ -1,6 +1,9 @@
-import { clients } from '../data/content.js'
+import useLocale from '../i18n/useLocale.js'
 
 export default function Marquee({ label }) {
+  const { content } = useLocale()
+  const { clients } = content
+
   const track = (
     <div className="marquee-track" aria-hidden="true">
       {[...clients, ...clients].map((c, i) => (

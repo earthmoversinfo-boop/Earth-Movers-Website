@@ -19,8 +19,11 @@
 // ---------------------------------------------------------------------------
 
 import { serviceContent } from './service-content.js'
+import { serviceContentAr } from './service-content.ar.js'
+import { categoriesAr, emiratesAr } from './services.ar.js'
+import { DEFAULT_LOCALE, LOCALES } from '../i18n/locale.js'
 
-export const emirates = [
+const EMIRATES = [
   {
     slug: 'dubai',
     name: 'Dubai',
@@ -262,44 +265,87 @@ const CATEGORIES = [
   },
 ]
 
-// Each service is published as its own page, so the long-form content in
-// service-content.js is merged onto the taxonomy here rather than looked up
-// separately by every consumer.
-export const serviceCategories = CATEGORIES.map((c) => ({
-  ...c,
-  services: c.services.map((s) => ({ ...s, ...(serviceContent[s.slug] || {}) })),
-}))
+// Locale overlays. Arabic reuses every slug, so the two taxonomies are the
+// same shape and each page has a direct counterpart at the same path under /ar.
+const OVERLAYS = {
+  ar: { emirates: emiratesAr, categories: categoriesAr, content: serviceContentAr },
+}
 
-export const categoryBySlug = Object.fromEntries(serviceCategories.map((c) => [c.slug, c]))
+function buildEmirates(locale) {
+  const overlay = OVERLAYS[locale]?.emirates
+  return EMIRATES.map((e) => ({ ...e, ...(overlay?.[e.slug] || {}) }))
+}
 
-export const emirateBySlug = Object.fromEntries(emirates.map((e) => [e.slug, e]))
+function buildCategories(locale) {
+  const overlay = OVERLAYS[locale]
+  return CATEGORIES.map((c) => {
+    const co = overlay?.categories?.[c.slug]
+    return {
+      ...c,
+      ...(co ? { name: co.name, tagline: co.tagline, intro: co.intro } : {}),
+      services: c.services.map((s) => ({
+        ...s,
+        ...(serviceContent[s.slug] || {}),
+        ...(co?.services?.[s.slug] || {}),
+        ...(overlay?.content?.[s.slug] || {}),
+      })),
+    }
+  })
+}
 
-// Every service, flattened, with the category it belongs to. Service slugs are
-// unique across all four categories, so one lookup covers the whole site.
-export const allServices = serviceCategories.flatMap((c) =>
-  c.services.map((s) => ({ ...s, category: c, path: `/services/${c.slug}/${s.slug}` }))
-)
+function buildTaxonomy(locale) {
+  const emirates = buildEmirates(locale)
+  const categories = buildCategories(locale)
+  const allServices = categories.flatMap((c) =>
+    c.services.map((s) => ({ ...s, category: c, path: `/services/${c.slug}/${s.slug}` }))
+  )
+  return {
+    locale,
+    emirates,
+    categories,
+    emirateBySlug: Object.fromEntries(emirates.map((e) => [e.slug, e])),
+    categoryBySlug: Object.fromEntries(categories.map((c) => [c.slug, c])),
+    allServices,
+    serviceBySlug: Object.fromEntries(allServices.map((s) => [s.slug, s])),
+  }
+}
 
-export const serviceBySlug = Object.fromEntries(allServices.map((s) => [s.slug, s]))
+export const taxonomies = Object.fromEntries(LOCALES.map((l) => [l, buildTaxonomy(l)]))
+
+export function taxonomyFor(locale) {
+  return taxonomies[locale] || taxonomies[DEFAULT_LOCALE]
+}
+
+// English named exports, kept so anything not locale-aware still works.
+const base = taxonomies[DEFAULT_LOCALE]
+export const emirates = base.emirates
+export const serviceCategories = base.categories
+export const emirateBySlug = base.emirateBySlug
+export const categoryBySlug = base.categoryBySlug
+export const allServices = base.allServices
+export const serviceBySlug = base.serviceBySlug
 
 // Emirates a given category serves.
-export function emiratesFor(category) {
+export function emiratesFor(category, locale = DEFAULT_LOCALE) {
+  const list = taxonomyFor(locale).emirates
   return category.coverage === 'all'
-    ? emirates
-    : emirates.filter((e) => category.coverage.includes(e.slug))
+    ? list
+    : list.filter((e) => category.coverage.includes(e.slug))
 }
 
 // /services/<category>/<sub> carries both emirate pages and service pages. The
 // two slug sets do not overlap, so the second segment alone decides which.
-export function resolveServiceSegment(category, slug) {
-  if (emirateBySlug[slug] && emiratesFor(category).some((e) => e.slug === slug)) {
-    return { kind: 'emirate', emirate: emirateBySlug[slug] }
+export function resolveServiceSegment(category, slug, locale = DEFAULT_LOCALE) {
+  const tax = taxonomyFor(locale)
+  if (tax.emirateBySlug[slug] && emiratesFor(category, locale).some((e) => e.slug === slug)) {
+    return { kind: 'emirate', emirate: tax.emirateBySlug[slug] }
   }
   const service = category.services.find((s) => s.slug === slug)
   return service ? { kind: 'service', service } : { kind: 'none' }
 }
 
-// Every services URL that should exist as a prerendered, indexable page.
+// Every services URL that should exist as a prerendered, indexable page,
+// language-neutral — the caller prefixes /ar for the Arabic set.
 export function allServiceRoutes() {
   const routes = ['/services']
   for (const c of serviceCategories) {

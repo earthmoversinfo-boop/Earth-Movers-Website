@@ -6,22 +6,25 @@ import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import NotFound from './NotFound.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
-import { categoryBySlug, emiratesFor, serviceCategories } from '../data/services.js'
+import useLocale from '../i18n/useLocale.js'
+import { emiratesFor } from '../data/services.js'
 
 export default function ServiceCategory() {
   const { category: slug } = useParams()
-  const category = categoryBySlug[slug]
+  const { t, locale, tax, href } = useLocale()
+  const category = tax.categoryBySlug[slug]
   if (!category) return <NotFound />
 
-  const locations = emiratesFor(category)
-  const others = serviceCategories.filter((c) => c.slug !== category.slug)
-  const where = category.coverage === 'all' ? 'the UAE' : 'Dubai'
+  const locations = emiratesFor(category, locale)
+  const others = tax.categories.filter((c) => c.slug !== category.slug)
+  const where = category.coverage === 'all' ? t('cov.whereAll') : t('cov.dubai')
+  const lower = (s) => (locale === 'ar' ? s : s.toLowerCase())
 
   return (
     <main>
       <PageBanner
-        eyebrow="Services"
-        title={`${category.name} Contractor in ${where}`}
+        eyebrow={t('lbl.services')}
+        title={t('seo.categoryH1', { category: category.name, where })}
         text={category.tagline}
         img={category.img}
       />
@@ -30,35 +33,37 @@ export default function ServiceCategory() {
         <div className="wrap">
           <Breadcrumbs
             items={[
-              { name: 'Home', path: '/' },
-              { name: 'Services', path: '/services' },
+              { name: t('crumb.home'), path: '/' },
+              { name: t('crumb.services'), path: '/services' },
               { name: category.name, path: `/services/${category.slug}` },
             ]}
           />
 
           <div className="section-head" style={{ marginTop: '2rem' }}>
             <div className="kicker">
-              <Reveal><span className="eyebrow">Overview</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.overview')}</span></Reveal>
               <Reveal delay={80}><h2 className="display-md">{category.intro}</h2></Reveal>
             </div>
             <Reveal delay={140}>
-              <Link to="/contact" className="btn btn-solid">Request a proposal</Link>
+              <Link to={href('/contact')} className="btn btn-solid">{t('cta.proposal')}</Link>
             </Reveal>
           </div>
 
-          <h3 className="block-label">What&rsquo;s included</h3>
+          <h3 className="block-label">{t('lbl.included')}</h3>
           <div className="check-grid">
             {category.services.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 2) * 60}>
                 <Link
-                  to={`/services/${category.slug}/${s.slug}`}
+                  to={href(`/services/${category.slug}/${s.slug}`)}
                   className="check-item check-item-link"
                 >
                   <CheckCircle className="check-ico" />
                   <div>
                     <h3>{s.name}</h3>
                     <p>{s.text}</p>
-                    <span className="text-link">{`${s.name} in detail`} <Arrow /></span>
+                    <span className="text-link">
+                      {t('svc.detailLink', { name: s.name })} <Arrow />
+                    </span>
                   </div>
                 </Link>
               </Reveal>
@@ -71,15 +76,12 @@ export default function ServiceCategory() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Where we work</span></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.whereWeWork')}</span></Reveal>
               <Reveal delay={80}>
-                <h2 className="display-lg">{`${category.name} across ${where}.`}</h2>
+                <h2 className="display-lg">{t('svc.acrossWhere', { name: category.name, where })}</h2>
               </Reveal>
               <Reveal delay={140}>
-                <p className="lead">
-                  Choose your emirate for local coverage, approving authority and the
-                  areas we operate in.
-                </p>
+                <p className="lead">{t('svc.chooseEmirateCategory')}</p>
               </Reveal>
             </div>
           </div>
@@ -87,10 +89,12 @@ export default function ServiceCategory() {
           <div className="loc-grid">
             {locations.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <Link to={`/services/${category.slug}/${e.slug}`} className="loc-card">
-                  <span className="loc-card-name">{`${category.name} in ${e.name}`}</span>
+                <Link to={href(`/services/${category.slug}/${e.slug}`)} className="loc-card">
+                  <span className="loc-card-name">
+                    {t('loc.inEmirate', { name: category.name, emirate: e.name })}
+                  </span>
                   <span className="loc-card-meta">{e.authority}</span>
-                  <span className="text-link">View <Arrow /></span>
+                  <span className="text-link">{t('cta.view')} <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
@@ -102,20 +106,20 @@ export default function ServiceCategory() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Explore more</span></Reveal>
-              <Reveal delay={80}><h2 className="display-lg">Other services</h2></Reveal>
+              <Reveal><span className="eyebrow">{t('lbl.exploreMore')}</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">{t('lbl.otherServices')}</h2></Reveal>
             </div>
           </div>
           <div className="svc-grid">
             {others.map((c, i) => (
               <Reveal key={c.slug} delay={(i % 3) * 70}>
-                <Link to={`/services/${c.slug}`} className="svc-tile">
+                <Link to={href(`/services/${c.slug}`)} className="svc-tile">
                   <div className="svc-tile-media">
                     <Photo src={c.img} alt={c.name} />
                   </div>
                   <h3>{c.name}</h3>
                   <p>{c.tagline}</p>
-                  <span className="text-link">Explore <Arrow /></span>
+                  <span className="text-link">{t('cta.explore')} <Arrow /></span>
                 </Link>
               </Reveal>
             ))}
@@ -124,8 +128,8 @@ export default function ServiceCategory() {
       </section>
 
       <CTA
-        title={`Need ${category.name.toLowerCase()} priced?`}
-        text="Send your drawings or bill of quantities and we’ll come back with a clear, realistic price."
+        title={t('svc.needPriced', { name: lower(category.name) })}
+        text={t('svc.ctaText')}
       />
     </main>
   )

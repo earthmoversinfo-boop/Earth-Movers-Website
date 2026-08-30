@@ -4,19 +4,22 @@ import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import Gallery from '../components/Gallery.jsx'
 import PageBanner from '../components/PageBanner.jsx'
-import { projects, sectors, images } from '../data/content.js'
+import useLocale from '../i18n/useLocale.js'
 
 export default function Projects() {
-  const filters = ['All', ...new Set(projects.map((p) => p.sector))]
-  const [filter, setFilter] = useState('All')
-  const shown = projects.filter((p) => filter === 'All' || p.sector === filter)
+  const { t, content } = useLocale()
+  const { projects, sectors, images } = content
+  const ALL = t('proj.all')
+  const filters = [ALL, ...new Set(projects.map((p) => p.sector))]
+  const [filter, setFilter] = useState(ALL)
+  const shown = projects.filter((p) => filter === ALL || p.sector === filter)
 
   return (
     <main>
       <PageBanner
-        eyebrow="Projects"
-        title="Selected work across the UAE."
-        text="From public authorities to private clients — a track record built on safety, quality and client satisfaction."
+        eyebrow={t('proj.eyebrow')}
+        title={t('proj.title')}
+        text={t('proj.lead')}
         img={images.banners.projects}
       />
 
@@ -46,9 +49,9 @@ export default function Projects() {
                   <h3>{p.client}</h3>
                   <p>{p.scope}</p>
                   <div className="proj-card-facts">
-                    <span>Year <strong>{p.year}</strong></span>
-                    <span>Value <strong>{p.value}</strong></span>
-                    <span><strong>Delivered</strong></span>
+                    <span>{t('proj.year')} <strong>{p.year}</strong></span>
+                    <span>{t('proj.value')} <strong dir="ltr">{p.value}</strong></span>
+                    <span><strong>{t('proj.delivered')}</strong></span>
                   </div>
                 </Reveal>
               )
@@ -61,8 +64,8 @@ export default function Projects() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Where We Work</span></Reveal>
-              <Reveal delay={80}><h2 className="display-lg">Sectors we serve.</h2></Reveal>
+              <Reveal><span className="eyebrow">{t('proj.whereEyebrow')}</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">{t('proj.whereTitle')}</h2></Reveal>
             </div>
           </div>
           <div className="sector-grid">
@@ -76,12 +79,9 @@ export default function Projects() {
         </div>
       </section>
 
-      <Gallery eyebrow="Site Gallery" title="The places behind our work." />
+      <Gallery eyebrow={t('proj.galleryEyebrow')} title={t('proj.galleryTitle')} />
 
-      <CTA
-        title="Your project, next on this page."
-        text="From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery."
-      />
+      <CTA title={t('proj.ctaTitle')} text={t('proj.ctaText')} />
     </main>
   )
 }

@@ -5,15 +5,18 @@ import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import { Arrow } from '../components/Icons.jsx'
-import { company, stats, timeline, values, certifications, images } from '../data/content.js'
+import useLocale from '../i18n/useLocale.js'
 
 export default function About() {
+  const { t, content, href } = useLocale()
+  const { company, stats, timeline, values, certifications, images } = content
+
   return (
     <main>
       <PageBanner
-        eyebrow="About Us"
-        title="Three decades of moving ground."
-        text={`From Montreal in ${company.founded} to Dubai since ${company.inUAE} — a contractor built around heavy machines, experienced hands and ground that gets handed over right.`}
+        eyebrow={t('about.eyebrow')}
+        title={t('about.title')}
+        text={t('about.lead', { founded: company.founded, inUAE: company.inUAE })}
         img={images.banners.about}
       />
 
@@ -32,7 +35,7 @@ export default function About() {
             ))}
           </div>
           <div className="cert-row">
-            <span>Certifications &amp; registrations</span>
+            <span>{t('home.certRow')}</span>
             {certifications.map((c) => (
               <strong key={c.title}>{c.title}</strong>
             ))}
@@ -43,34 +46,18 @@ export default function About() {
       <section className="section">
         <div className="wrap split">
           <div className="split-sticky">
-            <Reveal><span className="eyebrow">The story</span></Reveal>
-            <Reveal delay={80}><h2 className="display-lg">Who we are</h2></Reveal>
+            <Reveal><span className="eyebrow">{t('about.storyEyebrow')}</span></Reveal>
+            <Reveal delay={80}><h2 className="display-lg">{t('about.storyTitle')}</h2></Reveal>
           </div>
           <div className="split-body">
             <Reveal>
-              <p className="lead" style={{ color: 'var(--ink)' }}>
-                Earth Movers International is a dynamic and preferred solution provider
-                in the fields of civil and heavy construction, engineering, oil &amp; gas,
-                recycling and demolition.
-              </p>
+              <p className="lead" style={{ color: 'var(--ink)' }}>{t('about.story1')}</p>
             </Reveal>
             <Reveal delay={90}>
-              <p>
-                Our team was incorporated to help meet the challenges faced by the
-                construction sector in the fields of earth works, heavy equipment,
-                material supply, transportation and logistics. Today we support
-                infrastructure, commercial and industrial projects across the UAE
-                as a Dubai-based road construction and earthworks contractor.
-              </p>
+              <p>{t('about.story2')}</p>
             </Reveal>
             <Reveal delay={160}>
-              <p>
-                We maintain one of Dubai&rsquo;s largest fleets of heavy excavation
-                equipment — excavators, bulldozers, piling rigs, rock breakers and
-                specialised machinery — so projects are completed quickly, effectively
-                and safely. As an RTA-approved contractor, compliance is built into
-                everything we deliver.
-              </p>
+              <p>{t('about.story3')}</p>
             </Reveal>
             <Reveal delay={200}>
               <Photo
@@ -87,8 +74,8 @@ export default function About() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Milestones</span></Reveal>
-              <Reveal delay={80}><h2 className="display-lg">The road so far.</h2></Reveal>
+              <Reveal><span className="eyebrow">{t('about.milestones')}</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">{t('about.milestonesTitle')}</h2></Reveal>
             </div>
           </div>
           <div className="timeline">
@@ -108,22 +95,15 @@ export default function About() {
       <section className="on-dark section">
         <div className="wrap split">
           <div className="split-sticky">
-            <Reveal><span className="eyebrow">Direction</span></Reveal>
-            <Reveal delay={80}><h2 className="display-lg">Mission &amp; vision</h2></Reveal>
+            <Reveal><span className="eyebrow">{t('about.directionEyebrow')}</span></Reveal>
+            <Reveal delay={80}><h2 className="display-lg">{t('about.directionTitle')}</h2></Reveal>
           </div>
           <div className="split-body">
             <Reveal>
-              <p className="lead">
-                Our vision is to make Earth Movers International a global brand in the
-                field of earth works, heavy construction equipment and services.
-              </p>
+              <p className="lead">{t('about.vision')}</p>
             </Reveal>
             <Reveal delay={90}>
-              <p>
-                Our mission is simpler still: deliver practical, build-ready ground —
-                safely, on programme and to specification — so every client can build
-                with confidence on what we hand over.
-              </p>
+              <p>{t('about.mission')}</p>
             </Reveal>
           </div>
         </div>
@@ -133,11 +113,13 @@ export default function About() {
         <div className="wrap">
           <div className="section-head">
             <div className="kicker">
-              <Reveal><span className="eyebrow">Values</span></Reveal>
-              <Reveal delay={80}><h2 className="display-lg">Ground rules.</h2></Reveal>
+              <Reveal><span className="eyebrow">{t('about.valuesEyebrow')}</span></Reveal>
+              <Reveal delay={80}><h2 className="display-lg">{t('about.valuesTitle')}</h2></Reveal>
             </div>
             <Reveal delay={160}>
-              <Link to="/services" className="btn btn-ghost">See our services <Arrow className="btn-arrow" /></Link>
+              <Link to={href('/services')} className="btn btn-ghost">
+                {t('about.seeServices')} <Arrow className="btn-arrow" />
+              </Link>
             </Reveal>
           </div>
           <div className="values-grid">
@@ -151,7 +133,7 @@ export default function About() {
         </div>
       </section>
 
-      <CTA title="Build on solid ground." text="Talk to the team that has been moving the earth since 1990." />
+      <CTA title={t('about.ctaTitle')} text={t('about.ctaText')} />
     </main>
   )
 }

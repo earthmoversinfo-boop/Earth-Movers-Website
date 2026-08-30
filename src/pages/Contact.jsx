@@ -2,22 +2,19 @@ import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import { Arrow } from '../components/Icons.jsx'
-import { company, images } from '../data/content.js'
-
-const SERVICE_OPTIONS = [
-  'Excavation',
-  'Road Construction',
-  'Asphalt Works',
-  'Cut & Fill',
-  'Site Preparation',
-  'Trenching & Piling',
-  'Material Supply',
-  'Equipment Rental',
-]
+import useLocale from '../i18n/useLocale.js'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
   const [services, setServices] = useState([])
+  const { t, locale, tax, content } = useLocale()
+  const { company, images } = content
+
+  // The enquiry checkboxes are the site's own service list, so they stay in
+  // step with the taxonomy and appear in whichever language is being read.
+  const serviceOptions = tax.categories.flatMap((c) =>
+    c.services.filter((s) => !s.hideOnHome).map((s) => s.name)
+  )
 
   const set = (key) => (e) => setForm({ ...form, [key]: e.target.value })
 
@@ -28,8 +25,8 @@ export default function Contact() {
   // static host with no backend required.
   const submit = (e) => {
     e.preventDefault()
-    const picked = services.join(', ') || 'General'
-    const subject = encodeURIComponent(`Enquiry: ${picked} — ${form.name}`)
+    const picked = services.join(locale === 'ar' ? '، ' : ', ') || t('ct.general')
+    const subject = encodeURIComponent(t('ct.subject', { picked, name: form.name }))
     const body = encodeURIComponent(
       `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nServices: ${picked}\n\n${form.message}`
     )
@@ -39,9 +36,9 @@ export default function Contact() {
   return (
     <main>
       <PageBanner
-        eyebrow="Contact"
-        title="Let’s walk your site."
-        text="Call, write or drop by — tell us about your scope and we’ll come back with a clear plan and an honest price."
+        eyebrow={t('ct.eyebrow')}
+        title={t('ct.title')}
+        text={t('ct.lead')}
         img={images.banners.contact}
       />
 
@@ -50,15 +47,15 @@ export default function Contact() {
           <div>
             <div className="contact-info">
               <Reveal className="contact-item">
-                <span className="label">Phone</span>
-                <a href={company.phoneHref}>{company.phone}</a>
+                <span className="label">{t('ct.phone')}</span>
+                <a href={company.phoneHref} dir="ltr">{company.phone}</a>
               </Reveal>
               <Reveal delay={60} className="contact-item">
-                <span className="label">Email</span>
-                <a href={`mailto:${company.email}`}>{company.email}</a>
+                <span className="label">{t('ct.email')}</span>
+                <a href={`mailto:${company.email}`} dir="ltr">{company.email}</a>
               </Reveal>
               <Reveal delay={120} className="contact-item">
-                <span className="label">Office</span>
+                <span className="label">{t('ct.office')}</span>
                 <address>
                   {company.address.map((line) => (
                     <span key={line}>{line}<br /></span>
@@ -66,10 +63,10 @@ export default function Contact() {
                 </address>
               </Reveal>
               <Reveal delay={180} className="contact-item">
-                <span className="label">Hours</span>
+                <span className="label">{t('ct.hours')}</span>
                 <address>
-                  Monday – Saturday, 8:00 – 18:00<br />
-                  Site operations: 24/7
+                  {t('ct.hoursValue')}<br />
+                  {t('ct.hoursSite')}
                 </address>
               </Reveal>
             </div>
@@ -79,22 +76,22 @@ export default function Contact() {
             <form className="contact-form" onSubmit={submit}>
               <div className="form-row">
                 <div className="field">
-                  <label htmlFor="cf-name">Name</label>
-                  <input id="cf-name" required value={form.name} onChange={set('name')} placeholder="Your name" />
+                  <label htmlFor="cf-name">{t('ct.name')}</label>
+                  <input id="cf-name" required value={form.name} onChange={set('name')} placeholder={t('ct.namePlaceholder')} />
                 </div>
                 <div className="field">
-                  <label htmlFor="cf-phone">Phone</label>
-                  <input id="cf-phone" value={form.phone} onChange={set('phone')} placeholder="+971 …" />
+                  <label htmlFor="cf-phone">{t('ct.phone')}</label>
+                  <input id="cf-phone" value={form.phone} onChange={set('phone')} placeholder={t('ct.phonePlaceholder')} dir="ltr" />
                 </div>
               </div>
               <div className="field">
-                <label htmlFor="cf-email">Email</label>
-                <input id="cf-email" type="email" required value={form.email} onChange={set('email')} placeholder="you@company.com" />
+                <label htmlFor="cf-email">{t('ct.email')}</label>
+                <input id="cf-email" type="email" required value={form.email} onChange={set('email')} placeholder={t('ct.emailPlaceholder')} dir="ltr" />
               </div>
               <div className="field">
-                <label>Services of interest</label>
+                <label>{t('ct.interest')}</label>
                 <div className="chip-checks">
-                  {SERVICE_OPTIONS.map((s) => (
+                  {serviceOptions.map((s) => (
                     <label className="chip-check" key={s}>
                       <input
                         type="checkbox"
@@ -107,23 +104,21 @@ export default function Contact() {
                 </div>
               </div>
               <div className="field">
-                <label htmlFor="cf-message">Project details</label>
+                <label htmlFor="cf-message">{t('ct.details')}</label>
                 <textarea
                   id="cf-message"
                   required
                   value={form.message}
                   onChange={set('message')}
-                  placeholder="Location, scope, timeline — whatever you have so far."
+                  placeholder={t('ct.detailsPlaceholder')}
                 />
               </div>
               <div>
                 <button type="submit" className="btn btn-solid">
-                  Send enquiry <Arrow className="btn-arrow" />
+                  {t('ct.send')} <Arrow className="btn-arrow" />
                 </button>
               </div>
-              <p className="form-note">
-                Submitting opens your email app with the enquiry addressed to {company.email}.
-              </p>
+              <p className="form-note">{t('ct.note', { email: company.email })}</p>
             </form>
           </Reveal>
         </div>
