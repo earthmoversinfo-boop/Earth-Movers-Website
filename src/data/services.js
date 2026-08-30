@@ -159,9 +159,9 @@ const CATEGORIES = [
         text: 'Saw-cut, excavate, reinstate and compact — patch repairs done properly so the joint does not fail in the first season. Ideal after utility crossings, trench reinstatement, or pothole and settlement repair across car parks and estate roads.',
       },
       {
-        slug: 'parkings',
-        name: 'Car Parks & Parking Areas',
-        keyword: 'car park construction contractor',
+        slug: 'parking-construction',
+        name: 'Parking Construction',
+        keyword: 'parking construction contractor',
         hideOnHome: true,
         text: 'Complete parking areas from sub-grade to line marking: base, surfacing in asphalt or interlock, kerbing, drainage falls, wheel stops, bay marking and signage — built to authority layout standards and handed over ready to use.',
       },

@@ -402,9 +402,9 @@ export const serviceContent = {
     ],
   },
 
-  parkings: {
-    img: '/images/services/parkings.jpg',
-    h1: 'Car Park Construction Contractor in the UAE',
+  'parking-construction': {
+    img: '/images/services/parking-construction.jpg',
+    h1: 'Parking Construction Contractor in the UAE',
     lead: 'Complete parking areas from sub-grade to line marking — base, surfacing, kerbing, drainage falls, bays and signage.',
     caption: 'Surfacing an open parking area before kerbs and marking.',
     intro:

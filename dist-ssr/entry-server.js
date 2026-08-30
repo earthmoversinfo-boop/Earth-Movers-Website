@@ -909,9 +909,9 @@ var serviceContent = {
 			}
 		]
 	},
-	parkings: {
-		img: "/images/services/parkings.jpg",
-		h1: "Car Park Construction Contractor in the UAE",
+	"parking-construction": {
+		img: "/images/services/parking-construction.jpg",
+		h1: "Parking Construction Contractor in the UAE",
 		lead: "Complete parking areas from sub-grade to line marking — base, surfacing, kerbing, drainage falls, bays and signage.",
 		caption: "Surfacing an open parking area before kerbs and marking.",
 		intro: "A car park is a small road network with tight geometry and a lot of edges, and it is usually the last package on a project — which is exactly why it ends up rushed. Bay dimensions, aisle widths, accessible bays and falls to the gullies all have to satisfy the authority layout standard before the surface can be signed off.",
@@ -1687,7 +1687,7 @@ var serviceContentAr = {
 			}
 		]
 	},
-	parkings: {
+	"parking-construction": {
 		h1: "مقاول إنشاء مواقف سيارات في الإمارات",
 		lead: "مواقف متكاملة من التربة الطبيعية حتى التخطيط الأرضي — طبقة أساس وسطح وأحجار أرصفة وميول تصريف ومواقف ولوحات.",
 		caption: "تنفيذ الطبقة السطحية لموقف مكشوف قبل أحجار الأرصفة والتخطيط.",
@@ -2224,8 +2224,8 @@ var categoriesAr = {
 				keyword: "مقاول ترقيع أسفلت",
 				text: "قصّ بالمنشار وتكسير وإعادة تنفيذ ودمك — ترقيع يُنفَّذ بأصوله حتى لا تفشل الوصلة في الموسم الأول. مثالي بعد عبور الخدمات أو إعادة حالة الخنادق أو إصلاح الحفر والهبوط في المواقف والطرق الداخلية."
 			},
-			parkings: {
-				name: "مواقف السيارات",
+			"parking-construction": {
+				name: "إنشاء المواقف",
 				keyword: "مقاول إنشاء مواقف سيارات",
 				text: "مواقف متكاملة من التربة الطبيعية حتى التخطيط الأرضي: طبقة أساس وطبقة سطحية أسفلتية أو إنترلوك، وأحجار أرصفة، وميول تصريف، وصدّامات، وتخطيط المواقف ولوحاتها — وفق معايير التخطيط المعتمدة وجاهزة للاستخدام عند التسليم."
 			},
@@ -2429,9 +2429,9 @@ var CATEGORIES = [
 				text: "Saw-cut, excavate, reinstate and compact — patch repairs done properly so the joint does not fail in the first season. Ideal after utility crossings, trench reinstatement, or pothole and settlement repair across car parks and estate roads."
 			},
 			{
-				slug: "parkings",
-				name: "Car Parks & Parking Areas",
-				keyword: "car park construction contractor",
+				slug: "parking-construction",
+				name: "Parking Construction",
+				keyword: "parking construction contractor",
 				hideOnHome: true,
 				text: "Complete parking areas from sub-grade to line marking: base, surfacing in asphalt or interlock, kerbing, drainage falls, wheel stops, bay marking and signage — built to authority layout standards and handed over ready to use."
 			},
