@@ -9,7 +9,7 @@
     "fetch-images": "node scripts/fetch-images.mjs",
     "build:preview": "VITE_HASH_ROUTER=1 vite build && node scripts/bundle-preview.mjs",
     "build:client": "vite build",
-    "build:pages": "PUBLIC_BASE=/Earth-Movers-Website./ npm run build"
+    "build:pages": "PUBLIC_BASE=\"/$(basename -s .git \"$(git config --get remote.origin.url)\")/\" npm run build"
   },
   "repository": {
     "type": "git",
