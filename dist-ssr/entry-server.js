@@ -71,6 +71,27 @@ function WhatsApp({ className }) {
 		children: [/* @__PURE__ */ jsx("path", { d: "M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.13-.27-.2-.57-.35Z" }), /* @__PURE__ */ jsx("path", { d: "M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.91-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01c-1.48 0-2.94-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23Z" })]
 	});
 }
+function Pin({ className }) {
+	return /* @__PURE__ */ jsxs("svg", {
+		viewBox: "0 0 24 24",
+		width: "16",
+		height: "16",
+		className,
+		"aria-hidden": "true",
+		children: [/* @__PURE__ */ jsx("path", {
+			d: "M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z",
+			fill: "none",
+			stroke: "currentColor",
+			strokeWidth: "1.8",
+			strokeLinejoin: "round"
+		}), /* @__PURE__ */ jsx("circle", {
+			cx: "12",
+			cy: "10",
+			r: "2.6",
+			fill: "currentColor"
+		})]
+	});
+}
 //#endregion
 //#region src/i18n/locale.js
 var LOCALES = ["en", "ar"];
@@ -4857,6 +4878,39 @@ function NotFound() {
 	}) });
 }
 //#endregion
+//#region src/components/EmirateCard.jsx
+function EmirateCard({ emirate, categorySlug, delay }) {
+	const { locale, href } = useLocale();
+	const other = locale === "ar" ? "en" : "ar";
+	const otherName = taxonomies[other].emirateBySlug[emirate.slug]?.name;
+	return /* @__PURE__ */ jsxs(Link, {
+		to: href(`/services/${categorySlug}/${emirate.slug}`),
+		className: "em-card",
+		style: delay ? { transitionDelay: `${delay}ms` } : void 0,
+		children: [
+			/* @__PURE__ */ jsxs("span", {
+				className: "em-card-top",
+				children: [/* @__PURE__ */ jsx(Pin, { className: "em-card-pin" }), /* @__PURE__ */ jsx("span", {
+					className: "em-card-name",
+					children: emirate.name
+				})]
+			}),
+			otherName && /* @__PURE__ */ jsx("span", {
+				className: "em-card-alt",
+				lang: other,
+				children: otherName
+			}),
+			/* @__PURE__ */ jsxs("span", {
+				className: "em-card-foot",
+				children: [/* @__PURE__ */ jsx("span", {
+					className: "em-card-authority",
+					children: emirate.authority
+				}), /* @__PURE__ */ jsx(Arrow, { className: "em-card-arrow" })]
+			})
+		]
+	});
+}
+//#endregion
 //#region src/pages/ServiceCategory.jsx
 function ServiceCategory() {
 	const { category: slug } = useParams();
@@ -4982,33 +5036,12 @@ function ServiceCategory() {
 						]
 					})
 				}), /* @__PURE__ */ jsx("div", {
-					className: "loc-grid",
+					className: "em-grid",
 					children: locations.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
-						children: /* @__PURE__ */ jsxs(Link, {
-							to: href(`/services/${category.slug}/${e.slug}`),
-							className: "loc-card",
-							children: [
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-name",
-									children: t("loc.inEmirate", {
-										name: category.name,
-										emirate: e.name
-									})
-								}),
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-meta",
-									children: e.authority
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "text-link",
-									children: [
-										t("cta.view"),
-										" ",
-										/* @__PURE__ */ jsx(Arrow, {})
-									]
-								})
-							]
+						children: /* @__PURE__ */ jsx(EmirateCard, {
+							emirate: e,
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]
@@ -5241,33 +5274,12 @@ function ServiceDetail({ category, service }) {
 						]
 					})
 				}), /* @__PURE__ */ jsx("div", {
-					className: "loc-grid",
+					className: "em-grid",
 					children: locations.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
-						children: /* @__PURE__ */ jsxs(Link, {
-							to: href(`/services/${category.slug}/${e.slug}`),
-							className: "loc-card",
-							children: [
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-name",
-									children: t("loc.inEmirate", {
-										name: service.name,
-										emirate: e.name
-									})
-								}),
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-meta",
-									children: e.authority
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "text-link",
-									children: [
-										t("cta.view"),
-										" ",
-										/* @__PURE__ */ jsx(Arrow, {})
-									]
-								})
-							]
+						children: /* @__PURE__ */ jsx(EmirateCard, {
+							emirate: e,
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]
@@ -5632,33 +5644,12 @@ function ServiceLocation({ category, emirate }) {
 						})
 					})]
 				}), /* @__PURE__ */ jsx("div", {
-					className: "loc-grid",
+					className: "em-grid",
 					children: siblings.map((e, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 4 * 60,
-						children: /* @__PURE__ */ jsxs(Link, {
-							to: href(`/services/${category.slug}/${e.slug}`),
-							className: "loc-card",
-							children: [
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-name",
-									children: t("loc.inEmirate", {
-										name: category.name,
-										emirate: e.name
-									})
-								}),
-								/* @__PURE__ */ jsx("span", {
-									className: "loc-card-meta",
-									children: e.authority
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "text-link",
-									children: [
-										t("cta.view"),
-										" ",
-										/* @__PURE__ */ jsx(Arrow, {})
-									]
-								})
-							]
+						children: /* @__PURE__ */ jsx(EmirateCard, {
+							emirate: e,
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]

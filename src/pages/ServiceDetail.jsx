@@ -3,6 +3,7 @@ import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
+import EmirateCard from '../components/EmirateCard.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { emiratesFor } from '../data/services.js'
@@ -119,16 +120,10 @@ export default function ServiceDetail({ category, service }) {
             </div>
           </div>
 
-          <div className="loc-grid">
+          <div className="em-grid">
             {locations.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <Link to={href(`/services/${category.slug}/${e.slug}`)} className="loc-card">
-                  <span className="loc-card-name">
-                    {t('loc.inEmirate', { name: service.name, emirate: e.name })}
-                  </span>
-                  <span className="loc-card-meta">{e.authority}</span>
-                  <span className="text-link">{t('cta.view')} <Arrow /></span>
-                </Link>
+                <EmirateCard emirate={e} categorySlug={category.slug} />
               </Reveal>
             ))}
           </div>

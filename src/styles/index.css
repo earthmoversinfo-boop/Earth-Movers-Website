@@ -1865,3 +1865,109 @@ h1, h2, h3, h4 {
 .reach-card-wa .reach-label { display: inline-flex; align-items: center; gap: 0.4rem; }
 
 .reach-wa-icon { width: 1rem; height: 1rem; color: var(--wa-deep); }
+
+
+/* ===========================================================================
+   Emirate cards
+   The old cards were six white boxes of ragged height, each repeating the
+   service name before the one word that actually differed, and each ending in
+   a redundant "View" when the whole card was already a link.
+
+   These lead with the emirate, carry its name in the other script underneath,
+   and put the authority on a footer line that is pushed to the bottom so every
+   card in a row ends level whether its authority runs to one line or three.
+   Colour and movement come from the gold pin and a full inversion on hover.
+   =========================================================================== */
+
+.em-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.35rem);
+  align-items: stretch;
+}
+
+.em-grid > .reveal { display: flex; }
+
+.em-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1.25rem 1.3rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  transition: background 0.24s ease, border-color 0.24s ease, transform 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.em-card:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -18px rgba(19, 20, 23, 0.55);
+}
+
+.em-card-top { display: flex; align-items: center; gap: 0.5rem; }
+
+.em-card-pin { flex: none; color: var(--accent-deep); transition: color 0.24s ease; }
+.em-card:hover .em-card-pin { color: var(--accent); }
+
+.em-card-name {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.25;
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-name { color: #fff; }
+
+/* the same place written in the other script — real information on a
+   bilingual site, and the thing that gives the grid its character */
+.em-card-alt {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  /* indented under the name, past the pin — and aligned to the card's
+     direction, not the script's, so it sits under the name in both */
+  text-align: start;
+  padding-inline-start: 1.5rem;
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-alt { color: var(--accent); }
+
+/* pushed to the bottom, so cards in a row finish level */
+.em-card-foot {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.em-card-authority {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--body-c);
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-authority { color: var(--soft-on-dark); }
+
+.em-card-arrow {
+  flex: none;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+  transition: color 0.24s ease, transform 0.24s ease;
+}
+
+.em-card:hover .em-card-arrow { color: var(--accent); transform: translateX(3px); }
+[dir='rtl'] .em-card:hover .em-card-arrow { transform: scaleX(-1) translateX(3px); }
+
+@media (max-width: 1080px) { .em-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .em-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .em-grid { grid-template-columns: 1fr; } }
