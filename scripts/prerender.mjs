@@ -109,20 +109,42 @@ Sitemap: ${SITE}/sitemap.xml
 `
 )
 
+// A real, prerendered not-found page. Apache serves it as ErrorDocument and
+// GitHub Pages picks it up by name — in both cases with a 404 status, which is
+// what stops Google holding on to URLs that no longer exist.
+{
+  const hints = []
+  const body = render('/404').replace(/<link\b[^>]*>/g, (tag) => {
+    hints.push(tag)
+    return ''
+  })
+  fs.writeFileSync(
+    path.join(dist, '404.html'),
+    template
+      .replace(/<html[^>]*>/i, '<html lang="en" dir="ltr">')
+      .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
+      .replace(/<meta name="description"[^>]*>\s*/i, '')
+      .replace('</head>', `    ${headTagsFor('/404')}\n    ${hints.join('\n    ')}\n  </head>`)
+      .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
+  )
+}
+
 if (STAGING) {
-  // GitHub Pages: skip Jekyll, and serve the app for any unmatched path
   fs.writeFileSync(path.join(dist, '.nojekyll'), '')
-  fs.copyFileSync(path.join(dist, 'index.html'), path.join(dist, '404.html'))
 }
 
 // 301s for the old site's ranking URLs, then the SPA fallback. Order matters
 // in both files: a redirect written after the catch-all never fires.
+const CANONICAL_HOST = new URL(SITE).host
 const esc = (p) => p.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 fs.writeFileSync(
   path.join(dist, '_redirects'),
   REDIRECTS.map(([from, to]) => `${from}    ${to}    301!`).join('\n') +
-    '\n\n/*    /index.html   200\n'
+    // Every route is prerendered, so an unmatched path is genuinely missing.
+    // Answering it with the app shell and a 200 is a soft 404: Google keeps
+    // the dead URL indexed and keeps coming back for it.
+    '\n\n/*    /404.html   404\n'
 )
 
 fs.writeFileSync(
@@ -131,15 +153,38 @@ fs.writeFileSync(
   RewriteEngine On
   RewriteBase /
 
+  # One hop to the canonical host and scheme. Left alone, the site answers on
+  # http:// and on the bare domain too, and Google treats each variant as a
+  # separate site competing with the others for the same rankings.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^${CANONICAL_HOST.replace(/\./g, '\\.')}$ [NC]
+  RewriteRule ^ ${SITE}%{REQUEST_URI} [R=301,L]
+
   # Old site -> new site. Trailing slash optional; query strings preserved.
 ${REDIRECTS.map(([from, to]) => `  RewriteRule ^${esc(from)}/?$ ${to} [R=301,L]`).join('\n')}
 
-  # Everything else: serve the prerendered file if there is one, else the app.
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
+  # Assets, robots.txt, sitemap.xml and anything else that exists on disk.
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
-  RewriteRule ^ index.html [L]
+
+  # A prerendered page is served in place rather than redirected to a trailing
+  # slash, so the URL stays exactly as the canonical tag on it declares.
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*?)/?$ $1/index.html [L]
 </IfModule>
+
+# Without this mod_dir answers /services/road-works with a 301 to
+# /services/road-works/, contradicting every canonical on the site.
+<IfModule mod_dir.c>
+  DirectoryIndex index.html
+  DirectorySlash Off
+</IfModule>
+
+# Anything genuinely missing gets a 404 status rather than the app shell with a
+# 200. The old site was WordPress: attachment pages, tag archives, feeds and
+# ?p= permalinks exist beyond the URLs in the redirect map, and a 200 on those
+# is a soft 404 that keeps them in the index.
+ErrorDocument 404 /404.html
 `
 )
 
