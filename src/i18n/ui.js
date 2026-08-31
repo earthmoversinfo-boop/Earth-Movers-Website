@@ -239,6 +239,15 @@ export const UI = {
     'ct.detailsHint': 'Location, approximate quantities and your target dates, if you have them.',
     'ct.noteBefore':
       'Sending opens your own email app with everything filled in, addressed to {email}. Nothing is submitted to this website.',
+    'ct.asideAlt': 'An Earth Movers crew closing a reinstated section behind the paver',
+    'ct.asideCaption': 'Our own crew and our own plant — the team that turns up is the team you contracted.',
+    'ct.nextTitle': 'What happens after you send it',
+    'ct.next1':
+      'We read it the same working day. Enquiries do not sit in a queue over the weekend.',
+    'ct.next2':
+      'An engineer calls you to confirm scope, access, programme and whether a permit is on the critical path.',
+    'ct.next3':
+      'You get a priced proposal with the exclusions written down rather than implied.',
     'ct.mapEyebrow': 'Find us',
     'ct.mapHeading': 'Business Bay, Dubai.',
     'ct.eyebrow': 'Contact',
@@ -513,6 +522,15 @@ export const UI = {
     'ct.detailsHint': 'الموقع والكميات التقريبية والمواعيد المستهدفة، إن توفّرت.',
     'ct.noteBefore':
       'الإرسال يفتح تطبيق البريد لديك وقد عُبّئت الرسالة بالكامل، موجَّهة إلى {email}. لا يُرسَل شيء إلى هذا الموقع.',
+    'ct.asideAlt': 'فريق إيرث موفرز يُغلق قطاعاً مُعاد إنشاؤه خلف الفرّادة',
+    'ct.asideCaption': 'فريقنا ومعداتنا — الفريق الذي يحضر هو الفريق الذي تعاقدت معه.',
+    'ct.nextTitle': 'ماذا يحدث بعد الإرسال',
+    'ct.next1':
+      'نقرأ طلبك في يوم العمل نفسه. فالاستفسارات لا تبقى في طابور خلال العطلة.',
+    'ct.next2':
+      'يتصل بك مهندس لتأكيد النطاق والوصول والبرنامج الزمني، وما إذا كان تصريح ما على المسار الحرج.',
+    'ct.next3':
+      'تحصل على عرض سعر مكتوب فيه المستثنيات صراحةً لا ضمناً.',
     'ct.mapEyebrow': 'موقعنا',
     'ct.mapHeading': 'الخليج التجاري، دبي.',
     'ct.eyebrow': 'تواصل معنا',

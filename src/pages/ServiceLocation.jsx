@@ -7,6 +7,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import EmirateCard from '../components/EmirateCard.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { lowerName } from '../lib/casing.js'
 import { emiratesFor } from '../data/services.js'
 import { asset } from '../lib/asset.js'
 
@@ -15,7 +16,7 @@ export default function ServiceLocation({ category, emirate }) {
   const { company } = content
   const covered = emiratesFor(category, locale)
   const siblings = covered.filter((e) => e.slug !== emirate.slug)
-  const lower = (s) => (locale === 'ar' ? s : s.toLowerCase())
+  const lower = (s) => lowerName(s, locale)
 
   return (
     <main>

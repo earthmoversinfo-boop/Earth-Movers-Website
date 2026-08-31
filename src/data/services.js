@@ -220,6 +220,12 @@ const CATEGORIES = [
         keyword: 'traffic management contractor',
         text: 'Supply, installation, maintenance and removal of traffic management on site: cones, barriers, delineators, warning and directional signage, flashing arrow boards, TMA (truck-mounted attenuator) units and trained flagmen, inspected and maintained for the life of the works.',
       },
+      {
+        slug: 'tma-rental',
+        name: 'TMA Rental',
+        keyword: 'TMA rental Dubai',
+        text: 'Truck-mounted attenuator units for hire across Dubai and the UAE — crash-tested impact protection with a certified host vehicle, arrow board and trained operator, on daily, weekly or monthly rental for works on high-speed roads.',
+      },
     ],
   },
   {

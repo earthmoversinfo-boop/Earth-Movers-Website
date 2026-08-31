@@ -2379,3 +2379,105 @@ h1, h2, h3, h4 {
 }
 
 .incl-card-stacked .incl-card-body { padding-inline: 0.6rem; }
+
+/* ---------------------------------------------------------------------------
+   Contact form: the form keeps a readable measure, and the band beside it
+   carries the answer to the question a visitor has with their hand over the
+   send button — what happens next — plus the crew who would turn up. Filler
+   would have been worse than the empty space; this is the reassurance that
+   stops a form being abandoned half-filled.
+   --------------------------------------------------------------------------- */
+
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 44rem) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.form-layout .contact-form { max-width: none; }
+
+.form-aside { display: grid; gap: 1.9rem; align-content: start; }
+
+.form-aside-figure { margin: 0; display: grid; gap: 0.8rem; }
+
+.form-aside-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.form-aside-figure figcaption {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--body-c);
+  padding-inline-start: 0.9rem;
+  border-inline-start: 2px solid var(--accent);
+}
+
+.form-next h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin: 0 0 1rem;
+}
+
+.form-next ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.95rem; counter-reset: step; }
+
+.form-next li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.8rem;
+  color: var(--body-c);
+  font-size: 0.92rem;
+  line-height: 1.62;
+}
+
+.form-next li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.form-trust {
+  list-style: none;
+  margin: 0;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+
+.form-trust li {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+[dir='rtl'] .form-next h3,
+[dir='rtl'] .form-trust li { letter-spacing: normal; text-transform: none; }
+
+@media (max-width: 980px) {
+  .form-layout { grid-template-columns: 1fr; }
+  /* On one column the picture leads and the steps follow the form, so the
+     fields still come first on a phone. */
+  .form-aside { grid-template-columns: 1fr; }
+}

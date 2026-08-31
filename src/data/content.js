@@ -12,7 +12,7 @@ export const company = {
   phoneHref: 'tel:+971551727024',
   // wa.me takes the number in international form with no plus or spaces
   whatsapp: '971551727024',
-  email: 'Earthmoversinfo@gmail.com',
+  email: 'info@earthmoversint.com',
   address: ['Capital Golden Tower', 'Office 706, 7th Floor', 'Business Bay, Dubai, UAE'],
   // Google Business listing — used for the footer map and directions link
   mapQuery: 'Earth Movers International Prime Contracting L.L.C, Capital Golden Tower, Business Bay, Dubai',

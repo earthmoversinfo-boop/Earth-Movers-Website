@@ -949,4 +949,62 @@ export const serviceContent = {
       },
     ],
   },
+  'tma-rental': {
+    img: '/images/services/tma-rental.jpg',
+    h1: 'TMA Rental in Dubai — Truck-Mounted Attenuator Hire',
+    lead: 'Crash-tested truck-mounted attenuators for hire across Dubai and the UAE, with a certified host vehicle, arrow board and trained operator.',
+    caption: 'A shadow vehicle holding station behind a closure on a live carriageway.',
+    intro:
+      'A truck-mounted attenuator is the last thing standing between a distracted driver at 100 km/h and the crew working ahead of it. We rent TMA units across Dubai and the wider UAE — daily, weekly or monthly, with the host vehicle, the arrow board and an operator who knows where the unit is supposed to sit. If your works are on an RTA road at speed, the permit will ask for one, and an uncertified unit is the fastest way to have a night shift stopped.',
+    body: [
+      'A TMA — also called a crash cushion truck, attenuator truck or shadow vehicle — is a heavy host vehicle carrying an energy-absorbing rear module. When a vehicle strikes it, the module crushes progressively and brings the impacting car to rest over a controlled distance instead of into the back of a stationary lorry. Everything about it is engineering rather than presence: the module has to be crash-tested to a recognised standard, the host vehicle has to be heavy enough for that test level, and the unit has to be positioned at the correct roll-ahead distance ahead of the work area. Get the ballast wrong and a certified module behaves like an uncertified one.',
+      'Our units are supplied with a mounted arrow board and warning beacons, so the TMA does the advance-warning job as well as the impact job. On a mobile operation — line marking, sweeping, crack sealing, survey, sign maintenance — the unit tracks the works at walking pace and is usually the only protection those crews have. On a static closure it holds station at the taper as the shadow vehicle, which is where the RTA layout drawing will normally place it.',
+      'Rental comes with an operator as standard. That is not an upsell: positioning is the whole point of the equipment, and a TMA parked in the wrong place is protection on paper only. Our operators work to the approved traffic management layout, hold the position through the shift, and reposition as the works advance. Where we are already delivering the traffic management or holding the lane closure permit, the TMA is priced into the same package and one team is accountable for the drawing, the approval and what is physically on the road.',
+      'We mobilise from Dubai to Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Night works, weekend possessions and multi-shift programmes are normal rather than exceptional — most high-speed carriageway work in the UAE happens at night, and the rental is quoted against the shift pattern rather than a nine-to-five day.',
+    ],
+    scope: [
+      'Truck-mounted attenuator units on daily, weekly and monthly rental',
+      'Certified host vehicle ballasted to the module\u2019s tested weight range',
+      'Mounted arrow board, warning beacons and high-visibility markings',
+      'Trained operator supplied as standard, working to the approved layout',
+      'Positioning at the correct roll-ahead distance ahead of the work area',
+      'Static shadow-vehicle duty at closures and tapers',
+      'Rolling protection for mobile works \u2014 marking, sweeping, survey, sign maintenance',
+      'Night, weekend and multi-shift cover',
+      'Bundled with lane closure permits and full traffic management where wanted',
+    ],
+    specs: [
+      ['Equipment', 'Truck-mounted attenuator (TMA) with mounted arrow board and beacons'],
+      ['Typical use', 'High-speed carriageways, mobile works, closures and tapers, night shifts'],
+      ['Supplied with', 'Ballasted host vehicle, trained operator, positioning to the approved layout'],
+      ['Rental terms', 'Daily, weekly and monthly; shift-based pricing for night works'],
+      ['Coverage', 'Dubai, Abu Dhabi and the Northern Emirates, mobilised from Dubai'],
+    ],
+    faqs: [
+      {
+        q: 'What is a TMA and why does the RTA ask for one?',
+        a: 'A TMA, or truck-mounted attenuator, is a heavy vehicle carrying a crash-tested energy-absorbing module at the rear. It is placed between traffic and the work area so that an errant vehicle strikes a device designed to decelerate it rather than the back of a lorry or the crew themselves. On higher-speed roads the approved traffic management layout will normally specify one, and works can be stopped if it is absent or if the unit on site is not certified.',
+      },
+      {
+        q: 'How much does TMA rental cost in Dubai?',
+        a: 'It depends on the shift pattern more than the day count: a single night shift, a two-week mobile marking programme and a six-month closure price very differently. Send us the location, the road, the duration and whether the works are static or mobile, and we will price it against your programme. Where we are also doing the traffic management or the permit, the TMA usually costs less as part of that package than hired separately.',
+      },
+      {
+        q: 'Does the rental include an operator?',
+        a: 'Yes, as standard. Positioning is what makes the equipment work — roll-ahead distance, lateral offset and holding station as the works advance are all part of it. Our operators work to the approved layout rather than parking where there is room.',
+      },
+      {
+        q: 'Can the TMA follow a mobile operation?',
+        a: 'That is one of its main uses. For line marking, sweeping, crack sealing, sign maintenance and survey on a live carriageway, the unit tracks the works at their pace and is often the only protection the crew has. Tell us the operation and its speed and we will confirm the setup.',
+      },
+      {
+        q: 'Do you rent a TMA on its own, or only with traffic management?',
+        a: 'On its own is fine — plenty of clients already have their own traffic management team and need the unit and the operator. Where you would rather one party held the drawing, the permit and the equipment, we do that too, and it removes the argument about who is responsible when an inspector queries the layout.',
+      },
+      {
+        q: 'Do you supply TMA units outside Dubai?',
+        a: 'Yes. We mobilise from Dubai to Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Mobilisation is quoted separately for the Northern Emirates and the Western Region, so you can see what the travel is actually costing.',
+      },
+    ],
+  },
 }

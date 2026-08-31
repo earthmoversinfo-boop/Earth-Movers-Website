@@ -4,6 +4,7 @@ import PageBanner from '../components/PageBanner.jsx'
 import { Arrow, WhatsApp } from '../components/Icons.jsx'
 import { whatsAppHref, whatsAppMessage } from '../components/WhatsAppButton.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { asset } from '../lib/asset.js'
 
 export default function Contact() {
   const { t, locale, tax, content } = useLocale()
@@ -99,8 +100,9 @@ export default function Contact() {
             <Reveal delay={140}><p className="lead">{t('ct.formLead')}</p></Reveal>
           </div>
 
-          <Reveal delay={160}>
-            <form className="contact-form" onSubmit={submit}>
+          <div className="form-layout">
+            <Reveal delay={160}>
+              <form className="contact-form" onSubmit={submit}>
               <div className="form-row">
                 <div className="field">
                   <label htmlFor="cf-name">{t('ct.name')}</label>
@@ -181,8 +183,40 @@ export default function Contact() {
               <button type="submit" className="btn btn-solid form-submit">
                 {t('ct.send')} <Arrow className="btn-arrow" />
               </button>
-            </form>
-          </Reveal>
+              </form>
+            </Reveal>
+
+            {/* The form is capped at a readable measure, which on a desktop
+                leaves half the band empty. Rather than stretching the fields
+                across it, the space answers the question a visitor actually
+                has at this point — what happens after I press send — and shows
+                the crew who would turn up. */}
+            <Reveal delay={220} className="form-aside">
+              <figure className="form-aside-figure">
+                <img
+                  src={asset('/images/services/asphalt-patch-works-tall.jpg')}
+                  alt={t('ct.asideAlt')}
+                  loading="lazy"
+                />
+                <figcaption>{t('ct.asideCaption')}</figcaption>
+              </figure>
+
+              <div className="form-next">
+                <h3>{t('ct.nextTitle')}</h3>
+                <ol>
+                  <li>{t('ct.next1')}</li>
+                  <li>{t('ct.next2')}</li>
+                  <li>{t('ct.next3')}</li>
+                </ol>
+              </div>
+
+              <ul className="form-trust">
+                <li>{t('foot.certRta')}</li>
+                <li>{t('foot.certDm')}</li>
+                <li>{t('foot.certSince')}</li>
+              </ul>
+            </Reveal>
+          </div>
         </div>
       </section>
 

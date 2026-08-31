@@ -9,6 +9,7 @@ import NotFound from './NotFound.jsx'
 import EmirateCard from '../components/EmirateCard.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { lowerName } from '../lib/casing.js'
 import { emiratesFor } from '../data/services.js'
 
 export default function ServiceCategory() {
@@ -20,7 +21,7 @@ export default function ServiceCategory() {
   const locations = emiratesFor(category, locale)
   const others = tax.categories.filter((c) => c.slug !== category.slug)
   const where = category.coverage === 'all' ? t('cov.whereAll') : t('cov.dubai')
-  const lower = (s) => (locale === 'ar' ? s : s.toLowerCase())
+  const lower = (s) => lowerName(s, locale)
 
   return (
     <main>

@@ -54,6 +54,7 @@ PLAN = {
     'lane-closure-permits':        (f'{S}/lane-closure.jpg',            (0.30, 0.10, 1.00, 1.00)),
     'road-closure-permits':        (f'{S}/road-closure.jpg',            (0.00, 0.35, 1.00, 0.75)),
     'traffic-management':          (f'{S}/traffic-management.jpg',      (0.00, 0.30, 1.00, 0.65)),
+    'tma-rental':                  (f'{S}/lane-closure.jpg',            (0.00, 0.25, 0.62, 1.00)),
 
     # Earth Works (continued)
     'site-preparation':            (f'{S}/access-roads.jpg',            (0.20, 0.05, 1.00, 1.00)),
@@ -86,6 +87,7 @@ TALL = {
     'lane-closure-permits':        (0.44, 0.20, 0.72, 1.00),
     'road-closure-permits':        (0.00, 0.30, 1.00, 0.85),
     'traffic-management':          (0.00, 0.25, 1.00, 0.80),
+    'tma-rental':                  (0.00, 0.30, 0.48, 1.00),
     'site-preparation':            (0.34, 0.00, 0.86, 1.00),
     'rta-approved-entry-exit-works': (0.02, 0.00, 0.78, 1.00),
     'rta-service-protection':      (0.14, 0.00, 0.90, 1.00),
@@ -141,6 +143,7 @@ PUNCH = {
     'asphalt-patch-works': (1.10, 1.18),
     'traffic-management':  (1.06, 1.12),
     'road-closure-permits': (1.06, 1.10),
+    'tma-rental':          (1.06, 1.12),
 }
 
 

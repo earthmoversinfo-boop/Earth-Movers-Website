@@ -6,6 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.jsx'
 import EmirateCard from '../components/EmirateCard.jsx'
 import { Arrow, CheckCircle } from '../components/Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { lowerName } from '../lib/casing.js'
 import { emiratesFor } from '../data/services.js'
 import { asset } from '../lib/asset.js'
 
@@ -73,7 +74,7 @@ export default function ServiceDetail({ category, service }) {
               <Reveal delay={80}>
                 <h2 className="display-lg">
                   {t('svc.covers', {
-                    name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+                    name: lowerName(service.name, locale),
                   })}
                 </h2>
               </Reveal>
@@ -112,8 +113,8 @@ export default function ServiceDetail({ category, service }) {
               <Reveal delay={140}>
                 <p className="lead">
                   {t('svc.chooseEmirate', {
-                    name: locale === 'ar' ? service.name : service.name.toLowerCase(),
-                    category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                    name: lowerName(service.name, locale),
+                    category: lowerName(category.name, locale),
                   })}
                 </p>
               </Reveal>
@@ -150,7 +151,7 @@ export default function ServiceDetail({ category, service }) {
             <Reveal delay={service.faqs.length * 60} className="faq-item">
               <h3>
                 {t('svc.priceQ', {
-                  name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+                  name: lowerName(service.name, locale),
                 })}
               </h3>
               <p>
@@ -175,7 +176,7 @@ export default function ServiceDetail({ category, service }) {
               <Reveal delay={80}>
                 <h2 className="display-lg">
                   {t('svc.otherIn', {
-                    category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                    category: lowerName(category.name, locale),
                   })}
                 </h2>
               </Reveal>
@@ -183,7 +184,7 @@ export default function ServiceDetail({ category, service }) {
             <Reveal delay={140}>
               <Link to={href(`/services/${category.slug}`)} className="text-link">
                 {t('svc.allOf', {
-                  category: locale === 'ar' ? category.name : category.name.toLowerCase(),
+                  category: lowerName(category.name, locale),
                 })}{' '}
                 <Arrow />
               </Link>
@@ -210,7 +211,7 @@ export default function ServiceDetail({ category, service }) {
 
       <CTA
         title={t('svc.needPriced', {
-          name: locale === 'ar' ? service.name : service.name.toLowerCase(),
+          name: lowerName(service.name, locale),
         })}
         text={t('svc.ctaText')}
       />
