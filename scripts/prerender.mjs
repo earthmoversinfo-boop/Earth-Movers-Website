@@ -8,6 +8,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { REDIRECTS } from '../src/data/redirects.js'
 
 const dist = path.resolve('dist')
 // '/' for the real site, '/<repo>/' for a GitHub Pages project site
@@ -103,13 +104,26 @@ if (STAGING) {
   fs.copyFileSync(path.join(dist, 'index.html'), path.join(dist, '404.html'))
 }
 
-// SPA fallbacks — the prerendered files are served first where they exist.
-fs.writeFileSync(path.join(dist, '_redirects'), '/*    /index.html   200\n')
+// 301s for the old site's ranking URLs, then the SPA fallback. Order matters
+// in both files: a redirect written after the catch-all never fires.
+const esc = (p) => p.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+fs.writeFileSync(
+  path.join(dist, '_redirects'),
+  REDIRECTS.map(([from, to]) => `${from}    ${to}    301!`).join('\n') +
+    '\n\n/*    /index.html   200\n'
+)
+
 fs.writeFileSync(
   path.join(dist, '.htaccess'),
   `<IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Old site -> new site. Trailing slash optional; query strings preserved.
+${REDIRECTS.map(([from, to]) => `  RewriteRule ^${esc(from)}/?$ ${to} [R=301,L]`).join('\n')}
+
+  # Everything else: serve the prerendered file if there is one, else the app.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
