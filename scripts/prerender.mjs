@@ -37,6 +37,14 @@ for (const route of routes) {
     .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
     .replace(/<meta name="description"[^>]*>\s*/i, '')
     .replace('</head>', `    ${headTagsFor(route)}\n    ${hints.join('\n    ')}\n  </head>`)
+    // The staging copy must not compete with the real domain in search. This
+    // has to be a meta tag on the page: GitHub Pages cannot set an
+    // X-Robots-Tag header, and robots.txt alone does not prevent indexing —
+    // it only stops the crawl, so a URL somebody links to can still be listed.
+    .replace(
+      /<meta name="robots"[^>]*>/i,
+      STAGING ? '<meta name="robots" content="noindex,nofollow">' : '$&'
+    )
     .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
 
   const dir = route === '/' ? dist : path.join(dist, route)
@@ -88,8 +96,11 @@ ${urls}
 fs.writeFileSync(
   path.join(dist, 'robots.txt'),
   STAGING
-    ? `User-agent: *
-Disallow: /
+    ? // Crawling is allowed on purpose: a blocked page is never fetched, so
+      // the noindex meta on it is never read, and the URL can still be listed
+      // from an inbound link. Letting the crawler in is what gets it removed.
+      `User-agent: *
+Allow: /
 `
     : `User-agent: *
 Allow: /
