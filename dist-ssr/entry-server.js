@@ -1352,6 +1352,265 @@ var serviceContent = {
 				a: "Usually an incomplete package, a drawing in the wrong format for that body, or a submission made before a dependent approval was issued. All three are avoidable, and avoiding them is most of what this service is."
 			}
 		]
+	},
+	"road-base-supply": {
+		img: "/images/services/road-base-supply.jpg",
+		h1: "Road Base Supplier in Dubai & the UAE",
+		lead: "Crushed aggregate road base and sub-base to RTA, DMT and municipality gradings, delivered with the test certificates the layer needs.",
+		caption: "Graded road base tipped and spread ahead of the roller.",
+		intro: "Road base is the layer that decides whether a road lasts. Get the grading wrong and the surface tells you eighteen months later, in rutting and cracking that costs more to repair than the material ever saved. We supply road base and sub-base from quarries whose material is already approved by the authority you are building for, and we deliver it with the paperwork that lets the layer be laid and signed off.",
+		body: ["Different authorities want different things. RTA road base is not interchangeable with a DMT grading, and a municipality job in Sharjah or Ajman will have its own accepted sources. We match the source to the specification before the first load moves, and supply grading analysis, CBR, Los Angeles abrasion and plasticity results with the material rather than a fortnight afterwards when the consultant asks.", "Consistency between loads matters as much as the first test. Material that segregates in the stockpile or on the tipper gives a layer that passes density in one spot and fails three metres away, and the retest is on your programme, not the quarry’s. We load from working faces rather than the tail of a pile, and run our own tippers, so a delivery that has to arrive before the roller does actually arrives before the roller does."],
+		scope: [
+			"Aggregate road base to RTA, DMT and municipality gradings",
+			"Sub-base and capping layer material",
+			"Grading, CBR, LAA and plasticity certificates with delivery",
+			"Approved-source material for authority-supervised works",
+			"Bulk delivery by our own tipper and trailer fleet",
+			"Scheduled deliveries tied to your laying and rolling programme",
+			"Supply-and-lay packages where you want one accountable party"
+		],
+		specs: [
+			["Materials", "Road base, sub-base, capping layer, crusher run"],
+			["Typical use", "Road and car park formation, hardstanding, yard and platform build-up"],
+			["Control", "Grading analysis, CBR, LAA, plasticity index, delivery tickets"],
+			["Coverage", "All seven emirates, delivered from approved UAE quarries"]
+		],
+		faqs: [
+			{
+				q: "Is your road base approved for RTA road works?",
+				a: "Yes. We supply from quarries whose material already holds the relevant authority approval, and provide the grading and CBR certification with delivery. If your project is under DMT or a municipality instead, tell us at enquiry stage and we source against that specification rather than substituting an RTA grading."
+			},
+			{
+				q: "Can you supply and lay, or supply only?",
+				a: "Either. Many clients take supply-only where they already have a laying team. Where we supply and lay, the density testing and the material certification come from the same party, which removes the argument about whether a failed test is a material problem or a compaction problem."
+			},
+			{
+				q: "What quantities do you deliver?",
+				a: "From a single 20-tonne load up to continuous daily supply for a road package. For sustained deliveries we agree a schedule against your laying programme so material arrives ahead of the paver and the roller rather than sitting in a stockpile losing grading."
+			}
+		]
+	},
+	"aggregate-supply": {
+		img: "/images/services/aggregate-supply.jpg",
+		h1: "Aggregate Supplier in Dubai & the UAE",
+		lead: "Single-size and graded aggregates from 5mm to 40mm, from approved crushers, with consistent grading load to load.",
+		caption: "Graded aggregate stockpiled and loaded from the working face.",
+		intro: "Aggregate is bought on a certificate and judged on the twentieth load. We supply single-size and graded aggregate for concrete, asphalt, drainage and pipe bedding from approved crushers across the UAE, and we hold the grading steady across a delivery programme rather than only on the sample that went to the lab.",
+		body: ["Sizes run from 5mm through 10, 14, 20 and 40mm, plus graded blends where the mix design calls for them. For structural concrete we supply against the consultant’s approved source list; for asphalt, to the mix design already lodged with the authority; for drainage blankets and pipe surround, to the clean, single-size gradings that actually let water through instead of silting up in the first year.", "Where a project is chloride- or sulphate-sensitive — which on coastal plots is most of them — we supply the chemical results alongside the physical ones. Aggregate that passes grading and fails sulphate content is still a rejected load, and finding that out after the pour is expensive."],
+		scope: [
+			"Single-size aggregate: 5mm, 10mm, 14mm, 20mm, 40mm",
+			"Graded aggregate blends to mix design",
+			"Concrete aggregate from consultant-approved sources",
+			"Asphalt aggregate to the approved mix design",
+			"Drainage and filter media, pipe bedding and surround",
+			"Grading, soundness, LAA and chemical test certificates",
+			"Bulk delivery across the emirates by our own fleet"
+		],
+		specs: [
+			["Sizes", "5mm, 10mm, 14mm, 20mm, 40mm and graded blends"],
+			["Typical use", "Structural concrete, asphalt mixes, drainage blankets, pipe bedding"],
+			["Control", "Grading, LAA, soundness, sulphate and chloride content"],
+			["Coverage", "All seven emirates, from approved UAE crushers"]
+		],
+		faqs: [
+			{
+				q: "Do you supply aggregate for structural concrete?",
+				a: "Yes, from sources on the consultant’s approved list, with grading, soundness and chemical certification. If the source has not been approved yet we can submit the material for approval as part of the supply package."
+			},
+			{
+				q: "Can you hold one grading across a long delivery programme?",
+				a: "That is the point of buying from us rather than the cheapest load available on the day. We fix the source at the start of the package and load from working faces rather than pile tails, so the grading you approved is the grading that keeps arriving."
+			},
+			{
+				q: "Do you supply washed aggregate?",
+				a: "Yes, where the specification requires it — typically for exposed concrete, filter media and drainage applications where fines would block the layer. Washed material is priced separately because it costs more to produce."
+			}
+		]
+	},
+	"sand-supply": {
+		img: "/images/services/sand-supply.jpg",
+		h1: "Sand Supplier in Dubai & the UAE",
+		lead: "Fill sand, sweet sand and washed sand in bulk for backfill, bedding, blinding and platform raising.",
+		caption: "Fill sand delivered and spread for a platform build-up.",
+		intro: "Sand is the highest-volume material on most UAE sites and the one most often bought on price alone. The difference shows up in the compaction results and, on coastal plots, in the sulphate and chloride figures. We supply fill, sweet and washed sand in bulk with the test results the specification asks for, delivered on our own tippers against your programme.",
+		body: ["Fill sand goes into bulk platform raising and general backfill, where what matters is that it compacts predictably and does not carry contamination. Sweet sand — low in salts — is what you want against structures, in trench surround and under slabs, because the alternative is chloride attack on reinforcement that nobody sees for a decade. Washed sand goes where the specification calls for a clean, controlled grading: blinding, bedding and screeds.", "For anything placed against concrete or reinforcement we supply sulphate and chloride results as standard rather than on request. It is a small cost at supply stage and an enormous one to discover later."],
+		scope: [
+			"Fill sand for platform raising and bulk backfill",
+			"Sweet sand for structural backfill and trench surround",
+			"Washed sand for blinding, bedding and screeds",
+			"Sulphate and chloride testing where the specification requires it",
+			"Grading and compaction characteristics on request",
+			"Bulk delivery by tipper and trailer, scheduled to the works",
+			"Supply-and-place with compaction and density testing"
+		],
+		specs: [
+			["Materials", "Fill sand, sweet sand, washed sand"],
+			["Typical use", "Platform raising, structural and trench backfill, blinding, bedding"],
+			["Control", "Grading, sulphate and chloride content, field density on placed material"],
+			["Coverage", "All seven emirates, mobilised from Dubai"]
+		],
+		faqs: [
+			{
+				q: "What is the difference between fill sand and sweet sand?",
+				a: "Sweet sand is low in soluble salts, which is why specifications call for it against concrete, reinforcement and buried services. Fill sand is for bulk volume where there is no structure in contact. Using fill sand where sweet sand was specified is a common and expensive substitution — we quote them separately so the difference is visible."
+			},
+			{
+				q: "Do you provide sulphate and chloride test results?",
+				a: "Yes, as standard for any sand going against structures or reinforcement, and on request for bulk fill. Coastal plots across the UAE routinely need them and the consultant will ask."
+			},
+			{
+				q: "Can you place and compact the sand as well as supply it?",
+				a: "Yes. Supply-and-place is often the better arrangement: the material certification and the field density results then come from one party, and there is no dispute about whether a failed layer was the sand or the compaction."
+			}
+		]
+	},
+	"stone-supply": {
+		img: "/images/services/stone-supply.jpg",
+		h1: "Stone Supplier in Dubai & the UAE",
+		lead: "Rock armour, rip-rap, boulders and crushed stone, sized to the drawing and delivered graded.",
+		caption: "Sized stone loaded for slope and scour protection.",
+		intro: "Stone is specified by size distribution, and it is usually delivered as whatever came off the face that morning. We supply rock armour, rip-rap, boulders and crushed stone graded to the drawing — which matters, because a slope protection layer built from the wrong size distribution does not fail gradually, it fails in one storm.",
+		body: ["We source from quarries in Ras Al Khaimah and Fujairah, where the hard rock is, and grade at the quarry rather than sorting on your site at your cost. Sizes run from crushed stone and gabion fill up through rip-rap and armour rock and on to individual placed boulders for landscape and scour protection.", "Delivery is by trailer with the loading arranged so the material arrives in the size bands you ordered. Where the stone is going into gabions or into placed slope protection, our own teams can carry out the placing as well, so the specified profile is what actually ends up on the bank."],
+		scope: [
+			"Rock armour and rip-rap graded to the drawing",
+			"Gabion fill stone, sized to the basket",
+			"Individual boulders for landscape and scour protection",
+			"Crushed stone for hardstanding and haul roads",
+			"Quarry grading, so sorting does not happen at your cost",
+			"Delivery by trailer across the emirates",
+			"Placing by our own teams where the profile is specified"
+		],
+		specs: [
+			["Materials", "Armour rock, rip-rap, gabion fill, boulders, crushed stone"],
+			["Typical use", "Slope and scour protection, gabion walls, hardstanding, landscape features"],
+			["Control", "Size grading at source, density and durability certification"],
+			["Coverage", "All seven emirates, from RAK and Fujairah quarries"]
+		],
+		faqs: [
+			{
+				q: "Can you supply stone graded to a specific size band?",
+				a: "Yes, and we grade at the quarry rather than delivering mixed material for you to sort on site. Give us the size distribution from the drawing and that is what gets loaded."
+			},
+			{
+				q: "Do you supply and place slope protection?",
+				a: "Yes. Where a profile is specified — slope protection, scour aprons, channel lining — supply-and-place means the delivered grading and the finished profile are one party’s responsibility."
+			},
+			{
+				q: "Where does the stone come from?",
+				a: "Hard rock quarries in Ras Al Khaimah and Fujairah, which is where the UAE’s armour-grade material is produced. Certification travels with the load."
+			}
+		]
+	},
+	"gabion-boxes": {
+		img: "/images/services/gabion-boxes.jpg",
+		h1: "Gabion Boxes Supplier in Dubai & the UAE",
+		lead: "Galvanised and PVC-coated gabion baskets and mattresses, supplied loose or filled and placed by our own teams.",
+		caption: "Gabion baskets filled and faced along a retained edge.",
+		intro: "Gabions do a job that concrete cannot: they retain, they drain, and they tolerate movement without cracking. We supply galvanised and PVC-coated baskets and mattresses in standard and made-to-order sizes, and we fill and place them where you want the finished wall rather than a pallet of mesh.",
+		body: ["Coating matters more here than anywhere else in the package. Heavily galvanised mesh is adequate inland; anything within reach of salt spray or brackish groundwater wants PVC coating, and the difference in service life is measured in decades. We will tell you which one the location needs rather than quoting the cheaper one and leaving it to you.", "Where we place as well as supply, the stone comes from our own supply line — sized to the basket so the face is packed rather than loosely tipped. A gabion wall is judged on its face, and a well-packed face is a labour decision made at the time of building, not a material that can be fixed afterwards."],
+		scope: [
+			"Galvanised gabion baskets in standard and custom sizes",
+			"PVC-coated baskets for coastal and saline exposure",
+			"Gabion mattresses for channel lining and scour aprons",
+			"Lacing wire, spirals, stiffeners and geotextile backing",
+			"Sized gabion fill stone from our own supply line",
+			"Filling and placing by our own teams",
+			"Retaining walls, embankment protection and channel works"
+		],
+		specs: [
+			["Materials", "Galvanised and PVC-coated mesh baskets, mattresses, fixings, geotextile"],
+			["Typical use", "Retaining walls, embankment and slope protection, channel lining, landscape"],
+			["Control", "Mesh gauge and coating certification, fill grading, face packing"],
+			["Coverage", "All seven emirates, mobilised from Dubai"]
+		],
+		faqs: [
+			{
+				q: "Should I use galvanised or PVC-coated gabions?",
+				a: "Galvanised is fine inland and away from saline groundwater. Anywhere within reach of salt spray, tidal water or brackish ground, PVC coating is worth the difference — it is the coating, not the stone, that determines how long the wall stands."
+			},
+			{
+				q: "Do you fill and place, or supply the baskets only?",
+				a: "Both. Supply-only is common where you have your own labour. Where we place, the fill stone comes from our own supply line sized to the basket, and the face is hand-packed rather than tipped, which is what the finished appearance depends on."
+			},
+			{
+				q: "Can you supply non-standard basket sizes?",
+				a: "Yes. Standard sizes cover most work, but retaining walls with an unusual profile or a specific stepping arrangement are made to order against the drawing."
+			}
+		]
+	},
+	"material-shifting": {
+		img: "/images/services/material-shifting.jpg",
+		h1: "Material Shifting & Haulage Contractor in Dubai",
+		lead: "Bulk movement of material on and off site with our own tippers, trailers and loaders — muck-away, import and internal shifting.",
+		caption: "Tippers and a loader working a stockpile for haulage off site.",
+		intro: "Material shifting is the part of a programme that is invisible until it stops. A dig cannot continue when there is nowhere to put the spoil, and a fill cannot proceed when the import is a day behind. We run our own tippers, trailers and loaders, so haulage is a resource we control rather than one we book.",
+		body: ["The work splits three ways. Muck-away takes excavated material off site under municipal disposal permit, with tickets retained for the project file — which matters, because disposal without a permit trail is a compliance problem long after the hole is filled. Import brings in fill, sand and aggregate against the laying programme. Internal shifting moves material between stockpiles and working areas on large sites, which is usually cheaper than exporting and re-importing the same material twice.", "We also move plant. Low-beds and trailers transport excavators, dozers, rollers and breakers between sites and across the emirates, with the permits and escorts that oversize loads need. On a multi-site programme that is often the constraint nobody prices until it bites."],
+		scope: [
+			"Muck-away and disposal under municipal permit, tickets retained",
+			"Import of fill, sand, aggregate and road base to programme",
+			"Internal shifting between stockpiles and working areas",
+			"Stockpile management, loading and re-handling",
+			"Plant transport by low-bed and trailer across the emirates",
+			"Oversize load permits and escorts where required",
+			"Scheduled haulage tied to the excavation or laying sequence"
+		],
+		specs: [
+			["Plant", "Tippers, tipper trailers, low-beds, wheel loaders, excavators"],
+			["Typical use", "Muck-away, fill import, internal site shifting, plant relocation"],
+			["Control", "Disposal permits and tickets, load records, delivery scheduling"],
+			["Coverage", "All seven emirates, based in Dubai"]
+		],
+		faqs: [
+			{
+				q: "Do you handle the disposal permits?",
+				a: "Yes. Excavated material goes to a permitted tip under the relevant municipal disposal permit, and the tickets are retained for the project file. Disposal without that trail is a compliance exposure that outlasts the works."
+			},
+			{
+				q: "Can you keep up with a continuous excavation?",
+				a: "That is what owning the fleet is for. We size the haulage to the dig rate at tender stage so the excavator is never standing waiting for a tipper, and we can add units from our own fleet rather than waiting on a hire company."
+			},
+			{
+				q: "Do you transport plant as well as material?",
+				a: "Yes — excavators, dozers, rollers, breakers and graders moved by low-bed and trailer across the emirates, including the permits and escorts oversize loads require."
+			}
+		]
+	},
+	"site-preparation": {
+		img: "/images/services/site-preparation.jpg",
+		h1: "Land Clearing & Site Preparation Contractor in Dubai",
+		lead: "Plots cleared down to workable ground and handed over graded, stabilised and ready to build.",
+		caption: "A plot cleared and graded, ready for setting out.",
+		intro: "Site preparation is the work that turns a plot into a site. Vegetation, demolition arisings, buried slabs, abandoned services and uncontrolled fill all have to come out before anything useful can be set out, and what is actually underground is rarely what the drawing says. We clear, remove and grade, and we tell you what we found.",
+		body: ["Older industrial and residential plots across Dubai and the Northern Emirates are full of things nobody recorded: previous foundations, buried tanks, dead cables, capped wells, imported fill of unknown origin. We scan and trial-pit before the machines start, so a live service is found by a survey rather than by a bucket. Anything uncharted is recorded and reported before it is removed.", "Once the plot is clear the platform is graded to the levels you need for setting out, and stabilised so it stays workable through the first weeks of the programme — haul routes, working areas and a surface that survives rain and plant movement. Arisings are classified, loaded and hauled under municipal disposal permit with tickets retained."],
+		scope: [
+			"Vegetation, tree and root removal",
+			"Demolition arisings, buried slabs and obstruction removal",
+			"Service scanning and trial pits before machines start",
+			"Removal of uncontrolled and contaminated fill",
+			"Classification, haulage and disposal under municipal permit",
+			"Grading to working levels and platform stabilisation",
+			"Haul routes and working areas set up for the following trades"
+		],
+		specs: [
+			["Plant", "Excavators, dozers, wheel loaders, breakers, tippers, graders and rollers"],
+			["Typical use", "New plots, redevelopment sites, industrial yards, infrastructure corridors"],
+			["Control", "Service scanning, trial pits, disposal tickets, level survey on handover"],
+			["Coverage", "All seven emirates, mobilised from Dubai"]
+		],
+		faqs: [
+			{
+				q: "What happens if you find services that are not on the drawings?",
+				a: "We stop, record and report before anything is removed. We scan and trial-pit ahead of the machines precisely so uncharted services are found by a survey rather than by a bucket, and so the decision about diverting or protecting them is yours to make."
+			},
+			{
+				q: "Do you handle demolition as well as clearing?",
+				a: "We remove slabs, foundations, boundary structures and the arisings from previous use. Full structural demolition of standing buildings is a separate scope — tell us what is on the plot and we will say plainly what is in and out."
+			},
+			{
+				q: "Is disposal included?",
+				a: "Yes. Material is classified, loaded and hauled to a permitted tip under the relevant municipal disposal permit, with tickets retained for the project file."
+			}
+		]
 	}
 };
 //#endregion
@@ -2118,6 +2377,258 @@ var serviceContentAr = {
 				a: "عادةً بسبب حزمة ناقصة، أو مخطط بصيغة لا تناسب تلك الجهة، أو تقديم تمّ قبل صدور موافقة يعتمد عليها. والثلاثة قابلة للتفادي، وتفاديها هو جوهر هذه الخدمة."
 			}
 		]
+	},
+	"road-base-supply": {
+		h1: "مورّد طبقة الأساس في دبي والإمارات",
+		lead: "ركام مكسّر لطبقتي الأساس وما تحت الأساس وفق تدرّجات هيئة الطرق والمواصلات ودائرة البلديات والنقل والبلديات، مع شهادات الاختبار التي تحتاجها الطبقة.",
+		caption: "طبقة أساس متدرّجة تُفرَغ وتُفرَد قبل مرور المدحلة.",
+		intro: "طبقة الأساس هي التي تحدّد عمر الطريق. فإذا اختلّ تدرّجها أخبرك السطح بذلك بعد ثمانية عشر شهراً، على هيئة أخاديد وتشققات تكلّف إصلاحاً أكثر مما وفّرته المادة يوماً. نورّد طبقة الأساس وما تحتها من محاجر مادتها معتمدة أصلاً لدى الجهة التي تبني لها، ونسلّمها مع المستندات التي تتيح فرش الطبقة واعتمادها.",
+		body: ["ولكل جهة اشتراطاتها. فطبقة الأساس لدى هيئة الطرق والمواصلات ليست بديلاً عن تدرّج دائرة البلديات والنقل، ولمشروع بلدي في الشارقة أو عجمان مصادره المقبولة. نطابق المصدر بالمواصفة قبل تحرّك أول حمولة، ونورّد تحليل التدرّج ونسبة تحمّل كاليفورنيا ونتائج تآكل لوس أنجلوس ومعامل اللدونة مع المادة، لا بعد أسبوعين حين يطلبها الاستشاري.", "وثبات المادة بين الحمولات لا يقلّ أهمية عن الاختبار الأول. فالمادة التي تنفصل حبيباتها في الكومة أو على القلاب تعطي طبقة تنجح في الكثافة عند نقطة وتفشل على بعد ثلاثة أمتار، وإعادة الاختبار تقع على برنامجك لا على المحجر. لذلك نحمّل من الواجهات العاملة لا من ذيل الكومة، وندير قلاباتنا بأنفسنا، فتصل الحمولة التي يجب أن تسبق المدحلة قبل المدحلة فعلاً."],
+		scope: [
+			"طبقة أساس ركامية وفق تدرّجات هيئة الطرق والمواصلات ودائرة البلديات والنقل والبلديات",
+			"مواد ما تحت الأساس وطبقة التغطية",
+			"شهادات التدرّج ونسبة تحمّل كاليفورنيا وتآكل لوس أنجلوس واللدونة مع التسليم",
+			"مواد من مصادر معتمدة للأعمال الخاضعة لإشراف الجهات",
+			"توريد بكميات كبيرة بأسطولنا من القلابات والمقطورات",
+			"تسليمات مجدولة مرتبطة ببرنامج الفرش والدمك لديك",
+			"حزم توريد وتنفيذ حين تريد جهة واحدة مسؤولة"
+		],
+		specs: [
+			["المواد", "طبقة أساس، ما تحت الأساس، طبقة تغطية، ناتج كسّارة"],
+			["الاستخدام المعتاد", "تأسيس الطرق والمواقف، الأرضيات الصلبة، بناء الساحات والمنصات"],
+			["الضبط", "تحليل التدرّج، نسبة تحمّل كاليفورنيا، تآكل لوس أنجلوس، معامل اللدونة، سندات التسليم"],
+			["التغطية", "الإمارات السبع جميعها، من محاجر معتمدة في الدولة"]
+		],
+		faqs: [
+			{
+				q: "هل طبقة الأساس لديكم معتمدة لأعمال طرق هيئة الطرق والمواصلات؟",
+				a: "نعم. نورّد من محاجر تحمل مادتها اعتماد الجهة المعنية، ونقدّم شهادات التدرّج ونسبة تحمّل كاليفورنيا مع التسليم. وإذا كان مشروعك خاضعاً لدائرة البلديات والنقل أو لبلدية بدلاً من ذلك، فأخبرنا عند الاستفسار لنورّد وفق تلك المواصفة بدل استبدال تدرّج الهيئة بها."
+			},
+			{
+				q: "هل تورّدون وتنفّذون، أم توريداً فقط؟",
+				a: "كلاهما. يأخذ كثير من العملاء التوريد فقط لتوفّر فريق تنفيذ لديهم. وحين نورّد وننفّذ تأتي اختبارات الكثافة وشهادات المادة من الجهة نفسها، فينتفي الجدل حول ما إذا كان الاختبار الراسب مشكلة مادة أم مشكلة دمك."
+			},
+			{
+				q: "ما الكميات التي تسلّمونها؟",
+				a: "من حمولة واحدة بوزن عشرين طناً إلى توريد يومي متصل لحزمة طرق كاملة. وللتسليمات المستمرة نتفق على جدول يقابل برنامج الفرش لديك، فتصل المادة قبل الفرّادة والمدحلة بدل أن تبقى في كومة تفقد تدرّجها."
+			}
+		]
+	},
+	"aggregate-supply": {
+		h1: "مورّد الركام في دبي والإمارات",
+		lead: "ركام أحادي المقاس ومتدرّج من ٥ ملم إلى ٤٠ ملم، من كسّارات معتمدة، بتدرّج ثابت من حمولة إلى أخرى.",
+		caption: "ركام متدرّج مكوَّم ويُحمَّل من الواجهة العاملة.",
+		intro: "يُشترى الركام بشهادة ويُحكَم عليه عند الحمولة العشرين. نورّد ركاماً أحادي المقاس ومتدرّجاً للخرسانة والأسفلت والتصريف وفرشة المواسير من كسّارات معتمدة في الدولة، ونحافظ على ثبات التدرّج طوال برنامج التوريد لا في العيّنة التي ذهبت إلى المختبر وحدها.",
+		body: ["تمتد المقاسات من ٥ ملم مروراً بـ ١٠ و١٤ و٢٠ و٤٠ ملم، إضافة إلى الخلطات المتدرّجة حين يطلبها التصميم. فللخرسانة الإنشائية نورّد وفق قائمة المصادر المعتمدة لدى الاستشاري، وللأسفلت وفق تصميم الخلطة المودَع لدى الجهة، ولطبقات التصريف وفرشة المواسير وفق التدرّجات النظيفة أحادية المقاس التي تمرّر الماء فعلاً بدل أن تنسدّ في السنة الأولى.", "وحين يكون المشروع حسّاساً للكلوريدات أو الكبريتات — وهو حال معظم المواقع الساحلية — نورّد النتائج الكيميائية إلى جانب الفيزيائية. فالركام الذي ينجح في التدرّج ويرسب في محتوى الكبريتات حمولة مرفوضة أيضاً، ومعرفة ذلك بعد الصبّ باهظة."],
+		scope: [
+			"ركام أحادي المقاس: ٥ و١٠ و١٤ و٢٠ و٤٠ ملم",
+			"خلطات ركام متدرّجة وفق تصميم الخلطة",
+			"ركام خرساني من مصادر معتمدة لدى الاستشاري",
+			"ركام أسفلتي وفق تصميم الخلطة المعتمد",
+			"وسائط تصريف وترشيح وفرشة مواسير ومحيطها",
+			"شهادات التدرّج والصلادة وتآكل لوس أنجلوس والاختبارات الكيميائية",
+			"توريد بكميات كبيرة في أنحاء الإمارات بأسطولنا"
+		],
+		specs: [
+			["المقاسات", "٥ و١٠ و١٤ و٢٠ و٤٠ ملم وخلطات متدرّجة"],
+			["الاستخدام المعتاد", "الخرسانة الإنشائية، خلطات الأسفلت، طبقات التصريف، فرشة المواسير"],
+			["الضبط", "التدرّج وتآكل لوس أنجلوس والصلادة ومحتوى الكبريتات والكلوريدات"],
+			["التغطية", "الإمارات السبع جميعها، من كسّارات معتمدة في الدولة"]
+		],
+		faqs: [
+			{
+				q: "هل تورّدون ركاماً للخرسانة الإنشائية؟",
+				a: "نعم، من مصادر مدرجة في قائمة الاستشاري المعتمدة، مع شهادات التدرّج والصلادة والاختبارات الكيميائية. وإذا لم يكن المصدر معتمداً بعد، فبإمكاننا تقديم المادة للاعتماد ضمن حزمة التوريد."
+			},
+			{
+				q: "هل يمكنكم الحفاظ على تدرّج واحد طوال برنامج توريد طويل؟",
+				a: "هذا هو سبب الشراء منّا بدل أرخص حمولة متاحة في يومها. نثبّت المصدر عند بداية الحزمة ونحمّل من الواجهات العاملة لا من ذيول الأكوام، فيبقى التدرّج الذي اعتمدته هو التدرّج الذي يصلك."
+			},
+			{
+				q: "هل تورّدون ركاماً مغسولاً؟",
+				a: "نعم، حين تطلبه المواصفة — عادةً للخرسانة الظاهرة ووسائط الترشيح وتطبيقات التصريف حيث تسدّ النواعم الطبقة. ويُسعَّر المغسول على حدة لأن إنتاجه أعلى كلفة."
+			}
+		]
+	},
+	"sand-supply": {
+		h1: "مورّد الرمل في دبي والإمارات",
+		lead: "رمل ردم ورمل حلو ورمل مغسول بكميات كبيرة للردم والفرش والتسوية ورفع المناسيب.",
+		caption: "رمل ردم يُسلَّم ويُفرَد لرفع منسوب منصة.",
+		intro: "الرمل أكبر المواد حجماً في معظم مواقع الدولة، وأكثرها شراءً على أساس السعر وحده. ويظهر الفارق في نتائج الدمك، وفي المواقع الساحلية في أرقام الكبريتات والكلوريدات. نورّد رمل الردم والرمل الحلو والمغسول بكميات كبيرة مع نتائج الاختبار التي تطلبها المواصفة، ويُسلَّم بقلاباتنا وفق برنامجك.",
+		body: ["يدخل رمل الردم في رفع المناسيب والردم العام، حيث المهم أن يندكّ على نحو متوقَّع وألّا يحمل تلوّثاً. أما الرمل الحلو — منخفض الأملاح — فهو المطلوب بجوار المنشآت وفي محيط الخنادق وتحت البلاطات، لأن البديل هجوم كلوريدي على حديد التسليح لا يراه أحد طوال عقد. ويذهب الرمل المغسول حيث تطلب المواصفة تدرّجاً نظيفاً مضبوطاً: طبقات التسوية والفرش والصبّات الرقيقة.", "ولكل ما يُوضَع بجوار الخرسانة أو حديد التسليح نورّد نتائج الكبريتات والكلوريدات بصورة اعتيادية لا عند الطلب. فهي كلفة صغيرة عند التوريد وهائلة عند اكتشافها لاحقاً."],
+		scope: [
+			"رمل ردم لرفع المناسيب والردم بكميات كبيرة",
+			"رمل حلو للردم الإنشائي ومحيط الخنادق",
+			"رمل مغسول لطبقات التسوية والفرش والصبّات الرقيقة",
+			"اختبارات الكبريتات والكلوريدات حين تطلبها المواصفة",
+			"التدرّج وخصائص الدمك عند الطلب",
+			"توريد بالقلابات والمقطورات مجدول وفق الأعمال",
+			"توريد وتنفيذ مع الدمك واختبارات الكثافة"
+		],
+		specs: [
+			["المواد", "رمل ردم، رمل حلو، رمل مغسول"],
+			["الاستخدام المعتاد", "رفع المناسيب، الردم الإنشائي وردم الخنادق، طبقات التسوية والفرش"],
+			["الضبط", "التدرّج، محتوى الكبريتات والكلوريدات، الكثافة الحقلية للمادة الموضوعة"],
+			["التغطية", "الإمارات السبع جميعها، انطلاقاً من دبي"]
+		],
+		faqs: [
+			{
+				q: "ما الفرق بين رمل الردم والرمل الحلو؟",
+				a: "الرمل الحلو منخفض الأملاح الذائبة، ولهذا تطلبه المواصفات بجوار الخرسانة وحديد التسليح والخدمات المدفونة. أما رمل الردم فللحجم الكبير حيث لا تماسّ مع منشأ. واستعمال رمل الردم موضع الرمل الحلو استبدال شائع ومكلف، لذلك نسعّرهما منفصلين ليكون الفارق ظاهراً."
+			},
+			{
+				q: "هل تقدّمون نتائج اختبار الكبريتات والكلوريدات؟",
+				a: "نعم، بصورة اعتيادية لأي رمل يُوضَع بجوار المنشآت أو حديد التسليح، وعند الطلب للردم العام. والمواقع الساحلية في أنحاء الدولة تحتاجها بانتظام وسيطلبها الاستشاري."
+			},
+			{
+				q: "هل يمكنكم وضع الرمل ودمكه إضافة إلى توريده؟",
+				a: "نعم. والتوريد مع التنفيذ ترتيب أفضل غالباً: إذ تأتي شهادات المادة ونتائج الكثافة الحقلية من جهة واحدة، فلا خلاف حول ما إذا كانت الطبقة الراسبة بسبب الرمل أم بسبب الدمك."
+			}
+		]
+	},
+	"stone-supply": {
+		h1: "مورّد الحجر في دبي والإمارات",
+		lead: "حجر تكسية وحماية ورصفات وجلاميد وحجر مكسّر، بمقاسات مطابقة للمخطط ويُسلَّم مصنّفاً.",
+		caption: "حجر مصنّف يُحمَّل لحماية الميول ومقاومة النحر.",
+		intro: "يُحدَّد الحجر بتوزيع المقاسات، ويُسلَّم عادةً بما خرج من الواجهة ذلك الصباح. نورّد حجر التكسية والرصف والجلاميد والحجر المكسّر مصنّفاً وفق المخطط — وهذا مهم، لأن طبقة حماية ميول مبنية بتوزيع مقاسات خاطئ لا تفشل تدريجياً بل تفشل في عاصفة واحدة.",
+		body: ["نستورد من محاجر في رأس الخيمة والفجيرة حيث الصخر الصلب، ونصنّف في المحجر بدل الفرز في موقعك وعلى حسابك. وتمتد المقاسات من الحجر المكسّر وحشو الجابيون صعوداً إلى حجر الرصف وحجر التكسية ثم إلى الجلاميد المفردة الموضوعة لأعمال التنسيق وحماية النحر.", "ويتم التسليم بالمقطورات مع ترتيب التحميل بحيث تصل المادة ضمن نطاقات المقاس المطلوبة. وحين يذهب الحجر إلى الجابيون أو إلى حماية ميول موضوعة، تستطيع فرقنا تنفيذ الوضع أيضاً، فيكون المقطع المحدَّد هو ما ينتهي فعلاً على الجسر."],
+		scope: [
+			"حجر تكسية ورصف مصنّف وفق المخطط",
+			"حجر حشو جابيون بمقاس الصندوق",
+			"جلاميد مفردة لأعمال التنسيق وحماية النحر",
+			"حجر مكسّر للأرضيات الصلبة وطرق النقل",
+			"التصنيف في المحجر، فلا يقع الفرز على حسابك",
+			"التسليم بالمقطورات في أنحاء الإمارات",
+			"الوضع بفرقنا حين يكون المقطع محدَّداً"
+		],
+		specs: [
+			["المواد", "حجر تكسية، حجر رصف، حشو جابيون، جلاميد، حجر مكسّر"],
+			["الاستخدام المعتاد", "حماية الميول والنحر، جدران الجابيون، الأرضيات الصلبة، عناصر التنسيق"],
+			["الضبط", "تصنيف المقاس عند المصدر، شهادات الكثافة والمتانة"],
+			["التغطية", "الإمارات السبع جميعها، من محاجر رأس الخيمة والفجيرة"]
+		],
+		faqs: [
+			{
+				q: "هل يمكنكم توريد حجر مصنّف ضمن نطاق مقاس محدَّد؟",
+				a: "نعم، ونصنّف في المحجر بدل تسليم مادة مختلطة لتفرزها في الموقع. أعطنا توزيع المقاسات من المخطط وهو ما سيُحمَّل."
+			},
+			{
+				q: "هل تورّدون حماية الميول وتنفّذونها؟",
+				a: "نعم. وحين يكون المقطع محدَّداً — حماية ميول أو مآزر مقاومة نحر أو تبطين قنوات — يجعل التوريد مع التنفيذ التدرّج المسلَّم والمقطع المنجَز مسؤولية جهة واحدة."
+			},
+			{
+				q: "من أين يأتي الحجر؟",
+				a: "من محاجر الصخر الصلب في رأس الخيمة والفجيرة، وهي منشأ مادة التكسية في الدولة. وتنتقل الشهادات مع الحمولة."
+			}
+		]
+	},
+	"gabion-boxes": {
+		h1: "مورّد صناديق الجابيون في دبي والإمارات",
+		lead: "صناديق ومراتب جابيون مجلفنة ومغلّفة بالبولي فينيل، تُورَّد فارغة أو معبّأة وموضوعة بفرقنا.",
+		caption: "صناديق جابيون معبّأة ومكسوّة على حافة مستنِدة.",
+		intro: "يؤدي الجابيون عملاً لا تؤديه الخرسانة: يستند، ويصرّف، ويتحمّل الحركة دون تشقّق. نورّد صناديق ومراتب مجلفنة ومغلّفة بالبولي فينيل بمقاسات قياسية وحسب الطلب، ونعبّئها ونضعها حين تريد جداراً منجَزاً لا منصّة شبك.",
+		body: ["والتغليف هنا أهم منه في أي بند آخر. فالشبك المجلفن بكثافة يكفي في الداخل؛ أما ما يصله رذاذ الملح أو المياه الجوفية المالحة فيحتاج تغليفاً بالبولي فينيل، والفارق في العمر التشغيلي يُقاس بالعقود. وسنخبرك بما يحتاجه الموقع بدل تسعير الأرخص وترك الأمر لك.", "وحين نضع إضافة إلى التوريد يأتي الحجر من خط توريدنا — بمقاس الصندوق — فتكون الواجهة معبّأة لا مُفرَغة. والجدار الجابيوني يُحكَم عليه بواجهته، والواجهة الجيدة قرار عمالة يُتخذ وقت البناء لا مادة تُصلَح بعده."],
+		scope: [
+			"صناديق جابيون مجلفنة بمقاسات قياسية وحسب الطلب",
+			"صناديق مغلّفة بالبولي فينيل للتعرّض الساحلي والمالح",
+			"مراتب جابيون لتبطين القنوات ومآزر النحر",
+			"أسلاك الربط واللوالب والمقوّيات والجيوتكستايل الخلفي",
+			"حجر حشو جابيون مقاسي من خط توريدنا",
+			"التعبئة والوضع بفرقنا",
+			"جدران استناد وحماية جسور وأعمال قنوات"
+		],
+		specs: [
+			["المواد", "صناديق شبك مجلفن ومغلّف بالبولي فينيل، مراتب، مثبّتات، جيوتكستايل"],
+			["الاستخدام المعتاد", "جدران الاستناد، حماية الجسور والميول، تبطين القنوات، التنسيق"],
+			["الضبط", "شهادات مقاس الشبك والتغليف، تدرّج الحشو، تعبئة الواجهة"],
+			["التغطية", "الإمارات السبع جميعها، انطلاقاً من دبي"]
+		],
+		faqs: [
+			{
+				q: "هل أستخدم جابيون مجلفناً أم مغلّفاً بالبولي فينيل؟",
+				a: "المجلفن مناسب في الداخل وبعيداً عن المياه الجوفية المالحة. أما حيث يصل رذاذ الملح أو مياه المدّ أو التربة المالحة، فالتغليف بالبولي فينيل يستحق فارقه — إذ التغليف، لا الحجر، هو ما يحدّد مدة بقاء الجدار."
+			},
+			{
+				q: "هل تعبّئون وتضعون، أم تورّدون الصناديق فقط؟",
+				a: "كلاهما. التوريد فقط شائع حين تتوفر لديك عمالة. وحين نضع نحن يأتي حجر الحشو من خط توريدنا بمقاس الصندوق، وتُعبَّأ الواجهة يدوياً لا بالإفراغ، وعليه يتوقف المظهر النهائي."
+			},
+			{
+				q: "هل يمكنكم توريد مقاسات غير قياسية؟",
+				a: "نعم. تغطي المقاسات القياسية معظم الأعمال، أما جدران الاستناد ذات المقطع غير المعتاد أو ترتيب التدرّج المحدَّد فتُصنَع حسب الطلب وفق المخطط."
+			}
+		]
+	},
+	"material-shifting": {
+		h1: "مقاول نقل المواد والمناولة في دبي",
+		lead: "نقل المواد بكميات كبيرة من الموقع وإليه بقلاباتنا ومقطوراتنا ولوادرنا — إخراج ونقل واستيراد ومناولة داخلية.",
+		caption: "قلابات ولودر تعمل على كومة لنقلها خارج الموقع.",
+		intro: "نقل المواد هو الجزء غير المرئي من البرنامج حتى يتوقف. فالحفر لا يستمر حين لا مكان لناتجه، والردم لا يمضي حين يتأخر الاستيراد يوماً. ندير قلاباتنا ومقطوراتنا ولوادرنا بأنفسنا، فيكون النقل مورداً نتحكّم فيه لا مورداً نحجزه.",
+		body: ["ينقسم العمل ثلاثة أقسام. الإخراج ينقل المواد المحفورة خارج الموقع بموجب تصريح طرح بلدي مع الاحتفاظ بالسندات لملف المشروع — وهذا مهم، لأن الطرح دون أثر تصريحي مشكلة امتثال تبقى بعد ردم الحفرة بزمن. والاستيراد يجلب الردم والرمل والركام وفق برنامج الفرش. والمناولة الداخلية تحرّك المواد بين الأكوام ومناطق العمل في المواقع الكبيرة، وهي أرخص عادةً من تصدير المادة نفسها واستيرادها مرتين.", "وننقل المعدات أيضاً. فالمقطورات المنخفضة تنقل الحفارات والجرافات والمداحل والكسّارات بين المواقع وبين الإمارات، مع التصاريح والمرافقات التي تحتاجها الحمولات كبيرة الأبعاد. وفي البرامج متعددة المواقع يكون هذا غالباً القيد الذي لا يسعّره أحد حتى يقع."],
+		scope: [
+			"الإخراج والطرح بموجب تصريح بلدي مع الاحتفاظ بالسندات",
+			"استيراد الردم والرمل والركام وطبقة الأساس وفق البرنامج",
+			"المناولة الداخلية بين الأكوام ومناطق العمل",
+			"إدارة الأكوام والتحميل وإعادة المناولة",
+			"نقل المعدات بالمقطورات المنخفضة في أنحاء الإمارات",
+			"تصاريح الحمولات كبيرة الأبعاد والمرافقات عند اللزوم",
+			"نقل مجدول مرتبط بتسلسل الحفر أو الفرش"
+		],
+		specs: [
+			["المعدات", "قلابات، مقطورات قلابة، مقطورات منخفضة، لوادر بعجل، حفارات"],
+			["الاستخدام المعتاد", "الإخراج، استيراد الردم، المناولة الداخلية، نقل المعدات"],
+			["الضبط", "تصاريح الطرح وسنداته، سجلات الحمولات، جدولة التسليم"],
+			["التغطية", "الإمارات السبع جميعها، ومقرّنا دبي"]
+		],
+		faqs: [
+			{
+				q: "هل تتولّون تصاريح الطرح؟",
+				a: "نعم. تذهب المواد المحفورة إلى مطرح مرخَّص بموجب تصريح الطرح البلدي المعني، وتُحفَظ السندات لملف المشروع. والطرح دون هذا الأثر تعرّض امتثالي يتجاوز عمر الأعمال."
+			},
+			{
+				q: "هل تستطيعون مجاراة حفر متواصل؟",
+				a: "لهذا نملك الأسطول. نحدّد حجم النقل بمعدل الحفر عند التسعير، فلا تقف الحفارة بانتظار قلاب، ونستطيع إضافة وحدات من أسطولنا بدل انتظار شركة تأجير."
+			},
+			{
+				q: "هل تنقلون المعدات إلى جانب المواد؟",
+				a: "نعم — حفارات وجرافات ومداحل وكسّارات ومسوّيات تُنقَل بالمقطورات المنخفضة بين الإمارات، مع التصاريح والمرافقات التي تتطلبها الحمولات كبيرة الأبعاد."
+			}
+		]
+	},
+	"site-preparation": {
+		h1: "مقاول تنظيف الأراضي وتجهيز المواقع في دبي",
+		lead: "قطع أرض تُنظَّف حتى تربة صالحة للعمل وتُسلَّم مسوّاة ومثبَّتة وجاهزة للبناء.",
+		caption: "قطعة أرض منظَّفة ومسوّاة وجاهزة للتوقيع.",
+		intro: "تجهيز الموقع هو العمل الذي يحوّل قطعة الأرض إلى موقع. فالأشجار ونواتج الهدم والبلاطات المدفونة والخدمات المهجورة والردم غير المضبوط يجب أن تخرج جميعاً قبل أن يُوقَّع أي شيء مفيد، وما تحت الأرض فعلاً نادراً ما يطابق ما يقوله المخطط. ننظّف ونزيل ونسوّي، ونخبرك بما وجدناه.",
+		body: ["وقطع الأرض الصناعية والسكنية القديمة في دبي والإمارات الشمالية مليئة بما لم يوثّقه أحد: أساسات سابقة وخزانات مدفونة وكابلات ميتة وآبار مردومة وردم مستورد مجهول المصدر. نمسح ونحفر جسّات قبل بدء المعدات، فتُكتشَف الخدمة الحيّة بمسح لا بكفّة حفّار. وكل ما لم يُوثَّق يُسجَّل ويُبلَّغ قبل إزالته.", "وبعد تنظيف القطعة تُسوَّى المنصة إلى المناسيب التي تحتاجها للتوقيع، وتُثبَّت لتبقى صالحة للعمل خلال الأسابيع الأولى من البرنامج — طرق نقل ومناطق عمل وسطح يصمد أمام المطر وحركة المعدات. وتُصنَّف النواتج وتُحمَّل وتُنقَل بموجب تصريح طرح بلدي مع الاحتفاظ بالسندات."],
+		scope: [
+			"إزالة الأشجار والنباتات والجذور",
+			"إزالة نواتج الهدم والبلاطات المدفونة والعوائق",
+			"مسح الخدمات وحفر الجسّات قبل بدء المعدات",
+			"إزالة الردم غير المضبوط والملوَّث",
+			"التصنيف والنقل والطرح بموجب تصريح بلدي",
+			"التسوية إلى مناسيب العمل وتثبيت المنصة",
+			"تهيئة طرق النقل ومناطق العمل للمقاولين اللاحقين"
+		],
+		specs: [
+			["المعدات", "حفارات، جرافات، لوادر بعجل، كسّارات، قلابات، مسوّيات، مداحل"],
+			["الاستخدام المعتاد", "قطع الأراضي الجديدة، مواقع إعادة التطوير، الساحات الصناعية، ممرات البنية التحتية"],
+			["الضبط", "مسح الخدمات، الجسّات، سندات الطرح، مسح المناسيب عند التسليم"],
+			["التغطية", "الإمارات السبع جميعها، انطلاقاً من دبي"]
+		],
+		faqs: [
+			{
+				q: "ماذا يحدث إذا وجدتم خدمات غير موجودة على المخططات؟",
+				a: "نتوقف ونسجّل ونبلّغ قبل إزالة أي شيء. ونمسح ونحفر الجسّات قبل المعدات تحديداً لتُكتشَف الخدمات غير الموثّقة بمسح لا بكفّة حفّار، ولتبقى قرارات التحويل أو الحماية قرارك أنت."
+			},
+			{
+				q: "هل تتولّون الهدم إضافة إلى التنظيف؟",
+				a: "نزيل البلاطات والأساسات ومنشآت الحدود ونواتج الاستعمال السابق. أما الهدم الإنشائي الكامل للمباني القائمة فنطاق منفصل — أخبرنا بما على القطعة وسنقول بوضوح ما يدخل وما يخرج."
+			},
+			{
+				q: "هل الطرح مشمول؟",
+				a: "نعم. تُصنَّف المواد وتُحمَّل وتُنقَل إلى مطرح مرخَّص بموجب تصريح الطرح البلدي المعني، مع الاحتفاظ بالسندات لملف المشروع."
+			}
+		]
 	}
 };
 //#endregion
@@ -2191,6 +2702,11 @@ var categoriesAr = {
 				name: "التسوية والدمك",
 				keyword: "مقاول تسوية ودمك",
 				text: "تسوية دقيقة حتى المناسيب والميول التصميمية، ثم دمك طبقة بطبقة بالمدحلة المناسبة لنوع المادة — مدعوماً باختبارات الكثافة الحقلية وشهادات دمك تفي باعتماد الاستشاري والجهة المختصة."
+			},
+			"site-preparation": {
+				name: "تجهيز الموقع وتنظيف الأرض",
+				keyword: "مقاول تنظيف أراضٍ وتجهيز مواقع",
+				text: "تنظيف قطعة الأرض حتى الوصول إلى تربة صالحة للعمل: إزالة الأشجار والجذور، ونواتج الهدم، والبلاطات المدفونة، والخدمات المهجورة، والردم غير المضبوط، وطرحها بموجب تصريح، ثم تسوية المنصة وتثبيتها وتسليمها جاهزة للبناء."
 			}
 		}
 	},
@@ -2299,6 +2815,43 @@ var categoriesAr = {
 				text: "إعداد ومعالجة شهادات عدم الممانعة لدى الجهات ومالكي المرافق الذين يمسّهم المشروع. نُجهّز حزمة المخططات ونقدّمها ونردّ على الملاحظات ونتابع الموافقات حتى الإصدار ليبدأ التنفيذ في موعده."
 			}
 		}
+	},
+	supply: {
+		name: "التوريد والخدمات اللوجستية",
+		tagline: "مواد تُورَّد وفق المواصفة، ومعدات تنقلها.",
+		intro: "المواد التي يُبنى منها الطريق أو المنصة، تُورَّد بالتدرّج والاختبارات التي تطلبها المواصفة. نورّد طبقة الأساس والركام والرمل والحجر وصناديق الجابيون من مصادر معتمدة، وندير النقل بأنفسنا — فتكون المادة المذكورة في سند التسليم هي المادة التي تُختبَر، ولا يوقف تأخّر حمولة عمل المدحلة.",
+		services: {
+			"road-base-supply": {
+				name: "توريد طبقة الأساس",
+				keyword: "مورّد طبقة أساس",
+				text: "ركام مكسّر لطبقتي الأساس وما تحت الأساس يُورَّد وفق تدرّجات هيئة الطرق والمواصلات ودائرة البلديات والنقل والبلديات، من محاجر مادتها معتمدة أصلاً. ويُسلَّم مع شهادات التدرّج ونسبة تحمّل كاليفورنيا، فتُفرَش الطبقة وتُعتمَد دون جولة ثانية من اعتماد المواد."
+			},
+			"aggregate-supply": {
+				name: "توريد الركام",
+				keyword: "مورّد ركام",
+				text: "ركام أحادي المقاس ومتدرّج للخرسانة والأسفلت وطبقات التصريف وفرشة المواسير — من ٥ ملم حتى ٤٠ ملم — من كسّارات معتمدة، مع شهادات اختبار وتدرّج ثابت من حمولة إلى أخرى."
+			},
+			"sand-supply": {
+				name: "توريد الرمل",
+				keyword: "مورّد رمل",
+				text: "رمل ردم ورمل حلو ورمل مغسول يُورَّد بكميات كبيرة للردم والفرش والتسوية ورفع المناسيب. وتُرفَق نتائج الكبريتات والكلوريدات حين تطلبها المواصفة، وهو ما تطلبه عادةً في المواقع الساحلية."
+			},
+			"stone-supply": {
+				name: "توريد الحجر",
+				keyword: "مورّد حجر",
+				text: "حجر تكسية وحماية ورصفات وجلاميد وحجر مكسّر لحماية الميول ومقاومة النحر والأرضيات الصلبة وأعمال التنسيق — بمقاسات مطابقة للمخطط ومحمّلة بحيث تصل مصنّفة لا كومة مختلطة."
+			},
+			"gabion-boxes": {
+				name: "توريد صناديق الجابيون",
+				keyword: "مورّد صناديق جابيون",
+				text: "صناديق ومراتب جابيون مجلفنة ومغلّفة بالبولي فينيل، تُورَّد فارغة أو معبّأة وموضوعة بفرقنا، لجدران الاستناد وحماية الجسور وتبطين القنوات."
+			},
+			"material-shifting": {
+				name: "نقل المواد والمناولة",
+				keyword: "مقاول نقل مواد",
+				text: "نقل المواد بكميات كبيرة من الموقع وإليه بقلاباتنا ومقطوراتنا ولوادرنا: إخراج الأنقاض وطرحها بموجب تصريح بلدي، واستيراد الردم، والنقل الداخلي بين الأكوام، ونقل المعدات بين الإمارات."
+			}
+		}
 	}
 };
 //#endregion
@@ -2386,6 +2939,12 @@ var CATEGORIES = [
 				name: "Leveling & Compaction",
 				keyword: "leveling and compaction contractor",
 				text: "Fine levelling to design elevations and falls, then layer-by-layer compaction with the right roller for the material — supported by field density testing and compaction certificates that satisfy consultant and authority sign-off."
+			},
+			{
+				slug: "site-preparation",
+				name: "Site Preparation & Land Clearing",
+				keyword: "land clearing and site preparation contractor",
+				text: "Clearing a plot down to workable ground: vegetation and root removal, demolition arisings, buried slabs, abandoned services and uncontrolled fill taken out and disposed of under permit, then the platform graded, stabilised and handed over ready to build."
 			}
 		]
 	},
@@ -2460,7 +3019,7 @@ var CATEGORIES = [
 	{
 		slug: "traffic-management",
 		name: "Traffic Management",
-		coverage: ["dubai"],
+		coverage: ["dubai", "abu-dhabi"],
 		tagline: "Permits, diversions and safe works within live traffic.",
 		img: "/images/svc-traffic-management.jpg",
 		intro: "Working inside a live road corridor is a permitting exercise as much as a construction one. We prepare traffic diversion drawings, secure RTA permits and install and maintain compliant traffic management so your works proceed without shutting the network — or attracting a stop-work notice.",
@@ -2522,6 +3081,52 @@ var CATEGORIES = [
 				name: "NOC Services",
 				keyword: "NOC services Dubai",
 				text: "Preparation and processing of No Objection Certificates across the authorities and utility owners a project touches. We assemble the drawing package, submit, answer comments and track approvals to issue so construction can start on time."
+			}
+		]
+	},
+	{
+		slug: "supply",
+		name: "Supply & Logistics",
+		coverage: "all",
+		tagline: "Materials delivered to spec, and the plant to move them.",
+		img: "/images/svc-supply.jpg",
+		intro: "The materials a road or a platform is built from, delivered to the grading and testing the specification asks for. We supply road base, aggregate, sand, stone and gabion boxes from approved sources, and we run the haulage ourselves — so the material on the delivery ticket is the material that gets tested, and a late load does not stop the roller.",
+		services: [
+			{
+				slug: "road-base-supply",
+				name: "Road Base Supply",
+				keyword: "road base supplier",
+				text: "Crushed aggregate road base and sub-base supplied to RTA, DMT and municipality gradings, from quarries whose material is already approved. Delivered with grading and CBR test certificates so the layer can be laid and signed off without a second round of material submissions."
+			},
+			{
+				slug: "aggregate-supply",
+				name: "Aggregate Supply",
+				keyword: "aggregate supplier",
+				text: "Single-size and graded aggregates for concrete, asphalt, drainage blankets and pipe bedding — 5mm through 40mm — from approved crushers, with test certificates and consistent grading load to load."
+			},
+			{
+				slug: "sand-supply",
+				name: "Sand Supply",
+				keyword: "sand supplier",
+				text: "Fill sand, sweet sand and washed sand delivered in bulk for backfill, blinding, bedding and platform raising. Sulphate and chloride results supplied where the specification calls for them, which on coastal plots it usually does."
+			},
+			{
+				slug: "stone-supply",
+				name: "Stone Supply",
+				keyword: "stone supplier",
+				text: "Rock armour, rip-rap, boulders and crushed stone for slope protection, scour protection, hardstanding and landscape work — sized to the drawing and loaded so it arrives graded rather than as a single mixed heap."
+			},
+			{
+				slug: "gabion-boxes",
+				name: "Gabion Boxes Supply",
+				keyword: "gabion boxes supplier",
+				text: "Galvanised and PVC-coated gabion baskets and mattresses, supplied loose or filled and placed by our own teams, for retaining walls, embankment protection and channel lining."
+			},
+			{
+				slug: "material-shifting",
+				name: "Material Shifting & Haulage",
+				keyword: "material shifting contractor",
+				text: "Bulk movement of material on and off site with our own tippers, trailers and loaders: muck-away and disposal under municipal permit, import of fill, internal shifting between stockpiles, and plant transport across the emirates."
 			}
 		]
 	}

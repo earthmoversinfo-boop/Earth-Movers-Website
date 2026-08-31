@@ -907,4 +907,293 @@ export const serviceContent = {
       },
     ],
   },
+  // ---- Supply & Logistics -------------------------------------------------
+  'road-base-supply': {
+    img: '/images/services/road-base-supply.jpg',
+    h1: 'Road Base Supplier in Dubai & the UAE',
+    lead: 'Crushed aggregate road base and sub-base to RTA, DMT and municipality gradings, delivered with the test certificates the layer needs.',
+    caption: 'Graded road base tipped and spread ahead of the roller.',
+    intro:
+      'Road base is the layer that decides whether a road lasts. Get the grading wrong and the surface tells you eighteen months later, in rutting and cracking that costs more to repair than the material ever saved. We supply road base and sub-base from quarries whose material is already approved by the authority you are building for, and we deliver it with the paperwork that lets the layer be laid and signed off.',
+    body: [
+      'Different authorities want different things. RTA road base is not interchangeable with a DMT grading, and a municipality job in Sharjah or Ajman will have its own accepted sources. We match the source to the specification before the first load moves, and supply grading analysis, CBR, Los Angeles abrasion and plasticity results with the material rather than a fortnight afterwards when the consultant asks.',
+      'Consistency between loads matters as much as the first test. Material that segregates in the stockpile or on the tipper gives a layer that passes density in one spot and fails three metres away, and the retest is on your programme, not the quarry\u2019s. We load from working faces rather than the tail of a pile, and run our own tippers, so a delivery that has to arrive before the roller does actually arrives before the roller does.',
+    ],
+    scope: [
+      'Aggregate road base to RTA, DMT and municipality gradings',
+      'Sub-base and capping layer material',
+      'Grading, CBR, LAA and plasticity certificates with delivery',
+      'Approved-source material for authority-supervised works',
+      'Bulk delivery by our own tipper and trailer fleet',
+      'Scheduled deliveries tied to your laying and rolling programme',
+      'Supply-and-lay packages where you want one accountable party',
+    ],
+    specs: [
+      ['Materials', 'Road base, sub-base, capping layer, crusher run'],
+      ['Typical use', 'Road and car park formation, hardstanding, yard and platform build-up'],
+      ['Control', 'Grading analysis, CBR, LAA, plasticity index, delivery tickets'],
+      ['Coverage', 'All seven emirates, delivered from approved UAE quarries'],
+    ],
+    faqs: [
+      {
+        q: 'Is your road base approved for RTA road works?',
+        a: 'Yes. We supply from quarries whose material already holds the relevant authority approval, and provide the grading and CBR certification with delivery. If your project is under DMT or a municipality instead, tell us at enquiry stage and we source against that specification rather than substituting an RTA grading.',
+      },
+      {
+        q: 'Can you supply and lay, or supply only?',
+        a: 'Either. Many clients take supply-only where they already have a laying team. Where we supply and lay, the density testing and the material certification come from the same party, which removes the argument about whether a failed test is a material problem or a compaction problem.',
+      },
+      {
+        q: 'What quantities do you deliver?',
+        a: 'From a single 20-tonne load up to continuous daily supply for a road package. For sustained deliveries we agree a schedule against your laying programme so material arrives ahead of the paver and the roller rather than sitting in a stockpile losing grading.',
+      },
+    ],
+  },
+  'aggregate-supply': {
+    img: '/images/services/aggregate-supply.jpg',
+    h1: 'Aggregate Supplier in Dubai & the UAE',
+    lead: 'Single-size and graded aggregates from 5mm to 40mm, from approved crushers, with consistent grading load to load.',
+    caption: 'Graded aggregate stockpiled and loaded from the working face.',
+    intro:
+      'Aggregate is bought on a certificate and judged on the twentieth load. We supply single-size and graded aggregate for concrete, asphalt, drainage and pipe bedding from approved crushers across the UAE, and we hold the grading steady across a delivery programme rather than only on the sample that went to the lab.',
+    body: [
+      'Sizes run from 5mm through 10, 14, 20 and 40mm, plus graded blends where the mix design calls for them. For structural concrete we supply against the consultant\u2019s approved source list; for asphalt, to the mix design already lodged with the authority; for drainage blankets and pipe surround, to the clean, single-size gradings that actually let water through instead of silting up in the first year.',
+      'Where a project is chloride- or sulphate-sensitive \u2014 which on coastal plots is most of them \u2014 we supply the chemical results alongside the physical ones. Aggregate that passes grading and fails sulphate content is still a rejected load, and finding that out after the pour is expensive.',
+    ],
+    scope: [
+      'Single-size aggregate: 5mm, 10mm, 14mm, 20mm, 40mm',
+      'Graded aggregate blends to mix design',
+      'Concrete aggregate from consultant-approved sources',
+      'Asphalt aggregate to the approved mix design',
+      'Drainage and filter media, pipe bedding and surround',
+      'Grading, soundness, LAA and chemical test certificates',
+      'Bulk delivery across the emirates by our own fleet',
+    ],
+    specs: [
+      ['Sizes', '5mm, 10mm, 14mm, 20mm, 40mm and graded blends'],
+      ['Typical use', 'Structural concrete, asphalt mixes, drainage blankets, pipe bedding'],
+      ['Control', 'Grading, LAA, soundness, sulphate and chloride content'],
+      ['Coverage', 'All seven emirates, from approved UAE crushers'],
+    ],
+    faqs: [
+      {
+        q: 'Do you supply aggregate for structural concrete?',
+        a: 'Yes, from sources on the consultant\u2019s approved list, with grading, soundness and chemical certification. If the source has not been approved yet we can submit the material for approval as part of the supply package.',
+      },
+      {
+        q: 'Can you hold one grading across a long delivery programme?',
+        a: 'That is the point of buying from us rather than the cheapest load available on the day. We fix the source at the start of the package and load from working faces rather than pile tails, so the grading you approved is the grading that keeps arriving.',
+      },
+      {
+        q: 'Do you supply washed aggregate?',
+        a: 'Yes, where the specification requires it \u2014 typically for exposed concrete, filter media and drainage applications where fines would block the layer. Washed material is priced separately because it costs more to produce.',
+      },
+    ],
+  },
+  'sand-supply': {
+    img: '/images/services/sand-supply.jpg',
+    h1: 'Sand Supplier in Dubai & the UAE',
+    lead: 'Fill sand, sweet sand and washed sand in bulk for backfill, bedding, blinding and platform raising.',
+    caption: 'Fill sand delivered and spread for a platform build-up.',
+    intro:
+      'Sand is the highest-volume material on most UAE sites and the one most often bought on price alone. The difference shows up in the compaction results and, on coastal plots, in the sulphate and chloride figures. We supply fill, sweet and washed sand in bulk with the test results the specification asks for, delivered on our own tippers against your programme.',
+    body: [
+      'Fill sand goes into bulk platform raising and general backfill, where what matters is that it compacts predictably and does not carry contamination. Sweet sand \u2014 low in salts \u2014 is what you want against structures, in trench surround and under slabs, because the alternative is chloride attack on reinforcement that nobody sees for a decade. Washed sand goes where the specification calls for a clean, controlled grading: blinding, bedding and screeds.',
+      'For anything placed against concrete or reinforcement we supply sulphate and chloride results as standard rather than on request. It is a small cost at supply stage and an enormous one to discover later.',
+    ],
+    scope: [
+      'Fill sand for platform raising and bulk backfill',
+      'Sweet sand for structural backfill and trench surround',
+      'Washed sand for blinding, bedding and screeds',
+      'Sulphate and chloride testing where the specification requires it',
+      'Grading and compaction characteristics on request',
+      'Bulk delivery by tipper and trailer, scheduled to the works',
+      'Supply-and-place with compaction and density testing',
+    ],
+    specs: [
+      ['Materials', 'Fill sand, sweet sand, washed sand'],
+      ['Typical use', 'Platform raising, structural and trench backfill, blinding, bedding'],
+      ['Control', 'Grading, sulphate and chloride content, field density on placed material'],
+      ['Coverage', 'All seven emirates, mobilised from Dubai'],
+    ],
+    faqs: [
+      {
+        q: 'What is the difference between fill sand and sweet sand?',
+        a: 'Sweet sand is low in soluble salts, which is why specifications call for it against concrete, reinforcement and buried services. Fill sand is for bulk volume where there is no structure in contact. Using fill sand where sweet sand was specified is a common and expensive substitution \u2014 we quote them separately so the difference is visible.',
+      },
+      {
+        q: 'Do you provide sulphate and chloride test results?',
+        a: 'Yes, as standard for any sand going against structures or reinforcement, and on request for bulk fill. Coastal plots across the UAE routinely need them and the consultant will ask.',
+      },
+      {
+        q: 'Can you place and compact the sand as well as supply it?',
+        a: 'Yes. Supply-and-place is often the better arrangement: the material certification and the field density results then come from one party, and there is no dispute about whether a failed layer was the sand or the compaction.',
+      },
+    ],
+  },
+  'stone-supply': {
+    img: '/images/services/stone-supply.jpg',
+    h1: 'Stone Supplier in Dubai & the UAE',
+    lead: 'Rock armour, rip-rap, boulders and crushed stone, sized to the drawing and delivered graded.',
+    caption: 'Sized stone loaded for slope and scour protection.',
+    intro:
+      'Stone is specified by size distribution, and it is usually delivered as whatever came off the face that morning. We supply rock armour, rip-rap, boulders and crushed stone graded to the drawing \u2014 which matters, because a slope protection layer built from the wrong size distribution does not fail gradually, it fails in one storm.',
+    body: [
+      'We source from quarries in Ras Al Khaimah and Fujairah, where the hard rock is, and grade at the quarry rather than sorting on your site at your cost. Sizes run from crushed stone and gabion fill up through rip-rap and armour rock and on to individual placed boulders for landscape and scour protection.',
+      'Delivery is by trailer with the loading arranged so the material arrives in the size bands you ordered. Where the stone is going into gabions or into placed slope protection, our own teams can carry out the placing as well, so the specified profile is what actually ends up on the bank.',
+    ],
+    scope: [
+      'Rock armour and rip-rap graded to the drawing',
+      'Gabion fill stone, sized to the basket',
+      'Individual boulders for landscape and scour protection',
+      'Crushed stone for hardstanding and haul roads',
+      'Quarry grading, so sorting does not happen at your cost',
+      'Delivery by trailer across the emirates',
+      'Placing by our own teams where the profile is specified',
+    ],
+    specs: [
+      ['Materials', 'Armour rock, rip-rap, gabion fill, boulders, crushed stone'],
+      ['Typical use', 'Slope and scour protection, gabion walls, hardstanding, landscape features'],
+      ['Control', 'Size grading at source, density and durability certification'],
+      ['Coverage', 'All seven emirates, from RAK and Fujairah quarries'],
+    ],
+    faqs: [
+      {
+        q: 'Can you supply stone graded to a specific size band?',
+        a: 'Yes, and we grade at the quarry rather than delivering mixed material for you to sort on site. Give us the size distribution from the drawing and that is what gets loaded.',
+      },
+      {
+        q: 'Do you supply and place slope protection?',
+        a: 'Yes. Where a profile is specified \u2014 slope protection, scour aprons, channel lining \u2014 supply-and-place means the delivered grading and the finished profile are one party\u2019s responsibility.',
+      },
+      {
+        q: 'Where does the stone come from?',
+        a: 'Hard rock quarries in Ras Al Khaimah and Fujairah, which is where the UAE\u2019s armour-grade material is produced. Certification travels with the load.',
+      },
+    ],
+  },
+  'gabion-boxes': {
+    img: '/images/services/gabion-boxes.jpg',
+    h1: 'Gabion Boxes Supplier in Dubai & the UAE',
+    lead: 'Galvanised and PVC-coated gabion baskets and mattresses, supplied loose or filled and placed by our own teams.',
+    caption: 'Gabion baskets filled and faced along a retained edge.',
+    intro:
+      'Gabions do a job that concrete cannot: they retain, they drain, and they tolerate movement without cracking. We supply galvanised and PVC-coated baskets and mattresses in standard and made-to-order sizes, and we fill and place them where you want the finished wall rather than a pallet of mesh.',
+    body: [
+      'Coating matters more here than anywhere else in the package. Heavily galvanised mesh is adequate inland; anything within reach of salt spray or brackish groundwater wants PVC coating, and the difference in service life is measured in decades. We will tell you which one the location needs rather than quoting the cheaper one and leaving it to you.',
+      'Where we place as well as supply, the stone comes from our own supply line \u2014 sized to the basket so the face is packed rather than loosely tipped. A gabion wall is judged on its face, and a well-packed face is a labour decision made at the time of building, not a material that can be fixed afterwards.',
+    ],
+    scope: [
+      'Galvanised gabion baskets in standard and custom sizes',
+      'PVC-coated baskets for coastal and saline exposure',
+      'Gabion mattresses for channel lining and scour aprons',
+      'Lacing wire, spirals, stiffeners and geotextile backing',
+      'Sized gabion fill stone from our own supply line',
+      'Filling and placing by our own teams',
+      'Retaining walls, embankment protection and channel works',
+    ],
+    specs: [
+      ['Materials', 'Galvanised and PVC-coated mesh baskets, mattresses, fixings, geotextile'],
+      ['Typical use', 'Retaining walls, embankment and slope protection, channel lining, landscape'],
+      ['Control', 'Mesh gauge and coating certification, fill grading, face packing'],
+      ['Coverage', 'All seven emirates, mobilised from Dubai'],
+    ],
+    faqs: [
+      {
+        q: 'Should I use galvanised or PVC-coated gabions?',
+        a: 'Galvanised is fine inland and away from saline groundwater. Anywhere within reach of salt spray, tidal water or brackish ground, PVC coating is worth the difference \u2014 it is the coating, not the stone, that determines how long the wall stands.',
+      },
+      {
+        q: 'Do you fill and place, or supply the baskets only?',
+        a: 'Both. Supply-only is common where you have your own labour. Where we place, the fill stone comes from our own supply line sized to the basket, and the face is hand-packed rather than tipped, which is what the finished appearance depends on.',
+      },
+      {
+        q: 'Can you supply non-standard basket sizes?',
+        a: 'Yes. Standard sizes cover most work, but retaining walls with an unusual profile or a specific stepping arrangement are made to order against the drawing.',
+      },
+    ],
+  },
+  'material-shifting': {
+    img: '/images/services/material-shifting.jpg',
+    h1: 'Material Shifting & Haulage Contractor in Dubai',
+    lead: 'Bulk movement of material on and off site with our own tippers, trailers and loaders \u2014 muck-away, import and internal shifting.',
+    caption: 'Tippers and a loader working a stockpile for haulage off site.',
+    intro:
+      'Material shifting is the part of a programme that is invisible until it stops. A dig cannot continue when there is nowhere to put the spoil, and a fill cannot proceed when the import is a day behind. We run our own tippers, trailers and loaders, so haulage is a resource we control rather than one we book.',
+    body: [
+      'The work splits three ways. Muck-away takes excavated material off site under municipal disposal permit, with tickets retained for the project file \u2014 which matters, because disposal without a permit trail is a compliance problem long after the hole is filled. Import brings in fill, sand and aggregate against the laying programme. Internal shifting moves material between stockpiles and working areas on large sites, which is usually cheaper than exporting and re-importing the same material twice.',
+      'We also move plant. Low-beds and trailers transport excavators, dozers, rollers and breakers between sites and across the emirates, with the permits and escorts that oversize loads need. On a multi-site programme that is often the constraint nobody prices until it bites.',
+    ],
+    scope: [
+      'Muck-away and disposal under municipal permit, tickets retained',
+      'Import of fill, sand, aggregate and road base to programme',
+      'Internal shifting between stockpiles and working areas',
+      'Stockpile management, loading and re-handling',
+      'Plant transport by low-bed and trailer across the emirates',
+      'Oversize load permits and escorts where required',
+      'Scheduled haulage tied to the excavation or laying sequence',
+    ],
+    specs: [
+      ['Plant', 'Tippers, tipper trailers, low-beds, wheel loaders, excavators'],
+      ['Typical use', 'Muck-away, fill import, internal site shifting, plant relocation'],
+      ['Control', 'Disposal permits and tickets, load records, delivery scheduling'],
+      ['Coverage', 'All seven emirates, based in Dubai'],
+    ],
+    faqs: [
+      {
+        q: 'Do you handle the disposal permits?',
+        a: 'Yes. Excavated material goes to a permitted tip under the relevant municipal disposal permit, and the tickets are retained for the project file. Disposal without that trail is a compliance exposure that outlasts the works.',
+      },
+      {
+        q: 'Can you keep up with a continuous excavation?',
+        a: 'That is what owning the fleet is for. We size the haulage to the dig rate at tender stage so the excavator is never standing waiting for a tipper, and we can add units from our own fleet rather than waiting on a hire company.',
+      },
+      {
+        q: 'Do you transport plant as well as material?',
+        a: 'Yes \u2014 excavators, dozers, rollers, breakers and graders moved by low-bed and trailer across the emirates, including the permits and escorts oversize loads require.',
+      },
+    ],
+  },
+  // ---- Earth Works (continued) --------------------------------------------
+  'site-preparation': {
+    img: '/images/services/site-preparation.jpg',
+    h1: 'Land Clearing & Site Preparation Contractor in Dubai',
+    lead: 'Plots cleared down to workable ground and handed over graded, stabilised and ready to build.',
+    caption: 'A plot cleared and graded, ready for setting out.',
+    intro:
+      'Site preparation is the work that turns a plot into a site. Vegetation, demolition arisings, buried slabs, abandoned services and uncontrolled fill all have to come out before anything useful can be set out, and what is actually underground is rarely what the drawing says. We clear, remove and grade, and we tell you what we found.',
+    body: [
+      'Older industrial and residential plots across Dubai and the Northern Emirates are full of things nobody recorded: previous foundations, buried tanks, dead cables, capped wells, imported fill of unknown origin. We scan and trial-pit before the machines start, so a live service is found by a survey rather than by a bucket. Anything uncharted is recorded and reported before it is removed.',
+      'Once the plot is clear the platform is graded to the levels you need for setting out, and stabilised so it stays workable through the first weeks of the programme \u2014 haul routes, working areas and a surface that survives rain and plant movement. Arisings are classified, loaded and hauled under municipal disposal permit with tickets retained.',
+    ],
+    scope: [
+      'Vegetation, tree and root removal',
+      'Demolition arisings, buried slabs and obstruction removal',
+      'Service scanning and trial pits before machines start',
+      'Removal of uncontrolled and contaminated fill',
+      'Classification, haulage and disposal under municipal permit',
+      'Grading to working levels and platform stabilisation',
+      'Haul routes and working areas set up for the following trades',
+    ],
+    specs: [
+      ['Plant', 'Excavators, dozers, wheel loaders, breakers, tippers, graders and rollers'],
+      ['Typical use', 'New plots, redevelopment sites, industrial yards, infrastructure corridors'],
+      ['Control', 'Service scanning, trial pits, disposal tickets, level survey on handover'],
+      ['Coverage', 'All seven emirates, mobilised from Dubai'],
+    ],
+    faqs: [
+      {
+        q: 'What happens if you find services that are not on the drawings?',
+        a: 'We stop, record and report before anything is removed. We scan and trial-pit ahead of the machines precisely so uncharted services are found by a survey rather than by a bucket, and so the decision about diverting or protecting them is yours to make.',
+      },
+      {
+        q: 'Do you handle demolition as well as clearing?',
+        a: 'We remove slabs, foundations, boundary structures and the arisings from previous use. Full structural demolition of standing buildings is a separate scope \u2014 tell us what is on the plot and we will say plainly what is in and out.',
+      },
+      {
+        q: 'Is disposal included?',
+        a: 'Yes. Material is classified, loaded and hauled to a permitted tip under the relevant municipal disposal permit, with tickets retained for the project file.',
+      },
+    ],
+  },
 }
