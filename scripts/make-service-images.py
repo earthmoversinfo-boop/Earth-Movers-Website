@@ -26,6 +26,7 @@ OUT = ROOT / 'public' / 'images' / 'services'
 IMG = ROOT / 'public' / 'images'
 W, H = 1400, 933          # wide crop, used as the page banner
 TW, TH = 900, 1125        # portrait crop, used in the overview rail
+QW = 480                  # square thumbnail, used in the "what's included" cards
 
 S = 'assets/originals/services'   # the company's own job photographs
 L = 'public/images/library'
@@ -92,6 +93,21 @@ TALL = {
     'utilities-shifting':          (0.02, 0.28, 0.44, 1.00),
     'noc-services':                (0.10, 0.00, 0.95, 1.00),
 }
+
+# Square thumbnails for the "what's included" cards. Most reuse the portrait
+# region, but a few frames put their subject off-centre and a centred square
+# would land on empty road, so those name their own window.
+SQUARE = {
+    'road-base-laying':    (0.00, 0.30, 1.00, 0.72),
+    'road-maintenance':    (0.18, 0.22, 1.00, 0.62),
+    'access-roads':        (0.16, 0.00, 0.66, 0.95),
+    'kerbstones':          (0.26, 0.05, 0.86, 1.00),
+    'heavy-duty-interlock-paving': (0.16, 0.30, 0.84, 1.00),
+    'road-markings':       (0.36, 0.10, 0.98, 0.92),
+    'excavation':          (0.28, 0.00, 0.92, 0.86),
+    'site-preparation':    (0.14, 0.05, 0.72, 1.00),
+}
+
 
 # A drawing is a landscape document: cropping it to portrait cuts the title
 # block off. These are fitted whole onto a paper ground instead.
@@ -179,6 +195,8 @@ def main():
         render(im, box, (W, H), OUT / f'{slug}.jpg', punch=punch)
         render(im, TALL.get(slug, box), (TW, TH), OUT / f'{slug}-tall.jpg',
                fit=slug in FIT_TALL, punch=punch)
+        render(im, SQUARE.get(slug, TALL.get(slug, box)), (QW, QW),
+               OUT / f'{slug}-sq.jpg', fit=slug in FIT_TALL, punch=punch)
 
     # category card/banner and the rail picture on the emirate pages
     for slug, (src, wide, tall) in CATEGORY.items():

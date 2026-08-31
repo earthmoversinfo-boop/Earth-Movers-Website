@@ -293,7 +293,11 @@ function buildCategories(locale) {
         }
         // Each service ships a wide crop for the banner and a portrait one for
         // the rail beside the overview; both come out of make-service-images.py.
-        return { ...merged, tallImg: merged.img.replace(/\.jpg$/, '-tall.jpg') }
+        return {
+          ...merged,
+          tallImg: merged.img.replace(/\.jpg$/, '-tall.jpg'),
+          sqImg: merged.img.replace(/\.jpg$/, '-sq.jpg'),
+        }
       }),
     }
   })

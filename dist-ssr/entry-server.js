@@ -2671,7 +2671,8 @@ function buildCategories(locale) {
 				};
 				return {
 					...merged,
-					tallImg: merged.img.replace(/\.jpg$/, "-tall.jpg")
+					tallImg: merged.img.replace(/\.jpg$/, "-tall.jpg"),
+					sqImg: merged.img.replace(/\.jpg$/, "-sq.jpg")
 				};
 			})
 		};
@@ -4846,6 +4847,40 @@ function Services() {
 	] });
 }
 //#endregion
+//#region src/components/ServiceIncludeCard.jsx
+function ServiceIncludeCard({ to, name, text, linkLabel, img, alt, stacked }) {
+	return /* @__PURE__ */ jsxs(Link, {
+		to,
+		className: `incl-card${stacked ? " incl-card-stacked" : ""}`,
+		children: [/* @__PURE__ */ jsxs("span", {
+			className: "incl-card-media",
+			children: [/* @__PURE__ */ jsx("img", {
+				src: asset(img),
+				alt: alt || name,
+				loading: "lazy"
+			}), /* @__PURE__ */ jsx("span", {
+				className: "incl-card-tick",
+				"aria-hidden": "true",
+				children: /* @__PURE__ */ jsx(CheckCircle, {})
+			})]
+		}), /* @__PURE__ */ jsxs("span", {
+			className: "incl-card-body",
+			children: [
+				/* @__PURE__ */ jsx("h3", { children: name }),
+				/* @__PURE__ */ jsx("p", { children: text }),
+				/* @__PURE__ */ jsxs("span", {
+					className: "text-link",
+					children: [
+						linkLabel,
+						" ",
+						/* @__PURE__ */ jsx(Arrow, {})
+					]
+				})
+			]
+		})]
+	});
+}
+//#endregion
 //#region src/components/Breadcrumbs.jsx
 function Breadcrumbs({ items }) {
 	const { href } = useLocale();
@@ -5006,24 +5041,15 @@ function ServiceCategory() {
 						children: t("lbl.included")
 					}),
 					/* @__PURE__ */ jsx("div", {
-						className: "check-grid",
+						className: "incl-grid",
 						children: category.services.map((s, i) => /* @__PURE__ */ jsx(Reveal, {
 							delay: i % 2 * 60,
-							children: /* @__PURE__ */ jsxs(Link, {
+							children: /* @__PURE__ */ jsx(ServiceIncludeCard, {
 								to: href(`/services/${category.slug}/${s.slug}`),
-								className: "check-item check-item-link",
-								children: [/* @__PURE__ */ jsx(CheckCircle, { className: "check-ico" }), /* @__PURE__ */ jsxs("div", { children: [
-									/* @__PURE__ */ jsx("h3", { children: s.name }),
-									/* @__PURE__ */ jsx("p", { children: s.text }),
-									/* @__PURE__ */ jsxs("span", {
-										className: "text-link",
-										children: [
-											t("svc.detailLink", { name: s.name }),
-											" ",
-											/* @__PURE__ */ jsx(Arrow, {})
-										]
-									})
-								] })]
+								name: s.name,
+								text: s.text,
+								img: s.sqImg,
+								linkLabel: t("svc.detailLink", { name: s.name })
 							})
 						}, s.slug))
 					})
@@ -5556,26 +5582,21 @@ function ServiceLocation({ category, emirate }) {
 						})]
 					})
 				}), /* @__PURE__ */ jsx("div", {
-					className: "loc-services",
-					children: category.services.map((s, i) => /* @__PURE__ */ jsxs(Reveal, {
+					className: "incl-grid incl-grid-3",
+					children: category.services.map((s, i) => /* @__PURE__ */ jsx(Reveal, {
 						delay: i % 3 * 60,
-						className: "loc-service",
-						children: [/* @__PURE__ */ jsx(CheckCircle, { className: "check-ico" }), /* @__PURE__ */ jsxs("div", { children: [
-							/* @__PURE__ */ jsx("h3", { children: t("loc.inEmirate", {
+						children: /* @__PURE__ */ jsx(ServiceIncludeCard, {
+							to: href(`/services/${category.slug}/${s.slug}`),
+							name: t("loc.inEmirate", {
 								name: s.name,
 								emirate: emirate.name
-							}) }),
-							/* @__PURE__ */ jsx("p", { children: s.text }),
-							/* @__PURE__ */ jsxs(Link, {
-								to: href(`/services/${category.slug}/${s.slug}`),
-								className: "text-link",
-								children: [
-									t("svc.moreOn", { name: lower(s.name) }),
-									" ",
-									/* @__PURE__ */ jsx(Arrow, {})
-								]
-							})
-						] })]
+							}),
+							text: s.text,
+							img: s.img,
+							stacked: true,
+							alt: s.name,
+							linkLabel: t("svc.moreOn", { name: lower(s.name) })
+						})
 					}, s.slug))
 				})]
 			})

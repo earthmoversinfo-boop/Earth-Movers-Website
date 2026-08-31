@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
+import ServiceIncludeCard from '../components/ServiceIncludeCard.jsx'
 import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
 import PageBanner from '../components/PageBanner.jsx'
@@ -51,22 +52,16 @@ export default function ServiceCategory() {
           </div>
 
           <h3 className="block-label">{t('lbl.included')}</h3>
-          <div className="check-grid">
+          <div className="incl-grid">
             {category.services.map((s, i) => (
               <Reveal key={s.slug} delay={(i % 2) * 60}>
-                <Link
+                <ServiceIncludeCard
                   to={href(`/services/${category.slug}/${s.slug}`)}
-                  className="check-item check-item-link"
-                >
-                  <CheckCircle className="check-ico" />
-                  <div>
-                    <h3>{s.name}</h3>
-                    <p>{s.text}</p>
-                    <span className="text-link">
-                      {t('svc.detailLink', { name: s.name })} <Arrow />
-                    </span>
-                  </div>
-                </Link>
+                  name={s.name}
+                  text={s.text}
+                  img={s.sqImg}
+                  linkLabel={t('svc.detailLink', { name: s.name })}
+                />
               </Reveal>
             ))}
           </div>

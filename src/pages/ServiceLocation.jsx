@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
+import ServiceIncludeCard from '../components/ServiceIncludeCard.jsx'
 import CTA from '../components/CTA.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import Breadcrumbs from '../components/Breadcrumbs.jsx'
@@ -92,17 +93,18 @@ export default function ServiceLocation({ category, emirate }) {
             </div>
           </div>
 
-          <div className="loc-services">
+          <div className="incl-grid incl-grid-3">
             {category.services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 3) * 60} className="loc-service">
-                <CheckCircle className="check-ico" />
-                <div>
-                  <h3>{t('loc.inEmirate', { name: s.name, emirate: emirate.name })}</h3>
-                  <p>{s.text}</p>
-                  <Link to={href(`/services/${category.slug}/${s.slug}`)} className="text-link">
-                    {t('svc.moreOn', { name: lower(s.name) })} <Arrow />
-                  </Link>
-                </div>
+              <Reveal key={s.slug} delay={(i % 3) * 60}>
+                <ServiceIncludeCard
+                  to={href(`/services/${category.slug}/${s.slug}`)}
+                  name={t('loc.inEmirate', { name: s.name, emirate: emirate.name })}
+                  text={s.text}
+                  img={s.img}
+                  stacked
+                  alt={s.name}
+                  linkLabel={t('svc.moreOn', { name: lower(s.name) })}
+                />
               </Reveal>
             ))}
           </div>

@@ -13,6 +13,7 @@
   --muted: #9a9ea5;
   --line: #e5e6e9;
   --accent: #eda63a;
+  --accent-soft: rgba(237, 166, 58, 0.16);
   --accent-deep: #c9881c;
   --dark: #3d4249;
   --dark-2: #484d55;
@@ -2220,3 +2221,161 @@ h1, h2, h3, h4 {
   .guide-rail { position: static; }
   .guide-toc { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   "What's included" / "What we deliver here" — the per-service lists on the
+   category and emirate pages.
+
+   These were a text-only two-column list, which on a page carrying six to nine
+   entries read as a wall of grey. Each entry now leads with the photograph
+   from that service's own page, so the section is scanned by picture and the
+   plant on show does the explaining. The card stays quiet — white ground,
+   hairline border, gold only on the tick and on hover — so six of them in a
+   grid still read as one calm block rather than six competing tiles.
+   --------------------------------------------------------------------------- */
+
+.incl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-top: 1.6rem;
+  align-items: stretch;
+}
+
+.incl-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.incl-grid > .reveal { display: flex; align-items: stretch; }
+
+.incl-card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.15rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.26);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.incl-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -20px rgba(19, 20, 23, 0.45);
+}
+
+.incl-card-media {
+  position: relative;
+  display: block;
+  width: 6.5rem;
+  aspect-ratio: 1 / 1;
+  border-radius: calc(var(--radius) - 3px);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.incl-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.incl-card:hover .incl-card-media img { transform: scale(1.07); }
+
+/* The tick still says "included"; it rides on the photograph rather than
+   taking a column of its own, which is what made the old list so wide. */
+.incl-card-tick {
+  position: absolute;
+  inset-block-end: 0.3rem;
+  inset-inline-start: 0.3rem;
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--dark);
+  box-shadow: 0 2px 8px -2px rgba(19, 20, 23, 0.55);
+}
+
+.incl-card-tick svg { width: 0.95rem; height: 0.95rem; }
+
+.incl-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+/* pushes the detail link to the bottom, so links line up across a row */
+.incl-card-body .text-link { margin-top: auto; padding-top: 0.6rem; }
+
+.incl-card-body h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.incl-card:hover .incl-card-body h3 { color: var(--accent-deep); }
+
+.incl-card-body p { color: var(--body-c); font-size: 0.9rem; line-height: 1.62; margin: 0; }
+
+.incl-card-body .text-link { font-size: 0.68rem; }
+
+@media (max-width: 1080px) { .incl-grid-3 { grid-template-columns: 1fr 1fr; } }
+
+@media (max-width: 720px) {
+  .incl-grid, .incl-grid-3 { grid-template-columns: 1fr; }
+  .incl-card-media { width: 5rem; }
+}
+
+/* On a phone the side thumbnail leaves the copy about 28 characters wide,
+   which turns four sentences into a column fifteen lines deep. Below this the
+   card stacks like the three-up variant: the photograph gets the full width
+   and the text gets a readable measure back. */
+@media (max-width: 560px) {
+  .incl-card { grid-template-columns: 1fr; gap: 0.9rem; padding: 0.5rem 0.5rem 1.1rem; }
+  .incl-card-media { width: 100%; aspect-ratio: 16 / 9; }
+  .incl-card-tick {
+    inset-block-end: auto;
+    inset-block-start: 0.5rem;
+    inset-inline-start: 0.5rem;
+  }
+  .incl-card-body { padding-inline: 0.6rem; }
+}
+
+/* The scope list on a service page is plain strings with no photograph to
+   show, so it gets colour from the tick instead: a soft gold disc that gives
+   the column a rhythm the bare outline icon never did. */
+.check-item .check-ico {
+  box-sizing: content-box;
+  width: 1.05rem;
+  height: 1.05rem;
+  padding: 0.32rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  margin-top: 0.05rem;
+}
+
+/* Three across, so a side thumbnail would leave the copy in a 200px gutter.
+   The photo goes on top at full card width instead — bigger picture, and the
+   text gets a readable measure back. */
+.incl-card-stacked { grid-template-columns: 1fr; gap: 0.95rem; padding: 0.55rem 0.55rem 1.15rem; }
+
+.incl-card-stacked .incl-card-media { width: 100%; aspect-ratio: 16 / 10; }
+
+.incl-card-stacked .incl-card-tick {
+  inset-block-end: auto;
+  inset-block-start: 0.55rem;
+  inset-inline-start: 0.55rem;
+}
+
+.incl-card-stacked .incl-card-body { padding-inline: 0.6rem; }
