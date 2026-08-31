@@ -161,8 +161,8 @@ export const UI = {
     'home.fleetEyebrow': 'The Fleet',
     'home.fleetTitle': 'One of the largest heavy-excavation fleets in Dubai.',
     'home.fleetLead':
-      'Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine.',
-    'home.rentEquipment': 'Rent equipment',
+      'Excavators, bulldozers, graders, rollers and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine.',
+    'home.rentEquipment': 'Discuss your programme',
     'home.fleetCaption': 'Fleet operations — Dubai',
     'home.fleetOperated': 'Operated · 24/7',
     'home.fleetAlt': 'Excavators and a dozer moving fill on an Earth Movers site',
@@ -181,7 +181,7 @@ export const UI = {
     'about.story2':
       'Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, heavy equipment, material supply, transportation and logistics. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor.',
     'about.story3':
-      'We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, piling rigs, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.',
+      'We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, graders, rollers, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.',
     'about.photoAlt': 'Earth Movers International team and machinery at work',
     'about.milestones': 'Milestones',
     'about.milestonesTitle': 'The road so far.',
@@ -432,8 +432,8 @@ export const UI = {
     'home.fleetEyebrow': 'الأسطول',
     'home.fleetTitle': 'أحد أكبر أساطيل الحفر الثقيل في دبي.',
     'home.fleetLead':
-      'حفارات وجرافات وحفارات خوازيق وكسّارات صخور — مملوكة لنا ونتولى صيانتها وتشغيلها. برنامجك الزمني لا ينتظر معدة.',
-    'home.rentEquipment': 'استئجار المعدات',
+      'حفارات وجرافات ومسوّيات ومداحل وكسّارات صخور — مملوكة لنا ونتولى صيانتها وتشغيلها. برنامجك الزمني لا ينتظر معدة.',
+    'home.rentEquipment': 'ناقش برنامجك',
     'home.fleetCaption': 'عمليات الأسطول — دبي',
     'home.fleetOperated': 'بمشغّلين · على مدار الساعة',
     'home.fleetAlt': 'حفارات وجرافة تنقل الردم في أحد مواقع إيرث موفرز',
@@ -452,7 +452,7 @@ export const UI = {
     'about.story2':
       'تأسّس فريقنا لمواجهة التحديات التي يواجهها قطاع الإنشاءات في مجالات الأعمال الترابية والمعدات الثقيلة وتوريد المواد والنقل والخدمات اللوجستية. واليوم ندعم مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات، بصفتنا مقاول إنشاء طرق وأعمال ترابية مقرّه دبي.',
     'about.story3':
-      'نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات وحفارات خوازيق وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.',
+      'نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات ومسوّيات ومداحل وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.',
     'about.photoAlt': 'فريق إيرث موفرز إنترناشيونال ومعداته أثناء العمل',
     'about.milestones': 'محطات',
     'about.milestonesTitle': 'الطريق حتى الآن.',

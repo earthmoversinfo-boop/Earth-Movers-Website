@@ -261,8 +261,8 @@ var UI = {
 		"home.plusServices": "plus {n} services",
 		"home.fleetEyebrow": "The Fleet",
 		"home.fleetTitle": "One of the largest heavy-excavation fleets in Dubai.",
-		"home.fleetLead": "Excavators, bulldozers, piling rigs and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine.",
-		"home.rentEquipment": "Rent equipment",
+		"home.fleetLead": "Excavators, bulldozers, graders, rollers and rock breakers — owned, maintained and operated by us. Your programme never waits on a machine.",
+		"home.rentEquipment": "Discuss your programme",
 		"home.fleetCaption": "Fleet operations — Dubai",
 		"home.fleetOperated": "Operated · 24/7",
 		"home.fleetAlt": "Excavators and a dozer moving fill on an Earth Movers site",
@@ -275,7 +275,7 @@ var UI = {
 		"about.storyTitle": "Who we are",
 		"about.story1": "Earth Movers International is a dynamic and preferred solution provider in the fields of civil and heavy construction, engineering, oil & gas, recycling and demolition.",
 		"about.story2": "Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, heavy equipment, material supply, transportation and logistics. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor.",
-		"about.story3": "We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, piling rigs, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.",
+		"about.story3": "We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, graders, rollers, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.",
 		"about.photoAlt": "Earth Movers International team and machinery at work",
 		"about.milestones": "Milestones",
 		"about.milestonesTitle": "The road so far.",
@@ -483,8 +483,8 @@ var UI = {
 		"home.plusServices": "و{n} خدمات أخرى",
 		"home.fleetEyebrow": "الأسطول",
 		"home.fleetTitle": "أحد أكبر أساطيل الحفر الثقيل في دبي.",
-		"home.fleetLead": "حفارات وجرافات وحفارات خوازيق وكسّارات صخور — مملوكة لنا ونتولى صيانتها وتشغيلها. برنامجك الزمني لا ينتظر معدة.",
-		"home.rentEquipment": "استئجار المعدات",
+		"home.fleetLead": "حفارات وجرافات ومسوّيات ومداحل وكسّارات صخور — مملوكة لنا ونتولى صيانتها وتشغيلها. برنامجك الزمني لا ينتظر معدة.",
+		"home.rentEquipment": "ناقش برنامجك",
 		"home.fleetCaption": "عمليات الأسطول — دبي",
 		"home.fleetOperated": "بمشغّلين · على مدار الساعة",
 		"home.fleetAlt": "حفارات وجرافة تنقل الردم في أحد مواقع إيرث موفرز",
@@ -497,7 +497,7 @@ var UI = {
 		"about.storyTitle": "من نحن",
 		"about.story1": "إيرث موفرز إنترناشيونال مزوّد حلول نشط ومفضَّل في مجالات الإنشاءات المدنية والثقيلة والهندسة والنفط والغاز وإعادة التدوير والهدم.",
 		"about.story2": "تأسّس فريقنا لمواجهة التحديات التي يواجهها قطاع الإنشاءات في مجالات الأعمال الترابية والمعدات الثقيلة وتوريد المواد والنقل والخدمات اللوجستية. واليوم ندعم مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات، بصفتنا مقاول إنشاء طرق وأعمال ترابية مقرّه دبي.",
-		"about.story3": "نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات وحفارات خوازيق وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.",
+		"about.story3": "نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات ومسوّيات ومداحل وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.",
 		"about.photoAlt": "فريق إيرث موفرز إنترناشيونال ومعداته أثناء العمل",
 		"about.milestones": "محطات",
 		"about.milestonesTitle": "الطريق حتى الآن.",
@@ -3442,7 +3442,6 @@ var fleetAr = [
 	"حفارات",
 	"جرافات",
 	"لوادر ذات إطارات",
-	"حفارات خوازيق",
 	"كسّارات صخور",
 	"مسوّيات",
 	"مداحل دمك",
@@ -3679,11 +3678,11 @@ var featuredServices = [
 		blurb: "Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances."
 	},
 	{
-		id: "equipment-rental",
-		title: "Equipment Rental",
+		id: "material-supply",
+		title: "Material Supply",
 		icon: "crane",
-		img: "/images/library/tower-cranes.jpg",
-		blurb: "Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready."
+		img: "/images/svc-supply.jpg",
+		blurb: "Road base, aggregate, sand, stone and gabion boxes from approved sources, delivered with their test certificates."
 	}
 ];
 var serviceGroups = [
@@ -3720,10 +3719,6 @@ var serviceGroups = [
 			{
 				title: "Trenching",
 				text: "Utility, pipeline and drainage trenching cut to line and level, with shoring and backfill to specification."
-			},
-			{
-				title: "Piling",
-				text: "Piling rigs and foundation works that put reliable ground under heavy structures."
 			}
 		]
 	},
@@ -3774,8 +3769,8 @@ var serviceGroups = [
 				text: "Bulk material shifting and transport with a dedicated tipper and trailer fleet, managed loads and disposal."
 			},
 			{
-				title: "Heavy Equipment Rental",
-				text: "Excavators, bulldozers, loaders, cranes and TMA (truck-mounted attenuator) units — operated or bare, short or long term."
+				title: "Stone, Sand & Gabion Supply",
+				text: "Rock armour, rip-rap, boulders, sand and gabion baskets graded at source and delivered to the drawing."
 			},
 			{
 				title: "Marine & Coastal Works",
@@ -3884,7 +3879,6 @@ var fleet = [
 	"Excavators",
 	"Bulldozers",
 	"Wheel Loaders",
-	"Piling Rigs",
 	"Rock Breakers",
 	"Graders",
 	"Compactors",

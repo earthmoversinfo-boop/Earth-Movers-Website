@@ -184,12 +184,12 @@ export const featuredServices = [
       'Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances.',
   },
   {
-    id: 'equipment-rental',
-    title: 'Equipment Rental',
+    id: 'material-supply',
+    title: 'Material Supply',
     icon: 'crane',
-    img: '/images/library/tower-cranes.jpg',
+    img: '/images/svc-supply.jpg',
     blurb:
-      'Excavators, bulldozers, loaders, cranes and TMA units — operated or bare rental, project-ready.',
+      'Road base, aggregate, sand, stone and gabion boxes from approved sources, delivered with their test certificates.',
   },
 ]
 
@@ -229,10 +229,6 @@ export const serviceGroups = [
       {
         title: 'Trenching',
         text: 'Utility, pipeline and drainage trenching cut to line and level, with shoring and backfill to specification.',
-      },
-      {
-        title: 'Piling',
-        text: 'Piling rigs and foundation works that put reliable ground under heavy structures.',
       },
     ],
   },
@@ -285,8 +281,8 @@ export const serviceGroups = [
         text: 'Bulk material shifting and transport with a dedicated tipper and trailer fleet, managed loads and disposal.',
       },
       {
-        title: 'Heavy Equipment Rental',
-        text: 'Excavators, bulldozers, loaders, cranes and TMA (truck-mounted attenuator) units — operated or bare, short or long term.',
+        title: 'Stone, Sand & Gabion Supply',
+        text: 'Rock armour, rip-rap, boulders, sand and gabion baskets graded at source and delivered to the drawing.',
       },
       {
         title: 'Marine & Coastal Works',
@@ -383,7 +379,6 @@ export const fleet = [
   'Excavators',
   'Bulldozers',
   'Wheel Loaders',
-  'Piling Rigs',
   'Rock Breakers',
   'Graders',
   'Compactors',
