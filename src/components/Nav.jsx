@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Arrow, Logo } from './Icons.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { LOCALES, localeHref, splitLocale } from '../i18n/locale.js'
+import { coverageLabel } from '../data/services.js'
 
 const LINKS = [
   { path: '/', key: 'nav.home' },
@@ -87,7 +88,7 @@ export default function Nav() {
                             <Arrow />
                           </Link>
                           <span className="nav-mega-where">
-                            {c.coverage === 'all' ? t('cov.availableAll') : t('cov.availableDubai')}
+                            {coverageLabel(c, locale, t)}
                           </span>
                           <ul className="nav-mega-list">
                             {c.services.map((sv) => (

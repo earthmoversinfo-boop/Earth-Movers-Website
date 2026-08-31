@@ -8,6 +8,7 @@ import Photo from '../components/Photo.jsx'
 import { Arrow } from '../components/Icons.jsx'
 import { FleetScene } from '../components/Art.jsx'
 import useLocale from '../i18n/useLocale.js'
+import { coverageLabel } from '../data/services.js'
 import { asset } from '../lib/asset.js'
 
 function HeroSlider() {
@@ -59,7 +60,7 @@ function HeroSlider() {
 }
 
 export default function Home() {
-  const { t, tax, content, href } = useLocale()
+  const { t, tax, content, href, locale } = useLocale()
   const { stats, projects, fleet, certifications, images } = content
 
   return (
@@ -89,51 +90,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* ---------------- our work ---------------- */}
-      <section className="section">
-        <div className="wrap">
-          <div className="section-head">
-            <div className="kicker">
-              <Reveal><span className="eyebrow">{t('home.workEyebrow')}</span></Reveal>
-              <Reveal delay={80}>
-                <h2 className="display-lg">{t('home.workTitle')}</h2>
-              </Reveal>
-            </div>
-            <Reveal delay={160}>
-              <Link to={href('/projects')} className="text-link">{t('home.allProjects')} <Arrow /></Link>
-            </Reveal>
-          </div>
-
-          <div className="work-grid">
-            {projects.map((p, i) => (
-              <Reveal key={p.client} delay={i * 90} className="work-card">
-                <div className="work-card-media">
-                  <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
-                </div>
-                <span className="eyebrow">{p.sector} · {p.location}</span>
-                <h3>{p.client}</h3>
-                <p>{p.scope}</p>
-                <span className="work-meta">{p.year} — {p.value}</span>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- statement ---------------- */}
-      <section className="section section-paper hairline-top">
-        <div className="wrap">
-          <div className="statement">
-            <Reveal><span className="eyebrow">{t('home.promiseEyebrow')}</span></Reveal>
-            <Reveal delay={90}>
-              <h2>
-                {t('home.promise')}<em>{t('home.promiseEm')}</em>
-              </h2>
-            </Reveal>
-          </div>
-        </div>
-      </section>
 
       {/* ---------------- services ---------------- */}
       <section className="section">
@@ -174,13 +130,56 @@ export default function Home() {
                   </ul>
                   <span className="cat-tile-foot">
                     <span className="cat-tile-where">
-                      {c.coverage === 'all'
-                        ? t('cov.availableAll')
-                        : t('cov.availableDubai')}
+                      {coverageLabel(c, locale, t)}
                     </span>
                     <span className="text-link">{t('cta.explore')} <Arrow /></span>
                   </span>
                 </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- statement ---------------- */}
+      <section className="section section-paper hairline-top">
+        <div className="wrap">
+          <div className="statement">
+            <Reveal><span className="eyebrow">{t('home.promiseEyebrow')}</span></Reveal>
+            <Reveal delay={90}>
+              <h2>
+                {t('home.promise')}<em>{t('home.promiseEm')}</em>
+              </h2>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- our work ---------------- */}
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head">
+            <div className="kicker">
+              <Reveal><span className="eyebrow">{t('home.workEyebrow')}</span></Reveal>
+              <Reveal delay={80}>
+                <h2 className="display-lg">{t('home.workTitle')}</h2>
+              </Reveal>
+            </div>
+            <Reveal delay={160}>
+              <Link to={href('/projects')} className="text-link">{t('home.allProjects')} <Arrow /></Link>
+            </Reveal>
+          </div>
+
+          <div className="work-grid">
+            {projects.map((p, i) => (
+              <Reveal key={p.client} delay={i * 90} className="work-card">
+                <div className="work-card-media">
+                  <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
+                </div>
+                <span className="eyebrow">{p.sector} · {p.location}</span>
+                <h3>{p.client}</h3>
+                <p>{p.scope}</p>
+                <span className="work-meta">{p.year} — {p.value}</span>
               </Reveal>
             ))}
           </div>

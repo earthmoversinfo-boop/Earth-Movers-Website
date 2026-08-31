@@ -34,6 +34,7 @@ export const UI = {
     'cov.availableAll': 'Available in all 7 emirates',
     'cov.availableDubai': 'Available in Dubai',
     'cov.availableIn': 'Available in {where}',
+    'cov.and': ' & ',
 
     'crumb.home': 'Home',
     'crumb.services': 'Services',
@@ -307,6 +308,7 @@ export const UI = {
     'cov.availableAll': 'متوفرة في جميع الإمارات السبع',
     'cov.availableDubai': 'متوفرة في دبي',
     'cov.availableIn': 'متوفرة في {where}',
+    'cov.and': ' و',
 
     'crumb.home': 'الرئيسية',
     'crumb.services': 'الخدمات',

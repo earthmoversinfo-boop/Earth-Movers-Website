@@ -352,6 +352,15 @@ export function resolveServiceSegment(category, slug, locale = DEFAULT_LOCALE) {
 
 // Every services URL that should exist as a prerendered, indexable page,
 // language-neutral — the caller prefixes /ar for the Arabic set.
+// Where a category is offered, in words. Traffic Management runs in Dubai and
+// Abu Dhabi, Utilities in Dubai alone, and the other two everywhere — so the
+// label is built from the coverage list rather than assumed to be Dubai.
+export function coverageLabel(category, locale = DEFAULT_LOCALE, t) {
+  if (category.coverage === 'all') return t('cov.availableAll')
+  const names = emiratesFor(category, locale).map((e) => e.name)
+  return t('cov.availableIn', { where: names.join(t('cov.and')) })
+}
+
 export function allServiceRoutes() {
   const routes = ['/services']
   for (const c of serviceCategories) {

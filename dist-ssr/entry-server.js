@@ -163,6 +163,7 @@ var UI = {
 		"cov.availableAll": "Available in all 7 emirates",
 		"cov.availableDubai": "Available in Dubai",
 		"cov.availableIn": "Available in {where}",
+		"cov.and": " & ",
 		"crumb.home": "Home",
 		"crumb.services": "Services",
 		"cta.quote": "Request a quote",
@@ -385,6 +386,7 @@ var UI = {
 		"cov.availableAll": "متوفرة في جميع الإمارات السبع",
 		"cov.availableDubai": "متوفرة في دبي",
 		"cov.availableIn": "متوفرة في {where}",
+		"cov.and": " و",
 		"crumb.home": "الرئيسية",
 		"crumb.services": "الخدمات",
 		"cta.quote": "اطلب عرض سعر",
@@ -2720,6 +2722,10 @@ function resolveServiceSegment(category, slug, locale = "en") {
 		service
 	} : { kind: "none" };
 }
+function coverageLabel(category, locale = "en", t) {
+	if (category.coverage === "all") return t("cov.availableAll");
+	return t("cov.availableIn", { where: emiratesFor(category, locale).map((e) => e.name).join(t("cov.and")) });
+}
 function allServiceRoutes() {
 	const routes = ["/services"];
 	for (const c of serviceCategories) {
@@ -3535,7 +3541,7 @@ function Nav() {
 											}),
 											/* @__PURE__ */ jsx("span", {
 												className: "nav-mega-where",
-												children: c.coverage === "all" ? t("cov.availableAll") : t("cov.availableDubai")
+												children: coverageLabel(c, locale, t)
 											}),
 											/* @__PURE__ */ jsx("ul", {
 												className: "nav-mega-list",
@@ -4258,7 +4264,7 @@ function HeroSlider() {
 	});
 }
 function Home() {
-	const { t, tax, content, href } = useLocale();
+	const { t, tax, content, href, locale } = useLocale();
 	const { stats, projects, fleet, certifications, images } = content;
 	return /* @__PURE__ */ jsxs("main", { children: [
 		/* @__PURE__ */ jsx(HeroSlider, {}),
@@ -4290,6 +4296,94 @@ function Home() {
 					className: "cert-row",
 					children: [/* @__PURE__ */ jsx("span", { children: t("home.certRow") }), certifications.map((c) => /* @__PURE__ */ jsx("strong", { children: c.title }, c.title))]
 				})]
+			})
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsx("div", {
+					className: "section-head",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "kicker",
+						children: [
+							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+								className: "eyebrow",
+								children: t("home.whatEyebrow")
+							}) }),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 80,
+								children: /* @__PURE__ */ jsx("h2", {
+									className: "display-lg",
+									children: t("home.whatTitle")
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 140,
+								children: /* @__PURE__ */ jsx("p", {
+									className: "lead",
+									children: t("home.whatLead")
+								})
+							})
+						]
+					})
+				}), /* @__PURE__ */ jsx("div", {
+					className: "cat-grid",
+					children: tax.categories.map((c, i) => /* @__PURE__ */ jsx(Reveal, {
+						delay: i % 4 * 70,
+						children: /* @__PURE__ */ jsxs(Link, {
+							to: href(`/services/${c.slug}`),
+							className: "cat-tile",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "svc-tile-media",
+									children: /* @__PURE__ */ jsx(Photo, {
+										src: c.img,
+										alt: c.name
+									})
+								}),
+								/* @__PURE__ */ jsx("h3", { children: c.name }),
+								/* @__PURE__ */ jsxs("ul", {
+									className: "cat-tile-list",
+									children: [c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug)), c.services.some((s) => s.hideOnHome) && /* @__PURE__ */ jsx("li", {
+										className: "cat-tile-more",
+										children: t("home.plusServices", { n: c.services.filter((s) => s.hideOnHome).length })
+									})]
+								}),
+								/* @__PURE__ */ jsxs("span", {
+									className: "cat-tile-foot",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "cat-tile-where",
+										children: coverageLabel(c, locale, t)
+									}), /* @__PURE__ */ jsxs("span", {
+										className: "text-link",
+										children: [
+											t("cta.explore"),
+											" ",
+											/* @__PURE__ */ jsx(Arrow, {})
+										]
+									})]
+								})
+							]
+						})
+					}, c.slug))
+				})]
+			})
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section section-paper hairline-top",
+			children: /* @__PURE__ */ jsx("div", {
+				className: "wrap",
+				children: /* @__PURE__ */ jsxs("div", {
+					className: "statement",
+					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+						className: "eyebrow",
+						children: t("home.promiseEyebrow")
+					}) }), /* @__PURE__ */ jsx(Reveal, {
+						delay: 90,
+						children: /* @__PURE__ */ jsxs("h2", { children: [t("home.promise"), /* @__PURE__ */ jsx("em", { children: t("home.promiseEm") })] })
+					})]
+				})
 			})
 		}),
 		/* @__PURE__ */ jsx("section", {
@@ -4355,94 +4449,6 @@ function Home() {
 							})
 						]
 					}, p.client))
-				})]
-			})
-		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section section-paper hairline-top",
-			children: /* @__PURE__ */ jsx("div", {
-				className: "wrap",
-				children: /* @__PURE__ */ jsxs("div", {
-					className: "statement",
-					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
-						className: "eyebrow",
-						children: t("home.promiseEyebrow")
-					}) }), /* @__PURE__ */ jsx(Reveal, {
-						delay: 90,
-						children: /* @__PURE__ */ jsxs("h2", { children: [t("home.promise"), /* @__PURE__ */ jsx("em", { children: t("home.promiseEm") })] })
-					})]
-				})
-			})
-		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "wrap",
-				children: [/* @__PURE__ */ jsx("div", {
-					className: "section-head",
-					children: /* @__PURE__ */ jsxs("div", {
-						className: "kicker",
-						children: [
-							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
-								className: "eyebrow",
-								children: t("home.whatEyebrow")
-							}) }),
-							/* @__PURE__ */ jsx(Reveal, {
-								delay: 80,
-								children: /* @__PURE__ */ jsx("h2", {
-									className: "display-lg",
-									children: t("home.whatTitle")
-								})
-							}),
-							/* @__PURE__ */ jsx(Reveal, {
-								delay: 140,
-								children: /* @__PURE__ */ jsx("p", {
-									className: "lead",
-									children: t("home.whatLead")
-								})
-							})
-						]
-					})
-				}), /* @__PURE__ */ jsx("div", {
-					className: "cat-grid",
-					children: tax.categories.map((c, i) => /* @__PURE__ */ jsx(Reveal, {
-						delay: i % 4 * 70,
-						children: /* @__PURE__ */ jsxs(Link, {
-							to: href(`/services/${c.slug}`),
-							className: "cat-tile",
-							children: [
-								/* @__PURE__ */ jsx("div", {
-									className: "svc-tile-media",
-									children: /* @__PURE__ */ jsx(Photo, {
-										src: c.img,
-										alt: c.name
-									})
-								}),
-								/* @__PURE__ */ jsx("h3", { children: c.name }),
-								/* @__PURE__ */ jsxs("ul", {
-									className: "cat-tile-list",
-									children: [c.services.filter((s) => !s.hideOnHome).map((s) => /* @__PURE__ */ jsx("li", { children: s.name }, s.slug)), c.services.some((s) => s.hideOnHome) && /* @__PURE__ */ jsx("li", {
-										className: "cat-tile-more",
-										children: t("home.plusServices", { n: c.services.filter((s) => s.hideOnHome).length })
-									})]
-								}),
-								/* @__PURE__ */ jsxs("span", {
-									className: "cat-tile-foot",
-									children: [/* @__PURE__ */ jsx("span", {
-										className: "cat-tile-where",
-										children: c.coverage === "all" ? t("cov.availableAll") : t("cov.availableDubai")
-									}), /* @__PURE__ */ jsxs("span", {
-										className: "text-link",
-										children: [
-											t("cta.explore"),
-											" ",
-											/* @__PURE__ */ jsx(Arrow, {})
-										]
-									})]
-								})
-							]
-						})
-					}, c.slug))
 				})]
 			})
 		}),
