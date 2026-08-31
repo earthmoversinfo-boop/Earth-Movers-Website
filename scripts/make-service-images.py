@@ -54,13 +54,7 @@ PLAN = {
     'road-closure-permits':        (f'{S}/road-closure.jpg',            (0.00, 0.35, 1.00, 0.75)),
     'traffic-management':          (f'{S}/traffic-management.jpg',      (0.00, 0.30, 1.00, 0.65)),
 
-    # Supply & Logistics
-    'road-base-supply':            (f'{S}/leveling-and-compaction.jpg', (0.00, 0.30, 0.72, 1.00)),
-    'aggregate-supply':            (f'{S}/road-base-laying.jpg',        (0.00, 0.45, 1.00, 1.00)),
-    'sand-supply':                 (f'{S}/backfilling.jpg',             (0.30, 0.35, 1.00, 1.00)),
-    'stone-supply':                (f'{S}/kerbstones.jpg',              (0.40, 0.00, 1.00, 1.00)),
-    'gabion-boxes':                (f'{S}/kerbstones.jpg',              (0.10, 0.10, 0.70, 1.00)),
-    'material-shifting':           (f'{S}/backfilling.jpg',             (0.20, 0.00, 0.90, 0.80)),
+    # Earth Works (continued)
     'site-preparation':            (f'{S}/access-roads.jpg',            (0.20, 0.05, 1.00, 1.00)),
 
     # Utilities — documentation-led, so these keep their drawing/survey imagery
@@ -91,12 +85,6 @@ TALL = {
     'lane-closure-permits':        (0.44, 0.20, 0.72, 1.00),
     'road-closure-permits':        (0.00, 0.30, 1.00, 0.85),
     'traffic-management':          (0.00, 0.25, 1.00, 0.80),
-    'road-base-supply':            (0.06, 0.34, 0.52, 1.00),
-    'aggregate-supply':            (0.00, 0.52, 1.00, 1.00),
-    'sand-supply':                 (0.44, 0.30, 0.96, 1.00),
-    'stone-supply':                (0.52, 0.00, 1.00, 1.00),
-    'gabion-boxes':                (0.14, 0.06, 0.62, 1.00),
-    'material-shifting':           (0.26, 0.00, 0.74, 0.78),
     'site-preparation':            (0.34, 0.00, 0.86, 1.00),
     'rta-approved-entry-exit-works': (0.02, 0.00, 0.78, 1.00),
     'rta-service-protection':      (0.14, 0.00, 0.90, 1.00),
@@ -117,7 +105,6 @@ CATEGORY = {
     'road-works':         (f'{S}/asphalt-works.jpg',      (0.00, 0.05, 1.00, 1.00), (0.00, 0.10, 0.46, 1.00)),
     'traffic-management': (f'{S}/lane-closure.jpg',       (0.00, 0.00, 1.00, 0.94), (0.00, 0.00, 0.46, 1.00)),
     'utilities':          ('public/images/svc-utilities.jpg', None,                 (0.00, 0.00, 1.00, 1.00)),
-    'supply':             (f'{S}/road-base-laying.jpg',   (0.00, 0.30, 1.00, 1.00), (0.00, 0.40, 1.00, 1.00)),
 }
 CAT_W, CAT_H = 1600, 1066
 
@@ -137,8 +124,6 @@ PUNCH = {
     'road-maintenance':    (1.14, 1.22),
     'asphalt-patch-works': (1.10, 1.18),
     'traffic-management':  (1.06, 1.12),
-    'aggregate-supply':    (1.16, 1.28),
-    'supply':              (1.16, 1.28),
     'road-closure-permits': (1.06, 1.10),
 }
 

@@ -263,53 +263,6 @@ const CATEGORIES = [
       },
     ],
   },
-  {
-    slug: 'supply',
-    name: 'Supply & Logistics',
-    coverage: 'all',
-    tagline: 'Materials delivered to spec, and the plant to move them.',
-    img: '/images/svc-supply.jpg',
-    intro:
-      'The materials a road or a platform is built from, delivered to the grading and testing the specification asks for. We supply road base, aggregate, sand, stone and gabion boxes from approved sources, and we run the haulage ourselves — so the material on the delivery ticket is the material that gets tested, and a late load does not stop the roller.',
-    services: [
-      {
-        slug: 'road-base-supply',
-        name: 'Road Base Supply',
-        keyword: 'road base supplier',
-        text: 'Crushed aggregate road base and sub-base supplied to RTA, DMT and municipality gradings, from quarries whose material is already approved. Delivered with grading and CBR test certificates so the layer can be laid and signed off without a second round of material submissions.',
-      },
-      {
-        slug: 'aggregate-supply',
-        name: 'Aggregate Supply',
-        keyword: 'aggregate supplier',
-        text: 'Single-size and graded aggregates for concrete, asphalt, drainage blankets and pipe bedding — 5mm through 40mm — from approved crushers, with test certificates and consistent grading load to load.',
-      },
-      {
-        slug: 'sand-supply',
-        name: 'Sand Supply',
-        keyword: 'sand supplier',
-        text: 'Fill sand, sweet sand and washed sand delivered in bulk for backfill, blinding, bedding and platform raising. Sulphate and chloride results supplied where the specification calls for them, which on coastal plots it usually does.',
-      },
-      {
-        slug: 'stone-supply',
-        name: 'Stone Supply',
-        keyword: 'stone supplier',
-        text: 'Rock armour, rip-rap, boulders and crushed stone for slope protection, scour protection, hardstanding and landscape work — sized to the drawing and loaded so it arrives graded rather than as a single mixed heap.',
-      },
-      {
-        slug: 'gabion-boxes',
-        name: 'Gabion Boxes Supply',
-        keyword: 'gabion boxes supplier',
-        text: 'Galvanised and PVC-coated gabion baskets and mattresses, supplied loose or filled and placed by our own teams, for retaining walls, embankment protection and channel lining.',
-      },
-      {
-        slug: 'material-shifting',
-        name: 'Material Shifting & Haulage',
-        keyword: 'material shifting contractor',
-        text: 'Bulk movement of material on and off site with our own tippers, trailers and loaders: muck-away and disposal under municipal permit, import of fill, internal shifting between stockpiles, and plant transport across the emirates.',
-      },
-    ],
-  },
 ]
 
 // Locale overlays. Arabic reuses every slug, so the two taxonomies are the

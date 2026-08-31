@@ -23,9 +23,9 @@ export const REDIRECTS = [
   ['/road-construction-abu-dhabi', '/services/road-works/abu-dhabi'],
   ['/rta-approved-entry-exit-works', '/services/utilities/rta-approved-entry-exit-works'],
   ['/traffic-management-abu-dhabi', '/services/traffic-management/abu-dhabi'],
-  ['/material-shifting-services-dubai', '/services/supply/material-shifting'],
-  ['/stone-supply-dubai', '/services/supply/stone-supply'],
-  ['/road-base-supply-dubai', '/services/supply/road-base-supply'],
+  ['/material-shifting-services-dubai', '/services/earth-works/excavation'],
+  ['/stone-supply-dubai', '/services/earth-works'],
+  ['/road-base-supply-dubai', '/services/road-works/road-base-laying'],
   ['/interlock-contractors-dubai', '/services/road-works/heavy-duty-interlock-paving'],
   ['/earth-works-abu-dhabi', '/services/earth-works/abu-dhabi'],
   ['/land-clearing-services-dubai', '/services/earth-works/site-preparation'],
@@ -46,13 +46,13 @@ export const REDIRECTS = [
   ['/infrastructure-piping-dubai', '/services/utilities'],
   ['/traffic-management', '/services/traffic-management'],
   ['/earth-work-services-dubai', '/services/earth-works/dubai'],
-  ['/sand-supply-dubai', '/services/supply/sand-supply'],
+  ['/sand-supply-dubai', '/services/earth-works/back-filling'],
   ['/temporary-road-contractors-dubai', '/services/road-works/access-roads'],
-  ['/gabion-boxes-supply-dubai', '/services/supply/gabion-boxes'],
+  ['/gabion-boxes-supply-dubai', '/services/earth-works'],
   ['/road-works-fujairah', '/services/road-works/fujairah'],
   ['/asphalt-works-fujairah', '/services/road-works/fujairah'],
-  ['/aggregate-supply-dubai', '/services/supply/aggregate-supply'],
-  ['/material-shifting-in-dubai', '/services/supply/material-shifting'],
+  ['/aggregate-supply-dubai', '/services/road-works/road-base-laying'],
+  ['/material-shifting-in-dubai', '/services/earth-works/excavation'],
 
   // Piling is not an Earth Movers service. Both of these rank for it, so they
   // go to the excavation page rather than being left to 404.
@@ -70,7 +70,7 @@ export const REDIRECTS = [
   ['/mountain-removal-services-dubai', '/services/earth-works/excavation'],
   ['/rta-road-projects-dubai-traffic', '/services/traffic-management/dubai'],
   ['/gravel-road-construction-dubai', '/services/road-works/road-base-laying'],
-  ['/construction-material-supply-dubai', '/services/supply'],
+  ['/construction-material-supply-dubai', '/services'],
   ['/dot-approved-entry-and-exit', '/services/utilities/rta-approved-entry-exit-works'],
   ['/yard-preparation-fujairah', '/services/earth-works/fujairah'],
   ['/smart-parking-contractor-dubai', '/services/road-works/parking-construction'],
@@ -87,8 +87,9 @@ export const REDIRECTS = [
   ['/asphalt-road-abu-dhabi', '/services/road-works/abu-dhabi'],
   ['/road-construction-ras-al-khaimah', '/services/road-works/ras-al-khaimah'],
 
-  // Services Earth Movers no longer sells. Sent to the nearest parent so the
-  // links keep resolving; drop them here if the offer comes back.
+  // Services Earth Movers does not sell — material supply and haulage among
+  // them. Sent to the nearest surviving page so the links keep resolving;
+  // drop them here if any of the offers come back.
   ['/heavy-equipment-rental-uae', '/services'],
   ['/marine-work-services-dubai', '/services'],
   ['/breakwater-construction-dubai', '/services/earth-works'],

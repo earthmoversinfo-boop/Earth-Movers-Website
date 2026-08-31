@@ -81,7 +81,7 @@ export const guides = [
       '/services/road-works/road-base-laying',
       '/services/road-works/asphalt-works',
       '/services/earth-works/leveling-and-compaction',
-      '/services/supply/road-base-supply',
+      '/services/road-works/access-roads',
     ],
   },
   {
@@ -181,7 +181,7 @@ export const guides = [
       '/services/earth-works/excavation',
       '/services/earth-works/site-preparation',
       '/services/earth-works/back-filling',
-      '/services/supply/material-shifting',
+      '/services/earth-works/leveling-and-compaction',
     ],
   },
   {
@@ -280,7 +280,7 @@ export const guides = [
     related: [
       '/services/road-works/asphalt-works',
       '/services/road-works/asphalt-patch-works',
-      '/services/supply/aggregate-supply',
+      '/services/road-works/road-base-laying',
       '/services/road-works/road-base-laying',
     ],
   },

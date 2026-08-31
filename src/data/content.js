@@ -184,12 +184,12 @@ export const featuredServices = [
       'Old asphalt removal, milling and new asphalt laying with certified materials and tight tolerances.',
   },
   {
-    id: 'material-supply',
-    title: 'Material Supply',
+    id: 'traffic-management',
+    title: 'Traffic Management',
     icon: 'crane',
-    img: '/images/svc-supply.jpg',
+    img: '/images/svc-traffic-management.jpg',
     blurb:
-      'Road base, aggregate, sand, stone and gabion boxes from approved sources, delivered with their test certificates.',
+      'Permits, diversions and compliant traffic management for works inside a live road corridor.',
   },
 ]
 
@@ -266,24 +266,12 @@ export const serviceGroups = [
     ],
   },
   {
-    id: 'supply',
+    id: 'marine',
     number: '03',
-    title: 'Supply, Logistics & Marine',
+    title: 'Marine, Demolition & Permits',
     intro:
-      'Material, machines and logistics — the supporting muscle that keeps programmes moving on schedule.',
+      'The supporting scopes that sit either side of the main works — coastal, demolition and the approvals behind both.',
     services: [
-      {
-        title: 'Construction Material Supply',
-        text: 'Aggregates, road base, sub-base and fill material supplied and delivered against programme.',
-      },
-      {
-        title: 'Material Shifting & Haulage',
-        text: 'Bulk material shifting and transport with a dedicated tipper and trailer fleet, managed loads and disposal.',
-      },
-      {
-        title: 'Stone, Sand & Gabion Supply',
-        text: 'Rock armour, rip-rap, boulders, sand and gabion baskets graded at source and delivered to the drawing.',
-      },
       {
         title: 'Marine & Coastal Works',
         text: 'Beach levelling, boulder placement and coastal protection works, delivered for clients such as Nakheel PJSC.',

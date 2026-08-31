@@ -179,7 +179,7 @@ export const UI = {
     'about.story1':
       'Earth Movers International is a dynamic and preferred solution provider in the fields of civil and heavy construction, engineering, oil & gas, recycling and demolition.',
     'about.story2':
-      'Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, heavy equipment, material supply, transportation and logistics. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor.',
+      'Our team was incorporated to help meet the challenges faced by the construction sector in the fields of earth works, road construction and heavy plant operation. Today we support infrastructure, commercial and industrial projects across the UAE as a Dubai-based road construction and earthworks contractor.',
     'about.story3':
       'We maintain one of Dubai’s largest fleets of heavy excavation equipment — excavators, bulldozers, graders, rollers, rock breakers and specialised machinery — so projects are completed quickly, effectively and safely. As an RTA-approved contractor, compliance is built into everything we deliver.',
     'about.photoAlt': 'Earth Movers International team and machinery at work',
@@ -390,7 +390,7 @@ export const UI = {
       'إيرث موفرز إنترناشيونال مقاول طرق وأعمال ترابية معتمد لدى هيئة الطرق والمواصلات في دبي، الإمارات. حفريات وإنشاء طرق وأعمال أسفلت وإدارة مرور وأعمال مرافق في إمارات الدولة السبع منذ عام 1990.',
     'seo.aboutTitle': 'من نحن — مقاول أعمال ترابية وطرق منذ عام 1990 | {brand}',
     'seo.aboutDesc':
-      'تأسست في مونتريال عام 1990 وتعمل في دبي منذ 2005. تقدّم إيرث موفرز إنترناشيونال خدمات الأعمال الترابية وإنشاء الطرق والمعدات الثقيلة في مختلف أنحاء الإمارات.',
+      'تأسست في مونتريال عام 1990 وتعمل في دبي منذ 2005. تقدّم إيرث موفرز إنترناشيونال خدمات الأعمال الترابية وإنشاء الطرق وإدارة المرور في مختلف أنحاء الإمارات.',
     'seo.projectsTitle': 'مشاريعنا — نماذج أعمال طرق وأعمال ترابية في الإمارات | {brand}',
     'seo.projectsDesc':
       'مختارات من مشاريع الطرق والأعمال الترابية والبحرية المنفَّذة لشركة الفجيرة لصناعة الإسمنت وبلدية دبي ونخيل ش.م.ع في مختلف أنحاء الإمارات.',
@@ -450,7 +450,7 @@ export const UI = {
     'about.story1':
       'إيرث موفرز إنترناشيونال مزوّد حلول نشط ومفضَّل في مجالات الإنشاءات المدنية والثقيلة والهندسة والنفط والغاز وإعادة التدوير والهدم.',
     'about.story2':
-      'تأسّس فريقنا لمواجهة التحديات التي يواجهها قطاع الإنشاءات في مجالات الأعمال الترابية والمعدات الثقيلة وتوريد المواد والنقل والخدمات اللوجستية. واليوم ندعم مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات، بصفتنا مقاول إنشاء طرق وأعمال ترابية مقرّه دبي.',
+      'تأسّس فريقنا لمواجهة التحديات التي يواجهها قطاع الإنشاءات في مجالات الأعمال الترابية وإنشاء الطرق وتشغيل المعدات الثقيلة. واليوم ندعم مشاريع البنية التحتية والتجارية والصناعية في مختلف أنحاء الإمارات، بصفتنا مقاول إنشاء طرق وأعمال ترابية مقرّه دبي.',
     'about.story3':
       'نملك أحد أكبر أساطيل معدات الحفر الثقيل في دبي — حفارات وجرافات ومسوّيات ومداحل وكسّارات صخور ومعدات متخصصة — لتُنجَز المشاريع بسرعة وفاعلية وأمان. وبصفتنا مقاولاً معتمداً لدى هيئة الطرق والمواصلات، فإن الامتثال مبنيّ في كل ما ننفّذه.',
     'about.photoAlt': 'فريق إيرث موفرز إنترناشيونال ومعداته أثناء العمل',
