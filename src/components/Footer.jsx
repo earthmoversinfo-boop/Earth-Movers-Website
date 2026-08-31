@@ -28,6 +28,7 @@ export default function Footer() {
             <Link to={href('/about')}>{t('nav.about')}</Link>
             <Link to={href('/services')}>{t('nav.services')}</Link>
             <Link to={href('/projects')}>{t('nav.projects')}</Link>
+            <Link to={href('/guides')}>{t('guides.crumb')}</Link>
             <Link to={href('/contact')}>{t('nav.contact')}</Link>
           </div>
 

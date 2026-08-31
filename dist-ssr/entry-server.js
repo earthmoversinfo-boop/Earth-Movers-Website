@@ -347,7 +347,20 @@ var UI = {
 		"ct.mapTitle": "Earth Movers International — Capital Golden Tower, Business Bay, Dubai",
 		"nf.title": "This ground hasn’t been broken yet.",
 		"nf.text": "The page you’re looking for doesn’t exist — but the rest of the site does.",
-		"nf.back": "Back to home"
+		"nf.back": "Back to home",
+		"guides.eyebrow": "Guides",
+		"guides.title": "Road and earthworks guides",
+		"guides.lead": "How the work is actually done in the UAE — written by the people who do it, for clients, consultants and anyone specifying it.",
+		"guides.crumb": "Guides",
+		"guides.kicker": "Guide",
+		"guides.read": "Read the guide",
+		"guides.contents": "Contents",
+		"guides.railLead": "Need this delivered rather than explained? Tell us the scope and we will price it.",
+		"guides.relatedTitle": "The services behind this",
+		"guides.relatedLead": "If you need this delivered rather than explained, these are the pages to start from.",
+		"seo.guidesTitle": "Road & Earthworks Guides | {brand}",
+		"seo.guidesDesc": "Practical guides to road construction, excavation, asphalt and earthworks in the UAE, from an RTA-approved contractor.",
+		"seo.guideTitle": "{title} | {brand}"
 	},
 	ar: {
 		"nav.home": "الرئيسية",
@@ -556,7 +569,20 @@ var UI = {
 		"ct.mapTitle": "إيرث موفرز إنترناشيونال — برج كابيتال الذهبي، الخليج التجاري، دبي",
 		"nf.title": "هذه الأرض لم تُفتح بعد.",
 		"nf.text": "الصفحة التي تبحث عنها غير موجودة — لكن بقية الموقع موجودة.",
-		"nf.back": "العودة إلى الرئيسية"
+		"nf.back": "العودة إلى الرئيسية",
+		"guides.eyebrow": "أدلة",
+		"guides.title": "أدلة الطرق والأعمال الترابية",
+		"guides.lead": "كيف يُنفَّذ العمل فعلاً في الإمارات — بقلم من ينفّذونه، للعملاء والاستشاريين ولكل من يضع المواصفات.",
+		"guides.crumb": "الأدلة",
+		"guides.kicker": "دليل",
+		"guides.read": "اقرأ الدليل",
+		"guides.contents": "المحتويات",
+		"guides.railLead": "تريد تنفيذ هذا لا شرحه؟ أخبرنا بالنطاق ونسعّره لك.",
+		"guides.relatedTitle": "الخدمات وراء هذا الدليل",
+		"guides.relatedLead": "إن كنت تريد تنفيذ هذا لا شرحه، فهذه الصفحات نقطة البداية.",
+		"seo.guidesTitle": "أدلة الطرق والأعمال الترابية | {brand}",
+		"seo.guidesDesc": "أدلة عملية لإنشاء الطرق والحفر والأسفلت والأعمال الترابية في الإمارات، من مقاول معتمد لدى هيئة الطرق والمواصلات.",
+		"seo.guideTitle": "{title} | {brand}"
 	}
 };
 function translator(locale) {
@@ -3131,20 +3157,20 @@ var CATEGORIES = [
 		]
 	}
 ];
-var OVERLAYS = { ar: {
+var OVERLAYS$1 = { ar: {
 	emirates: emiratesAr,
 	categories: categoriesAr,
 	content: serviceContentAr
 } };
 function buildEmirates(locale) {
-	const overlay = OVERLAYS[locale]?.emirates;
+	const overlay = OVERLAYS$1[locale]?.emirates;
 	return EMIRATES.map((e) => ({
 		...e,
 		...overlay?.[e.slug] || {}
 	}));
 }
 function buildCategories(locale) {
-	const overlay = OVERLAYS[locale];
+	const overlay = OVERLAYS$1[locale];
 	return CATEGORIES.map((c) => {
 		const co = overlay?.categories?.[c.slug];
 		return {
@@ -4226,6 +4252,10 @@ function Footer() {
 							/* @__PURE__ */ jsx(Link, {
 								to: href("/projects"),
 								children: t("nav.projects")
+							}),
+							/* @__PURE__ */ jsx(Link, {
+								to: href("/guides"),
+								children: t("guides.crumb")
 							}),
 							/* @__PURE__ */ jsx(Link, {
 								to: href("/contact"),
@@ -6759,6 +6789,627 @@ function Contact() {
 	] });
 }
 //#endregion
+//#region src/data/guides.ar.js
+var guidesAr = {
+	"road-construction-process": {
+		title: "مراحل إنشاء الطرق خطوة بخطوة",
+		lead: "كيف يُبنى الطريق فعلاً في الإمارات — من المساحة ومنسوب التأسيس مروراً بما تحت الأساس وطبقة الأساس والأسفلت وصولاً إلى التخطيط والتسليم.",
+		sections: [
+			{
+				h: "ما هي العملية فعلاً",
+				p: ["الطريق كومة طبقات، تُبنى كل واحدة منها فوق التي تحتها وتُختبَر قبل وضع التالية. وتجاوز اختبار واحد يظهر بعد سنوات في الطبقة السطحية، حيث يكلّف إصلاحه أضعاف ما كان سيكلّفه إتقانه. والتسلسل أدناه هو ما يجري عليه أي مشروع لدى هيئة الطرق والمواصلات أو دائرة البلديات والنقل أو البلديات في الدولة، ولا يتغيّر كثيراً بين مدخل قطعة أرض وطريق مزدوج — إنما تتغيّر السماكات والمستندات."]
+			},
+			{
+				h: "١. المساحة والتوقيع",
+				p: ["تُرصَد المناسيب القائمة وتُقارَن بالتصميم. وهنا تُعتمَد كميات القطع والردم، ويُكتشَف أي اختلاف بين المخطط والأرض، ويُوقَّع مسار الطريق على الطبيعة. والخطأ هنا أغلى ما يمكن ارتكابه، لأن كل ما يليه يرثه."]
+			},
+			{
+				h: "٢. التنظيف ومنسوب التأسيس",
+				p: ["تُزال الأشجار والعوائق والردم غير المضبوط وكل ما هو غير صالح. ثم يُقطَع منسوب التأسيس — التربة المهيَّأة التي يقوم عليها الطريق — أو يُردَم حتى المنسوب ويُدَك. وتؤكّده اختبارات الكثافة الحقلية قبل وضع أي شيء آخر. فالبقعة الرخوة المتروكة في منسوب التأسيس تنعكس صعوداً عبر الرصفة كلها."]
+			},
+			{
+				h: "٣. طبقة ما تحت الأساس",
+				p: ["تُفرَش الطبقة الحصوية على طبقات مضبوطة وتُروَّى وتُدَك. فهي توزّع الأحمال وتمنح منصة عمل للمعدات التالية. وتُختبَر كل طبقة للكثافة، ويُراجَع تدرّج المادة مقابل المصدر المعتمد، لأن المادة التي تنفصل حبيباتها أثناء التسليم تعطي طبقة تنجح في موضع وترسب في آخر."]
+			},
+			{
+				h: "٤. طبقة الأساس",
+				p: ["طبقة الأساس الركامية المكسّرة هي قلب الرصفة الإنشائي. تُفرَش وفق تدرّج الجهة، وتُشذَّب حتى المنسوب والميول، وتُدَك حتى الكثافة المطلوبة. وتُرصَد المناسيب قبل فرش الأسفلت، لأن أي انخفاض هنا يصير تجمّعاً للمياه على السطح النهائي لن تخفيه أي طبقة سطحية."]
+			},
+			{
+				h: "٥. طبقة اللصق والأسفلت",
+				p: ["تربط طبقة التأسيس أو اللصق بين الأساس والأسفلت. تُفرَش الطبقة الرابطة أولاً ثم الطبقة السطحية، كل منهما بالفرّادة وتُغلقهما المداحل والخلطة ما تزال ضمن نطاق الحرارة. والدمك هنا مقيّد بالوقت على نحو لا يماثله شيء آخر في المشروع: فمتى بردت الخلطة دون النطاق، تعذّر تدارك الكثافة التي لم تتحقق.", "والوصلات هي أول ما يفشل في الأسفلت. لذلك تُقَص الوصلات الطولية والعرضية وتُلصَق وتُدَك عن قصد لا اعتباطاً، لأن الوصلة المفتوحة تُدخِل الماء إلى الأساس، والأساس هو ما يقوم عليه الطريق."]
+			},
+			{
+				h: "٦. أحجار الأرصفة والتصريف والتخطيط",
+				p: ["تحدّد أحجار الأرصفة والمجاري الحافة وتنقل مياه السطح إلى التصريف. ويأتي أخيراً تخطيط الخطوط والتهشير والأسهم والعواكس وفق مخطط التخطيط المعتمد. وعلى طريق تابع لهيئة الطرق والمواصلات يكون توزيع التخطيط جزءاً من الاعتماد لا تفصيلاً يُحسَم في الموقع."]
+			},
+			{
+				h: "٧. الاختبارات والتسليم والعيوب",
+				p: ["الملف لا يقلّ أهمية عن الطريق. فنتائج الكثافة وشهادات المواد ومسوحات المناسيب والمخططات كما نُفِّذت هي ما تعتمده الجهة. والطريق المنفَّذ بإتقان بملف ناقص يرسب في التسليم أيضاً، وتجميع ذلك الملف بأثر رجعي أصعب كثيراً من تكوينه مع نزول الطبقات."]
+			}
+		]
+	},
+	"asphalt-vs-concrete-roads": {
+		title: "الأسفلت أم الخرسانة: أيّهما تختار في الإمارات",
+		lead: "مقارنة في الكلفة وأداء الحرارة وقابلية الإصلاح والعمر التشغيلي وفق ظروف الدولة — وأين يكون كل منهما الجواب الصحيح فعلاً.",
+		sections: [
+			{
+				h: "الجواب المختصر",
+				p: ["الأسفلت أرخص إنشاءً، وأرخص بكثير إصلاحاً، ويمكن فتحه للحركة خلال ساعات. أما الخرسانة فتعمّر أطول تحت الأحمال الساكنة الثقيلة ولا تتأخدد في الحرّ الشديد. وهذا يعني في الإمارات عادةً الأسفلت للمسارات وطرق الوصول والمواقف، والخرسانة لساحات الحاويات والأرضيات الصناعية الثقيلة وكل موضع تقف فيه عجلات محمّلة تحت الشمس."]
+			},
+			{
+				h: "الكلفة",
+				p: ["تكلّف الخرسانة عادةً أكثر بكثير في التنفيذ من رصفة أسفلتية مكافئة، ويتسع الفارق في المساحات الصغيرة حيث يتعذّر توزيع كلفة الخلط والمعالجة. وتتقارب أرقام العمر الكامل على المدى الطويل، لكن بشرط ألّا تُحفَر الخرسانة أبداً — فعبور خدمة واحد عبر بلاطة خرسانية يمحو سنوات من الوفر."]
+			},
+			{
+				h: "الحرارة",
+				p: ["هنا تختلف الإمارات عن الكتب. فحرارة السطح صيفاً تدفع رابط الأسفلت نحو أعلى نطاق ليونته، وتحت الأحمال الثقيلة الساكنة يظهر ذلك تأخدداً. والحل عادةً رابط محسَّن وتصميم خلطة سليم لا الانتقال إلى الخرسانة — لكن حيث تقف المركبات المحمّلة ساعات فعلاً، تكفّ الخرسانة عن كونها مبالغة وتصير الخيار الصحيح."]
+			},
+			{
+				h: "الإصلاح والخدمات",
+				p: ["ترقيع الأسفلت عملية تُنجَز في اليوم نفسه: قصّ ثم تكسير ثم إعادة فرش ودمك وفتح. أما إصلاح الخرسانة فيعني تكسير بلاطة كاملة وإعادة التسليح وانتظار المعالجة. وإذا كانت الرصفة فوق خدمات سيُعاد الوصول إليها — وهو حال كل قطعة أرض في الدولة تقريباً — فالأسفلت هو الجواب العملي."]
+			},
+			{
+				h: "العمر التشغيلي",
+				p: ["تمنح الرصفة الأسفلتية المنفَّذة جيداً مع سطح مُصان خدمة طويلة، إذ تُجدَّد الطبقة السطحية دورياً بينما يبقى الأساس في مكانه. وتعمّر الخرسانة أطول قبل التدخل الكبير لكنها تفشل على نحو أقل تدرّجاً: فالأسفلت يتدهور ظاهرياً ويمكن تقشيره وتغطيته، أما البلاطة الفاشلة فتحتاج استبدالاً."]
+			},
+			{
+				h: "كيف تقرّر",
+				p: ["اسأل: ماذا يقف عليها وكم يبقى؟ الحركة المتنقّلة ومواقف السيارات وطرق الوصول والطرق الداخلية — أسفلت. تكديس الحاويات ومنصات الرافعات والأحمال الساكنة الثقيلة ومناطق الغسيل — خرسانة. والساحات مختلطة الاستعمال يُفضَّل تقسيمها بدل تنفيذها بمادة واحدة في كامل مساحتها."]
+			}
+		]
+	},
+	"excavation-in-construction": {
+		title: "الحفر في الإنشاءات: الأنواع والأساليب والضوابط",
+		lead: "ما الذي يشمله الحفر في مشاريع الدولة — الحفر الكلي والتفصيلي، والصخر، والميول، ونزح المياه، والطرح، والضوابط التي تحفظ السلامة.",
+		sections: [
+			{
+				h: "ما الذي يشمله الحفر",
+				p: ["الحفر هو أي إزالة للتربة للوصول إلى منسوب تصميمي. وينقسم في مواقع الدولة إلى حفر كلي — كميات كبيرة تُنزَل إلى منسوب تأسيس أو بدروم — وحفر تفصيلي للأساسات وقواعد الخوازيق والحفر والخنادق، حيث السماحية ضيّقة والمعدة صغيرة."]
+			},
+			{
+				h: "قراءة الأرض أولاً",
+				p: ["التقرير الجيوتقني هو الذي يحدّد الأسلوب. فقطع الأرض الساحلية في دبي والشارقة رمل سائب فوق طبقة صخرية عادةً، فتُسحَب الميول للخلف أو تُسنَد الجوانب. وفي رأس الخيمة والفجيرة تصل الطبقات الصلبة خلال أمتار قليلة، ما يعني كسّارات ومعدل إنتاج مختلفاً. أما القطع الصناعية القديمة فتخفي ردماً غير مضبوط وبلاطات مدفونة وخدمات مهجورة لا تظهر في أي مخطط."]
+			},
+			{
+				h: "الميول والمدرّجات والإسناد",
+				p: ["الواجهة غير المسنَدة في الرمل لا تنذر قبل انهيارها. لذلك تُسحَب الحفريات إلى زاوية آمنة، أو تُدرَّج على مصاطب، أو تُسنَد — بألواح حديدية أو دعامات أو خوازيق جنود بحسب العمق وما يجاور الحفرة. وأيّها ينطبق قرار تصميمي يُتخذ من تقرير التربة، لا اجتهاد داخل الحفرة."]
+			},
+			{
+				h: "المياه",
+				p: ["المياه الجوفية على امتداد ساحل الدولة ضحلة ومالحة. وتحت منسوب المياه يجري النزح بالتوازي مع الحفر، مع تصريف مُصرَّح به ومراقَب. والمياه الجوفية المالحة تحكم كذلك مواصفة أي مادة تُعاد بجوار المنشآت."]
+			},
+			{
+				h: "الخدمات",
+				p: ["المسح وحفر الجسّات قبل تشغيل المعدات ليس اختيارياً. فضرب كابل حيّ أو خط مياه يوقف العمل، وفي ممر تابع لهيئة الطرق أو لمرفق يجلب غرامة أيضاً. وكل ما هو غير موثّق يجب تسجيله والإبلاغ عنه قبل إزالته."]
+			},
+			{
+				h: "الطرح",
+				p: ["تُصنَّف المواد المحفورة وتُحمَّل وتُنقَل إلى مطرح مرخَّص بموجب تصريح طرح بلدي، مع الاحتفاظ بالسندات لملف المشروع. والمواد الصالحة التي تبقى في الموقع ردماً أرخص دائماً تقريباً من تصديرها واستيراد بديل عنها لاحقاً — وهذا قرار يُتخذ عند التسعير لا بعد تشغيل القلابات."]
+			}
+		]
+	},
+	"common-asphalt-repair-techniques": {
+		title: "أساليب إصلاح الأسفلت الشائعة",
+		lead: "الترقيع، والتقشير والتغطية، وسدّ التشققات، وإعادة الإنشاء بكامل العمق — ما الذي يعالجه كل أسلوب، ومتى يكون الأداة الخاطئة.",
+		sections: [
+			{
+				h: "شخِّص قبل أن تصلح",
+				p: ["كل إصلاح أسفلتي فاشل تقريباً هو معالجة سطحية لمشكلة في الأساس. فالتشققات والأخاديد والحفر أعراض؛ أما السبب فتحتها، في أساس يحتجز الماء أو لم يُدَك يوماً كما يجب. وإعادة الطبقة السطحية فوق أساس فاشل تشتري سنة على الأكثر."]
+			},
+			{
+				h: "سدّ التشققات",
+				p: ["أرخص تدخّل، وأعلاها عائداً إذا تمّ مبكراً. فالسدّ يمنع الماء من بلوغ الأساس، والماء في الأساس هو ما يحوّل شعرة تشقّق إلى حفرة. ينفع في التشققات المعزولة داخل رصفة سليمة؛ ولا يفعل شيئاً أمام التشقق التمساحي، فذاك إشارة إنشائية."]
+			},
+			{
+				h: "الترقيع السطحي",
+				p: ["قصّ مستطيل بالمنشار، وتكسير السطح الفاشل، ولصق الحواف، وإعادة الفرش والدمك. سريع وفعّال حيث يكون الأساس تحته سليماً. وحواف الرقعة هي موضع فشل الإصلاح، لذا فالقصّ المستقيم واللصق السليم أهم من نوع المادة المستعملة."]
+			},
+			{
+				h: "إعادة الإنشاء بكامل العمق",
+				p: ["حيث انتهى الأساس — تشقق تمساحي أو تشوّه أو عبور خدمة — يجب أن ينزل الإصلاح إلى مادة سليمة ويعيد بناء الطبقات. أغلى، وهو الوحيد الذي ينجح فعلاً. وهذا هو الإصلاح المعياري بعد خندق مرافق، وهو الموضع الذي تنكشف فيه إعادة الإنشاء الرخيصة خلال سنة."]
+			},
+			{
+				h: "التقشير والتغطية",
+				p: ["تقشير الطبقة السطحية البالية وفرش أخرى جديدة. وهو الجواب الصحيح لطريق أساسه سليم وسطحه بالٍ أو متأكسد أو متأخدد من أعلى. يعيد جودة القيادة والمناسيب دون المساس بالبنية، ويُبقي المنسوب النهائي كما هو — وهو ما يهم حيث تكون الأرصفة والمصارف ثابتة."]
+			},
+			{
+				h: "الاختيار بينها",
+				p: ["إن كان الماء يتسرّب والرصفة سليمة، فاسدد. وإن فشل السطح موضعياً، فرقّع. وإن فشل الأساس، فأعد الإنشاء بكامل العمق. وإن كان السطح بالياً على مساحة والبنية سليمة، فقشّر وغطِّ. وما عدا ذلك تأجيل للكلفة بفائدة."]
+			}
+		]
+	},
+	"type-of-asphalt-mix": {
+		title: "أنواع خلطات الأسفلت ومواضع استعمال كل منها",
+		lead: "الطبقة السطحية والرابطة وطبقة الأساس والخلطات المحسَّنة — كيف تختلف مواصفات الدولة وما الذي ينبغي طلبه.",
+		sections: [
+			{
+				h: "الرصفة طبقات، وكذلك الخلطات",
+				p: ["الرصفة الأسفلتية ليست مادة واحدة. فلكل طبقة وظيفة، ولكل منها مقاس ركام ونسبة رابط وهدف دمك مختلف. وطلب «أسفلت» دون تحديد الطبقة هو الطريق إلى وصول الخلطة الخاطئة إلى الموقع."]
+			},
+			{
+				h: "الطبقة السطحية",
+				p: ["الطبقة العليا، والوحيدة التي يراها الناس. ركام أصغر لجودة القيادة ومقاومة الانزلاق، وتدرّج أكثف لمنع الماء. وهي الطبقة التي تُقشَّر وتُستبدَل خلال عمر الرصفة بينما تبقى البنية تحتها في مكانها."]
+			},
+			{
+				h: "الطبقة الرابطة",
+				p: ["الطبقة الوسطى التي تنقل الحمل نزولاً من السطح. ركام أكبر، وتُفرَش أسمك من السطحية. والدمك هنا مهم إنشائياً — فالطبقة الرابطة ناقصة الدمك تظهر تأخدداً تحت مسارات العجلات قبل أن يبلى السطح نفسه بزمن."]
+			},
+			{
+				h: "طبقة الأساس الأسفلتية",
+				p: ["حين يطلب تصميم الرصفة أسفلتاً لا مادة حصوية في الطبقة الإنشائية، تكون طبقة الأساس خلطة خشنة مدكوكة بشدة تحمل العبء الإنشائي الرئيس. وهي شائعة في الطرق كثيفة الحركة والرصفات الصناعية."]
+			},
+			{
+				h: "الروابط المحسَّنة",
+				p: ["توسّع الروابط المحسَّنة بالبوليمر نطاق الحرارة الذي يؤدي فيه الأسفلت. والسبب في الإمارات حرّ الصيف: فالرابط المحسَّن يقاوم التأخدد تحت الأحمال الثقيلة الواقفة حيث يلين الرابط التقليدي. ويستحق كلفته عند مواقف الحافلات ومداخل التقاطعات ومناطق التحميل وكل موضع تتوقف فيه المركبات بدل أن تمرّ."]
+			},
+			{
+				h: "مواصفات الجهات",
+				p: ["تنشر هيئة الطرق والمواصلات ودائرة البلديات والنقل وكل بلدية تصاميم خلطاتها ومصادرها المعتمدة. والخلطة المعتمدة لدى جهة ليست مقبولة تلقائياً لدى أخرى، واعتماد المواد معاملة لها مدة. فثبّت المواصفة والمصدر قبل أن يعتمد البرنامج على وصول الفرّادة."]
+			}
+		]
+	},
+	"future-of-road-construction-dubai": {
+		title: "مستقبل إنشاء الطرق في دبي",
+		lead: "التوجيه الآلي، والرصفات المعاد تدويرها، والأسطح الأقل حرارة، والتصاريح الأكثر إحكاماً — ما الذي يتغيّر فعلاً في مشاريع طرق دبي.",
+		sections: [
+			{
+				h: "التوجيه الآلي صار خط الأساس",
+				p: ["انتقل التوجيه بنظام تحديد المواقع والمحطات الشاملة على المسوّيات والجرافات والفرّادات من ميزة تفاضلية إلى توقّع في حزم دبي الكبرى. والمكسب ليس السرعة بقدر ما هو تقليل إعادة العمل: فالطبقات تصيب المنسوب من أول مرة، ويقلّ هدر المواد، ويكفّ مسح ما نُفِّذ عن كونه موضع جدل."]
+			},
+			{
+				h: "المواد المعاد تدويرها",
+				p: ["يتزايد قبول الأسفلت المستصلح والركام المعاد تدويره في الطبقات الدنيا حيث تسمح المواصفة. والقيد هو الثبات لا المبدأ — إذ يجب تصنيف المادة المعاد تدويرها واختبارها بالصرامة نفسها المطبَّقة على البِكر، وهذه مسألة سلسلة توريد قبل أن تكون مسألة هندسية."]
+			},
+			{
+				h: "الحرارة وأداء السطح",
+				p: ["تدفع حرارة الصيف المرتفعة اختيار الرابط وتصميم الخلطة أكثر عاماً بعد عام. وصارت الروابط المحسَّنة في مناطق الأحمال الواقفة اعتيادية لا استثنائية، وتجري تجارب الأسطح الأقل حرارة في المناطق المخصصة للمشاة والسرعات المنخفضة حيث تكون حرارة السطح مسألة راحة لا مسألة إنشائية."]
+			},
+			{
+				h: "التصاريح تزداد إحكاماً لا تيسيراً",
+				p: ["تواصل تصاريح هيئة الطرق والمواصلات لإغلاق المسارات والتحويلات والأعمال داخل حرم الطريق طلب المزيد مقدّماً: مخططات أدقّ، ونوافذ زمنية أضيق، وتنسيقاً أوضح مع أصحاب المصلحة. والمقاولون الذين يعاملون التصاريح كمعاملة بعد الترسية لا كنشاط تصميمي قبلها يواصلون خسارة البرنامج الزمني بسببها."]
+			},
+			{
+				h: "ماذا يعني ذلك لمشروع اليوم",
+				p: ["لا يغيّر شيء من هذا الأساسيات — المساحة ومنسوب التأسيس والأساس والأسفلت والاختبارات. إنما يغيّر هامش التسامح مع الخطأ فيها، وينقل مزيداً من المخاطر إلى مقدمة البرنامج، إلى اعتماد المواد والتصاريح، حيث إدارتها أرخص."]
+			}
+		]
+	}
+};
+//#endregion
+//#region src/data/guides.js
+var guides = [
+	{
+		slug: "road-construction-process",
+		title: "The Road Construction Process, Step by Step",
+		lead: "How a road actually gets built in the UAE — from survey and formation through sub-base, road base and asphalt to markings and handover.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "What the process actually is",
+				p: ["A road is a stack of layers, each one built on the layer below and each one tested before the next goes on. Skip a test and the failure surfaces years later in the wearing course, where it costs several times more to fix than it would have cost to get right. The sequence below is the one an RTA, DMT or municipality job runs to in the UAE, and it does not vary much between a plot access and a dual carriageway — only the thicknesses and the paperwork do."]
+			},
+			{
+				h: "1. Survey and setting out",
+				p: ["Existing levels are picked up and compared against the design. This is where cut and fill volumes get confirmed, where a discrepancy between the drawing and the ground is caught, and where the road alignment is physically pegged out. Getting this wrong is the most expensive mistake available, because everything downstream inherits it."]
+			},
+			{
+				h: "2. Clearing and formation",
+				p: ["Vegetation, obstructions, uncontrolled fill and anything else unsuitable comes out. The formation — the prepared subgrade the road sits on — is then cut or filled to level and compacted. Field density testing confirms it before anything else is placed. A soft spot left in the formation will telegraph all the way up through the pavement."]
+			},
+			{
+				h: "3. Sub-base",
+				p: ["Granular sub-base is laid in controlled layers, watered and compacted. It spreads load, and it gives a working platform for the plant that follows. Each layer is tested for density; the grading of the material is checked against the approved source, because material that segregates in delivery gives a layer that passes in one place and fails in another."]
+			},
+			{
+				h: "4. Road base",
+				p: ["Crushed aggregate road base is the structural heart of the pavement. It goes down to the authority grading, gets trimmed to level and falls, and is compacted to the specified density. Levels are surveyed before the asphalt goes on, because any dip here becomes a ponding problem on the finished surface that no amount of wearing course will hide."]
+			},
+			{
+				h: "5. Prime coat and asphalt",
+				p: ["A prime or tack coat bonds the base to the asphalt. Binder course goes on first, then the wearing course, each laid by paver and closed by rollers while the mat is still in the temperature window. Compaction here is time-critical in a way nothing else on the job is: once the mat cools below the range, the density that was not achieved cannot be recovered.", "Joints are where asphalt fails first. Longitudinal and transverse joints are cut, tacked and rolled deliberately rather than left to chance, because an open joint lets water into the base and the base is what the road depends on."]
+			},
+			{
+				h: "6. Kerbs, drainage and markings",
+				p: ["Kerbs and channels define the edge and carry surface water to the drainage. Line marking, hatching, arrows and studs go on last, to the approved marking drawing. On an RTA road the marking layout is part of the approval, not a detail to be settled on site."]
+			},
+			{
+				h: "7. Testing, handover and defects",
+				p: ["The file matters as much as the road. Density results, material certificates, level surveys and as-built drawings are what the authority signs off against. A road built correctly with an incomplete file still fails handover, and assembling that file after the fact is far harder than compiling it as the layers go down."]
+			}
+		],
+		related: [
+			"/services/road-works/road-base-laying",
+			"/services/road-works/asphalt-works",
+			"/services/earth-works/leveling-and-compaction",
+			"/services/supply/road-base-supply"
+		]
+	},
+	{
+		slug: "asphalt-vs-concrete-roads",
+		title: "Asphalt vs Concrete Roads: Which to Specify in the UAE",
+		lead: "Cost, heat performance, repairability and service life compared for UAE conditions — and where each one is actually the right answer.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "The short answer",
+				p: ["Asphalt is cheaper to build, far cheaper to repair, and can be opened to traffic within hours. Concrete lasts longer under heavy static loads and does not rut in extreme heat. In the UAE that usually means asphalt for carriageways, access roads and car parks, and concrete for container yards, heavy industrial hardstanding and anywhere loaded wheels stand still in the sun."]
+			},
+			{
+				h: "Cost",
+				p: ["Concrete typically costs substantially more to lay than an equivalent asphalt pavement, and the gap widens on smaller areas where the batching and curing overheads cannot be spread. Over a long life the whole-life numbers get closer, but only if the concrete is never dug up — one service crossing through a concrete slab erases years of savings."]
+			},
+			{
+				h: "Heat",
+				p: ["This is where the UAE differs from the textbooks. Summer surface temperatures push asphalt binder toward the top of its softening range, and under stationary heavy wheel loads that shows up as rutting. The answer is usually a modified binder and a properly designed mix rather than a switch to concrete — but where loaded vehicles genuinely stand still for hours, concrete stops being an over-specification and starts being the correct choice."]
+			},
+			{
+				h: "Repair and services",
+				p: ["An asphalt patch is a same-day operation: saw cut, break out, reinstate, roll, reopen. A concrete repair means breaking out a full bay, reinstating reinforcement and waiting for a cure. If the pavement sits over services that will be accessed again — which on almost every UAE plot they will be — asphalt is the pragmatic answer."]
+			},
+			{
+				h: "Service life",
+				p: ["A well-built asphalt pavement with a maintained surface gives long service, with the wearing course resurfaced periodically while the base stays put. Concrete lasts longer before major intervention but fails less gracefully: asphalt degrades visibly and can be planed and overlaid, while a failed slab needs replacing."]
+			},
+			{
+				h: "How to decide",
+				p: ["Ask what stands on it and for how long. Moving traffic, parking bays, access roads, internal estate roads — asphalt. Container stacking, crane pads, heavy static loads, wash-down areas — concrete. Mixed-use yards are often best split rather than surfaced in one material throughout."]
+			}
+		],
+		related: [
+			"/services/road-works/asphalt-works",
+			"/services/road-works/parking-construction",
+			"/services/road-works/heavy-duty-interlock-paving",
+			"/services/road-works/road-maintenance"
+		]
+	},
+	{
+		slug: "excavation-in-construction",
+		title: "Excavation in Construction: Types, Methods and Controls",
+		lead: "What excavation involves on a UAE project — bulk and detailed digging, rock, batters, dewatering, disposal and the controls that keep it safe.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "What excavation covers",
+				p: ["Excavation is any removal of ground to reach a design level. On a UAE site it splits into bulk excavation — large volumes taken down to a formation or basement level — and detailed excavation for footings, pile caps, pits and trenches, where the tolerance is tight and the machine is small."]
+			},
+			{
+				h: "Reading the ground first",
+				p: ["The geotechnical report decides the method. Coastal Dubai and Sharjah plots are typically loose sand over a caprock band, so batters have to be pulled back or the sides supported. Ras Al Khaimah and Fujairah put you into hard strata within a few metres, which means breakers and a different production rate. Older industrial plots hide uncontrolled fill, buried slabs and abandoned services that appear on no drawing."]
+			},
+			{
+				h: "Batters, benching and support",
+				p: ["An unsupported face in sand does not give warning before it goes. Excavations are either battered back to a safe angle, benched in steps, or supported — sheet piling, shoring or soldier piles depending on depth and what is next to the dig. Which one applies is a design decision taken from the soil report, not a judgement made in the hole."]
+			},
+			{
+				h: "Water",
+				p: ["Groundwater across much of the UAE coast is shallow and saline. Below the water table, dewatering runs alongside the excavation, with discharge consented and monitored. Saline groundwater also drives the material specification for anything placed back against structures."]
+			},
+			{
+				h: "Services",
+				p: ["Scanning and trial pits before machines start is not optional. A struck live cable or water main stops the job, and on an RTA or utility corridor it brings a penalty as well. Anything uncharted should be recorded and reported before it is removed."]
+			},
+			{
+				h: "Disposal",
+				p: ["Excavated material is classified, loaded and hauled to a permitted tip under municipal disposal permit, with tickets retained for the project file. Suitable material kept on site as fill is almost always cheaper than exporting it and importing replacement later — that decision belongs at tender stage, not once the tippers are running."]
+			}
+		],
+		related: [
+			"/services/earth-works/excavation",
+			"/services/earth-works/site-preparation",
+			"/services/earth-works/back-filling",
+			"/services/supply/material-shifting"
+		]
+	},
+	{
+		slug: "common-asphalt-repair-techniques",
+		title: "Common Asphalt Repair Techniques Explained",
+		lead: "Patching, milling and overlay, crack sealing and full-depth reinstatement — what each one fixes, and when it is the wrong tool.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "Diagnose before you repair",
+				p: ["Almost every failed asphalt repair is a surface treatment applied to a base problem. Cracking, rutting and potholes are symptoms; the cause is underneath, in a base that is holding water or was never compacted properly. Resurfacing over a failed base buys a year at most."]
+			},
+			{
+				h: "Crack sealing",
+				p: ["The cheapest intervention and, done early, the highest value. Sealing keeps water out of the base, and water in the base is what turns a hairline crack into a pothole. It works on isolated cracks in a sound pavement; it does nothing for crocodile cracking, which is a structural signal."]
+			},
+			{
+				h: "Surface patching",
+				p: ["Saw-cut a rectangle, break out the failed surface, tack the edges, reinstate and compact. Fast and effective where the base below is sound. Patch edges are where the repair fails, so cutting square and tacking properly matters more than the material used."]
+			},
+			{
+				h: "Full-depth reinstatement",
+				p: ["Where the base has gone — crocodile cracking, deformation, a service crossing — the repair has to go down to sound material and rebuild the layers. More expensive, and the only thing that actually works. This is the standard repair after a utility trench, and it is where cheap reinstatement shows itself within a year."]
+			},
+			{
+				h: "Milling and overlay",
+				p: ["Plane off the worn wearing course and lay a new one. The right answer for a road whose base is sound but whose surface is worn, oxidised or rutted at the top. It restores ride quality and levels without touching the structure, and it keeps the finished level unchanged — which matters where kerbs and gullies are fixed."]
+			},
+			{
+				h: "Choosing between them",
+				p: ["If water is getting in but the pavement is sound, seal. If the surface has failed locally, patch. If the base has failed, reinstate full depth. If the surface is worn across an area but the structure is intact, mill and overlay. Anything else is deferring the cost at interest."]
+			}
+		],
+		related: [
+			"/services/road-works/road-maintenance",
+			"/services/road-works/asphalt-patch-works",
+			"/services/road-works/asphalt-works",
+			"/services/traffic-management/lane-closure-permits"
+		]
+	},
+	{
+		slug: "type-of-asphalt-mix",
+		title: "Types of Asphalt Mix and Where Each One Is Used",
+		lead: "Wearing course, binder course, base course and the modified mixes — how UAE specifications differ and what to ask for.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "The pavement is layered, and so are the mixes",
+				p: ["An asphalt pavement is not one material. Each layer has a different job, so each has a different aggregate size, binder content and compaction target. Specifying \"asphalt\" without saying which layer is how the wrong mix ends up on site."]
+			},
+			{
+				h: "Wearing course",
+				p: ["The top layer, and the only one anyone sees. Smaller aggregate for ride quality and skid resistance, denser gradation to keep water out. This is the layer that gets planed and replaced during the pavement life while the structure below stays put."]
+			},
+			{
+				h: "Binder course",
+				p: ["The intermediate layer that carries load down from the surface. Larger aggregate, laid thicker than the wearing course. Compaction here matters structurally — under-compacted binder course shows up as rutting under wheel paths long before the surface itself wears out."]
+			},
+			{
+				h: "Base course",
+				p: ["Where the pavement design calls for asphalt rather than granular material in the structural layer, base course is a coarse, heavily compacted mix carrying the main structural duty. Common on heavily trafficked roads and industrial pavements."]
+			},
+			{
+				h: "Modified binders",
+				p: ["Polymer-modified binders widen the temperature range the asphalt performs across. In the UAE the reason is summer heat: a modified binder resists rutting under standing heavy loads where a conventional binder softens. Worth the cost on bus stops, junction approaches, loading areas and anywhere vehicles stop rather than pass."]
+			},
+			{
+				h: "Authority specifications",
+				p: ["RTA, DMT and each municipality publish their own mix designs and approved sources. A mix approved for one is not automatically acceptable to another, and material approval is a submission with a lead time. Fix the specification and the source before the programme depends on the paver arriving."]
+			}
+		],
+		related: [
+			"/services/road-works/asphalt-works",
+			"/services/road-works/asphalt-patch-works",
+			"/services/supply/aggregate-supply",
+			"/services/road-works/road-base-laying"
+		]
+	},
+	{
+		slug: "future-of-road-construction-dubai",
+		title: "The Future of Road Construction in Dubai",
+		lead: "Machine control, recycled pavement, cooler surfacing and tighter permitting — what is actually changing on Dubai road projects.",
+		updated: "2026-08-31",
+		sections: [
+			{
+				h: "Machine control is now the baseline",
+				p: ["GPS and total-station guidance on graders, dozers and pavers has moved from a differentiator to an expectation on larger Dubai packages. The gain is not speed so much as rework: layers hit level first time, material overrun drops, and the as-built survey stops being an argument."]
+			},
+			{
+				h: "Recycled and reclaimed material",
+				p: ["Reclaimed asphalt pavement and recycled aggregate are increasingly accepted in lower layers where the specification allows. The constraint is consistency rather than the principle — recycled material has to be graded and tested as rigorously as virgin, and that is a supply chain question before it is an engineering one."]
+			},
+			{
+				h: "Heat and surface performance",
+				p: ["Rising summer temperatures push binder selection and mix design harder every year. Modified binders on standing-load areas are becoming routine rather than exceptional, and cool-surfacing trials are running on pedestrian and low-speed areas where surface temperature is a comfort issue rather than a structural one."]
+			},
+			{
+				h: "Permitting is getting tighter, not looser",
+				p: ["RTA permitting for lane closures, diversions and works in the road reserve continues to demand more up front: better drawings, tighter timing windows, clearer stakeholder coordination. Contractors who treat permits as a submission after award rather than a design activity before it keep losing programme to it."]
+			},
+			{
+				h: "What it means for a project today",
+				p: ["None of this changes the fundamentals — survey, formation, base, asphalt, testing. It changes the tolerance for getting them wrong, and it moves more of the risk to the front of the programme, into material approvals and permits, where it is cheapest to manage."]
+			}
+		],
+		related: [
+			"/services/road-works/dubai",
+			"/services/traffic-management/lane-closure-permits",
+			"/services/road-works/asphalt-works",
+			"/services/utilities/row-permits"
+		]
+	}
+];
+var OVERLAYS = { ar: guidesAr };
+function buildGuides(locale) {
+	const overlay = OVERLAYS[locale];
+	if (!overlay) return guides;
+	return guides.map((g) => {
+		const o = overlay[g.slug];
+		return o ? {
+			...g,
+			...o
+		} : g;
+	});
+}
+var guidesByLocale = Object.fromEntries(LOCALES.map((l) => [l, buildGuides(l)]));
+function guidesFor(locale) {
+	return guidesByLocale[locale] || guidesByLocale["en"];
+}
+function guideFor(slug, locale = "en") {
+	return guidesFor(locale).find((g) => g.slug === slug) || null;
+}
+Object.fromEntries(guides.map((g) => [g.slug, g]));
+var guidePaths = guides.map((g) => `/${g.slug}`);
+var allGuideRoutes = () => ["/guides", ...guidePaths];
+//#endregion
+//#region src/pages/Guides.jsx
+function Guides() {
+	const { t, locale, href, content } = useLocale();
+	const guides = guidesFor(locale);
+	return /* @__PURE__ */ jsxs("main", { children: [
+		/* @__PURE__ */ jsx(PageBanner, {
+			eyebrow: t("guides.eyebrow"),
+			title: t("guides.title"),
+			text: t("guides.lead"),
+			img: content.images.banners.services
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsx(Breadcrumbs, { items: [{
+					name: t("crumb.home"),
+					path: "/"
+				}, {
+					name: t("guides.crumb"),
+					path: "/guides"
+				}] }), /* @__PURE__ */ jsx("div", {
+					className: "guide-grid",
+					children: guides.map((g, i) => /* @__PURE__ */ jsx(Reveal, {
+						delay: i * 70,
+						children: /* @__PURE__ */ jsxs(Link, {
+							to: href(`/${g.slug}`),
+							className: "guide-card",
+							children: [
+								/* @__PURE__ */ jsx("span", {
+									className: "guide-card-kicker",
+									children: t("guides.kicker")
+								}),
+								/* @__PURE__ */ jsx("h2", { children: g.title }),
+								/* @__PURE__ */ jsx("p", { children: g.lead }),
+								/* @__PURE__ */ jsx("span", {
+									className: "guide-card-more",
+									children: t("guides.read")
+								})
+							]
+						})
+					}, g.slug))
+				})]
+			})
+		}),
+		/* @__PURE__ */ jsx(CTA, {})
+	] });
+}
+//#endregion
+//#region src/pages/GuideDetail.jsx
+function anchor(h) {
+	return h.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || `s-${h.length}`;
+}
+function serviceLabel(path, locale) {
+	const m = path.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/);
+	if (!m) return null;
+	const tax = taxonomyFor(locale);
+	const category = tax.categoryBySlug[m[1]];
+	if (!category) return null;
+	if (!m[2]) return {
+		name: category.name,
+		note: category.tagline
+	};
+	const service = category.services.find((s) => s.slug === m[2]);
+	if (service) return {
+		name: service.name,
+		note: category.name
+	};
+	const emirate = tax.emirates.find((e) => e.slug === m[2]);
+	if (emirate) return {
+		name: `${category.name} — ${emirate.name}`,
+		note: emirate.authority
+	};
+	return null;
+}
+function GuideDetail() {
+	const { pathname } = useLocation();
+	const { t, locale, href } = useLocale();
+	const slug = pathname.replace(/^\/ar/, "").replace(/^\//, "").replace(/\/$/, "");
+	const guide = guideFor(slug, locale);
+	if (!guide) return /* @__PURE__ */ jsx(NotFound, {});
+	const related = guide.related.map((path) => ({
+		path,
+		label: serviceLabel(path, locale)
+	})).filter((r) => r.label);
+	return /* @__PURE__ */ jsxs("main", { children: [
+		/* @__PURE__ */ jsx(PageBanner, {
+			eyebrow: t("guides.kicker"),
+			title: guide.title,
+			text: guide.lead,
+			img: `/images/services/${slug === "excavation-in-construction" ? "excavation" : "asphalt-works"}.jpg`
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [
+					/* @__PURE__ */ jsx(Breadcrumbs, { items: [
+						{
+							name: t("crumb.home"),
+							path: "/"
+						},
+						{
+							name: t("guides.crumb"),
+							path: "/guides"
+						},
+						{
+							name: guide.title,
+							path: `/${guide.slug}`
+						}
+					] }),
+					/* @__PURE__ */ jsxs("div", {
+						className: "guide-layout",
+						children: [/* @__PURE__ */ jsx("article", {
+							className: "guide-body",
+							children: guide.sections.map((sec, i) => /* @__PURE__ */ jsxs(Reveal, {
+								delay: i * 40,
+								children: [/* @__PURE__ */ jsx("h2", {
+									id: anchor(sec.h),
+									children: sec.h
+								}), sec.p.map((para) => /* @__PURE__ */ jsx("p", { children: para }, para.slice(0, 40)))]
+							}, sec.h))
+						}), /* @__PURE__ */ jsxs("aside", {
+							className: "guide-rail",
+							children: [/* @__PURE__ */ jsxs("nav", {
+								className: "guide-toc",
+								"aria-label": t("guides.contents"),
+								children: [/* @__PURE__ */ jsx("h2", { children: t("guides.contents") }), /* @__PURE__ */ jsx("ol", { children: guide.sections.map((sec) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
+									href: `#${anchor(sec.h)}`,
+									children: sec.h
+								}) }, sec.h)) })]
+							}), /* @__PURE__ */ jsxs("div", {
+								className: "guide-rail-cta",
+								children: [/* @__PURE__ */ jsx("p", { children: t("guides.railLead") }), /* @__PURE__ */ jsx(Link, {
+									to: href("/contact"),
+									className: "btn btn-solid",
+									children: t("cta.quote")
+								})]
+							})]
+						})]
+					}),
+					related.length > 0 && /* @__PURE__ */ jsxs("div", {
+						className: "guide-related",
+						children: [
+							/* @__PURE__ */ jsx("h2", {
+								className: "display-sm",
+								children: t("guides.relatedTitle")
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "guide-related-lead",
+								children: t("guides.relatedLead")
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "svc-card-grid",
+								children: related.map((r) => /* @__PURE__ */ jsx(Link, {
+									to: href(r.path),
+									className: "svc-card svc-card-plain",
+									children: /* @__PURE__ */ jsxs("div", {
+										className: "svc-card-body",
+										children: [/* @__PURE__ */ jsx("span", {
+											className: "svc-card-eyebrow",
+											children: r.label.note
+										}), /* @__PURE__ */ jsx("h3", { children: r.label.name })]
+									})
+								}, r.path))
+							})
+						]
+					})
+				]
+			})
+		}),
+		/* @__PURE__ */ jsx(CTA, {})
+	] });
+}
+//#endregion
 //#region src/seo.js
 var SITE = "https://www.earthmoversint.com";
 var page = (locale, base, title, description, extra = {}) => ({
@@ -7085,12 +7736,67 @@ function locationSeo(locale, category, emirate) {
 		}
 	] });
 }
+function guidesIndexSeo(locale) {
+	const t = translator(locale);
+	return page(locale, "/guides", t("seo.guidesTitle", { brand: t("seo.brand") }), t("seo.guidesDesc"), { jsonLd: [breadcrumbs(locale, [{
+		name: t("crumb.home"),
+		path: "/"
+	}, {
+		name: t("guides.crumb"),
+		path: "/guides"
+	}]), {
+		"@type": "ItemList",
+		itemListElement: guidesFor(locale).map((g, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			name: g.title,
+			url: `${SITE}${localeHref(`/${g.slug}`, locale)}`
+		}))
+	}] });
+}
+function guideSeo(locale, guide) {
+	const t = translator(locale);
+	const brand = t("seo.brand");
+	return page(locale, `/${guide.slug}`, t("seo.guideTitle", {
+		title: guide.title,
+		brand
+	}), guide.lead, { jsonLd: [
+		breadcrumbs(locale, [
+			{
+				name: t("crumb.home"),
+				path: "/"
+			},
+			{
+				name: t("guides.crumb"),
+				path: "/guides"
+			},
+			{
+				name: guide.title,
+				path: `/${guide.slug}`
+			}
+		]),
+		{
+			"@type": "Article",
+			headline: guide.title,
+			description: guide.lead,
+			inLanguage: LOCALE_META[locale].htmlLang,
+			dateModified: guide.updated,
+			mainEntityOfPage: `${SITE}${localeHref(`/${guide.slug}`, locale)}`,
+			author: { "@id": `${SITE}/#organization` },
+			publisher: { "@id": `${SITE}/#organization` }
+		},
+		organisationFor(locale)
+	] });
+}
 function seoFor(pathname) {
 	const { locale, base } = splitLocale(pathname);
 	const t = translator(locale);
 	const stat = staticSeo(locale, base);
 	if (stat) return stat;
 	if (base === "/services") return servicesIndexSeo(locale);
+	if (base === "/guides") return guidesIndexSeo(locale);
+	const guide = guideFor(base.replace(/^\//, ""), locale);
+	if (guide) return guideSeo(locale, guide);
 	const m = base.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/);
 	if (m) {
 		const category = taxonomyFor(locale).categoryBySlug[m[1]];
@@ -7216,7 +7922,15 @@ var PAGES = [
 	{
 		path: "contact",
 		element: /* @__PURE__ */ jsx(Contact, {})
-	}
+	},
+	{
+		path: "guides",
+		element: /* @__PURE__ */ jsx(Guides, {})
+	},
+	...guides.map((g) => ({
+		path: g.slug,
+		element: /* @__PURE__ */ jsx(GuideDetail, {})
+	}))
 ];
 function AppRoutes() {
 	useSeo();
@@ -7252,7 +7966,8 @@ var BASE_ROUTES = [
 	"/about",
 	"/projects",
 	"/contact",
-	...allServiceRoutes()
+	...allServiceRoutes(),
+	...allGuideRoutes()
 ];
 var routes = LOCALES.flatMap((locale) => BASE_ROUTES.map((base) => localeHref(base, locale)));
 //#endregion

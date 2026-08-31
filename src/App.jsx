@@ -9,9 +9,12 @@ import ServiceCategory from './pages/ServiceCategory.jsx'
 import ServiceSegment from './pages/ServiceSegment.jsx'
 import Projects from './pages/Projects.jsx'
 import Contact from './pages/Contact.jsx'
+import Guides from './pages/Guides.jsx'
+import GuideDetail from './pages/GuideDetail.jsx'
 import NotFound from './pages/NotFound.jsx'
 import useSeo from './hooks/useSeo.js'
 import { DEFAULT_LOCALE, LOCALES } from './i18n/locale.js'
+import { guides } from './data/guides.js'
 
 // One page table, mounted once per language: English at the root and Arabic
 // under /ar. Adding a third language is one entry in LOCALES.
@@ -23,6 +26,11 @@ const PAGES = [
   { path: 'services/:category/:segment', element: <ServiceSegment /> },
   { path: 'projects', element: <Projects /> },
   { path: 'contact', element: <Contact /> },
+  { path: 'guides', element: <Guides /> },
+  // The guides sit at the root slugs the old site ranks on, so each one is
+  // mounted explicitly rather than behind a '/:slug' catch-all that would
+  // swallow every unmatched path and break the 404.
+  ...guides.map((g) => ({ path: g.slug, element: <GuideDetail /> })),
 ]
 
 export function AppRoutes() {

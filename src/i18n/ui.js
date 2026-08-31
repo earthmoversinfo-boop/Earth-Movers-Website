@@ -266,6 +266,21 @@ export const UI = {
     'nf.title': 'This ground hasn’t been broken yet.',
     'nf.text': 'The page you’re looking for doesn’t exist — but the rest of the site does.',
     'nf.back': 'Back to home',
+    'guides.eyebrow': 'Guides',
+    'guides.title': 'Road and earthworks guides',
+    'guides.lead':
+      'How the work is actually done in the UAE — written by the people who do it, for clients, consultants and anyone specifying it.',
+    'guides.crumb': 'Guides',
+    'guides.kicker': 'Guide',
+    'guides.read': 'Read the guide',
+    'guides.contents': 'Contents',
+    'guides.railLead': 'Need this delivered rather than explained? Tell us the scope and we will price it.',
+    'guides.relatedTitle': 'The services behind this',
+    'guides.relatedLead': 'If you need this delivered rather than explained, these are the pages to start from.',
+    'seo.guidesTitle': 'Road & Earthworks Guides | {brand}',
+    'seo.guidesDesc':
+      'Practical guides to road construction, excavation, asphalt and earthworks in the UAE, from an RTA-approved contractor.',
+    'seo.guideTitle': '{title} | {brand}',
   },
 
   ar: {
@@ -524,6 +539,21 @@ export const UI = {
     'nf.title': 'هذه الأرض لم تُفتح بعد.',
     'nf.text': 'الصفحة التي تبحث عنها غير موجودة — لكن بقية الموقع موجودة.',
     'nf.back': 'العودة إلى الرئيسية',
+    'guides.eyebrow': 'أدلة',
+    'guides.title': 'أدلة الطرق والأعمال الترابية',
+    'guides.lead':
+      'كيف يُنفَّذ العمل فعلاً في الإمارات — بقلم من ينفّذونه، للعملاء والاستشاريين ولكل من يضع المواصفات.',
+    'guides.crumb': 'الأدلة',
+    'guides.kicker': 'دليل',
+    'guides.read': 'اقرأ الدليل',
+    'guides.contents': 'المحتويات',
+    'guides.railLead': 'تريد تنفيذ هذا لا شرحه؟ أخبرنا بالنطاق ونسعّره لك.',
+    'guides.relatedTitle': 'الخدمات وراء هذا الدليل',
+    'guides.relatedLead': 'إن كنت تريد تنفيذ هذا لا شرحه، فهذه الصفحات نقطة البداية.',
+    'seo.guidesTitle': 'أدلة الطرق والأعمال الترابية | {brand}',
+    'seo.guidesDesc':
+      'أدلة عملية لإنشاء الطرق والحفر والأسفلت والأعمال الترابية في الإمارات، من مقاول معتمد لدى هيئة الطرق والمواصلات.',
+    'seo.guideTitle': '{title} | {brand}',
   },
 }
 

@@ -10,6 +10,7 @@
 
 import { contentFor } from './data/content.js'
 import { emiratesFor, resolveServiceSegment, taxonomyFor } from './data/services.js'
+import { guideFor, guidesFor } from './data/guides.js'
 import { alternatesFor, DEFAULT_LOCALE, LOCALE_META, localeHref, splitLocale } from './i18n/locale.js'
 import { translator } from './i18n/ui.js'
 
@@ -309,6 +310,61 @@ function locationSeo(locale, category, emirate) {
   )
 }
 
+function guidesIndexSeo(locale) {
+  const t = translator(locale)
+  const brand = t('seo.brand')
+  return page(locale, '/guides', t('seo.guidesTitle', { brand }), t('seo.guidesDesc'), {
+    jsonLd: [
+      breadcrumbs(locale, [
+        { name: t('crumb.home'), path: '/' },
+        { name: t('guides.crumb'), path: '/guides' },
+      ]),
+      {
+        '@type': 'ItemList',
+        itemListElement: guidesFor(locale).map((g, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: g.title,
+          url: `${SITE}${localeHref(`/${g.slug}`, locale)}`,
+        })),
+      },
+    ],
+  })
+}
+
+// A guide is an Article rather than a Service page: it answers a question
+// instead of selling the work, and the structured data should say so.
+function guideSeo(locale, guide) {
+  const t = translator(locale)
+  const brand = t('seo.brand')
+  return page(
+    locale,
+    `/${guide.slug}`,
+    t('seo.guideTitle', { title: guide.title, brand }),
+    guide.lead,
+    {
+      jsonLd: [
+        breadcrumbs(locale, [
+          { name: t('crumb.home'), path: '/' },
+          { name: t('guides.crumb'), path: '/guides' },
+          { name: guide.title, path: `/${guide.slug}` },
+        ]),
+        {
+          '@type': 'Article',
+          headline: guide.title,
+          description: guide.lead,
+          inLanguage: LOCALE_META[locale].htmlLang,
+          dateModified: guide.updated,
+          mainEntityOfPage: `${SITE}${localeHref(`/${guide.slug}`, locale)}`,
+          author: { '@id': `${SITE}/#organization` },
+          publisher: { '@id': `${SITE}/#organization` },
+        },
+        organisationFor(locale),
+      ],
+    }
+  )
+}
+
 export function seoFor(pathname) {
   const { locale, base } = splitLocale(pathname)
   const t = translator(locale)
@@ -316,6 +372,10 @@ export function seoFor(pathname) {
   const stat = staticSeo(locale, base)
   if (stat) return stat
   if (base === '/services') return servicesIndexSeo(locale)
+  if (base === '/guides') return guidesIndexSeo(locale)
+
+  const guide = guideFor(base.replace(/^\//, ''), locale)
+  if (guide) return guideSeo(locale, guide)
 
   const m = base.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/)
   if (m) {
