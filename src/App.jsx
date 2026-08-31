@@ -13,6 +13,7 @@ import Guides from './pages/Guides.jsx'
 import GuideDetail from './pages/GuideDetail.jsx'
 import NotFound from './pages/NotFound.jsx'
 import useSeo from './hooks/useSeo.js'
+import useAnalytics from './hooks/useAnalytics.js'
 import { DEFAULT_LOCALE, LOCALES } from './i18n/locale.js'
 import { guides } from './data/guides.js'
 
@@ -35,6 +36,7 @@ const PAGES = [
 
 export function AppRoutes() {
   useSeo()
+  useAnalytics()
   return (
     <>
       <Nav />

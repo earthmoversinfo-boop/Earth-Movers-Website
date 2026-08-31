@@ -5,6 +5,7 @@ import { Arrow, WhatsApp } from '../components/Icons.jsx'
 import { whatsAppHref, whatsAppMessage } from '../components/WhatsAppButton.jsx'
 import useLocale from '../i18n/useLocale.js'
 import { asset } from '../lib/asset.js'
+import { trackEvent } from '../lib/analytics.js'
 
 export default function Contact() {
   const { t, locale, tax, content } = useLocale()
@@ -30,6 +31,17 @@ export default function Contact() {
         form.message,
       ].join('\n')
     )
+    // Recorded before the mail client takes over, and with the service the
+    // visitor picked, so you can see which disciplines actually generate
+    // enquiries rather than only which pages get read. The form hands off to
+    // a mail client, so this is the last moment the site can observe anything
+    // — a genuine send is still unverifiable from here.
+    trackEvent('submit_enquiry', {
+      method: 'form',
+      service_enquired: picked,
+      has_email: Boolean(form.email),
+    })
+
     window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`
   }
 

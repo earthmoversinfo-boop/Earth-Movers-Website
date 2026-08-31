@@ -5077,32 +5077,15 @@ function NotFound() {
 }
 //#endregion
 //#region src/components/EmirateCard.jsx
-function EmirateCard({ emirate, categorySlug, index = 0, delay }) {
+function EmirateCard({ emirate, categorySlug, delay }) {
 	const { locale, href } = useLocale();
 	const other = locale === "ar" ? "en" : "ar";
 	const otherName = taxonomies[other].emirateBySlug[emirate.slug]?.name;
-	const services = taxonomyFor(locale).categoryBySlug[categorySlug]?.services || [];
-	const pool = [...services.map((sv) => ({
-		img: sv.img,
-		name: sv.name
-	})), ...services.map((sv) => ({
-		img: sv.tallImg,
-		name: sv.name
-	}))];
-	const shown = pool.length ? pool[index % pool.length] : null;
 	return /* @__PURE__ */ jsxs(Link, {
 		to: href(`/services/${categorySlug}/${emirate.slug}`),
 		className: "em-card",
 		style: delay ? { transitionDelay: `${delay}ms` } : void 0,
 		children: [
-			shown && /* @__PURE__ */ jsx("span", {
-				className: "em-card-media",
-				children: /* @__PURE__ */ jsx("img", {
-					src: asset(shown.img),
-					alt: shown.name,
-					loading: "lazy"
-				})
-			}),
 			/* @__PURE__ */ jsxs("span", {
 				className: "em-card-top",
 				children: [/* @__PURE__ */ jsx(Pin, { className: "em-card-pin" }), /* @__PURE__ */ jsx("span", {
@@ -5254,8 +5237,7 @@ function ServiceCategory() {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug,
-							index: i
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]
@@ -5493,8 +5475,7 @@ function ServiceDetail({ category, service }) {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug,
-							index: i
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]
@@ -5865,8 +5846,7 @@ function ServiceLocation({ category, emirate }) {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug,
-							index: i
+							categorySlug: category.slug
 						})
 					}, e.slug))
 				})]
@@ -6090,381 +6070,6 @@ function Projects() {
 		/* @__PURE__ */ jsx(CTA, {
 			title: t("proj.ctaTitle"),
 			text: t("proj.ctaText")
-		})
-	] });
-}
-//#endregion
-//#region src/pages/Contact.jsx
-function Contact() {
-	const { t, locale, tax, content } = useLocale();
-	const { company, images } = content;
-	const waHref = whatsAppHref(company.whatsapp, whatsAppMessage("/contact", locale, t, tax));
-	const [form, setForm] = useState({
-		name: "",
-		phone: "",
-		email: "",
-		service: "",
-		message: ""
-	});
-	const set = (key) => (e) => setForm({
-		...form,
-		[key]: e.target.value
-	});
-	const submit = (e) => {
-		e.preventDefault();
-		const picked = form.service || t("ct.general");
-		const subject = encodeURIComponent(t("ct.subject", {
-			picked,
-			name: form.name
-		}));
-		const body = encodeURIComponent([
-			`${t("ct.name")}: ${form.name}`,
-			`${t("ct.phone")}: ${form.phone}`,
-			`${t("ct.email")}: ${form.email}`,
-			`${t("ct.need")} ${picked}`,
-			"",
-			form.message
-		].join("\n"));
-		window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
-	};
-	return /* @__PURE__ */ jsxs("main", { children: [
-		/* @__PURE__ */ jsx(PageBanner, {
-			eyebrow: t("ct.eyebrow"),
-			title: t("ct.title"),
-			text: t("ct.lead"),
-			img: images.banners.contact
-		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "wrap",
-				children: [
-					/* @__PURE__ */ jsx("h2", {
-						className: "block-label",
-						children: t("ct.reachEyebrow")
-					}),
-					/* @__PURE__ */ jsxs("div", {
-						className: "reach-grid",
-						children: [
-							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("a", {
-								href: company.phoneHref,
-								className: "reach-card",
-								children: [
-									/* @__PURE__ */ jsx("span", {
-										className: "reach-label",
-										children: t("ct.callLabel")
-									}),
-									/* @__PURE__ */ jsx("span", {
-										className: "reach-value",
-										dir: "ltr",
-										children: company.phone
-									}),
-									/* @__PURE__ */ jsx("span", {
-										className: "reach-note",
-										children: t("ct.callNote")
-									})
-								]
-							}) }),
-							/* @__PURE__ */ jsx(Reveal, {
-								delay: 70,
-								children: /* @__PURE__ */ jsxs("a", {
-									href: waHref,
-									target: "_blank",
-									rel: "noreferrer",
-									className: "reach-card reach-card-wa",
-									children: [
-										/* @__PURE__ */ jsxs("span", {
-											className: "reach-label",
-											children: [
-												/* @__PURE__ */ jsx(WhatsApp, { className: "reach-wa-icon" }),
-												" ",
-												t("wa.cardLabel")
-											]
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "reach-value",
-											dir: "ltr",
-											children: company.phone
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "reach-note",
-											children: t("wa.cardNote")
-										})
-									]
-								})
-							}),
-							/* @__PURE__ */ jsx(Reveal, {
-								delay: 140,
-								children: /* @__PURE__ */ jsxs("a", {
-									href: `mailto:${company.email}`,
-									className: "reach-card",
-									children: [
-										/* @__PURE__ */ jsx("span", {
-											className: "reach-label",
-											children: t("ct.emailLabel")
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "reach-value",
-											dir: "ltr",
-											children: company.email
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "reach-note",
-											children: t("ct.emailNote")
-										})
-									]
-								})
-							})
-						]
-					}),
-					/* @__PURE__ */ jsxs("div", {
-						className: "reach-meta",
-						children: [/* @__PURE__ */ jsxs(Reveal, {
-							className: "reach-meta-item",
-							children: [
-								/* @__PURE__ */ jsx("span", {
-									className: "label",
-									children: t("ct.office")
-								}),
-								/* @__PURE__ */ jsx("address", { children: company.address.join(", ") }),
-								/* @__PURE__ */ jsx("span", {
-									className: "reach-note",
-									children: t("ct.officeNote")
-								})
-							]
-						}), /* @__PURE__ */ jsxs(Reveal, {
-							delay: 70,
-							className: "reach-meta-item",
-							children: [/* @__PURE__ */ jsx("span", {
-								className: "label",
-								children: t("ct.hours")
-							}), /* @__PURE__ */ jsxs("address", { children: [
-								t("ct.hoursValue"),
-								/* @__PURE__ */ jsx("br", {}),
-								t("ct.hoursSite")
-							] })]
-						})]
-					})
-				]
-			})
-		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section section-paper hairline-top",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "wrap",
-				children: [/* @__PURE__ */ jsxs("div", {
-					className: "form-head",
-					children: [
-						/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
-							className: "eyebrow",
-							children: t("ct.formEyebrow")
-						}) }),
-						/* @__PURE__ */ jsx(Reveal, {
-							delay: 80,
-							children: /* @__PURE__ */ jsx("h2", {
-								className: "display-md",
-								children: t("ct.formTitle")
-							})
-						}),
-						/* @__PURE__ */ jsx(Reveal, {
-							delay: 140,
-							children: /* @__PURE__ */ jsx("p", {
-								className: "lead",
-								children: t("ct.formLead")
-							})
-						})
-					]
-				}), /* @__PURE__ */ jsxs("div", {
-					className: "form-layout",
-					children: [/* @__PURE__ */ jsx(Reveal, {
-						delay: 160,
-						children: /* @__PURE__ */ jsxs("form", {
-							className: "contact-form",
-							onSubmit: submit,
-							children: [
-								/* @__PURE__ */ jsxs("div", {
-									className: "form-row",
-									children: [/* @__PURE__ */ jsxs("div", {
-										className: "field",
-										children: [/* @__PURE__ */ jsx("label", {
-											htmlFor: "cf-name",
-											children: t("ct.name")
-										}), /* @__PURE__ */ jsx("input", {
-											id: "cf-name",
-											name: "name",
-											autoComplete: "name",
-											required: true,
-											value: form.name,
-											onChange: set("name"),
-											placeholder: t("ct.namePlaceholder")
-										})]
-									}), /* @__PURE__ */ jsxs("div", {
-										className: "field",
-										children: [/* @__PURE__ */ jsx("label", {
-											htmlFor: "cf-phone",
-											children: t("ct.phone")
-										}), /* @__PURE__ */ jsx("input", {
-											id: "cf-phone",
-											name: "phone",
-											type: "tel",
-											autoComplete: "tel",
-											inputMode: "tel",
-											required: true,
-											dir: "ltr",
-											value: form.phone,
-											onChange: set("phone"),
-											placeholder: t("ct.phonePlaceholder")
-										})]
-									})]
-								}),
-								/* @__PURE__ */ jsxs("div", {
-									className: "field",
-									children: [/* @__PURE__ */ jsxs("label", {
-										htmlFor: "cf-email",
-										children: [
-											t("ct.email"),
-											" ",
-											/* @__PURE__ */ jsx("span", {
-												className: "field-optional",
-												children: t("ct.optional")
-											})
-										]
-									}), /* @__PURE__ */ jsx("input", {
-										id: "cf-email",
-										name: "email",
-										type: "email",
-										autoComplete: "email",
-										inputMode: "email",
-										dir: "ltr",
-										value: form.email,
-										onChange: set("email"),
-										placeholder: t("ct.emailPlaceholder")
-									})]
-								}),
-								/* @__PURE__ */ jsxs("div", {
-									className: "field",
-									children: [/* @__PURE__ */ jsx("label", {
-										htmlFor: "cf-service",
-										children: t("ct.need")
-									}), /* @__PURE__ */ jsx("div", {
-										className: "select-wrap",
-										children: /* @__PURE__ */ jsxs("select", {
-											id: "cf-service",
-											name: "service",
-											value: form.service,
-											onChange: set("service"),
-											children: [
-												/* @__PURE__ */ jsx("option", {
-													value: "",
-													children: t("ct.needPlaceholder")
-												}),
-												tax.categories.map((c) => /* @__PURE__ */ jsx("option", {
-													value: c.name,
-													children: c.name
-												}, c.slug)),
-												/* @__PURE__ */ jsx("option", {
-													value: t("ct.notSure"),
-													children: t("ct.notSure")
-												})
-											]
-										})
-									})]
-								}),
-								/* @__PURE__ */ jsxs("div", {
-									className: "field",
-									children: [
-										/* @__PURE__ */ jsx("label", {
-											htmlFor: "cf-message",
-											children: t("ct.details")
-										}),
-										/* @__PURE__ */ jsx("textarea", {
-											id: "cf-message",
-											name: "message",
-											required: true,
-											value: form.message,
-											onChange: set("message"),
-											placeholder: t("ct.detailsPlaceholder")
-										}),
-										/* @__PURE__ */ jsx("span", {
-											className: "field-hint",
-											children: t("ct.detailsHint")
-										})
-									]
-								}),
-								/* @__PURE__ */ jsx("p", {
-									className: "form-note",
-									children: t("ct.noteBefore", { email: company.email })
-								}),
-								/* @__PURE__ */ jsxs("button", {
-									type: "submit",
-									className: "btn btn-solid form-submit",
-									children: [
-										t("ct.send"),
-										" ",
-										/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
-									]
-								})
-							]
-						})
-					}), /* @__PURE__ */ jsxs(Reveal, {
-						delay: 220,
-						className: "form-aside",
-						children: [
-							/* @__PURE__ */ jsxs("figure", {
-								className: "form-aside-figure",
-								children: [/* @__PURE__ */ jsx("img", {
-									src: asset("/images/services/asphalt-patch-works-tall.jpg"),
-									alt: t("ct.asideAlt"),
-									loading: "lazy"
-								}), /* @__PURE__ */ jsx("figcaption", { children: t("ct.asideCaption") })]
-							}),
-							/* @__PURE__ */ jsxs("div", {
-								className: "form-next",
-								children: [/* @__PURE__ */ jsx("h3", { children: t("ct.nextTitle") }), /* @__PURE__ */ jsxs("ol", { children: [
-									/* @__PURE__ */ jsx("li", { children: t("ct.next1") }),
-									/* @__PURE__ */ jsx("li", { children: t("ct.next2") }),
-									/* @__PURE__ */ jsx("li", { children: t("ct.next3") })
-								] })]
-							}),
-							/* @__PURE__ */ jsxs("ul", {
-								className: "form-trust",
-								children: [
-									/* @__PURE__ */ jsx("li", { children: t("foot.certRta") }),
-									/* @__PURE__ */ jsx("li", { children: t("foot.certDm") }),
-									/* @__PURE__ */ jsx("li", { children: t("foot.certSince") })
-								]
-							})
-						]
-					})]
-				})]
-			})
-		}),
-		/* @__PURE__ */ jsx("section", {
-			className: "section",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "wrap",
-				children: [/* @__PURE__ */ jsxs("div", {
-					className: "form-head",
-					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
-						className: "eyebrow",
-						children: t("ct.mapEyebrow")
-					}) }), /* @__PURE__ */ jsx(Reveal, {
-						delay: 80,
-						children: /* @__PURE__ */ jsx("h2", {
-							className: "display-md",
-							children: t("ct.mapHeading")
-						})
-					})]
-				}), /* @__PURE__ */ jsx(Reveal, {
-					className: "map-frame",
-					children: /* @__PURE__ */ jsx("iframe", {
-						title: t("ct.mapTitle"),
-						src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
-						loading: "lazy",
-						referrerPolicy: "no-referrer-when-downgrade"
-					})
-				})]
-			})
 		})
 	] });
 }
@@ -6914,6 +6519,506 @@ function guideFor(slug, locale = "en") {
 Object.fromEntries(guides.map((g) => [g.slug, g]));
 var guidePaths = guides.map((g) => `/${g.slug}`);
 var allGuideRoutes = () => ["/guides", ...guidePaths];
+//#endregion
+//#region src/lib/analytics.js
+var isBrowser = typeof window !== "undefined";
+var enabled = Boolean("");
+var loaded = false;
+function gtag() {
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push(arguments);
+}
+function describePath(pathname) {
+	const { locale, base } = splitLocale(pathname);
+	const out = {
+		locale,
+		page_path: base
+	};
+	if (base === "/") return {
+		...out,
+		page_type: "home"
+	};
+	if (base === "/about") return {
+		...out,
+		page_type: "about"
+	};
+	if (base === "/projects") return {
+		...out,
+		page_type: "projects"
+	};
+	if (base === "/contact") return {
+		...out,
+		page_type: "contact"
+	};
+	if (base === "/services") return {
+		...out,
+		page_type: "services_index"
+	};
+	if (base === "/guides") return {
+		...out,
+		page_type: "guides_index"
+	};
+	const m = base.match(/^\/services\/([a-z-]+)(?:\/([a-z-]+))?$/);
+	if (m) {
+		const category = taxonomyFor(locale).categoryBySlug[m[1]];
+		if (category && !m[2]) return {
+			...out,
+			page_type: "service_category",
+			category: m[1]
+		};
+		if (category) {
+			const found = resolveServiceSegment(category, m[2], locale);
+			if (found.kind === "service") return {
+				...out,
+				page_type: "service",
+				category: m[1],
+				service: m[2]
+			};
+			if (found.kind === "emirate") return {
+				...out,
+				page_type: "service_location",
+				category: m[1],
+				emirate: m[2]
+			};
+		}
+	}
+	if (guideFor(base.replace(/^\//, ""), locale)) return {
+		...out,
+		page_type: "guide",
+		guide: base.replace(/^\//, "")
+	};
+	return {
+		...out,
+		page_type: "not_found"
+	};
+}
+function load() {
+	if (loaded || !enabled || !isBrowser) return;
+	loaded = true;
+	const src = `https://www.googletagmanager.com/gtag/js?id=`;
+	const tag = document.createElement("script");
+	tag.async = true;
+	tag.src = src;
+	document.head.appendChild(tag);
+	gtag("js", /* @__PURE__ */ new Date());
+}
+function trackPageView(pathname, title) {
+	if (!enabled || !isBrowser) return;
+	load();
+	const info = describePath(pathname);
+	gtag("event", "page_view", {
+		...info,
+		page_title: title || document.title,
+		page_location: window.location.href,
+		content_group: info.page_type
+	});
+}
+function trackEvent(name, params = {}) {
+	if (!enabled || !isBrowser) return;
+	load();
+	gtag("event", name, {
+		...describePath(window.location.pathname),
+		...params
+	});
+}
+function installLinkTracking() {
+	if (!enabled || !isBrowser || installLinkTracking.done) return;
+	installLinkTracking.done = true;
+	document.addEventListener("click", (e) => {
+		const a = e.target instanceof Element ? e.target.closest("a[href]") : null;
+		if (!a) return;
+		const href = a.getAttribute("href") || "";
+		if (href.startsWith("tel:")) trackEvent("click_call", {
+			method: "phone",
+			link_url: href
+		});
+		else if (href.startsWith("mailto:")) trackEvent("click_email", {
+			method: "email",
+			link_url: href
+		});
+		else if (/(?:wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)/.test(href)) trackEvent("click_whatsapp", { method: "whatsapp" });
+	}, true);
+}
+//#endregion
+//#region src/pages/Contact.jsx
+function Contact() {
+	const { t, locale, tax, content } = useLocale();
+	const { company, images } = content;
+	const waHref = whatsAppHref(company.whatsapp, whatsAppMessage("/contact", locale, t, tax));
+	const [form, setForm] = useState({
+		name: "",
+		phone: "",
+		email: "",
+		service: "",
+		message: ""
+	});
+	const set = (key) => (e) => setForm({
+		...form,
+		[key]: e.target.value
+	});
+	const submit = (e) => {
+		e.preventDefault();
+		const picked = form.service || t("ct.general");
+		const subject = encodeURIComponent(t("ct.subject", {
+			picked,
+			name: form.name
+		}));
+		const body = encodeURIComponent([
+			`${t("ct.name")}: ${form.name}`,
+			`${t("ct.phone")}: ${form.phone}`,
+			`${t("ct.email")}: ${form.email}`,
+			`${t("ct.need")} ${picked}`,
+			"",
+			form.message
+		].join("\n"));
+		trackEvent("submit_enquiry", {
+			method: "form",
+			service_enquired: picked,
+			has_email: Boolean(form.email)
+		});
+		window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
+	};
+	return /* @__PURE__ */ jsxs("main", { children: [
+		/* @__PURE__ */ jsx(PageBanner, {
+			eyebrow: t("ct.eyebrow"),
+			title: t("ct.title"),
+			text: t("ct.lead"),
+			img: images.banners.contact
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [
+					/* @__PURE__ */ jsx("h2", {
+						className: "block-label",
+						children: t("ct.reachEyebrow")
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "reach-grid",
+						children: [
+							/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsxs("a", {
+								href: company.phoneHref,
+								className: "reach-card",
+								children: [
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-label",
+										children: t("ct.callLabel")
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-value",
+										dir: "ltr",
+										children: company.phone
+									}),
+									/* @__PURE__ */ jsx("span", {
+										className: "reach-note",
+										children: t("ct.callNote")
+									})
+								]
+							}) }),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 70,
+								children: /* @__PURE__ */ jsxs("a", {
+									href: waHref,
+									target: "_blank",
+									rel: "noreferrer",
+									className: "reach-card reach-card-wa",
+									children: [
+										/* @__PURE__ */ jsxs("span", {
+											className: "reach-label",
+											children: [
+												/* @__PURE__ */ jsx(WhatsApp, { className: "reach-wa-icon" }),
+												" ",
+												t("wa.cardLabel")
+											]
+										}),
+										/* @__PURE__ */ jsx("span", {
+											className: "reach-value",
+											dir: "ltr",
+											children: company.phone
+										}),
+										/* @__PURE__ */ jsx("span", {
+											className: "reach-note",
+											children: t("wa.cardNote")
+										})
+									]
+								})
+							}),
+							/* @__PURE__ */ jsx(Reveal, {
+								delay: 140,
+								children: /* @__PURE__ */ jsxs("a", {
+									href: `mailto:${company.email}`,
+									className: "reach-card",
+									children: [
+										/* @__PURE__ */ jsx("span", {
+											className: "reach-label",
+											children: t("ct.emailLabel")
+										}),
+										/* @__PURE__ */ jsx("span", {
+											className: "reach-value",
+											dir: "ltr",
+											children: company.email
+										}),
+										/* @__PURE__ */ jsx("span", {
+											className: "reach-note",
+											children: t("ct.emailNote")
+										})
+									]
+								})
+							})
+						]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "reach-meta",
+						children: [/* @__PURE__ */ jsxs(Reveal, {
+							className: "reach-meta-item",
+							children: [
+								/* @__PURE__ */ jsx("span", {
+									className: "label",
+									children: t("ct.office")
+								}),
+								/* @__PURE__ */ jsx("address", { children: company.address.join(", ") }),
+								/* @__PURE__ */ jsx("span", {
+									className: "reach-note",
+									children: t("ct.officeNote")
+								})
+							]
+						}), /* @__PURE__ */ jsxs(Reveal, {
+							delay: 70,
+							className: "reach-meta-item",
+							children: [/* @__PURE__ */ jsx("span", {
+								className: "label",
+								children: t("ct.hours")
+							}), /* @__PURE__ */ jsxs("address", { children: [
+								t("ct.hoursValue"),
+								/* @__PURE__ */ jsx("br", {}),
+								t("ct.hoursSite")
+							] })]
+						})]
+					})
+				]
+			})
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section section-paper hairline-top",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "form-head",
+					children: [
+						/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+							className: "eyebrow",
+							children: t("ct.formEyebrow")
+						}) }),
+						/* @__PURE__ */ jsx(Reveal, {
+							delay: 80,
+							children: /* @__PURE__ */ jsx("h2", {
+								className: "display-md",
+								children: t("ct.formTitle")
+							})
+						}),
+						/* @__PURE__ */ jsx(Reveal, {
+							delay: 140,
+							children: /* @__PURE__ */ jsx("p", {
+								className: "lead",
+								children: t("ct.formLead")
+							})
+						})
+					]
+				}), /* @__PURE__ */ jsxs("div", {
+					className: "form-layout",
+					children: [/* @__PURE__ */ jsx(Reveal, {
+						delay: 160,
+						children: /* @__PURE__ */ jsxs("form", {
+							className: "contact-form",
+							onSubmit: submit,
+							children: [
+								/* @__PURE__ */ jsxs("div", {
+									className: "form-row",
+									children: [/* @__PURE__ */ jsxs("div", {
+										className: "field",
+										children: [/* @__PURE__ */ jsx("label", {
+											htmlFor: "cf-name",
+											children: t("ct.name")
+										}), /* @__PURE__ */ jsx("input", {
+											id: "cf-name",
+											name: "name",
+											autoComplete: "name",
+											required: true,
+											value: form.name,
+											onChange: set("name"),
+											placeholder: t("ct.namePlaceholder")
+										})]
+									}), /* @__PURE__ */ jsxs("div", {
+										className: "field",
+										children: [/* @__PURE__ */ jsx("label", {
+											htmlFor: "cf-phone",
+											children: t("ct.phone")
+										}), /* @__PURE__ */ jsx("input", {
+											id: "cf-phone",
+											name: "phone",
+											type: "tel",
+											autoComplete: "tel",
+											inputMode: "tel",
+											required: true,
+											dir: "ltr",
+											value: form.phone,
+											onChange: set("phone"),
+											placeholder: t("ct.phonePlaceholder")
+										})]
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "field",
+									children: [/* @__PURE__ */ jsxs("label", {
+										htmlFor: "cf-email",
+										children: [
+											t("ct.email"),
+											" ",
+											/* @__PURE__ */ jsx("span", {
+												className: "field-optional",
+												children: t("ct.optional")
+											})
+										]
+									}), /* @__PURE__ */ jsx("input", {
+										id: "cf-email",
+										name: "email",
+										type: "email",
+										autoComplete: "email",
+										inputMode: "email",
+										dir: "ltr",
+										value: form.email,
+										onChange: set("email"),
+										placeholder: t("ct.emailPlaceholder")
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "field",
+									children: [/* @__PURE__ */ jsx("label", {
+										htmlFor: "cf-service",
+										children: t("ct.need")
+									}), /* @__PURE__ */ jsx("div", {
+										className: "select-wrap",
+										children: /* @__PURE__ */ jsxs("select", {
+											id: "cf-service",
+											name: "service",
+											value: form.service,
+											onChange: set("service"),
+											children: [
+												/* @__PURE__ */ jsx("option", {
+													value: "",
+													children: t("ct.needPlaceholder")
+												}),
+												tax.categories.map((c) => /* @__PURE__ */ jsx("option", {
+													value: c.name,
+													children: c.name
+												}, c.slug)),
+												/* @__PURE__ */ jsx("option", {
+													value: t("ct.notSure"),
+													children: t("ct.notSure")
+												})
+											]
+										})
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "field",
+									children: [
+										/* @__PURE__ */ jsx("label", {
+											htmlFor: "cf-message",
+											children: t("ct.details")
+										}),
+										/* @__PURE__ */ jsx("textarea", {
+											id: "cf-message",
+											name: "message",
+											required: true,
+											value: form.message,
+											onChange: set("message"),
+											placeholder: t("ct.detailsPlaceholder")
+										}),
+										/* @__PURE__ */ jsx("span", {
+											className: "field-hint",
+											children: t("ct.detailsHint")
+										})
+									]
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "form-note",
+									children: t("ct.noteBefore", { email: company.email })
+								}),
+								/* @__PURE__ */ jsxs("button", {
+									type: "submit",
+									className: "btn btn-solid form-submit",
+									children: [
+										t("ct.send"),
+										" ",
+										/* @__PURE__ */ jsx(Arrow, { className: "btn-arrow" })
+									]
+								})
+							]
+						})
+					}), /* @__PURE__ */ jsxs(Reveal, {
+						delay: 220,
+						className: "form-aside",
+						children: [
+							/* @__PURE__ */ jsxs("figure", {
+								className: "form-aside-figure",
+								children: [/* @__PURE__ */ jsx("img", {
+									src: asset("/images/services/asphalt-patch-works-tall.jpg"),
+									alt: t("ct.asideAlt"),
+									loading: "lazy"
+								}), /* @__PURE__ */ jsx("figcaption", { children: t("ct.asideCaption") })]
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "form-next",
+								children: [/* @__PURE__ */ jsx("h3", { children: t("ct.nextTitle") }), /* @__PURE__ */ jsxs("ol", { children: [
+									/* @__PURE__ */ jsx("li", { children: t("ct.next1") }),
+									/* @__PURE__ */ jsx("li", { children: t("ct.next2") }),
+									/* @__PURE__ */ jsx("li", { children: t("ct.next3") })
+								] })]
+							}),
+							/* @__PURE__ */ jsxs("ul", {
+								className: "form-trust",
+								children: [
+									/* @__PURE__ */ jsx("li", { children: t("foot.certRta") }),
+									/* @__PURE__ */ jsx("li", { children: t("foot.certDm") }),
+									/* @__PURE__ */ jsx("li", { children: t("foot.certSince") })
+								]
+							})
+						]
+					})]
+				})]
+			})
+		}),
+		/* @__PURE__ */ jsx("section", {
+			className: "section",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "wrap",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "form-head",
+					children: [/* @__PURE__ */ jsx(Reveal, { children: /* @__PURE__ */ jsx("span", {
+						className: "eyebrow",
+						children: t("ct.mapEyebrow")
+					}) }), /* @__PURE__ */ jsx(Reveal, {
+						delay: 80,
+						children: /* @__PURE__ */ jsx("h2", {
+							className: "display-md",
+							children: t("ct.mapHeading")
+						})
+					})]
+				}), /* @__PURE__ */ jsx(Reveal, {
+					className: "map-frame",
+					children: /* @__PURE__ */ jsx("iframe", {
+						title: t("ct.mapTitle"),
+						src: `https://www.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&output=embed`,
+						loading: "lazy",
+						referrerPolicy: "no-referrer-when-downgrade"
+					})
+				})]
+			})
+		})
+	] });
+}
 //#endregion
 //#region src/pages/Guides.jsx
 function Guides() {
@@ -7492,6 +7597,7 @@ function seoFor(pathname) {
 function headTagsFor(pathname) {
 	const s = seoFor(pathname);
 	const esc = (x) => String(x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+	const verification = [];
 	const graph = {
 		"@context": "https://schema.org",
 		"@graph": (s.jsonLd || [organisationFor(s.locale)]).map((n) => ({ ...n }))
@@ -7499,6 +7605,7 @@ function headTagsFor(pathname) {
 	return [
 		`<title>${esc(s.title)}</title>`,
 		`<meta name="description" content="${esc(s.description)}">`,
+		...verification,
 		s.noindex ? "<meta name=\"robots\" content=\"noindex,follow\">" : "<meta name=\"robots\" content=\"index,follow,max-image-preview:large\">",
 		`<link rel="canonical" href="${esc(s.canonical)}">`,
 		...s.noindex ? [] : [...s.alternates.map((a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${esc(a.href)}">`), `<link rel="alternate" hreflang="x-default" href="${esc(s.xDefault)}">`],
@@ -7573,6 +7680,20 @@ function useSeo() {
 	}, [pathname]);
 }
 //#endregion
+//#region src/hooks/useAnalytics.js
+function useAnalytics() {
+	const { pathname } = useLocation();
+	const lastSent = useRef(null);
+	useEffect(() => {
+		installLinkTracking();
+	}, []);
+	useEffect(() => {
+		if (lastSent.current === pathname) return;
+		lastSent.current = pathname;
+		trackPageView(pathname, seoFor(pathname).title);
+	}, [pathname]);
+}
+//#endregion
 //#region src/App.jsx
 var PAGES = [
 	{
@@ -7614,6 +7735,7 @@ var PAGES = [
 ];
 function AppRoutes() {
 	useSeo();
+	useAnalytics();
 	return /* @__PURE__ */ jsxs(Fragment, { children: [
 		/* @__PURE__ */ jsx(Nav, {}),
 		/* @__PURE__ */ jsxs(Routes, { children: [LOCALES.flatMap((locale) => {

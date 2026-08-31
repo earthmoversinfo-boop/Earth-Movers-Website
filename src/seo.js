@@ -13,6 +13,7 @@ import { emiratesFor, resolveServiceSegment, taxonomyFor } from './data/services
 import { guideFor, guidesFor } from './data/guides.js'
 import { alternatesFor, DEFAULT_LOCALE, LOCALE_META, localeHref, splitLocale } from './i18n/locale.js'
 import { translator } from './i18n/ui.js'
+import { SITE_VERIFICATION } from './analytics.config.js'
 
 export const SITE = 'https://www.earthmoversint.com'
 
@@ -401,6 +402,12 @@ export function seoFor(pathname) {
 export function headTagsFor(pathname) {
   const s = seoFor(pathname)
   const esc = (x) => String(x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+  // Search Console proves ownership from a meta tag in the served HTML, so it
+  // has to be baked in by the prerenderer — a tag added by JavaScript after
+  // load is not there when Google fetches the page.
+  const verification = SITE_VERIFICATION
+    ? [`<meta name="google-site-verification" content="${esc(SITE_VERIFICATION)}">`]
+    : []
   const graph = {
     '@context': 'https://schema.org',
     '@graph': (s.jsonLd || [organisationFor(s.locale)]).map((n) => ({ ...n })),
@@ -408,6 +415,7 @@ export function headTagsFor(pathname) {
   return [
     `<title>${esc(s.title)}</title>`,
     `<meta name="description" content="${esc(s.description)}">`,
+    ...verification,
     s.noindex
       ? '<meta name="robots" content="noindex,follow">'
       : '<meta name="robots" content="index,follow,max-image-preview:large">',

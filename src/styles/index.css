@@ -1894,8 +1894,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  padding: 0.5rem 0.5rem 1.1rem;
-  overflow: hidden;
+  padding: 1.25rem 1.3rem 1.1rem;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1912,30 +1911,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 16px 32px -18px rgba(19, 20, 23, 0.55);
 }
 
-/* A photograph from this category's own services, cycled per card so the
-   seven do not repeat. It shows the work rather than the emirate — we hold no
-   photograph of each one — so the place is named in words underneath. */
-.em-card-media {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  margin-bottom: 0.95rem;
-  border-radius: calc(var(--radius) - 4px);
-  overflow: hidden;
-  background: var(--paper);
-}
-
-.em-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.em-card:hover .em-card-media img { transform: scale(1.06); }
-
-.em-card-top { display: flex; align-items: center; gap: 0.5rem; padding-inline: 0.8rem; }
+.em-card-top { display: flex; align-items: center; gap: 0.5rem; }
 
 .em-card-pin { flex: none; color: var(--accent-deep); transition: color 0.24s ease; }
 .em-card:hover .em-card-pin { color: var(--accent); }
@@ -1959,8 +1935,7 @@ h1, h2, h3, h4 {
   /* indented under the name, past the pin — and aligned to the card's
      direction, not the script's, so it sits under the name in both */
   text-align: start;
-  padding-inline-start: 2.3rem;
-  padding-inline-end: 0.8rem;
+  padding-inline-start: 1.5rem;
   transition: color 0.24s ease;
 }
 
@@ -1970,7 +1945,6 @@ h1, h2, h3, h4 {
 .em-card-foot {
   margin-top: auto;
   padding-top: 1rem;
-  padding-inline: 0.8rem;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
