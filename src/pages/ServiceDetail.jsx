@@ -124,7 +124,7 @@ export default function ServiceDetail({ category, service }) {
           <div className="em-grid">
             {locations.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <EmirateCard emirate={e} categorySlug={category.slug} />
+                <EmirateCard emirate={e} categorySlug={category.slug} index={i} />
               </Reveal>
             ))}
           </div>

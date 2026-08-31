@@ -5077,15 +5077,32 @@ function NotFound() {
 }
 //#endregion
 //#region src/components/EmirateCard.jsx
-function EmirateCard({ emirate, categorySlug, delay }) {
+function EmirateCard({ emirate, categorySlug, index = 0, delay }) {
 	const { locale, href } = useLocale();
 	const other = locale === "ar" ? "en" : "ar";
 	const otherName = taxonomies[other].emirateBySlug[emirate.slug]?.name;
+	const services = taxonomyFor(locale).categoryBySlug[categorySlug]?.services || [];
+	const pool = [...services.map((sv) => ({
+		img: sv.img,
+		name: sv.name
+	})), ...services.map((sv) => ({
+		img: sv.tallImg,
+		name: sv.name
+	}))];
+	const shown = pool.length ? pool[index % pool.length] : null;
 	return /* @__PURE__ */ jsxs(Link, {
 		to: href(`/services/${categorySlug}/${emirate.slug}`),
 		className: "em-card",
 		style: delay ? { transitionDelay: `${delay}ms` } : void 0,
 		children: [
+			shown && /* @__PURE__ */ jsx("span", {
+				className: "em-card-media",
+				children: /* @__PURE__ */ jsx("img", {
+					src: asset(shown.img),
+					alt: shown.name,
+					loading: "lazy"
+				})
+			}),
 			/* @__PURE__ */ jsxs("span", {
 				className: "em-card-top",
 				children: [/* @__PURE__ */ jsx(Pin, { className: "em-card-pin" }), /* @__PURE__ */ jsx("span", {
@@ -5237,7 +5254,8 @@ function ServiceCategory() {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug
+							categorySlug: category.slug,
+							index: i
 						})
 					}, e.slug))
 				})]
@@ -5475,7 +5493,8 @@ function ServiceDetail({ category, service }) {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug
+							categorySlug: category.slug,
+							index: i
 						})
 					}, e.slug))
 				})]
@@ -5846,7 +5865,8 @@ function ServiceLocation({ category, emirate }) {
 						delay: i % 4 * 60,
 						children: /* @__PURE__ */ jsx(EmirateCard, {
 							emirate: e,
-							categorySlug: category.slug
+							categorySlug: category.slug,
+							index: i
 						})
 					}, e.slug))
 				})]

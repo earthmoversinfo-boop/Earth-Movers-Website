@@ -185,7 +185,7 @@ export default function ServiceLocation({ category, emirate }) {
           <div className="em-grid">
             {siblings.map((e, i) => (
               <Reveal key={e.slug} delay={(i % 4) * 60}>
-                <EmirateCard emirate={e} categorySlug={category.slug} />
+                <EmirateCard emirate={e} categorySlug={category.slug} index={i} />
               </Reveal>
             ))}
           </div>
