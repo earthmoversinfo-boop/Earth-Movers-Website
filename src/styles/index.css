@@ -1297,40 +1297,57 @@ h1, h2, h3, h4 {
    width rather than being trapped inside the nav's content column */
 .nav-item { position: static; display: flex; align-items: center; }
 
+/* A dropdown rather than a full-bleed curtain. Spanning the viewport made a
+   panel the width of the screen and most of its height, which is a lot of
+   surface to have to walk the mouse out of. Constrained and centred, it reads
+   as a menu belonging to the link that opened it. Visibility is driven by a
+   class now, not :hover — see Nav.jsx. */
 .nav-mega {
   position: absolute;
-  top: var(--nav-h);
-  left: 0;
-  right: 0;
+  top: calc(var(--nav-h) - 0.4rem);
+  left: 50%;
+  transform: translate(-50%, -8px);
+  width: min(58rem, calc(100vw - 3rem));
   background: var(--white);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 24px 48px -24px rgba(19, 20, 23, 0.22);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 28px 56px -28px rgba(19, 20, 23, 0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+  transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
 }
 
-.nav-item:hover .nav-mega,
-.nav-item:focus-within .nav-mega {
+.nav-mega.open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
+}
+
+/* A cushion above the panel: the cursor crosses a few pixels of header on the
+   way down, and without this the gap counts as leaving. */
+.nav-mega::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.8rem;
+  height: 0.8rem;
 }
 
 .nav-mega-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0 clamp(1.4rem, 2.6vw, 2.6rem);
-  padding-block: 2.3rem 0;
+  gap: 0 1.4rem;
+  padding: 1.5rem 1.6rem 0;
+  width: auto;
+  max-width: none;
 }
 
 /* hairlines between the columns, the same rule used everywhere else */
 .nav-mega-col + .nav-mega-col {
   border-inline-start: 1px solid var(--line);
-  padding-inline-start: clamp(1.4rem, 2.6vw, 2.6rem);
-  margin-inline-start: clamp(-1.4rem, -2.6vw, -2.6rem);
+  padding-inline-start: 1.4rem;
+  margin-inline-start: -1.4rem;
 }
 
 .nav-mega-head {
@@ -1338,7 +1355,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 0.45rem;
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--ink);
   transition: color 0.18s ease;
@@ -1355,12 +1372,17 @@ h1, h2, h3, h4 {
 .nav-mega-head:hover { color: var(--accent-deep); }
 .nav-mega-head:hover svg { opacity: 1; transform: translateX(0); }
 
+/* Two lines are reserved whether the label needs them or not: "available in
+   Dubai & Abu Dhabi" wraps where "available in Dubai" does not, and without
+   this the four service lists start at four different heights. */
 .nav-mega-where {
   display: block;
   margin-top: 0.3rem;
+  min-height: 2.6em;
   font-family: var(--font-display);
   font-size: 0.66rem;
   font-weight: 700;
+  line-height: 1.3;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1368,8 +1390,8 @@ h1, h2, h3, h4 {
 
 .nav-mega-list {
   list-style: none;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
   border-top: 1px solid var(--line);
   display: grid;
   gap: 0.1rem;
@@ -1382,7 +1404,7 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset-inline-start: 0;
-  top: 0.95em;
+  top: 0.82em;
   width: 0.3rem;
   height: 0.3rem;
   border-radius: 50%;
@@ -1391,19 +1413,23 @@ h1, h2, h3, h4 {
 
 .nav-mega-list a {
   display: block;
-  padding: 0.32rem 0;
-  font-size: 0.86rem;
-  line-height: 1.45;
+  padding: 0.2rem 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
   color: var(--body-c);
   transition: color 0.16s ease;
 }
 
 .nav-mega-list a:hover { color: var(--ink); }
 
+/* the overflow line, styled as a note rather than another service */
+.nav-mega-more a { color: var(--accent-deep); font-style: italic; }
+.nav-mega-more::before { background: transparent !important; }
+
 .nav-mega-foot {
   grid-column: 1 / -1;
-  margin-top: 1.9rem;
-  padding-block: 1rem;
+  margin-top: 1.1rem;
+  padding-block: 0.75rem;
   border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
@@ -1429,7 +1455,7 @@ h1, h2, h3, h4 {
    takes over: folding to two would double the panel's height and swallow the
    viewport. The columns tighten instead. */
 @media (max-width: 1180px) {
-  .nav-mega-inner { gap: 0 1.25rem; padding-block: 1.9rem 0; }
+  .nav-mega-inner { gap: 0 1rem; padding: 1.2rem 1.2rem 0; }
   .nav-mega-col + .nav-mega-col {
     padding-inline-start: 1.25rem;
     margin-inline-start: -1.25rem;

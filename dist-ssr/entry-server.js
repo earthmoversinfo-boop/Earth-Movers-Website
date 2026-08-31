@@ -3585,6 +3585,7 @@ function useLocale() {
 }
 //#endregion
 //#region src/components/Nav.jsx
+var MEGA_MAX = 5;
 var LINKS = [
 	{
 		path: "/",
@@ -3611,6 +3612,8 @@ function Nav() {
 	const [scrolled, setScrolled] = useState(false);
 	const [hovered, setHovered] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [mega, setMega] = useState(false);
+	const megaTimer = useRef(null);
 	const location = useLocation();
 	const { t, tax, content, href, locale } = useLocale();
 	const { company } = content;
@@ -3622,8 +3625,25 @@ function Nav() {
 	}, []);
 	useEffect(() => {
 		setOpen(false);
+		closeMega();
 		window.scrollTo(0, 0);
 	}, [location.pathname]);
+	useEffect(() => {
+		if (!mega) return;
+		const onKey = (e) => {
+			if (e.key === "Escape") closeMega();
+		};
+		const onDown = (e) => {
+			if (!e.target.closest?.(".nav-item")) closeMega();
+		};
+		document.addEventListener("keydown", onKey);
+		document.addEventListener("pointerdown", onDown);
+		return () => {
+			document.removeEventListener("keydown", onKey);
+			document.removeEventListener("pointerdown", onDown);
+		};
+	}, [mega]);
+	useEffect(() => () => clearTimeout(megaTimer.current), []);
 	useEffect(() => {
 		document.body.style.overflow = open ? "hidden" : "";
 		return () => {
@@ -3639,6 +3659,15 @@ function Nav() {
 		"/contact"
 	].includes(base) || /^\/services\/[a-z-]+(\/[a-z-]+)?$/.test(base);
 	const solid = scrolled || hovered || open || !known;
+	function openMega() {
+		clearTimeout(megaTimer.current);
+		setMega(true);
+	}
+	function closeMega(delay = 0) {
+		clearTimeout(megaTimer.current);
+		if (!delay) return setMega(false);
+		megaTimer.current = setTimeout(() => setMega(false), delay);
+	}
 	const other = LOCALES.find((l) => l !== locale);
 	const otherHref = localeHref(base, other);
 	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx("header", {
@@ -3660,12 +3689,16 @@ function Nav() {
 					children: [
 						LINKS.map((l) => l.path === "/services" ? /* @__PURE__ */ jsxs("div", {
 							className: "nav-item",
+							onMouseEnter: openMega,
+							onMouseLeave: () => closeMega(140),
 							children: [/* @__PURE__ */ jsx(NavLink, {
 								to: href(l.path),
 								className: ({ isActive }) => `nav-link${isActive ? " active" : ""}`,
+								onFocus: openMega,
+								"aria-expanded": mega,
 								children: t(l.key)
 							}), /* @__PURE__ */ jsx("div", {
-								className: "nav-mega",
+								className: `nav-mega${mega ? " open" : ""}`,
 								children: /* @__PURE__ */ jsxs("div", {
 									className: "wrap nav-mega-inner",
 									children: [tax.categories.map((c) => /* @__PURE__ */ jsxs("div", {
@@ -3680,12 +3713,18 @@ function Nav() {
 												className: "nav-mega-where",
 												children: coverageLabel(c, locale, t)
 											}),
-											/* @__PURE__ */ jsx("ul", {
+											/* @__PURE__ */ jsxs("ul", {
 												className: "nav-mega-list",
-												children: c.services.map((sv) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(Link, {
+												children: [c.services.slice(0, MEGA_MAX).map((sv) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(Link, {
 													to: href(`/services/${c.slug}/${sv.slug}`),
 													children: sv.name
-												}) }, sv.slug))
+												}) }, sv.slug)), c.services.length > MEGA_MAX && /* @__PURE__ */ jsx("li", {
+													className: "nav-mega-more",
+													children: /* @__PURE__ */ jsx(Link, {
+														to: href(`/services/${c.slug}`),
+														children: t("home.plusServices", { n: c.services.length - MEGA_MAX })
+													})
+												})]
 											})
 										]
 									}, c.slug)), /* @__PURE__ */ jsxs("div", {
