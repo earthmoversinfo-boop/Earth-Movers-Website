@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // ---------------------------------------------------------------------------
 // Downloads every image from the earthmoversint.com WordPress media library
-// into public/images/library/ and writes src/data/gallery.json so the site
-// can render them. Run with:  npm run fetch-images
+// into public/images/library/ and writes src/data/gallery.json — a record of
+// what was fetched, with each file's alt text, so the frames worth using can be
+// picked out by hand. Run with:  npm run fetch-images
 //
 // Requires network access to earthmoversint.com (run it on your own machine,
 // or in a Claude session whose environment allows that domain).

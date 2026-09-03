@@ -406,9 +406,16 @@ export const timeline = [
 
 import { DEFAULT_LOCALE } from '../i18n/locale.js'
 import * as ar from './content.ar.js'
+import { albums } from './album.js'
+import { albumsAr } from './album.ar.js'
 
 const zip = (base, overlay) =>
   overlay ? base.map((item, i) => ({ ...item, ...(overlay[i] || {}) })) : base
+
+// The album overlay carries words only: the photograph file stems live in the
+// English file, so the photo lists are zipped a level deeper than the rest.
+const zipAlbums = (base, overlay) =>
+  zip(base, overlay).map((a, i) => ({ ...a, photos: zip(base[i].photos, overlay[i]?.photos) }))
 
 const EN = {
   company,
@@ -426,6 +433,7 @@ const EN = {
   timeline,
   approvals,
   images,
+  albums,
   featuredServices,
   serviceGroups,
 }
@@ -446,6 +454,7 @@ const AR = {
   fleet: ar.fleetAr,
   timeline: zip(timeline, ar.timelineAr),
   approvals: ar.approvalsAr,
+  albums: zipAlbums(albums, albumsAr),
 }
 
 const BY_LOCALE = { en: EN, ar: AR }

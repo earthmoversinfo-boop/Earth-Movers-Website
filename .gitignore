@@ -3,3 +3,5 @@ dist/
 preview.html
 .DS_Store
 *.log
+dist-ssr/
+__pycache__/

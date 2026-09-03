@@ -67,6 +67,30 @@ function breadcrumbs(locale, items) {
   }
 }
 
+// The photographs on /projects are the company's own, and each one carries a
+// caption that says what it shows. Declaring them lets the album be understood
+// as a gallery of original work rather than page decoration.
+function albumGallery(locale) {
+  const { albums } = contentFor(locale)
+  const t = translator(locale)
+  return {
+    '@type': 'ImageGallery',
+    name: t('album.title'),
+    description: t('album.lead'),
+    url: `${SITE}${localeHref('/projects', locale)}`,
+    associatedMedia: albums.flatMap((album) =>
+      album.photos.map((photo) => ({
+        '@type': 'ImageObject',
+        contentUrl: `${SITE}/images/projects/${photo.src}-full.jpg`,
+        thumbnailUrl: `${SITE}/images/projects/${photo.src}.jpg`,
+        caption: photo.alt,
+        creditText: t('seo.brand'),
+        ...(album.place ? { contentLocation: { '@type': 'Place', name: album.place } } : {}),
+      }))
+    ),
+  }
+}
+
 function staticSeo(locale, base) {
   const t = translator(locale)
   const { company } = contentFor(locale)
@@ -79,12 +103,14 @@ function staticSeo(locale, base) {
   }
   if (!map[base]) return null
   const [titleKey, descKey] = map[base]
+  const jsonLd = [organisationFor(locale)]
+  if (base === '/projects') jsonLd.push(albumGallery(locale))
   return page(
     locale,
     base,
     t(titleKey, { brand }),
     t(descKey, { brand, phone: company.phone }),
-    { jsonLd: [organisationFor(locale)] }
+    { jsonLd }
   )
 }
 

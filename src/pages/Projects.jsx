@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import CTA from '../components/CTA.jsx'
 import Photo from '../components/Photo.jsx'
-import Gallery from '../components/Gallery.jsx'
+import PhotoAlbum from '../components/PhotoAlbum.jsx'
 import PageBanner from '../components/PageBanner.jsx'
 import useLocale from '../i18n/useLocale.js'
 
@@ -60,6 +60,8 @@ export default function Projects() {
         </div>
       </section>
 
+      <PhotoAlbum />
+
       <section className="section on-dark">
         <div className="wrap">
           <div className="section-head">
@@ -78,8 +80,6 @@ export default function Projects() {
           </div>
         </div>
       </section>
-
-      <Gallery eyebrow={t('proj.galleryEyebrow')} title={t('proj.galleryTitle')} />
 
       <CTA title={t('proj.ctaTitle')} text={t('proj.ctaText')} />
     </main>

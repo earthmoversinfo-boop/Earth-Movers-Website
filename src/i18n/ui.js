@@ -208,8 +208,14 @@ export const UI = {
     'proj.delivered': 'Delivered',
     'proj.whereEyebrow': 'Where We Work',
     'proj.whereTitle': 'Sectors we serve.',
-    'proj.galleryEyebrow': 'Site Gallery',
-    'proj.galleryTitle': 'The places behind our work.',
+    'album.eyebrow': 'Site Record',
+    'album.title': 'The work, photographed on site.',
+    'album.lead':
+      'Every photograph here was taken on an Earth Movers job — no stock, no renders. Select any frame to see it full size.',
+    'album.close': 'Close',
+    'album.prev': 'Previous photograph',
+    'album.next': 'Next photograph',
+
     'proj.ctaTitle': 'Your project, next on this page.',
     'proj.ctaText':
       'From AED 0.3M relocations to multi-million road renewals — every scope gets the same standard of delivery.',
@@ -489,8 +495,14 @@ export const UI = {
     'proj.delivered': 'مُسلَّم',
     'proj.whereEyebrow': 'أين نعمل',
     'proj.whereTitle': 'القطاعات التي نخدمها.',
-    'proj.galleryEyebrow': 'معرض المواقع',
-    'proj.galleryTitle': 'الأماكن التي تقف خلف أعمالنا.',
+    'album.eyebrow': 'سجل المواقع',
+    'album.title': 'الأعمال كما صُوِّرت في الموقع.',
+    'album.lead':
+      'كل صورة هنا التُقطت في موقع عمل لإيرث موفرز — لا صور جاهزة ولا رسوم تخيّلية. اختر أي صورة لعرضها بالحجم الكامل.',
+    'album.close': 'إغلاق',
+    'album.prev': 'الصورة السابقة',
+    'album.next': 'الصورة التالية',
+
     'proj.ctaTitle': 'مشروعك، التالي على هذه الصفحة.',
     'proj.ctaText':
       'من عمليات نقل بقيمة 0.3 مليون درهم إلى تجديد طرق بملايين الدراهم — كل نطاق يحصل على المستوى نفسه من التنفيذ.',

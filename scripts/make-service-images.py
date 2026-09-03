@@ -11,9 +11,9 @@
 # A region is given as fractions of the source (x0, y0, x1, y1); the largest
 # box of the wanted ratio that fits inside it and stays on the frame is taken.
 #
-# The five Utilities services are documentation-led rather than plant-led, so
-# they keep their drawing and survey imagery; everything else is now a site
-# photograph from an Earth Movers project.
+# Right of Way permits and NOC services are documentation-led rather than
+# plant-led, so they keep their drawing imagery; every other service is now a
+# site photograph from an Earth Movers project.
 #
 # Run with:  python3 scripts/make-service-images.py   (needs Pillow)
 # ---------------------------------------------------------------------------
@@ -59,11 +59,12 @@ PLAN = {
     # Earth Works (continued)
     'site-preparation':            (f'{S}/access-roads.jpg',            (0.20, 0.05, 1.00, 1.00)),
 
-    # Utilities — documentation-led, so these keep their drawing/survey imagery
-    'rta-approved-entry-exit-works': (f'{L}/operator-backhoe.jpg',      (0.00, 0.00, 1.00, 1.00)),
-    'rta-service-protection':      (f'{L}/survey-setting-out.jpg',      (0.00, 0.00, 1.00, 1.00)),
+    # Utilities — permits and NOCs are paperwork, so those two keep their
+    # drawing imagery; the three that are executed on the ground are job photos
+    'rta-approved-entry-exit-works': (f'{S}/entry-exit-works.jpg',      (0.00, 0.00, 1.00, 1.00)),
+    'rta-service-protection':      (f'{S}/service-protection.jpg',      (0.00, 0.00, 1.00, 1.00)),
     'row-permits':                 ('public/images/svc-utilities.jpg',  (0.00, 0.00, 1.00, 1.00)),
-    'utilities-shifting':          (f'{S}/backfilling.jpg',             (0.00, 0.05, 0.64, 1.00)),
+    'utilities-shifting':          (f'{S}/utilities-shifting.jpg',      (0.00, 0.00, 1.00, 1.00)),
     'noc-services':                ('public/images/banner-services.jpg',(0.00, 0.00, 1.00, 1.00)),
 }
 
@@ -81,18 +82,18 @@ TALL = {
     'road-maintenance':            (0.10, 0.10, 1.00, 1.00),
     'asphalt-patch-works':         (0.05, 0.22, 0.95, 0.92),
     'parking-construction':        (0.15, 0.00, 0.85, 1.00),
-    'heavy-duty-interlock-paving': (0.20, 0.00, 0.80, 1.00),
-    'kerbstones':                  (0.28, 0.00, 0.88, 1.00),
-    'road-markings':               (0.38, 0.00, 0.95, 1.00),
+    'heavy-duty-interlock-paving': (0.06, 0.00, 0.62, 1.00),
+    'kerbstones':                  (0.30, 0.00, 0.92, 1.00),
+    'road-markings':               (0.10, 0.20, 0.72, 1.00),
     'lane-closure-permits':        (0.44, 0.20, 0.72, 1.00),
     'road-closure-permits':        (0.00, 0.30, 1.00, 0.85),
     'traffic-management':          (0.00, 0.25, 1.00, 0.80),
     'tma-rental':                  (0.00, 0.30, 0.48, 1.00),
     'site-preparation':            (0.34, 0.00, 0.86, 1.00),
-    'rta-approved-entry-exit-works': (0.02, 0.00, 0.78, 1.00),
-    'rta-service-protection':      (0.14, 0.00, 0.90, 1.00),
+    'rta-approved-entry-exit-works': (0.00, 0.00, 0.58, 1.00),
+    'rta-service-protection':      (0.20, 0.00, 0.86, 1.00),
     'row-permits':                 (0.00, 0.00, 1.00, 1.00),
-    'utilities-shifting':          (0.02, 0.28, 0.44, 1.00),
+    'utilities-shifting':          (0.24, 0.00, 0.86, 1.00),
     'noc-services':                (0.10, 0.00, 0.95, 1.00),
 }
 
@@ -103,9 +104,12 @@ SQUARE = {
     'road-base-laying':    (0.00, 0.30, 1.00, 0.72),
     'road-maintenance':    (0.18, 0.22, 1.00, 0.62),
     'access-roads':        (0.16, 0.00, 0.66, 0.95),
-    'kerbstones':          (0.26, 0.05, 0.86, 1.00),
-    'heavy-duty-interlock-paving': (0.16, 0.30, 0.84, 1.00),
-    'road-markings':       (0.36, 0.10, 0.98, 0.92),
+    'kerbstones':          (0.30, 0.06, 0.94, 0.92),
+    'heavy-duty-interlock-paving': (0.04, 0.00, 0.60, 1.00),
+    'road-markings':       (0.02, 0.22, 0.70, 0.92),
+    'rta-service-protection': (0.22, 0.00, 0.84, 1.00),
+    'utilities-shifting':  (0.26, 0.00, 0.88, 1.00),
+    'rta-approved-entry-exit-works': (0.00, 0.05, 0.54, 1.00),
     'excavation':          (0.28, 0.00, 0.92, 0.86),
     'site-preparation':    (0.14, 0.05, 0.72, 1.00),
 }
@@ -128,9 +132,16 @@ CAT_W, CAT_H = 1600, 1066
 
 # Home-page slots that the job photographs serve better than the stock frames
 # they replace. The hero slides keep their original frames.
+P = 'assets/originals/projects'
+
 NAMED = {
     # the fleet picture sits in a dark band, so the pale sand needs holding up
     'fleet.jpg':        (f'{S}/backfilling.jpg',             (0.02, 0.02, 0.98, 0.86), (1400, 875), (1.18, 1.30)),
+    # the Fujairah case study is asphalt on a plant access road, so it gets the
+    # photograph of that work rather than a skyline
+    'project-fujairah.jpg': (f'{P}/fuj-paver-tipper.jpg',    (0.00, 0.00, 1.00, 0.82), (1000, 625), (1.08, 1.16)),
+    # and the projects banner leads with the work rather than the city it is in
+    'banner-projects.jpg':  (f'{P}/res-paver-train.jpg',     (0.00, 0.18, 1.00, 0.92), (1600, 500), (1.06, 1.12)),
 }
 
 
