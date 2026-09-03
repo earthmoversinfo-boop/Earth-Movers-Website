@@ -208,6 +208,16 @@ export const UI = {
     'proj.delivered': 'Delivered',
     'proj.whereEyebrow': 'Where We Work',
     'proj.whereTitle': 'Sectors we serve.',
+    'proj.caseEyebrow': 'Case Studies',
+    'proj.caseTitle': 'Three we can put numbers against.',
+    'reg.eyebrow': 'Project Register',
+    'reg.title': 'Every project, {count} of them.',
+    'reg.lead':
+      'The full record of work delivered — road and asphalt contracts for authorities and industry, maintenance and repair, earthworks, paving, utilities and traffic management.',
+    'reg.place': 'Location',
+    'reg.consultant': 'Consultant',
+    'reg.contractor': 'Main contractor',
+
     'album.eyebrow': 'Site Record',
     'album.title': 'The work, photographed on site.',
     'album.lead':
@@ -495,6 +505,16 @@ export const UI = {
     'proj.delivered': 'مُسلَّم',
     'proj.whereEyebrow': 'أين نعمل',
     'proj.whereTitle': 'القطاعات التي نخدمها.',
+    'proj.caseEyebrow': 'دراسات حالة',
+    'proj.caseTitle': 'ثلاثة مشاريع بالأرقام.',
+    'reg.eyebrow': 'سجل المشاريع',
+    'reg.title': 'كل المشاريع، وعددها {count}.',
+    'reg.lead':
+      'السجل الكامل للأعمال المنفَّذة — عقود طرق وأسفلت للجهات الحكومية والقطاع الصناعي، وأعمال صيانة وإصلاح، وأعمال ترابية، ورصف، ومرافق، وإدارة مرور.',
+    'reg.place': 'الموقع',
+    'reg.consultant': 'الاستشاري',
+    'reg.contractor': 'المقاول الرئيسي',
+
     'album.eyebrow': 'سجل المواقع',
     'album.title': 'الأعمال كما صُوِّرت في الموقع.',
     'album.lead':

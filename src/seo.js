@@ -91,6 +91,24 @@ function albumGallery(locale) {
   }
 }
 
+// The register is a list of delivered contracts, not a list of pages: there is
+// no per-project URL to point at, so each entry is named and described in place.
+function projectRegister(locale) {
+  const { projects } = contentFor(locale)
+  const t = translator(locale)
+  return {
+    '@type': 'ItemList',
+    name: t('reg.eyebrow'),
+    numberOfItems: projects.length,
+    itemListElement: projects.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${p.name} — ${p.client}`,
+      description: p.scope,
+    })),
+  }
+}
+
 function staticSeo(locale, base) {
   const t = translator(locale)
   const { company } = contentFor(locale)
@@ -104,7 +122,7 @@ function staticSeo(locale, base) {
   if (!map[base]) return null
   const [titleKey, descKey] = map[base]
   const jsonLd = [organisationFor(locale)]
-  if (base === '/projects') jsonLd.push(albumGallery(locale))
+  if (base === '/projects') jsonLd.push(projectRegister(locale), albumGallery(locale))
   return page(
     locale,
     base,

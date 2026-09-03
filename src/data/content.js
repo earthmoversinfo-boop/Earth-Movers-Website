@@ -284,34 +284,6 @@ export const serviceGroups = [
   },
 ]
 
-export const projects = [
-  {
-    client: 'Fujairah Cement Industry',
-    location: 'Dibba, Fujairah',
-    year: '2021',
-    value: 'AED 1.8M',
-    sector: 'Roads & Asphalt',
-    scope:
-      'Removal of old asphalt, levelling, road base and sub-base, compaction, and new asphalt laying.',
-  },
-  {
-    client: 'Dubai Municipality',
-    location: 'Dubai',
-    year: '2017',
-    value: 'AED 0.3M',
-    sector: 'Specialised Logistics',
-    scope: 'Relocation of animals from Dubai Airport to the Safari — planned, permitted and executed without incident.',
-  },
-  {
-    client: 'Nakheel PJSC',
-    location: 'Dubai',
-    year: '2015',
-    value: 'AED 0.7M',
-    sector: 'Marine Works',
-    scope: 'Levelling of beach sand, placement of boulders, and compaction of the area.',
-  },
-]
-
 export const sectors = [
   { title: 'Infrastructure', text: 'Roads, highways and utility corridors for public authorities.' },
   { title: 'Commercial', text: 'Site preparation and enabling works for commercial developments.' },
@@ -408,6 +380,8 @@ import { DEFAULT_LOCALE } from '../i18n/locale.js'
 import * as ar from './content.ar.js'
 import { albums } from './album.js'
 import { albumsAr } from './album.ar.js'
+import { projectCategories, projects } from './projects.js'
+import { projectCategoriesAr, projectsAr } from './projects.ar.js'
 
 const zip = (base, overlay) =>
   overlay ? base.map((item, i) => ({ ...item, ...(overlay[i] || {}) })) : base
@@ -426,6 +400,7 @@ const EN = {
   stats,
   clients,
   projects,
+  projectCategories,
   sectors,
   process,
   values,
@@ -447,7 +422,8 @@ const AR = {
   news: zip(news, ar.newsAr),
   stats: zip(stats, ar.statsAr),
   clients: ar.clientsAr,
-  projects: zip(projects, ar.projectsAr),
+  projects: zip(projects, projectsAr),
+  projectCategories: zip(projectCategories, projectCategoriesAr),
   sectors: zip(sectors, ar.sectorsAr),
   process: zip(process, ar.processAr),
   values: zip(values, ar.valuesAr),

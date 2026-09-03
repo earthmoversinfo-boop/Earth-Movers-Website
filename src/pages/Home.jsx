@@ -62,6 +62,8 @@ function HeroSlider() {
 export default function Home() {
   const { t, tax, content, href, locale } = useLocale()
   const { stats, projects, fleet, certifications, images } = content
+  // the three contracts that carry a photograph and a contract value
+  const featured = projects.filter((p) => p.featured)
 
   return (
     <main>
@@ -171,13 +173,13 @@ export default function Home() {
           </div>
 
           <div className="work-grid">
-            {projects.map((p, i) => (
-              <Reveal key={p.client} delay={i * 90} className="work-card">
+            {featured.map((p, i) => (
+              <Reveal key={p.id} delay={i * 90} className="work-card">
                 <div className="work-card-media">
-                  <Photo src={images.projects[i]} alt={`${p.client} — ${p.sector}`} />
+                  <Photo src={p.img} alt={`${p.client} — ${p.name}`} />
                 </div>
-                <span className="eyebrow">{p.sector} · {p.location}</span>
-                <h3>{p.client}</h3>
+                <span className="eyebrow">{p.client} · {p.place}</span>
+                <h3>{p.name}</h3>
                 <p>{p.scope}</p>
                 <span className="work-meta">{p.year} — {p.value}</span>
               </Reveal>
