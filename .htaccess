@@ -1,0 +1,99 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # One hop to the canonical host and scheme. Left alone, the site answers on
+  # http:// and on the bare domain too, and Google treats each variant as a
+  # separate site competing with the others for the same rankings.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.earthmoversint\.com$ [NC]
+  RewriteRule ^ https://www.earthmoversint.com%{REQUEST_URI} [R=301,L]
+
+  # Old site -> new site. Trailing slash optional; query strings preserved.
+  RewriteRule ^backfilling/?$ /services/earth-works/back-filling [R=301,L]
+  RewriteRule ^asphalt-contractors-dubai/?$ /services/road-works/asphalt-works [R=301,L]
+  RewriteRule ^road-construction-abu-dhabi/?$ /services/road-works/abu-dhabi [R=301,L]
+  RewriteRule ^rta-approved-entry-exit-works/?$ /services/utilities/rta-approved-entry-exit-works [R=301,L]
+  RewriteRule ^traffic-management-abu-dhabi/?$ /services/traffic-management/abu-dhabi [R=301,L]
+  RewriteRule ^material-shifting-services-dubai/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^stone-supply-dubai/?$ /services/earth-works [R=301,L]
+  RewriteRule ^road-base-supply-dubai/?$ /services/road-works/road-base-laying [R=301,L]
+  RewriteRule ^interlock-contractors-dubai/?$ /services/road-works/heavy-duty-interlock-paving [R=301,L]
+  RewriteRule ^earth-works-abu-dhabi/?$ /services/earth-works/abu-dhabi [R=301,L]
+  RewriteRule ^land-clearing-services-dubai/?$ /services/earth-works/site-preparation [R=301,L]
+  RewriteRule ^road-construction-dubai/?$ /services/road-works/dubai [R=301,L]
+  RewriteRule ^curb-stone-contractors-dubai/?$ /services/road-works/kerbstones [R=301,L]
+  RewriteRule ^parking-construction-dubai/?$ /services/road-works/parking-construction [R=301,L]
+  RewriteRule ^road-closure-permits/?$ /services/traffic-management/road-closure-permits [R=301,L]
+  RewriteRule ^traffic-diversions/?$ /services/traffic-management/traffic-management [R=301,L]
+  RewriteRule ^road-marking-company-dubai/?$ /services/road-works/road-markings [R=301,L]
+  RewriteRule ^leveling-and-grading/?$ /services/earth-works/leveling-and-compaction [R=301,L]
+  RewriteRule ^excavation-service-abu-dhabi/?$ /services/earth-works/abu-dhabi [R=301,L]
+  RewriteRule ^construction-companies-in-uae/?$ /about [R=301,L]
+  RewriteRule ^site-preparation/?$ /services/earth-works/site-preparation [R=301,L]
+  RewriteRule ^excavation-contractors-dubai/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^pipeline-laying-dubai/?$ /services/utilities/utilities-shifting [R=301,L]
+  RewriteRule ^infrastructure-piping-dubai/?$ /services/utilities [R=301,L]
+  RewriteRule ^traffic-management/?$ /services/traffic-management [R=301,L]
+  RewriteRule ^earth-work-services-dubai/?$ /services/earth-works/dubai [R=301,L]
+  RewriteRule ^sand-supply-dubai/?$ /services/earth-works/back-filling [R=301,L]
+  RewriteRule ^temporary-road-contractors-dubai/?$ /services/road-works/access-roads [R=301,L]
+  RewriteRule ^gabion-boxes-supply-dubai/?$ /services/earth-works [R=301,L]
+  RewriteRule ^road-works-fujairah/?$ /services/road-works/fujairah [R=301,L]
+  RewriteRule ^asphalt-works-fujairah/?$ /services/road-works/fujairah [R=301,L]
+  RewriteRule ^aggregate-supply-dubai/?$ /services/road-works/road-base-laying [R=301,L]
+  RewriteRule ^material-shifting-in-dubai/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^piling-contractors-dubai/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^piling-in-construction/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^road-maintenance/?$ /services/road-works/road-maintenance [R=301,L]
+  RewriteRule ^cut-and-fill-services-dubai/?$ /services/earth-works/cut-and-fill [R=301,L]
+  RewriteRule ^roads-and-infrastructure-works-dubai/?$ /services/road-works [R=301,L]
+  RewriteRule ^trenching/?$ /services/utilities/utilities-shifting [R=301,L]
+  RewriteRule ^lane-closure-permits/?$ /services/traffic-management/lane-closure-permits [R=301,L]
+  RewriteRule ^earth-works-fujairah/?$ /services/earth-works/fujairah [R=301,L]
+  RewriteRule ^pipeline-maintenance-dubai/?$ /services/utilities/rta-service-protection [R=301,L]
+  RewriteRule ^mountain-removal-services-dubai/?$ /services/earth-works/excavation [R=301,L]
+  RewriteRule ^rta-road-projects-dubai-traffic/?$ /services/traffic-management/dubai [R=301,L]
+  RewriteRule ^gravel-road-construction-dubai/?$ /services/road-works/road-base-laying [R=301,L]
+  RewriteRule ^construction-material-supply-dubai/?$ /services [R=301,L]
+  RewriteRule ^dot-approved-entry-and-exit/?$ /services/utilities/rta-approved-entry-exit-works [R=301,L]
+  RewriteRule ^yard-preparation-fujairah/?$ /services/earth-works/fujairah [R=301,L]
+  RewriteRule ^smart-parking-contractor-dubai/?$ /services/road-works/parking-construction [R=301,L]
+  RewriteRule ^rta-highway-contractors-dubai/?$ /services/road-works/dubai [R=301,L]
+  RewriteRule ^blog/?$ /guides [R=301,L]
+  RewriteRule ^curb-stones-abu-dhabi/?$ /services/road-works/kerbstones [R=301,L]
+  RewriteRule ^category/construction-equipments/?$ /services [R=301,L]
+  RewriteRule ^parking-areas-abu-dhabi/?$ /services/road-works/parking-construction [R=301,L]
+  RewriteRule ^asphalt-road-base-ajman/?$ /services/road-works/ajman [R=301,L]
+  RewriteRule ^road-construction-ajman/?$ /services/road-works/ajman [R=301,L]
+  RewriteRule ^category/construction/?$ /services [R=301,L]
+  RewriteRule ^asphalt-road-abu-dhabi/?$ /services/road-works/abu-dhabi [R=301,L]
+  RewriteRule ^road-construction-ras-al-khaimah/?$ /services/road-works/ras-al-khaimah [R=301,L]
+  RewriteRule ^heavy-equipment-rental-uae/?$ /services [R=301,L]
+  RewriteRule ^marine-work-services-dubai/?$ /services [R=301,L]
+  RewriteRule ^breakwater-construction-dubai/?$ /services/earth-works [R=301,L]
+  RewriteRule ^golf-course-landscaping-dubai/?$ /services/earth-works [R=301,L]
+  RewriteRule ^landscaping-services-dubai/?$ /services [R=301,L]
+
+  # Assets, robots.txt, sitemap.xml and anything else that exists on disk.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # A prerendered page is served in place rather than redirected to a trailing
+  # slash, so the URL stays exactly as the canonical tag on it declares.
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*?)/?$ $1/index.html [L]
+</IfModule>
+
+# Without this mod_dir answers /services/road-works with a 301 to
+# /services/road-works/, contradicting every canonical on the site.
+<IfModule mod_dir.c>
+  DirectoryIndex index.html
+  DirectorySlash Off
+</IfModule>
+
+# Anything genuinely missing gets a 404 status rather than the app shell with a
+# 200. The old site was WordPress: attachment pages, tag archives, feeds and
+# ?p= permalinks exist beyond the URLs in the redirect map, and a 200 on those
+# is a soft 404 that keeps them in the index.
+ErrorDocument 404 /404.html
