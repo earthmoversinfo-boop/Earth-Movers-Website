@@ -1,0 +1,2789 @@
+/* ===========================================================================
+   Earth Movers International — design system
+   Editorial minimalism in the Operon mould: white ground, black and grey,
+   one gold accent. Rounded corners, hairline rules, letterspaced caps and
+   photo-led cards that lift on hover.
+   =========================================================================== */
+
+:root {
+  --white: #ffffff;
+  --paper: #f5f5f6;
+  --ink: #131417;
+  --body-c: #61656c;
+  --muted: #9a9ea5;
+  --line: #e5e6e9;
+  --accent: #eda63a;
+  --accent-soft: rgba(237, 166, 58, 0.16);
+  --accent-deep: #c9881c;
+  --dark: #3d4249;
+  --dark-2: #484d55;
+  --grey-dark: #3d4249;
+  --dark-line: rgba(255, 255, 255, 0.14);
+  --light-on-dark: #f0f1f3;
+  --soft-on-dark: rgba(240, 241, 243, 0.66);
+  --faint-on-dark: rgba(240, 241, 243, 0.4);
+
+  --font-display: 'Barlow', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-sm: 0.55rem;
+  --radius: 0.85rem;
+  --radius-lg: 1.15rem;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --section: clamp(4rem, 8vw, 6.75rem);
+  --topbar-h: 0rem;
+  --nav-h: 4.75rem;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+::selection { background: var(--accent); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+
+/* ---- type ----------------------------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.display-xl { font-size: clamp(2.3rem, 4.6vw, 3.7rem); }
+.display-lg { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+.display-md { font-size: clamp(1.45rem, 2.4vw, 1.9rem); font-weight: 600; }
+
+.lead {
+  font-size: clamp(1rem, 1.4vw, 1.13rem);
+  line-height: 1.75;
+  color: var(--body-c);
+  max-width: 44em;
+}
+
+.on-dark .lead { color: var(--soft-on-dark); }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.on-dark .eyebrow, .on-gold .eyebrow { color: inherit; opacity: 0.85; }
+.on-dark .eyebrow { color: var(--accent); opacity: 1; }
+
+/* ---- layout ---------------------------------------------------------------- */
+
+.wrap { max-width: 76rem; margin: 0 auto; padding-inline: var(--pad); }
+
+.section { padding-top: var(--section); padding-bottom: var(--section); }
+.section-paper { background: var(--paper); }
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.section-head .kicker { display: grid; gap: 0.9rem; max-width: 46rem; }
+
+.on-dark { background: var(--dark); color: var(--light-on-dark); }
+
+.hairline-top { border-top: 1px solid var(--line); }
+
+/* ---- buttons ---------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 1rem 1.7rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.btn .btn-arrow { transition: transform 0.22s ease; }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+.btn-solid { background: var(--accent); color: var(--ink); }
+.btn-solid:hover { background: var(--accent-deep); }
+
+.btn-ink { background: var(--grey-dark); color: #fff; }
+.btn-ink:hover { background: #2e3237; }
+
+.btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+.btn-ghost:hover { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
+
+.btn-outline-light { border-color: rgba(255, 255, 255, 0.6); color: #fff; }
+.btn-outline-light:hover { border-color: #fff; background: rgba(255, 255, 255, 0.12); }
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.text-link:hover { color: var(--accent-deep); gap: 0.8rem; }
+
+.on-dark .text-link { color: var(--light-on-dark); }
+.on-dark .text-link:hover { color: var(--accent); }
+
+/* ---- nav (overlays the hero; solid on hover/scroll) -------------------------- */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.28s ease, border-color 0.28s ease;
+}
+
+.nav.solid { background: var(--white); border-bottom-color: var(--line); }
+
+.nav.overlay .nav-link { color: rgba(255, 255, 255, 0.85); }
+.nav.overlay .nav-link:hover { color: #fff; }
+.nav.overlay .nav-link.active { color: #fff; }
+.nav.overlay .nav-burger span { background: #fff; }
+
+.nav-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+
+.brand { display: inline-flex; align-items: center; }
+
+/* the company's actual logo (image file) */
+.logo-img { height: 2.35rem; width: auto; display: block; }
+
+.logo-chip { display: inline-block; background: #ffffff; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); }
+
+.logo-chip .logo-img { height: 2.1rem; }
+
+@media (max-width: 1180px) { .logo-img { height: 2.15rem; } }
+
+.nav-links { display: flex; align-items: center; gap: 0.4rem; }
+
+.nav-link {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--body-c);
+  padding: 0.55rem 0.85rem;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover { color: var(--ink); }
+
+.nav-link.active { color: var(--ink); }
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.nav-cta { margin-inline-start: 0.9rem; padding: 0.8rem 1.3rem; white-space: nowrap; }
+
+.nav-burger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 2.6rem; height: 2.6rem; align-items: center; }
+.nav-burger span { display: block; width: 1.5rem; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
+.nav-burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--pad);
+  gap: 0.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 6.5vw, 2.4rem);
+  font-weight: 700;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-menu-contact { margin-top: 2rem; display: grid; gap: 0.5rem; color: var(--body-c); }
+
+/* The contact block is a footnote to the menu, not part of it — the row type
+   above would otherwise set it at headline size and run the address off the
+   edge of a narrow screen. */
+.mobile-menu-contact a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--body-c);
+  padding: 0;
+  border-bottom: 0;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+/* Between the burger and full width the row is tightened rather than wrapped:
+   a header link that breaks over two lines pushes the bar out of its height. */
+@media (max-width: 1180px) {
+  .nav-links { gap: 0.15rem; }
+  .nav-link { padding-inline: 0.6rem; font-size: 0.78rem; letter-spacing: 0.09em; }
+  .nav-lang { padding-inline: 0.6rem; }
+  .nav-cta { margin-inline-start: 0.5rem; padding: 0.72rem 1.05rem; font-size: 0.78rem; }
+}
+
+/* ---- hero -------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  margin-top: 0;
+  min-height: min(48rem, 100vh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark);
+  color: #fff;
+}
+
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease; pointer-events: none; }
+.hero-slide.active { opacity: 1; }
+.hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.hero-slide img { filter: brightness(1.06) saturate(1.04) contrast(1.02); }
+
+/* light scrim: only enough to hold the headline, so the photo stays open */
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(84deg, rgba(22, 24, 28, 0.74) 0%, rgba(22, 24, 28, 0.46) 34%, rgba(22, 24, 28, 0.14) 58%, transparent 78%),
+    linear-gradient(to bottom, rgba(22, 24, 28, 0.32), transparent 22%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: calc(var(--nav-h) + clamp(3rem, 6vw, 5rem));
+  padding-bottom: clamp(5rem, 9vw, 7rem);
+  display: grid;
+  gap: 1.3rem;
+  justify-items: start;
+}
+
+.hero-content .eyebrow { color: var(--accent); text-shadow: 0 1px 12px rgba(16, 18, 21, 0.5); }
+
+.hero-content h1 {
+  max-width: 14em;
+  color: #fff;
+  font-size: clamp(2.4rem, 4.8vw, 3.9rem);
+  text-shadow: 0 2px 22px rgba(14, 16, 19, 0.6);
+}
+
+.hero-content h1 em { font-style: normal; color: var(--accent); }
+
+.hero-content .lead {
+  color: rgba(255, 255, 255, 0.94);
+  max-width: 37em;
+  text-shadow: 0 1px 16px rgba(16, 18, 21, 0.5);
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem 1.5rem; margin-top: 0.5rem; }
+
+.hero-dots {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0.6rem;
+  display: flex;
+  gap: 0.55rem;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* The bar stays 4px; the button around it is 44px so a thumb can find it.
+   background-clip keeps the paint inside the content box, so the padding is
+   hittable without being visible. */
+.hero-dot {
+  width: 2.4rem;
+  height: 2.75rem;
+  padding-block: calc((2.75rem - 4px) / 2);
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+.hero-dot.active { background: var(--accent); background-clip: content-box; }
+
+/* ---- dark stats + certifications band ----------------------------------------- */
+
+.dark-band { background: var(--dark); color: var(--light-on-dark); }
+
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); padding: clamp(2rem, 4vw, 3rem) 0 0; }
+
+.stat-cell {
+  padding: 0 clamp(1rem, 2vw, 2rem) clamp(1.8rem, 3vw, 2.4rem);
+  border-inline-start: 1px solid var(--dark-line);
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+}
+
+.stat-cell:first-child { border-inline-start: none; padding-inline-start: 0; }
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.stat-value em { font-style: normal; color: var(--accent); }
+
+.stat-label { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--light-on-dark); }
+
+.stat-note { font-size: 0.8rem; color: var(--faint-on-dark); }
+
+.cert-row {
+  border-top: 1px solid var(--dark-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2.6rem;
+  padding: 1.15rem 0;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint-on-dark);
+}
+
+.cert-row strong { color: var(--soft-on-dark); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; row-gap: 1.5rem; }
+  .stat-cell { border-inline-start: none; padding-inline-start: 0; }
+}
+
+/* ---- our work cards ------------------------------------------------------------ */
+
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+.work-card { display: grid; gap: 0.8rem; align-content: start; }
+
+.work-card-media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper); border-radius: var(--radius); }
+.work-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.work-card:hover .work-card-media img { transform: scale(1.04); }
+
+.work-card .eyebrow { font-size: 0.66rem; letter-spacing: 0.2em; }
+
+.work-card h3 { font-size: 1.25rem; font-weight: 700; }
+
+.work-card p { color: var(--body-c); font-size: 0.93rem; }
+
+.work-card .work-meta { font-family: var(--font-display); font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+
+@media (max-width: 900px) { .work-grid { grid-template-columns: 1fr; } }
+
+/* ---- statement ------------------------------------------------------------------ */
+
+.statement { display: grid; gap: 1.4rem; max-width: 56rem; }
+
+.statement h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+
+.statement h2 em { font-style: normal; color: var(--accent-deep); }
+
+/* ---- services tiles ---------------------------------------------------------------- */
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.4rem, 2.6vw, 2.2rem) clamp(1.25rem, 2.2vw, 2rem);
+}
+
+.svc-tile { display: grid; gap: 0.55rem; align-content: start; justify-items: start; }
+
+.svc-tile-media { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper); border-radius: var(--radius); }
+.svc-tile-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.svc-tile:hover .svc-tile-media img { transform: scale(1.04); }
+
+.svc-tile h3 { font-size: 1.12rem; margin-top: 0.45rem; }
+
+.svc-tile p { color: var(--body-c); font-size: 0.9rem; line-height: 1.6; }
+
+.svc-tile .text-link { margin-top: 0.25rem; font-size: 0.74rem; }
+
+@media (max-width: 980px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .svc-grid { grid-template-columns: 1fr; } }
+
+/* ---- fleet band ------------------------------------------------------------------- */
+
+.fleet-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2.5rem, 5vw, 4.5rem); align-items: center; }
+
+.fleet-copy { display: grid; gap: 1.3rem; justify-items: start; }
+
+.fleet-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.chip {
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--dark-line);
+  color: var(--soft-on-dark);
+  transition: border-color 0.22s ease, color 0.22s ease;
+}
+
+.chip:hover { border-color: var(--accent); color: #fff; }
+
+.fleet-art { overflow: hidden; position: relative; border-radius: var(--radius-lg); }
+.fleet-art img, .fleet-art svg { width: 100%; height: auto; display: block; }
+
+.fleet-art-caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0 0;
+  color: var(--faint-on-dark);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) { .fleet-grid { grid-template-columns: 1fr; } }
+
+/* ---- marquee ----------------------------------------------------------------------- */
+
+.marquee-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.6rem 0 1.3rem; overflow: hidden; background: var(--white); }
+
+.marquee-label {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.marquee { display: flex; overflow: hidden; user-select: none; }
+
+.marquee-track { display: flex; flex: none; align-items: center; animation: marquee 36s linear infinite; }
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.4rem;
+  padding-inline-end: 2.4rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--body-c);
+  white-space: nowrap;
+}
+
+.marquee-item::after { content: ''; width: 0.4rem; height: 0.4rem; background: var(--accent); }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---- split / timeline (about) -------------------------------------------------------- */
+
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2.5rem, 6vw, 5.5rem); align-items: start; }
+
+.split-sticky { position: sticky; top: calc(var(--nav-h) + 2rem); display: grid; gap: 1.2rem; justify-items: start; }
+
+.split-body { display: grid; gap: 1.3rem; }
+
+.split-body p { color: var(--body-c); max-width: 44em; }
+
+.on-dark .split-body p { color: var(--soft-on-dark); }
+
+/* A rail carrying a photograph is taller than the viewport, so it scrolls with
+   the page instead of sticking. It is also stretched to the height of the body
+   beside it and the picture fills whatever is left over — so neither column
+   ever ends in a run of empty white, however long the text on the right is. */
+.split:has(.has-figure) { align-items: stretch; }
+
+/* Stretching the columns must not stretch the paragraphs inside them: the
+   body packs to the top and only the picture takes up the slack. */
+.split:has(.has-figure) .split-body { align-content: start; }
+
+.split-sticky.has-figure {
+  position: static;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+}
+
+.rail-figure-wrap { width: 100%; margin-top: 0.6rem; min-height: 0; }
+
+.rail-figure {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.9rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.rail-figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+}
+
+/* The caption is what turns a stock-looking picture into a record of work:
+   it names the operation in the frame. Set as a note against a gold rule
+   rather than as body copy, so it reads as a caption and not as more text. */
+.rail-figure figcaption {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--body-c);
+  padding-inline-start: 0.9rem;
+  border-inline-start: 2px solid var(--accent);
+}
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  .split-sticky { position: static; }
+  .rail-figure img { height: auto; min-height: 0; aspect-ratio: 3 / 2; }
+}
+
+.about-photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-top: 0.5rem; border-radius: var(--radius-lg); }
+
+.timeline { display: grid; border-top: 1px solid var(--line); }
+
+.timeline-row { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem 2.5rem; padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
+
+.timeline-year { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
+
+.timeline-row h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+
+.timeline-row p { color: var(--body-c); font-size: 0.95rem; max-width: 40em; }
+
+@media (max-width: 640px) { .timeline-row { grid-template-columns: 1fr; gap: 0.35rem; } }
+
+/* ---- checklist (services page, values) ------------------------------------------------ */
+
+.check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(2rem, 4vw, 3.5rem); border-top: 1px solid var(--line); }
+
+.check-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--line);
+  align-content: start;
+}
+
+.check-item .check-ico { width: 1.35rem; height: 1.35rem; color: var(--accent-deep); margin-top: 0.2rem; }
+
+.check-item h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+
+.check-item p { color: var(--body-c); font-size: 0.92rem; }
+
+/* on the category page each checked item is a link to that service's own page */
+.check-item-link { color: inherit; }
+.check-item-link h3 { transition: color 0.2s ease; }
+.check-item-link:hover h3 { color: var(--accent-deep); }
+.check-item-link .text-link { margin-top: 0.55rem; font-size: 0.68rem; }
+
+@media (max-width: 760px) { .check-grid { grid-template-columns: 1fr; } }
+
+/* ---- values / hse / process / sectors -------------------------------------------------- */
+
+.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); padding-top: 2rem; }
+
+.value-card { display: grid; gap: 0.5rem; align-content: start; }
+
+.value-card h3 { font-size: 1.12rem; font-weight: 600; }
+.value-card p { color: var(--body-c); font-size: 0.94rem; }
+
+@media (max-width: 700px) { .values-grid { grid-template-columns: 1fr; } }
+
+.hse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+.hse-card { border-top: 3px solid var(--accent); padding-top: 1.3rem; display: grid; gap: 0.6rem; align-content: start; }
+
+.hse-card h3 { font-size: 1.12rem; font-weight: 600; color: var(--light-on-dark); }
+.hse-card p { color: var(--soft-on-dark); font-size: 0.93rem; }
+
+@media (max-width: 860px) { .hse-grid { grid-template-columns: 1fr; } }
+
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); padding-top: 2rem; }
+
+.process-step { display: grid; gap: 0.7rem; align-content: start; }
+
+.process-step .index-num {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-deep);
+  font-variant-numeric: tabular-nums;
+}
+
+.process-step h3 { font-size: 1.08rem; font-weight: 600; }
+.process-step p { color: var(--body-c); font-size: 0.92rem; }
+
+@media (max-width: 980px) { .process-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .process-grid { grid-template-columns: 1fr; } }
+
+.sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--dark-line); }
+
+.sector-cell { padding: 1.5rem 0; border-bottom: 1px solid var(--dark-line); display: grid; gap: 0.4rem; align-content: start; }
+
+.sector-cell h3 { font-size: 1.05rem; font-weight: 600; color: var(--light-on-dark); }
+.sector-cell p { color: var(--soft-on-dark); font-size: 0.92rem; }
+
+@media (max-width: 900px) { .sector-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .sector-grid { grid-template-columns: 1fr; } }
+
+/* ---- projects ---------------------------------------------------------------------------- */
+
+.filter-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+
+.pill {
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid var(--line);
+  color: var(--body-c);
+  transition: all 0.2s ease;
+}
+
+.pill:hover { border-color: var(--grey-dark); color: var(--ink); }
+.pill.active { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
+
+.proj-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+.proj-card { display: grid; align-content: start; gap: 0.8rem; }
+
+.proj-card-media { position: relative; aspect-ratio: 16 / 11; overflow: hidden; background: var(--paper); border-radius: var(--radius); }
+.proj-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.proj-card:hover .proj-card-media img { transform: scale(1.04); }
+
+.proj-card-sector {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.proj-card h3 { font-size: 1.25rem; font-weight: 700; }
+
+.proj-card p { color: var(--body-c); font-size: 0.93rem; }
+
+.proj-card-facts {
+  display: flex;
+  gap: 1.8rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.proj-card-facts strong { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 980px) { .proj-cards { grid-template-columns: 1fr; } }
+
+/* home compact list */
+.proj-list { border-top: 1px solid var(--line); }
+
+.proj-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1.4fr); gap: 0.9rem 2rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+
+.proj-client { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+.proj-meta { font-family: var(--font-display); font-size: 0.84rem; font-weight: 600; color: var(--body-c); }
+.proj-value { font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; }
+.proj-scope { grid-column: 1 / -1; color: var(--body-c); font-size: 0.93rem; max-width: 56em; }
+
+@media (max-width: 800px) { .proj-row { grid-template-columns: 1fr auto; } }
+
+/* ---- gallery ------------------------------------------------------------------------------- */
+
+
+/* ---- news ----------------------------------------------------------------------------------- */
+
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); border-top: 1px solid var(--line); padding-top: 2rem; }
+
+.news-card { display: grid; gap: 0.8rem; align-content: start; justify-items: start; }
+
+.news-tag { font-family: var(--font-display); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-deep); }
+
+.news-card h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.4; }
+
+@media (max-width: 860px) { .news-grid { grid-template-columns: 1fr; } }
+
+/* ---- CTA (gold panel) ------------------------------------------------------------------------ */
+
+.cta-panel { background: var(--accent); color: var(--ink); padding: clamp(3rem, 6vw, 5rem) var(--pad); }
+
+.on-gold { background: var(--accent); color: var(--ink); }
+
+.cta-inner { max-width: 76rem; margin: 0 auto; display: grid; gap: 1.6rem; justify-items: start; }
+
+.cta-inner .eyebrow { color: rgba(19, 20, 23, 0.68); }
+
+.cta-inner h2 { max-width: 15em; color: var(--ink); }
+
+.cta-inner .lead { color: rgba(19, 20, 23, 0.78); }
+
+.cta-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  align-items: center;
+  color: rgba(19, 20, 23, 0.75);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.cta-contact-row a { border-bottom: 1px solid rgba(19, 20, 23, 0.35); padding-bottom: 2px; transition: border-color 0.2s; }
+.cta-contact-row a:hover { border-color: var(--ink); color: var(--ink); }
+
+.cta-panel .btn-ghost { border-color: rgba(19, 20, 23, 0.5); color: var(--ink); }
+.cta-panel .btn-ghost:hover { background: var(--grey-dark); border-color: var(--grey-dark); color: #fff; }
+
+/* ---- footer ----------------------------------------------------------------------------------- */
+
+.footer { background: var(--grey-dark); color: var(--light-on-dark); }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3.4fr) minmax(0, 1.7fr) minmax(0, 2.2fr) minmax(0, 2.2fr) minmax(0, 2.5fr);
+  gap: 2.5rem;
+  padding: clamp(3rem, 6vw, 4.5rem) 0 3rem;
+}
+
+.footer h4 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint-on-dark);
+  margin-bottom: 1.1rem;
+}
+
+.footer-col { display: grid; gap: 0.55rem; align-content: start; justify-items: start; }
+
+.footer-col a, .footer-col span { color: var(--soft-on-dark); font-size: 0.93rem; transition: color 0.2s ease; }
+.footer-col a:hover { color: #fff; }
+
+.footer-brand { display: grid; gap: 1.2rem; align-content: start; justify-items: start; }
+.footer-brand p { color: var(--soft-on-dark); font-size: 0.93rem; max-width: 26em; }
+
+.footer-certs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.footer-cert {
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--dark-line);
+  padding: 0.4rem 0.7rem;
+  color: var(--soft-on-dark);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--dark-line);
+  padding: 1.4rem 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2rem;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint-on-dark);
+}
+
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ---- page banner ------------------------------------------------------------------------------- */
+
+.page-hero {
+  position: relative;
+  margin-top: 0;
+  min-height: 24rem;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--dark);
+  color: #fff;
+}
+
+.page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.02) saturate(1.03); }
+
+/* Two scrims: one up from the base for the heading block, one in from the left
+   so the copy stays readable over the bright desert and asphalt photographs as
+   well as the darker ones. */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(24, 26, 30, 0.58), rgba(24, 26, 30, 0.12) 58%, rgba(24, 26, 30, 0)),
+    linear-gradient(to top, rgba(24, 26, 30, 0.84), rgba(24, 26, 30, 0.42) 48%, rgba(24, 26, 30, 0.14));
+}
+
+.page-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 2.5rem) var(--pad) 2.5rem;
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+
+.page-hero-inner .eyebrow { color: var(--accent); text-shadow: 0 1px 12px rgba(16, 18, 21, 0.6); }
+
+.page-hero-inner h1 { color: #fff; max-width: 16em; text-shadow: 0 2px 20px rgba(16, 18, 21, 0.5); }
+
+.page-hero-inner .lead { color: rgba(255, 255, 255, 0.9); text-shadow: 0 1px 14px rgba(16, 18, 21, 0.55); }
+
+/* ---- contact -------------------------------------------------------------
+   The page answers three questions in order: how do I reach you now, what do
+   I get if I write, and what do you need from me. The two direct routes come
+   first as full tap targets, then a form kept to three required fields and a
+   single choice.
+   ------------------------------------------------------------------------ */
+
+.reach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin-top: 1.1rem;
+}
+
+.reach-card {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: clamp(1.3rem, 3vw, 1.8rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.reach-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+.reach-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.reach-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3.6vw, 1.45rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.reach-note { font-size: 0.88rem; color: var(--body-c); line-height: 1.5; }
+
+.reach-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+  padding-top: clamp(1.6rem, 3vw, 2.2rem);
+  border-top: 1px solid var(--line);
+}
+
+.reach-meta-item { display: grid; gap: 0.35rem; align-content: start; }
+
+.reach-meta-item .label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.reach-meta-item address {
+  font-style: normal;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* ---- the form ---- */
+
+.form-head { display: grid; gap: 0.85rem; max-width: 40rem; margin-bottom: clamp(1.8rem, 4vw, 2.6rem); }
+
+.contact-form { display: grid; gap: 1.35rem; max-width: 44rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem; }
+
+.field { display: grid; gap: 0.45rem; }
+
+/* Sentence case at a readable size: uppercase micro-type is the hardest
+   possible setting to scan, and these are the labels people read while
+   filling a form on a phone. */
+.field label {
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.field-optional {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+.field-hint { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+/* Fields read as fields: a filled well with a hairline, not a bare underline.
+   16px is a floor, not a preference — iOS zooms the whole page in when a
+   focused input is set smaller than that. */
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 0.95rem;
+  min-height: 3rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent-deep);
+  box-shadow: 0 0 0 3px rgba(237, 166, 58, 0.18);
+}
+
+.field textarea { min-height: 8.5rem; resize: vertical; line-height: 1.6; }
+
+.select-wrap { position: relative; display: grid; }
+
+.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-inline-end: 2.6rem;
+  cursor: pointer;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  inset-inline-end: 1rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.35rem;
+  /* A chevron pointing down is down in both directions — only where it sits
+     mirrors, not the glyph, so these two edges stay physical. */
+  border-right: 2px solid var(--body-c);
+  border-bottom: 2px solid var(--body-c);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.form-note {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--body-c);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.form-submit { justify-self: start; min-height: 3.25rem; }
+
+.map-frame { border: 1px solid var(--line); overflow: hidden; border-radius: var(--radius-lg); }
+
+.map-frame iframe { width: 100%; height: clamp(15rem, 45vw, 24rem); border: 0; display: block; }
+
+@media (max-width: 980px) {
+  .reach-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 720px) {
+  .reach-grid { grid-template-columns: 1fr; }
+  .reach-meta { grid-template-columns: 1fr; gap: 1.4rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-submit { justify-self: stretch; width: 100%; }
+}
+
+/* ---- catalogue (services page) -------------------------------------------------------------------- */
+
+.catalog-head { display: grid; gap: 0.9rem; max-width: 48rem; }
+
+/* ---- reveal ---------------------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; }
+  .hero-slide { transition: none; }
+}
+
+/* ---- breadcrumbs, location grids, FAQs (service pages) ---------------------- */
+
+.crumbs {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.crumbs a { color: var(--body-c); transition: color 0.2s ease; }
+.crumbs a:hover { color: var(--accent-deep); }
+.crumb-sep { margin: 0 0.6rem; color: var(--line); }
+
+.block-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+
+.loc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+
+.loc-card {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  padding: 1.4rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.22s ease, transform 0.22s ease;
+}
+
+.loc-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+
+.loc-card-name { font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; line-height: 1.3; }
+.loc-card-meta { font-size: 0.84rem; color: var(--body-c); line-height: 1.5; }
+.loc-card .text-link { font-size: 0.7rem; margin-top: 0.35rem; }
+
+@media (max-width: 1080px) { .loc-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 820px) { .loc-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .loc-grid { grid-template-columns: 1fr; } }
+
+.loc-services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem clamp(1.5rem, 3vw, 2.5rem); }
+
+.loc-service {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-content: start;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+
+.loc-service h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+.loc-service p { color: var(--body-c); font-size: 0.91rem; line-height: 1.6; }
+
+@media (max-width: 980px) { .loc-services { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .loc-services { grid-template-columns: 1fr; } }
+
+.faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(2rem, 4vw, 3.5rem); border-top: 1px solid var(--line); }
+
+.faq-item { padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+.faq-item h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.45rem; }
+.faq-item p { color: var(--body-c); font-size: 0.93rem; }
+.faq-item a { color: var(--accent-deep); border-bottom: 1px solid var(--line); }
+
+@media (max-width: 760px) { .faq-list { grid-template-columns: 1fr; } }
+
+/* services overview: category split */
+.cat-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+
+.cat-media { overflow: hidden; border-radius: var(--radius); aspect-ratio: 4 / 3; }
+.cat-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+
+.tag-list li {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--body-c);
+}
+
+.tag-list-links li { padding: 0; border: 0; }
+
+.tag-list-links a {
+  display: block;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--body-c);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.tag-list-links a:hover { border-color: var(--ink); color: var(--ink); background: var(--white); }
+
+.loc-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.loc-links a {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.loc-links a:hover { background: var(--ink); color: #fff; }
+
+@media (max-width: 860px) { .cat-split { grid-template-columns: 1fr; } }
+
+/* ---- services mega menu --------------------------------------------------
+   A full-width panel under the header rather than a floating card: it lines
+   up with the same 76rem grid as the logo and the nav, so it reads as an
+   extension of the header instead of a box dropped on top of the hero.
+
+   One column per category, every service its own link — the header reaches
+   all 22 service pages, not just the four category pages. Coverage is a
+   caption under the category name, not the tail of a run-on sentence.
+   ------------------------------------------------------------------------ */
+
+/* static, so the panel anchors to the fixed header and can span its full
+   width rather than being trapped inside the nav's content column */
+.nav-item { position: static; display: flex; align-items: center; }
+
+/* A dropdown rather than a full-bleed curtain. Spanning the viewport made a
+   panel the width of the screen and most of its height, which is a lot of
+   surface to have to walk the mouse out of. Constrained and centred, it reads
+   as a menu belonging to the link that opened it. Visibility is driven by a
+   class now, not :hover — see Nav.jsx. */
+.nav-mega {
+  position: absolute;
+  top: calc(var(--nav-h) - 0.4rem);
+  left: 50%;
+  transform: translate(-50%, -8px);
+  width: min(58rem, calc(100vw - 3rem));
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 28px 56px -28px rgba(19, 20, 23, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+}
+
+.nav-mega.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* A cushion above the panel: the cursor crosses a few pixels of header on the
+   way down, and without this the gap counts as leaving. */
+.nav-mega::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.8rem;
+  height: 0.8rem;
+}
+
+.nav-mega-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 1.4rem;
+  padding: 1.5rem 1.6rem 0;
+  width: auto;
+  max-width: none;
+}
+
+/* hairlines between the columns, the same rule used everywhere else */
+.nav-mega-col + .nav-mega-col {
+  border-inline-start: 1px solid var(--line);
+  padding-inline-start: 1.4rem;
+  margin-inline-start: -1.4rem;
+}
+
+.nav-mega-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  transition: color 0.18s ease;
+}
+
+.nav-mega-head svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-mega-head:hover { color: var(--accent-deep); }
+.nav-mega-head:hover svg { opacity: 1; transform: translateX(0); }
+
+/* Two lines are reserved whether the label needs them or not: "available in
+   Dubai & Abu Dhabi" wraps where "available in Dubai" does not, and without
+   this the four service lists start at four different heights. */
+.nav-mega-where {
+  display: block;
+  margin-top: 0.3rem;
+  min-height: 2.6em;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nav-mega-list {
+  list-style: none;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.1rem;
+}
+
+/* same gold bullet as the service lists on the home page tiles */
+.nav-mega-list li { position: relative; padding-inline-start: 0.9rem; }
+
+.nav-mega-list li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.82em;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.nav-mega-list a {
+  display: block;
+  padding: 0.2rem 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--body-c);
+  transition: color 0.16s ease;
+}
+
+.nav-mega-list a:hover { color: var(--ink); }
+
+/* the overflow line, styled as a note rather than another service */
+.nav-mega-more a { color: var(--accent-deep); font-style: italic; }
+.nav-mega-more::before { background: transparent !important; }
+
+.nav-mega-foot {
+  grid-column: 1 / -1;
+  margin-top: 1.1rem;
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-mega-contact {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.nav-mega-contact a {
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 0.18s ease;
+}
+
+.nav-mega-contact a:hover { color: var(--accent-deep); }
+
+/* Four columns are held all the way down to 1024px, where the mobile menu
+   takes over: folding to two would double the panel's height and swallow the
+   viewport. The columns tighten instead. */
+@media (max-width: 1180px) {
+  .nav-mega-inner { gap: 0 1rem; padding: 1.2rem 1.2rem 0; }
+  .nav-mega-col + .nav-mega-col {
+    padding-inline-start: 1.25rem;
+    margin-inline-start: -1.25rem;
+  }
+  .nav-mega-head { font-size: 0.94rem; }
+  .nav-mega-list a { font-size: 0.82rem; }
+}
+
+/* On a short screen the panel scrolls rather than running off the bottom. */
+@media (max-height: 760px) {
+  .nav-mega {
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.mobile-menu .sub-links { display: flex; flex-wrap: wrap; gap: 0.45rem; padding: 0.9rem 0 0.4rem; }
+
+.mobile-menu .sub-links a {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--body-c);
+  border-bottom: 1px solid var(--line);
+}
+
+/* home: four category tiles with their service lists.
+   Tiles stretch to equal height and the availability/explore footer is pushed
+   to the bottom of each, so the row stays symmetric despite different list
+   lengths. */
+.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.4rem, 2.4vw, 2rem); align-items: stretch; }
+
+.cat-grid > .reveal { display: flex; }
+
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cat-tile h3 { font-size: 1.15rem; margin-top: 0.5rem; }
+
+.cat-tile-list { list-style: none; display: grid; gap: 0.28rem; width: 100%; }
+
+.cat-tile-more { color: var(--muted) !important; font-style: italic; }
+.cat-tile-more::before { background: transparent !important; }
+
+.cat-tile-foot {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+}
+
+.cat-tile-list li {
+  font-size: 0.86rem;
+  color: var(--body-c);
+  padding-inline-start: 0.9rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.cat-tile-list li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.62em;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.cat-tile-where {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cat-tile .text-link { font-size: 0.72rem; }
+
+@media (max-width: 1080px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .cat-grid { grid-template-columns: 1fr; } }
+
+/* footer: compact Google Business map, sits inside the Contact column */
+.footer-map {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-top: 0.75rem;
+  border: 1px solid var(--dark-line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.22s ease;
+}
+
+.footer-map:hover { border-color: var(--accent); }
+
+.footer-map iframe {
+  width: 100%;
+  height: 7.5rem;
+  border: 0;
+  display: block;
+  filter: grayscale(0.35) contrast(0.95) brightness(0.95);
+  pointer-events: none;
+}
+
+.footer-map-cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.42rem 0.6rem;
+  background: rgba(30, 33, 37, 0.86);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.footer-map:hover .footer-map-cta { color: #fff; }
+
+/* ---- service page: at-a-glance spec table -------------------------------------------- */
+
+.spec-table {
+  display: grid;
+  border-top: 1px solid var(--line);
+  margin-top: 0.9rem;
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) 3fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-row dt {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.14rem;
+}
+
+.spec-row dd { color: var(--body-c); font-size: 0.94rem; line-height: 1.6; }
+
+@media (max-width: 620px) {
+  .spec-row { grid-template-columns: 1fr; gap: 0.35rem; }
+}
+
+
+/* ===========================================================================
+   Arabic / right-to-left
+   The layout is built from flex and grid, which mirror themselves under
+   dir="rtl", so this block only has to cover three things: the Arabic type
+   stack, the handful of marks that point somewhere (arrows, the marquee), and
+   the places where Latin fragments sit inside Arabic text.
+   =========================================================================== */
+
+[dir='rtl'] {
+  --font-display: 'Cairo', 'IBM Plex Sans Arabic', 'Barlow', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Cairo', 'Inter', sans-serif;
+}
+
+/* Arabic has no uppercase, and the wide tracking used on Latin eyebrows and
+   labels breaks the joins between letters — so both are switched off. */
+[dir='rtl'] .eyebrow,
+[dir='rtl'] .block-label,
+[dir='rtl'] .btn,
+[dir='rtl'] .text-link,
+[dir='rtl'] .nav-link,
+[dir='rtl'] .chip,
+[dir='rtl'] .pill,
+[dir='rtl'] .tag-list li,
+[dir='rtl'] .tag-list-links a,
+[dir='rtl'] .footer-cert,
+[dir='rtl'] .footer-map-cta,
+[dir='rtl'] .cat-tile-where,
+[dir='rtl'] .spec-row dt,
+[dir='rtl'] .marquee-item,
+[dir='rtl'] .marquee-label,
+[dir='rtl'] .footer-bottom,
+[dir='rtl'] .stat-label,
+[dir='rtl'] .work-card .work-meta,
+[dir='rtl'] .proj-card-sector,
+[dir='rtl'] .cert-row,
+[dir='rtl'] .mobile-menu .sub-links a {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Arabic sits lower in its em box and needs a little more line height than
+   the Latin display sizes allow. */
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] .display-xl,
+[dir='rtl'] .display-lg,
+[dir='rtl'] .display-md { line-height: 1.28; }
+
+[dir='rtl'] p,
+[dir='rtl'] .lead { line-height: 1.85; }
+
+/* Arrows point the way the text runs. */
+[dir='rtl'] .text-link svg,
+[dir='rtl'] .btn-arrow { transform: scaleX(-1); }
+
+[dir='rtl'] .btn:hover .btn-arrow { transform: scaleX(-1) translateX(4px); }
+
+/* The client marquee scrolls with the text. */
+[dir='rtl'] .marquee-track { animation-direction: reverse; }
+
+/* Phone numbers, e-mail addresses and reference codes are Latin runs inside
+   Arabic sentences; isolating them keeps the punctuation on the right end. */
+[dir='rtl'] [dir='ltr'] { unicode-bidi: isolate; }
+
+/* Both hero scrims run from the reading edge inwards, so they follow the text
+   to the right-hand side under RTL instead of darkening the empty side. */
+[dir='rtl'] .hero-slide::after {
+  background:
+    linear-gradient(-84deg, rgba(22, 24, 28, 0.74) 0%, rgba(22, 24, 28, 0.46) 34%, rgba(22, 24, 28, 0.14) 58%, transparent 78%),
+    linear-gradient(to bottom, rgba(22, 24, 28, 0.32), transparent 22%);
+}
+
+[dir='rtl'] .page-hero::after {
+  background:
+    linear-gradient(to left, rgba(24, 26, 30, 0.58), rgba(24, 26, 30, 0.12) 58%, rgba(24, 26, 30, 0)),
+    linear-gradient(to top, rgba(24, 26, 30, 0.84), rgba(24, 26, 30, 0.42) 48%, rgba(24, 26, 30, 0.14));
+}
+
+/* ---- language switch -----------------------------------------------------
+   Built from the header's own parts rather than added to them: it is a
+   .nav-link, so it carries the same face, size and colour transitions as the
+   page links, and a hairline rule — the same rule used everywhere else on the
+   site — separates it from them so it reads as a utility beside the CTA
+   rather than a sixth page. Muted by default, it sits one step below the
+   links and two below the gold button.
+   ------------------------------------------------------------------------ */
+
+/* The rule carries no margin of its own: the row's gap plus each link's own
+   inline padding then falls equally on both sides of it, so it reads as
+   centred between the last page link and the language. */
+.nav-rule {
+  flex: none;
+  width: 1px;
+  height: 1.25rem;
+  background: var(--line);
+  transition: background 0.28s ease;
+}
+
+.nav.overlay .nav-rule { background: rgba(255, 255, 255, 0.32); }
+
+.nav-lang { color: var(--muted); padding-inline: 0.85rem; }
+.nav-lang:hover { color: var(--ink); }
+
+.nav.overlay .nav-lang { color: rgba(255, 255, 255, 0.7); }
+.nav.overlay .nav-lang:hover { color: #fff; }
+
+/* The label is always written in the language it leads to, so one script sits
+   inside a header set in the other. Arabic takes no tracking — it would break
+   the joins between letters — and runs optically smaller at the same size. */
+.nav-lang[lang='ar'] {
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', var(--font-display);
+  line-height: 1;
+}
+
+.nav-lang[lang='en'] { letter-spacing: 0.12em; }
+
+/* In the mobile menu it takes the same row treatment as the page links, held
+   back in weight and colour, with the word "Language" in the right-hand slot
+   those rows already leave open. */
+.mobile-lang {
+  color: var(--muted);
+  font-weight: 600 !important;
+}
+
+.mobile-lang:hover { color: var(--ink); }
+
+.mobile-lang-note {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+[dir='rtl'] .mobile-lang-note { letter-spacing: 0; text-transform: none; }
+
+
+/* ===========================================================================
+   Touch targets and small type
+   Audited at 360px and 390px. Anything a finger has to hit is brought to a
+   44px minimum — the size below which mis-taps rise sharply — and label
+   micro-type is lifted off the 10–11px floor where it stops being legible on
+   a phone held at arm's length.
+   =========================================================================== */
+
+/* Breadcrumb links were 14px tall: readable, but not hittable. */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.1rem; }
+.crumbs a,
+.crumbs [aria-current] { display: inline-block; padding-block: 0.72rem; }
+
+@media (max-width: 720px) {
+  /* Footer columns: link rows get real height instead of sitting 27px apart. */
+  .footer-col { gap: 0.1rem; }
+  .footer-col a,
+  .footer-col span { display: block; padding-block: 0.6rem; line-height: 1.4; }
+  .footer-col h4 { margin-bottom: 0.35rem; letter-spacing: 0.14em; }
+  .footer-map { margin-top: 1rem; }
+
+  /* Chips and pills across the site: services list, project filters, the
+     fleet band and the mobile menu's category links. */
+  .tag-list-links a,
+  .tag-list li,
+  .pill,
+  .chip,
+  .mobile-menu .sub-links a {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Inline "explore / view / more on" links. */
+  .text-link { padding-block: 0.7rem; }
+
+  /* Emirate pills on the services index. */
+  .loc-links a { min-height: 2.75rem; display: inline-flex; align-items: center; }
+
+  /* Category and location cards: the whole card is the target, so give it
+     enough height rather than relying on the text inside it. */
+  .loc-card { padding: 1.15rem 1.2rem; }
+
+  /* Labels and captions were sitting at 10.6–11.2px. */
+  .footer-cert,
+  .footer-col h4,
+  .block-label,
+  .marquee-label,
+  .work-card .eyebrow,
+  .eyebrow,
+  .cat-tile-where,
+  .proj-card-sector,
+  .pill,
+  .tag-list li,
+  .tag-list-links a,
+  .mobile-menu .sub-links a,
+  .spec-row dt { font-size: 0.75rem; }
+
+  .footer-bottom { font-size: 0.72rem; line-height: 1.7; }
+}
+
+/* ===========================================================================
+   WhatsApp
+   A fixed button on every page, and a third card beside call and email on the
+   contact page. The message is written before it opens and names the work on
+   the page it was pressed from, so an enquiry arrives with a subject rather
+   than as "hi". The mark keeps WhatsApp's own green — recognition is the whole
+   point of a utility button — while the shape, radius and label type are the
+   site's.
+   =========================================================================== */
+
+:root { --wa: #25d366; --wa-deep: #128c7e; }
+
+.wa-fab {
+  position: fixed;
+  inset-block-end: 1.25rem;
+  inset-inline-end: 1.25rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: 999px;
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 10px 28px -8px rgba(18, 60, 40, 0.5);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-fab:hover {
+  background: var(--wa-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -8px rgba(18, 60, 40, 0.55);
+}
+
+.wa-fab:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.wa-fab-icon { flex: none; }
+
+.wa-fab-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[dir='rtl'] .wa-fab-label { letter-spacing: 0; text-transform: none; font-size: 0.9rem; }
+
+/* Clear of the iOS home indicator, and out of the way of the hero dots, which
+   sit on the opposite side in both directions. */
+@media (max-width: 720px) {
+  .wa-fab {
+    inset-block-end: calc(1rem + env(safe-area-inset-bottom, 0px));
+    inset-inline-end: 1rem;
+    padding: 0.8rem 1rem;
+  }
+  .wa-fab-label { font-size: 0.74rem; }
+}
+
+.reach-card-wa:hover { border-color: var(--wa-deep); }
+
+.reach-card-wa .reach-label { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+.reach-wa-icon { width: 1rem; height: 1rem; color: var(--wa-deep); }
+
+
+/* ===========================================================================
+   Emirate cards
+   The old cards were six white boxes of ragged height, each repeating the
+   service name before the one word that actually differed, and each ending in
+   a redundant "View" when the whole card was already a link.
+
+   These lead with the emirate, carry its name in the other script underneath,
+   and put the authority on a footer line that is pushed to the bottom so every
+   card in a row ends level whether its authority runs to one line or three.
+   Colour and movement come from the gold pin and a full inversion on hover.
+   =========================================================================== */
+
+.em-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.35rem);
+  align-items: stretch;
+}
+
+.em-grid > .reveal { display: flex; }
+
+.em-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1.25rem 1.3rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.28);
+  transition: background 0.24s ease, border-color 0.24s ease, transform 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.em-card:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -18px rgba(19, 20, 23, 0.55);
+}
+
+.em-card-top { display: flex; align-items: center; gap: 0.5rem; }
+
+.em-card-pin { flex: none; color: var(--accent-deep); transition: color 0.24s ease; }
+.em-card:hover .em-card-pin { color: var(--accent); }
+
+.em-card-name {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.25;
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-name { color: #fff; }
+
+/* the same place written in the other script — real information on a
+   bilingual site, and the thing that gives the grid its character */
+.em-card-alt {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+  /* indented under the name, past the pin — and aligned to the card's
+     direction, not the script's, so it sits under the name in both */
+  text-align: start;
+  padding-inline-start: 1.5rem;
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-alt { color: var(--accent); }
+
+/* pushed to the bottom, so cards in a row finish level */
+.em-card-foot {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.em-card-authority {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--body-c);
+  transition: color 0.24s ease;
+}
+
+.em-card:hover .em-card-authority { color: var(--soft-on-dark); }
+
+.em-card-arrow {
+  flex: none;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+  transition: color 0.24s ease, transform 0.24s ease;
+}
+
+.em-card:hover .em-card-arrow { color: var(--accent); transform: translateX(3px); }
+[dir='rtl'] .em-card:hover .em-card-arrow { transform: scaleX(-1) translateX(3px); }
+
+@media (max-width: 1080px) { .em-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .em-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .em-grid { grid-template-columns: 1fr; } }
+
+/* ===========================================================================
+   Related-service cards
+   The related services were the same plain white boxes as the emirates, each
+   ending in a "View" the whole card already was. They carry the service's own
+   photograph now — the images already exist, one per service — which is what
+   puts colour on the section, and the descriptions sit at a common height so
+   the row does not go ragged when one runs longer than the rest.
+   =========================================================================== */
+
+.svc-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.4rem);
+  align-items: stretch;
+}
+
+.svc-card-grid > .reveal { display: flex; }
+
+.svc-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.28);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.svc-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -20px rgba(19, 20, 23, 0.5);
+}
+
+.svc-card-media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--paper); }
+
+.svc-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.svc-card:hover .svc-card-media img { transform: scale(1.05); }
+
+.svc-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.05rem 1.1rem 0.4rem;
+  flex: 1;
+}
+
+.svc-card-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: color 0.24s ease;
+}
+
+.svc-card:hover .svc-card-name { color: var(--accent-deep); }
+
+.svc-card-text {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--body-c);
+  /* four lines keeps every card the same shape whatever the copy does */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.svc-card-arrow {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.1rem 1rem;
+  color: var(--muted);
+  transition: color 0.24s ease, transform 0.24s ease;
+}
+
+.svc-card:hover .svc-card-arrow { color: var(--accent-deep); transform: translateX(3px); }
+[dir='rtl'] .svc-card:hover .svc-card-arrow { transform: scaleX(-1) translateX(3px); }
+[dir='rtl'] .svc-card-arrow { justify-content: flex-start; }
+
+@media (max-width: 1080px) { .svc-card-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .svc-card-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .svc-card-grid { grid-template-columns: 1fr; } }
+
+/* ---------------------------------------------------------------------------
+   Guides. Editorial pages rather than service pages, so they get a single
+   measured column of prose instead of the two-column service layout — long
+   text is read, not scanned, and a 34em measure is where that stays
+   comfortable.
+   --------------------------------------------------------------------------- */
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.guide-grid > .reveal { display: flex; }
+
+.guide-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.5rem 1.5rem 1.35rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.28);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.guide-card:hover {
+  border-color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -20px rgba(19, 20, 23, 0.5);
+}
+
+.guide-card-kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.guide-card h2 { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.3; margin: 0; }
+
+.guide-card p { color: var(--body-c); font-size: 0.94rem; line-height: 1.65; margin: 0; flex: 1; }
+
+.guide-card-more {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.guide-body { max-width: 34em; margin: 2.4rem 0 0; }
+
+.guide-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 2.4rem 0 0.8rem;
+}
+
+.guide-body h2:first-child { margin-top: 0; }
+
+.guide-body p { color: var(--body-c); line-height: 1.8; margin: 0 0 1.1rem; }
+
+.guide-related { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+
+.guide-related-lead { color: var(--body-c); max-width: 34em; margin: 0.5rem 0 1.6rem; }
+
+/* The hand-off cards carry no photo, so they need their own padding rather
+   than inheriting the media-card spacing. */
+.svc-card-plain .svc-card-body { padding: 1.3rem 1.3rem 1.4rem; }
+
+.svc-card-plain .svc-card-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.svc-card-plain h3 { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.35; margin: 0.25rem 0 0; }
+
+/* Arabic runs without letterspaced small-caps: the forms are cursive and the
+   tracking breaks the joins. */
+[dir='rtl'] .guide-card-kicker,
+[dir='rtl'] .guide-card-more,
+[dir='rtl'] .svc-card-plain .svc-card-eyebrow {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 34em) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+  margin-top: 2.4rem;
+}
+
+.guide-layout .guide-body { margin-top: 0; max-width: none; }
+
+.guide-rail { position: sticky; top: 6.5rem; display: grid; gap: 1.5rem; }
+
+.guide-toc {
+  border-inline-start: 2px solid var(--accent);
+  padding-inline-start: 1.1rem;
+}
+
+.guide-toc h2 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin: 0 0 0.8rem;
+}
+
+.guide-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; counter-reset: toc; }
+
+.guide-toc a {
+  color: var(--body-c);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.guide-toc a:hover { color: var(--ink); }
+
+.guide-rail-cta {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.guide-rail-cta p { margin: 0; color: var(--body-c); font-size: 0.94rem; line-height: 1.65; }
+
+.guide-body h2 { scroll-margin-top: 6.5rem; }
+
+@media (max-width: 1000px) {
+  .guide-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .guide-rail { position: static; }
+  .guide-toc { display: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   "What's included" / "What we deliver here" — the per-service lists on the
+   category and emirate pages.
+
+   These were a text-only two-column list, which on a page carrying six to nine
+   entries read as a wall of grey. Each entry now leads with the photograph
+   from that service's own page, so the section is scanned by picture and the
+   plant on show does the explaining. The card stays quiet — white ground,
+   hairline border, gold only on the tick and on hover — so six of them in a
+   grid still read as one calm block rather than six competing tiles.
+   --------------------------------------------------------------------------- */
+
+.incl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-top: 1.6rem;
+  align-items: stretch;
+}
+
+.incl-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.incl-grid > .reveal { display: flex; align-items: stretch; }
+
+.incl-card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.15rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  box-shadow: 0 2px 10px -6px rgba(19, 20, 23, 0.26);
+  transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.incl-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -20px rgba(19, 20, 23, 0.45);
+}
+
+.incl-card-media {
+  position: relative;
+  display: block;
+  width: 6.5rem;
+  aspect-ratio: 1 / 1;
+  border-radius: calc(var(--radius) - 3px);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.incl-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.incl-card:hover .incl-card-media img { transform: scale(1.07); }
+
+/* The tick still says "included"; it rides on the photograph rather than
+   taking a column of its own, which is what made the old list so wide. */
+.incl-card-tick {
+  position: absolute;
+  inset-block-end: 0.3rem;
+  inset-inline-start: 0.3rem;
+  display: grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--dark);
+  box-shadow: 0 2px 8px -2px rgba(19, 20, 23, 0.55);
+}
+
+.incl-card-tick svg { width: 0.95rem; height: 0.95rem; }
+
+.incl-card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+/* pushes the detail link to the bottom, so links line up across a row */
+.incl-card-body .text-link { margin-top: auto; padding-top: 0.6rem; }
+
+.incl-card-body h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.incl-card:hover .incl-card-body h3 { color: var(--accent-deep); }
+
+.incl-card-body p { color: var(--body-c); font-size: 0.9rem; line-height: 1.62; margin: 0; }
+
+.incl-card-body .text-link { font-size: 0.68rem; }
+
+@media (max-width: 1080px) { .incl-grid-3 { grid-template-columns: 1fr 1fr; } }
+
+@media (max-width: 720px) {
+  .incl-grid, .incl-grid-3 { grid-template-columns: 1fr; }
+  .incl-card-media { width: 5rem; }
+}
+
+/* On a phone the side thumbnail leaves the copy about 28 characters wide,
+   which turns four sentences into a column fifteen lines deep. Below this the
+   card stacks like the three-up variant: the photograph gets the full width
+   and the text gets a readable measure back. */
+@media (max-width: 560px) {
+  .incl-card { grid-template-columns: 1fr; gap: 0.9rem; padding: 0.5rem 0.5rem 1.1rem; }
+  .incl-card-media { width: 100%; aspect-ratio: 16 / 9; }
+  .incl-card-tick {
+    inset-block-end: auto;
+    inset-block-start: 0.5rem;
+    inset-inline-start: 0.5rem;
+  }
+  .incl-card-body { padding-inline: 0.6rem; }
+}
+
+/* The scope list on a service page is plain strings with no photograph to
+   show, so it gets colour from the tick instead: a soft gold disc that gives
+   the column a rhythm the bare outline icon never did. */
+.check-item .check-ico {
+  box-sizing: content-box;
+  width: 1.05rem;
+  height: 1.05rem;
+  padding: 0.32rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  margin-top: 0.05rem;
+}
+
+/* Three across, so a side thumbnail would leave the copy in a 200px gutter.
+   The photo goes on top at full card width instead — bigger picture, and the
+   text gets a readable measure back. */
+.incl-card-stacked { grid-template-columns: 1fr; gap: 0.95rem; padding: 0.55rem 0.55rem 1.15rem; }
+
+.incl-card-stacked .incl-card-media { width: 100%; aspect-ratio: 16 / 10; }
+
+.incl-card-stacked .incl-card-tick {
+  inset-block-end: auto;
+  inset-block-start: 0.55rem;
+  inset-inline-start: 0.55rem;
+}
+
+.incl-card-stacked .incl-card-body { padding-inline: 0.6rem; }
+
+/* ---------------------------------------------------------------------------
+   Contact form: the form keeps a readable measure, and the band beside it
+   carries the answer to the question a visitor has with their hand over the
+   send button — what happens next — plus the crew who would turn up. Filler
+   would have been worse than the empty space; this is the reassurance that
+   stops a form being abandoned half-filled.
+   --------------------------------------------------------------------------- */
+
+.form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 44rem) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.form-layout .contact-form { max-width: none; }
+
+.form-aside { display: grid; gap: 1.9rem; align-content: start; }
+
+.form-aside-figure { margin: 0; display: grid; gap: 0.8rem; }
+
+.form-aside-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.form-aside-figure figcaption {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--body-c);
+  padding-inline-start: 0.9rem;
+  border-inline-start: 2px solid var(--accent);
+}
+
+.form-next h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin: 0 0 1rem;
+}
+
+.form-next ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.95rem; counter-reset: step; }
+
+.form-next li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.8rem;
+  color: var(--body-c);
+  font-size: 0.92rem;
+  line-height: 1.62;
+}
+
+.form-next li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.form-trust {
+  list-style: none;
+  margin: 0;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+
+.form-trust li {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+[dir='rtl'] .form-next h3,
+[dir='rtl'] .form-trust li { letter-spacing: normal; text-transform: none; }
+
+@media (max-width: 980px) {
+  .form-layout { grid-template-columns: 1fr; }
+  /* On one column the picture leads and the steps follow the form, so the
+     fields still come first on a phone. */
+  .form-aside { grid-template-columns: 1fr; }
+}
+
+/* ---- site record album ------------------------------------------------------ */
+/* The photographs are the company's own and come off phones in mixed shapes, so
+   the grid is a column masonry: each frame keeps its aspect rather than being
+   cropped square. Logical properties throughout, so it mirrors under RTL. */
+
+.album .section-lead { max-width: 34rem; color: var(--body-c); margin: 0; }
+
+.album-set + .album-set { margin-top: clamp(3rem, 6vw, 5rem); }
+
+.album-head {
+  max-width: 46rem;
+  padding-inline-start: 1.1rem;
+  border-inline-start: 3px solid var(--accent);
+  margin-bottom: 1.75rem;
+}
+
+.album-head h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.album-place {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.album-head p { margin: 0.85rem 0 0; color: var(--body-c); }
+
+.album-grid { columns: 4 16rem; column-gap: 1rem; }
+
+.album-shot {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 1rem;
+  border: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+  cursor: zoom-in;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  text-align: start;
+}
+
+.album-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.album-shot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(19, 20, 23, 0.82) 0%, rgba(19, 20, 23, 0) 52%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.album-caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 1.5rem 0.9rem 0.85rem;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.album-shot:hover img, .album-shot:focus-visible img { transform: scale(1.04); }
+.album-shot:hover::after, .album-shot:focus-visible::after { opacity: 1; }
+.album-shot:hover .album-caption,
+.album-shot:focus-visible .album-caption { opacity: 1; transform: none; }
+
+@media (max-width: 900px) { .album-grid { columns: 2 12rem; } }
+
+/* two columns are kept on phones: one column of 48 full-bleed photographs
+   turns the page into a very long scroll */
+@media (max-width: 520px) {
+  .album-grid { columns: 2; column-gap: 0.6rem; }
+  .album-shot { margin-bottom: 0.6rem; border-radius: var(--radius-sm); }
+}
+
+/* on touch there is no hover, so the caption stays out of the way entirely */
+@media (hover: none) {
+  .album-caption { display: none; }
+}
+
+/* ---- lightbox --------------------------------------------------------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(12, 13, 15, 0.94);
+  animation: lightbox-in 0.2s ease;
+}
+
+@keyframes lightbox-in { from { opacity: 0 } to { opacity: 1 } }
+
+.lightbox-figure {
+  margin: 0;
+  max-width: min(100%, 68rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  cursor: default;
+}
+
+.lightbox-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+
+.lightbox-figure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  color: var(--light-on-dark);
+  font-size: 0.9rem;
+}
+
+.lightbox-figure figcaption span { color: var(--faint-on-dark); font-variant-numeric: tabular-nums; }
+
+.lightbox-nav, .lightbox-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--dark-line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--light-on-dark);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lightbox-nav:hover, .lightbox-close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+[dir='rtl'] .lightbox-nav { transform: scaleX(-1); }
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(0.75rem, 3vw, 1.75rem);
+  inset-inline-end: clamp(0.75rem, 3vw, 1.75rem);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 640px) {
+  .lightbox { padding: 1rem 0.5rem; }
+  .lightbox-nav { position: absolute; bottom: 1.25rem; }
+  .lightbox-nav.prev { inset-inline-start: 25%; }
+  .lightbox-nav.next { inset-inline-end: 25%; }
+  .lightbox-figure figcaption { padding-bottom: 4rem; }
+}
+
+/* ---- project register ------------------------------------------------------- */
+/* The full contract record. Most entries have no photograph yet, so a card is
+   built out of type rather than around an empty media box: a discipline tag, the
+   project name, the client, the scope, and a definition list for the facts that
+   exist on that contract and nothing more. */
+
+.pill-count {
+  display: inline-block;
+  min-width: 1.35em;
+  margin-inline-start: 0.15em;
+  padding-inline: 0.35em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.pill.active .pill-count { background: rgba(255, 255, 255, 0.18); color: #fff; }
+
+.reg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.reg-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.4rem 1.4rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--accent);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.reg-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(19, 20, 23, 0.09);
+  border-color: var(--line);
+  border-top-color: var(--accent-deep);
+}
+
+.reg-card-media {
+  aspect-ratio: 16 / 10;
+  margin: -0.2rem 0 0.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.reg-card-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.reg-card-tag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.reg-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  line-height: 1.28;
+  margin: 0;
+}
+
+.reg-card-client { margin: 0; font-weight: 650; color: var(--ink); font-size: 0.92rem; }
+.reg-card-scope { margin: 0; color: var(--body-c); font-size: 0.9rem; line-height: 1.55; }
+
+.reg-card-meta {
+  display: grid;
+  gap: 0.3rem;
+  /* anchored to the base of the card so the facts line up across a row
+     however much scope text sits above them */
+  margin: 0.5rem 0 0;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+}
+
+.reg-card-meta > div { display: flex; flex-wrap: wrap; gap: 0.15rem 0.5rem; }
+.reg-card-meta dt { color: var(--muted); flex: none; }
+.reg-card-meta dd { margin: 0; color: var(--body-c); }
+
+@media (max-width: 1000px) { .reg-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .reg-grid { grid-template-columns: 1fr; } }
