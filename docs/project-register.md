@@ -5,22 +5,35 @@ The register on `/projects` is built from `src/data/projects.js` (English) and
 
 ## Adding photographs to a project
 
-1. Put the original photographs in `assets/originals/projects/`, named after the
-   project id with a number: `tawyeen-new-asphalt-road-1.jpg`, `-2.jpg` and so on.
+The project documents (`NN_Complete.docx`) are the source. A .docx is a zip, so
+both the write-up and the full-resolution photographs come straight out of it:
+
+```
+unzip -o NN_Complete.docx -d /tmp/docNN     # word/document.xml + word/media/
+```
+
+`word/document.xml` holds the project number, name, client and scope; the
+photographs sit in `word/media/` at the resolution they were pasted in, and
+`word/_rels/document.xml.rels` maps each `r:embed` id to its file, which is how
+the pictures are put back in the order they appear in the document.
+
+Then:
+
+1. Copy the frames worth using into `assets/originals/projects/`, named after
+   the project id with a number: `khorfakkan-road-diversion-1.jpg`, `-2.jpg`…
 2. Run `python3 scripts/make-project-images.py`. It writes two sizes of each into
    `public/images/projects/` — `<stem>.jpg` for the grid and `<stem>-full.jpg`
    for the lightbox.
-3. List the stems on the project's `photos` array in `projects.js`. The first one
-   becomes the card image; the rest open in the album.
-4. Give each photograph a caption in `src/data/album.js` and its Arabic in
-   `src/data/album.ar.js` — captions are what search engines read, and what the
-   lightbox shows.
+3. Add them to that project's `photos` array in `projects.js` as
+   `{ src, alt }`. The first one becomes the card image; all of them appear in
+   the album on `/projects`, under the project's own name.
+4. Add the Arabic caption for each one, in the same order, to the matching entry
+   in `projects.ar.js`. Captions are what search engines read and what the
+   lightbox shows, so they say what the frame shows rather than repeating the
+   project name.
 
-## What a photo list needs to say
-
-For each project: **the project id below** (or its exact name), and the photograph
-filenames that belong to it. Five or six per project is plenty. A caption for each
-one is welcome but not required — the work is usually readable from the frame.
+Nothing in the page needs touching: a register card grows a photograph, and the
+album grows a section, as soon as `photos` is non-empty.
 
 ## The register
 

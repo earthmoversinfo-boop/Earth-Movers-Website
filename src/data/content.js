@@ -391,6 +391,10 @@ const zip = (base, overlay) =>
 const zipAlbums = (base, overlay) =>
   zip(base, overlay).map((a, i) => ({ ...a, photos: zip(base[i].photos, overlay[i]?.photos) }))
 
+// Projects carry their photographs the same way, so their captions zip the same
+// way — otherwise the Arabic overlay would replace the list and lose every src.
+const zipProjects = zipAlbums
+
 const EN = {
   company,
   heroSlides,
@@ -422,7 +426,7 @@ const AR = {
   news: zip(news, ar.newsAr),
   stats: zip(stats, ar.statsAr),
   clients: ar.clientsAr,
-  projects: zip(projects, projectsAr),
+  projects: zipProjects(projects, projectsAr),
   projectCategories: zip(projectCategories, projectCategoriesAr),
   sectors: zip(sectors, ar.sectorsAr),
   process: zip(process, ar.processAr),

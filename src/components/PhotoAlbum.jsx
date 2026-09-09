@@ -13,7 +13,18 @@ const PATH = '/images/projects'
 // only requested on that click, so the page itself carries the small ones only.
 export default function PhotoAlbum() {
   const { t, content } = useLocale()
-  const { albums } = content
+  const { albums: loose, projects } = content
+
+  // A project that has its own photographs gets its own set, titled by the
+  // contract. The loose sets below them are runs of work whose project is not
+  // yet identified; they shrink as the project documents come in.
+  const albums = [
+    ...projects
+      .filter((p) => p.photos?.length)
+      .map((p) => ({ slug: p.id, title: p.name, place: p.client, text: p.scope, photos: p.photos })),
+    ...loose,
+  ]
+
   const [open, setOpen] = useState(null)   // { album, index }
 
   const flat = open ? albums[open.album].photos : []

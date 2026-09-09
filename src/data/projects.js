@@ -7,8 +7,11 @@
 // it, and the scope in the company's own words. Year and value appear only on
 // the entries that have them; nothing is estimated to fill a gap.
 //
-// `photos` holds file stems from public/images/projects (see album.js and
-// scripts/make-project-images.py). An entry with none renders as a text card.
+// `photos` holds the project's own photographs — a file stem in
+// public/images/projects (scripts/make-project-images.py writes both sizes of
+// each) and a caption saying what the frame shows. The first one is the card
+// image; all of them appear in the album on /projects. An entry with no photos
+// renders as a text card until its pictures arrive.
 // ---------------------------------------------------------------------------
 
 export const projectCategories = [
@@ -328,7 +331,20 @@ export const projects = [
     place: 'Khorfakkan, Sharjah',
     category: 'traffic',
     scope: 'Installation, maintenance and removal of road diversions at the Khorfakkan tunnels.',
-    photos: [],
+    photos: [
+      { src: 'khorfakkan-road-diversion-1', alt: 'Cone taper closing the outside lane on the approach to the tunnels' },
+      { src: 'khorfakkan-road-diversion-2', alt: 'Water-filled barrier run separating the works from live traffic' },
+      { src: 'khorfakkan-road-diversion-3', alt: 'Barrier line carried around the curve at the head of the diversion' },
+      { src: 'khorfakkan-road-diversion-4', alt: 'Cone line running through the tunnel bore under lane closure' },
+      { src: 'khorfakkan-road-diversion-5', alt: 'Crew working inside the tunnel behind the closure' },
+      { src: 'khorfakkan-road-diversion-6', alt: 'Truck-mounted attenuator deployed behind the works, arrow board running' },
+      { src: 'khorfakkan-road-diversion-7', alt: 'Supervisor at the attenuator checking the taper before the shift' },
+      { src: 'khorfakkan-road-diversion-8', alt: 'Delineators and warning signs guiding traffic through the diversion' },
+      { src: 'khorfakkan-road-diversion-9', alt: 'Flagman controlling traffic at the head of the diversion' },
+      { src: 'khorfakkan-road-diversion-10', alt: 'Traffic marshalled past the works after dark' },
+      { src: 'khorfakkan-road-diversion-11', alt: 'Crew setting and securing the barrier line at night' },
+      { src: 'khorfakkan-road-diversion-12', alt: 'The night shift crew at the Khorfakkan tunnels' },
+    ],
   },
 
   // ---- Marine & Coastal ---------------------------------------------------

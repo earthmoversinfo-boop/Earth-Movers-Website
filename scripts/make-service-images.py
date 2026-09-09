@@ -54,7 +54,7 @@ PLAN = {
     'lane-closure-permits':        (f'{S}/lane-closure.jpg',            (0.30, 0.10, 1.00, 1.00)),
     'road-closure-permits':        (f'{S}/road-closure.jpg',            (0.00, 0.35, 1.00, 0.75)),
     'traffic-management':          (f'{S}/traffic-management.jpg',      (0.00, 0.30, 1.00, 0.65)),
-    'tma-rental':                  (f'{S}/lane-closure.jpg',            (0.00, 0.25, 0.62, 1.00)),
+    'tma-rental':                  (f'{S}/tma-rental.jpg',             (0.08, 0.00, 1.00, 1.00)),
 
     # Earth Works (continued)
     'site-preparation':            (f'{S}/access-roads.jpg',            (0.20, 0.05, 1.00, 1.00)),
@@ -88,7 +88,7 @@ TALL = {
     'lane-closure-permits':        (0.44, 0.20, 0.72, 1.00),
     'road-closure-permits':        (0.00, 0.30, 1.00, 0.85),
     'traffic-management':          (0.00, 0.25, 1.00, 0.80),
-    'tma-rental':                  (0.00, 0.30, 0.48, 1.00),
+    'tma-rental':                  (0.34, 0.02, 0.80, 1.00),
     'site-preparation':            (0.34, 0.00, 0.86, 1.00),
     'rta-approved-entry-exit-works': (0.00, 0.00, 0.58, 1.00),
     'rta-service-protection':      (0.20, 0.00, 0.86, 1.00),
@@ -110,6 +110,7 @@ SQUARE = {
     'rta-service-protection': (0.22, 0.00, 0.84, 1.00),
     'utilities-shifting':  (0.26, 0.00, 0.88, 1.00),
     'rta-approved-entry-exit-works': (0.00, 0.05, 0.54, 1.00),
+    'tma-rental':          (0.32, 0.04, 0.82, 1.00),
     'excavation':          (0.28, 0.00, 0.92, 0.86),
     'site-preparation':    (0.14, 0.05, 0.72, 1.00),
 }
@@ -135,8 +136,9 @@ CAT_W, CAT_H = 1600, 1066
 P = 'assets/originals/projects'
 
 NAMED = {
-    # the fleet picture sits in a dark band, so the pale sand needs holding up
-    'fleet.jpg':        (f'{S}/backfilling.jpg',             (0.02, 0.02, 0.98, 0.86), (1400, 875), (1.18, 1.30)),
+    # the fleet band is dark, and the attenuator is a night shot, so it sits in
+    # it without fighting the ground behind it
+    'fleet.jpg':        (f'{S}/tma-rental.jpg',              (0.06, 0.00, 1.00, 1.00), (1400, 875), (1.10, 1.14)),
     # the Fujairah case study is asphalt on a plant access road, so it gets the
     # photograph of that work rather than a skyline
     'project-fujairah.jpg': (f'{P}/fuj-paver-tipper.jpg',    (0.00, 0.00, 1.00, 0.82), (1000, 625), (1.08, 1.16)),
@@ -154,7 +156,7 @@ PUNCH = {
     'asphalt-patch-works': (1.10, 1.18),
     'traffic-management':  (1.06, 1.12),
     'road-closure-permits': (1.06, 1.10),
-    'tma-rental':          (1.06, 1.12),
+    'tma-rental':          (1.08, 1.12),
 }
 
 
