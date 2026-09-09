@@ -701,13 +701,15 @@ export const serviceContent = {
   'rta-approved-entry-exit-works': {
     img: '/images/services/rta-approved-entry-exit-works.jpg',
     h1: 'RTA Approved Entry & Exit Works Contractor in Dubai',
-    lead: 'Plot entrances and exits onto RTA roads, constructed by an RTA-approved contractor so the access is accepted and legally usable.',
-    caption: 'Checking an approved entry and exit against the drawing on site.',
+    lead: 'RTA approved entry exit works across Dubai — plot entrances and exits onto RTA roads, built by an RTA approved access contractor so the access is accepted and legally usable.',
+    caption: 'An RTA approved entry and exit under construction on the plot frontage.',
     intro:
-      'An entry-exit onto an RTA road is not a kerb job. It is a controlled connection to the public highway, and the RTA will only accept it if the design is approved, the contractor is approved, and what was built matches what was drawn.',
+      'An entry-exit onto an RTA road is not a kerb job. It is a controlled connection to the public highway, and the RTA will only accept it if the design is approved, the contractor is approved, and what was built matches what was drawn. Using an RTA approved access contractor is not a preference on these works — without one there is no permit and no handover.',
     body: [
       'We handle the package end to end: the entry-exit drawings and submission, the permit, and the construction itself — drop kerbs, apron, transitions and levels, continuity of the road drainage across the access, surfacing, marking and signage — followed by reinstatement of everything disturbed within the road reserve.',
       'The most common reason an access fails inspection is drainage. An entrance that interrupts the channel line, or that discharges plot water onto the carriageway, will not be signed off however well it is finished. We set the levels so the road drainage runs through unbroken and the plot drains to its own system.',
+      'The second most common reason is what is underneath. Plot frontages carry water, irrigation and telecom lines within a few hundred millimetres of the surface, and an access built over an unprotected service is a defect waiting to be dug up again. Where a line crosses the access we expose it, protect it and record it before the surfacing goes down.',
+      'The work is the same discipline whether the access is a villa gate or a showroom forecourt: set out to the approved geometry, form and compact the sub-base, set the kerb line and the drop, protect what crosses it, and surface in interlock or asphalt to the level the drawing calls for. Our RTA approved entry exit projects run from single building accesses in Jumeirah Village Circle to showroom and industrial frontages; they are listed on the projects page, and the JVC access is there with the photographs from the job.',
     ],
     scope: [
       'Entry and exit design drawings and RTA submission',
@@ -716,6 +718,7 @@ export const serviceContent = {
       'Continuity of road channel and drainage across the access',
       'Sub-base, base and asphalt or interlock surfacing of the access',
       'Marking, signage and, where required, guardrail and bollard protection',
+      'Protection of water, irrigation and telecom lines crossing the access',
       'Reinstatement of the road reserve and handover documentation',
     ],
     specs: [
@@ -736,6 +739,14 @@ export const serviceContent = {
       {
         q: 'Why do plot accesses fail RTA inspection?',
         a: 'Most often drainage: a broken channel line across the access, or plot water discharging onto the carriageway. Levels and geometry that do not match the approved drawing are the next most common cause.',
+      },
+      {
+        q: 'What makes a contractor an RTA approved access contractor?',
+        a: 'RTA approval is held by the company, not bought per job. It covers the works inside the road reserve — the access itself, the reinstatement around it and the traffic arrangements while it is built. We hold that approval, so the permit is issued against our name and the completed access is accepted on our submission.',
+      },
+      {
+        q: 'Can you build the access while the building is still under construction?',
+        a: 'Yes, and it is usually the right sequence — a temporary access built to the approved entry-exit geometry keeps deliveries off the carriageway and becomes the permanent one at handover. The JVC access on our projects page was built exactly that way.',
       },
     ],
   },
