@@ -91,7 +91,12 @@ export default function Projects() {
               <Reveal key={p.id} delay={(i % 3) * 60} className="reg-card">
                 {p.photos?.length ? (
                   <div className="reg-card-media">
-                    <img src={asset(`${ALBUM}/${p.photos[0]}.jpg`)} alt={`${p.name} — ${p.client}`} loading="lazy" />
+                    <img
+                      src={asset(`${ALBUM}/${p.photos[0].src}.jpg`)}
+                      alt={p.photos[0].alt}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 ) : null}
                 <span className="reg-card-tag">{nameOf(p.category)}</span>

@@ -1,6 +1,9 @@
 // ---------------------------------------------------------------------------
-// The site record on /projects — the company's own job photographs, grouped by
-// the run of work they came from rather than by client.
+// Photographs whose project is not yet identified, grouped by the run of work
+// they came from. A project's own pictures live on its entry in projects.js and
+// render above these; a set moves out of this file the moment its document
+// arrives and names the contract. The urban kerb, chamber and interlock sets
+// left here when document 32 identified them as the JVC access job.
 //
 // Every caption describes what the frame shows. Where a photograph does not
 // evidence a client, a contract or a date, none is claimed: the albums are
@@ -50,44 +53,6 @@ export const albums = [
       { src: 'res-roller-train', alt: 'Roller train following the paver on a full-width overlay' },
       { src: 'res-crossing-markings', alt: 'Yellow and white pedestrian crossing marked out on the new surface' },
       { src: 'res-crossing-dusk', alt: 'Finished crossing markings at dusk, ready for the road to reopen' },
-    ],
-  },
-  {
-    slug: 'kerb-and-chambers',
-    title: 'Kerb, channel and chamber works',
-    text: 'Street-level infrastructure on a live urban road — kerb lines lifted and reset to new radii, sub-base regraded and rolled behind them, and utility chambers cut out, rebuilt and brought back up to the finished surface level.',
-    photos: [
-      { src: 'kerb-bedding', alt: 'Kerb line bedded on concrete along a new footpath edge' },
-      { src: 'kerb-setting', alt: 'Setting kerbstones to line and level on the new radius' },
-      { src: 'kerb-radius-crew', alt: 'Crew setting the kerb radius and backfilling behind the line' },
-      { src: 'kerb-radius-cut', alt: 'Cutting a kerb to fit the radius at a footpath return' },
-      { src: 'kerb-roller', alt: 'Ride-on roller compacting the sub-base behind the new kerb line' },
-      { src: 'chamber-excavation', alt: 'Utility chamber exposed and squared out ready for rebuilding' },
-      { src: 'chamber-cover-lift', alt: 'Chamber cover slab lifted clear so the frame can be reset' },
-      { src: 'chamber-frame-setting', alt: 'Chamber frame set to the finished surface level' },
-      { src: 'chamber-rebuild', alt: 'Chamber walls rebuilt around the existing service' },
-      { src: 'service-saw-cutting', alt: 'Saw-cutting a trench line beside a protected service' },
-      { src: 'backhoe-loading', alt: 'Backhoe loading broken-out material into the tipper on a live street' },
-      { src: 'material-delivery', alt: 'Sub-base and bedding material delivered to the working face' },
-    ],
-  },
-  {
-    slug: 'footpath-and-interlock',
-    title: 'Footpath and interlock paving',
-    text: 'Footpaths and public areas relaid in interlock — bedding sand screeded to level, blocks laid to the pattern, edges cut in against the kerb line, and the surface compacted and jointed before it was handed back.',
-    photos: [
-      { src: 'paving-sand-screed', alt: 'Bedding sand screeded to level before the blocks go down' },
-      { src: 'paving-crew-laying', alt: 'Paving crew laying interlock blocks to the pattern' },
-      { src: 'paving-block-run', alt: 'Block run advancing along the footpath' },
-      { src: 'paving-edge-line', alt: 'Cutting in the edge course against the kerb line' },
-      { src: 'paving-curve-kerb', alt: 'Interlock laid around a curved kerb line' },
-      { src: 'paving-plaza', alt: 'Paved area taking shape between the buildings' },
-      { src: 'paving-block-delivery', alt: 'Interlock blocks unloaded and stacked at the working face' },
-      { src: 'paving-night-works', alt: 'Night shift working the footpath while the road stays open' },
-      { src: 'setting-out-night', alt: 'Setting out the next section after dark' },
-      { src: 'paving-bollard-circle', alt: 'Bollards set into the finished paving at a vehicle entrance' },
-      { src: 'footpath-finished', alt: 'Completed footpath handed back to pedestrians' },
-      { src: 'footpath-street', alt: 'Finished footpath swept down before handover' },
     ],
   },
 ]
